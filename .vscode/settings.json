@@ -1,0 +1,8 @@
+{
+    "tslint.configFile": "tsconfig.json",
+    "workbench.colorCustomizations": {
+        "[Default Dark+]": {
+            "titleBar.activeBackground": "#5f2e00"
+        }
+    }
+}
