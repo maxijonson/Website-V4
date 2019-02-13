@@ -1,7 +1,7 @@
 import { ThemeAction } from "../../actions";
 import { ITheme, themes } from "../../modules/CSS/themes";
 
-export const themesReducerDefaultState: ITheme = themes.normal;
+export const themesReducerDefaultState: ITheme = themes.light;
 
 export const themesReducer = (
     state: ITheme = themesReducerDefaultState,
@@ -11,7 +11,7 @@ export const themesReducer = (
         case "SET_THEME":
             return action.theme;
         case "RESET_THEME":
-            return themes.normal;
+            return themesReducerDefaultState;
         default:
             return state;
     }

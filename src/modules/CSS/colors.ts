@@ -1,8 +1,8 @@
 import { shade } from "./shades";
 
-export type color = "black" | "blue" | "navy" | "orange" | "white";
+export type Color = "black" | "blue" | "navy" | "orange" | "white";
 
-export type IColors = { [name in color]: string };
+export type IColors = { [name in Color]: string };
 
 export type IShade = { [name in shade]: IColors };
 

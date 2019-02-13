@@ -15,7 +15,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@beyonk/google-fonts-webpack-plugin": "^1.2.2",
     "babel-loader": "^8.0.5",
     "babel-polyfill": "^6.26.0",
     "css-loader": "^2.1.0",
@@ -30,6 +29,7 @@
     "normalize.css": "^8.0.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
+    "react-pose": "^4.0.6",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "redux-thunk": "^2.3.0",

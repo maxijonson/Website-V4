@@ -1,20 +1,31 @@
 import _ from "lodash";
-import { colors, IColors } from "./colors";
-import { shade } from "./shades";
+import { colors } from "./colors";
+
+export type Section = "pageBackground" | "headerLink";
+export type Theme = "light" | "dark";
+
+export type IPalette = { [name in Section]: string };
 
 export interface ITheme {
     name: string;
-    colors: IColors;
+    colors: IPalette;
 }
 
-export type IThemes = { [name in shade]: ITheme };
+export type IThemes = { [name in Theme]: ITheme };
 
 export const themes: IThemes = {
-    dark: { name: "Dark", colors: colors.dark },
-    light: { name: "Light", colors: colors.light },
-    normal: { name: "Normal", colors: colors.normal },
-    ultraDark: { name: "Ultra Dark", colors: colors.ultraDark },
-    ultraLight: { name: "Ultra Light", colors: colors.ultraLight },
-    veryDark: { name: "Very Dark", colors: colors.veryDark },
-    veryLight: { name: "Very Light", colors: colors.veryLight },
+    light: {
+        name: "Light",
+        colors: {
+            pageBackground: colors.light.white,
+            headerLink: colors.ultraDark.black,
+        },
+    },
+    dark: {
+        name: "Dark",
+        colors: {
+            pageBackground: colors.ultraDark.white,
+            headerLink: colors.ultraLight.white,
+        },
+    },
 };

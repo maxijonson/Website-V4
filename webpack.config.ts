@@ -3,9 +3,6 @@ import * as _ from "lodash";
 import path from "path";
 import TSLintPlugin from "tslint-webpack-plugin";
 import webpack = require("webpack");
-import { fonts } from "./src/modules/CSS/fonts";
-
-const GoogleFontsPlugin = require("@beyonk/google-fonts-webpack-plugin");
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
 
@@ -15,16 +12,11 @@ if (process.env.NODE_ENV === "test") {
     require("dotenv").config({ path: ".env.development" });
 }
 
-console.log(_.values(fonts));
-
 const config = (env: string): webpack.Configuration => {
     const isProduction = env === "production";
     const CSSExtract = new ExtractTextPlugin("styles.css");
     const TSLint = new TSLintPlugin({
         files: ["./src/**/*.ts"],
-    });
-    const Fonts = new GoogleFontsPlugin({
-        fonts: _.values(fonts),
     });
 
     return {
@@ -70,7 +62,7 @@ const config = (env: string): webpack.Configuration => {
         resolve: {
             extensions: [".tsx", ".ts", ".js", ".json"],
         },
-        plugins: [CSSExtract, TSLint, Fonts],
+        plugins: [CSSExtract, TSLint],
         mode: isProduction ? "production" : "development",
         devtool: isProduction ? "source-map" : "inline-source-map",
         devServer: {

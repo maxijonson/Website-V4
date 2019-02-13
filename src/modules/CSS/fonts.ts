@@ -1,6 +1,6 @@
 export type FontVariants = "400" | "400i" | "700" | "700i";
 export type FontSubsets = "latin" | "latin-ext";
-export type FontName = "oswald";
+export type FontName = "oswald" | "roboto" | "bitter" | "openSans" | "exo";
 
 export interface IFont {
     family: string;
@@ -13,5 +13,17 @@ export type IFonts = { [name in FontName]: IFont };
 export const fonts: IFonts = {
     oswald: {
         family: "Oswald",
+    },
+    roboto: {
+        family: "Roboto",
+    },
+    bitter: {
+        family: "Bitter",
+    },
+    openSans: {
+        family: "Open Sans",
+    },
+    exo: {
+        family: "Exo 2",
     },
 };

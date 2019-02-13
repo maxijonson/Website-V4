@@ -3,7 +3,8 @@
     "extends": ["tslint:recommended"],
     "jsRules": {},
     "rules": {
-        "arrow-return-shorthand": [true, "multiline"]
+        "arrow-return-shorthand": [true, "multiline"],
+        "object-literal-sort-keys": false
     },
     "rulesDirectory": []
 }
