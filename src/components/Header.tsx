@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import _ from "lodash";
 import React, { FunctionComponent } from "react";
 import { connect, MapStateToPropsParam } from "react-redux";
@@ -123,9 +124,44 @@ const Component: FunctionComponent<HeaderProps> = ({
                 }}
             >
                 <Switch
+                    activeBoxShadow={theme.colors.headerLink}
+                    ariaLabelledby={`Switch to ${
+                        theme.name == "light" ? theme.name : "dark"
+                    } theme`}
                     checked={checked}
                     onChange={handleThemeChange}
                     handleDiameter={15}
+                    onColor={theme.colors.themeSwitchOn}
+                    onHandleColor={theme.colors.headerLink}
+                    offHandleColor={theme.colors.headerLink}
+                    checkedIcon={
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                height: "100%",
+                                fontSize: 15,
+                                color: theme.colors.headerLink,
+                                paddingRight: 2,
+                            }}
+                            children={<FontAwesomeIcon icon="sun" />}
+                        />
+                    }
+                    uncheckedIcon={
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                height: "100%",
+                                fontSize: 15,
+                                color: theme.colors.headerLink,
+                                paddingRight: 2,
+                            }}
+                            children={<FontAwesomeIcon icon="moon" />}
+                        />
+                    }
                 />
             </div>
         </div>
