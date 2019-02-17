@@ -17,12 +17,10 @@ export interface IStoreState {
     theme: ITheme;
 }
 
-export default () => {
-    const store = createStore(
+export default () =>
+    createStore(
         combineReducers<IStoreState>({
             theme: themesReducer,
         }),
         composeEnhancers(applyMiddleware(thunk)),
     );
-    return store;
-};
