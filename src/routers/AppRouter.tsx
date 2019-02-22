@@ -7,6 +7,8 @@ import styled from "styled-components";
 
 import { ITheme } from "../../src/modules/CSS/themes";
 import { IStoreState } from "../../src/store/config";
+import { Footer } from "../components";
+import { fonts } from "../modules/CSS";
 import { routes } from "./routes";
 
 interface IAppRouterProps {
@@ -29,8 +31,10 @@ const PageWrapperStyled = styled(PageWrapper)`
     background-color: ${({ theme }: IPageWrapperProps) =>
         theme.colors.pageBackground};
     width: 100vw;
-    height: 100vh;
+    font-family: ${fonts.fonts.oswald.family};
+    min-height: 98.45250474vh;
     transition: all 0.2s linear;
+    flex: 1 0 auto;
 `;
 
 const mapStateToProps = ({ theme }: IStoreState): IPageWrapperProps => ({
@@ -39,18 +43,21 @@ const mapStateToProps = ({ theme }: IStoreState): IPageWrapperProps => ({
 
 const AppRouter = ({ theme }: IAppRouterProps) => (
     <Router history={history}>
-        <PageWrapperStyled theme={theme}>
-            <Switch>
-                {_.map(routes, ({ name, path, component, exact }) => (
-                    <Route
-                        key={name}
-                        path={path}
-                        component={component}
-                        exact={exact}
-                    />
-                ))}
-            </Switch>
-        </PageWrapperStyled>
+        <React.Fragment>
+            <PageWrapperStyled theme={theme}>
+                <Switch>
+                    {_.map(routes, ({ name, path, component, exact }) => (
+                        <Route
+                            key={name}
+                            path={path}
+                            component={component}
+                            exact={exact}
+                        />
+                    ))}
+                </Switch>
+            </PageWrapperStyled>
+            <Footer />
+        </React.Fragment>
     </Router>
 );
 

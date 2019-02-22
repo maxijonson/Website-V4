@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { colors } from "./colors";
 
-export type Section = "pageBackground" | "headerLink" | "themeSwitchOn";
+export type Section = "pageBackground" | "defaultText" | "themeSwitchOn";
 export type Theme = "light" | "dark";
 
 export type IPalette = { [name in Section]: string };
@@ -18,7 +18,7 @@ export const themes: IThemes = {
         name: "light",
         colors: {
             pageBackground: colors.light.white,
-            headerLink: colors.ultraDark.black,
+            defaultText: colors.ultraDark.black,
             themeSwitchOn: colors.normal.white,
         },
     },
@@ -26,7 +26,7 @@ export const themes: IThemes = {
         name: "dark",
         colors: {
             pageBackground: colors.ultraDark.white,
-            headerLink: colors.ultraLight.white,
+            defaultText: colors.ultraLight.white,
             themeSwitchOn: colors.normal.white,
         },
     },

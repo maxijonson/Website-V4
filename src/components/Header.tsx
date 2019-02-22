@@ -33,7 +33,7 @@ type HeaderProps = IHeaderOwnProps & IStateProps & IDispatchProps;
 
 const RouteLink = styled.div`
     display: inline-block;
-    color: ${({ theme }: IStateProps) => theme.colors.headerLink};
+    color: ${({ theme }: IStateProps) => theme.colors.defaultText};
     transition: all 0.2s linear;
     border-width: 0.15em;
     border-top-style: solid;
@@ -41,7 +41,7 @@ const RouteLink = styled.div`
     padding: 0.2em 0.4em;
     &:hover {
         border-top-color: ${({ theme }: IStateProps) =>
-            theme.colors.headerLink};
+            theme.colors.defaultText};
     }
 `;
 
@@ -104,7 +104,7 @@ const Component: FunctionComponent<HeaderProps> = ({
                                     fontWeight: 100,
                                 }}
                                 activeStyle={{
-                                    fontWeight: 900,
+                                    fontWeight: "bolder",
                                 }}
                                 exact={exact}
                             >
@@ -124,7 +124,7 @@ const Component: FunctionComponent<HeaderProps> = ({
                 }}
             >
                 <Switch
-                    activeBoxShadow={theme.colors.headerLink}
+                    activeBoxShadow={theme.colors.defaultText}
                     ariaLabelledby={`Switch to ${
                         theme.name == "light" ? theme.name : "dark"
                     } theme`}
@@ -132,8 +132,8 @@ const Component: FunctionComponent<HeaderProps> = ({
                     onChange={handleThemeChange}
                     handleDiameter={15}
                     onColor={theme.colors.themeSwitchOn}
-                    onHandleColor={theme.colors.headerLink}
-                    offHandleColor={theme.colors.headerLink}
+                    onHandleColor={theme.colors.defaultText}
+                    offHandleColor={theme.colors.defaultText}
                     checkedIcon={
                         <div
                             style={{
@@ -142,7 +142,7 @@ const Component: FunctionComponent<HeaderProps> = ({
                                 alignItems: "center",
                                 height: "100%",
                                 fontSize: 15,
-                                color: theme.colors.headerLink,
+                                color: theme.colors.defaultText,
                                 paddingRight: 2,
                             }}
                             children={<FontAwesomeIcon icon="sun" />}
@@ -156,7 +156,7 @@ const Component: FunctionComponent<HeaderProps> = ({
                                 alignItems: "center",
                                 height: "100%",
                                 fontSize: 15,
-                                color: theme.colors.headerLink,
+                                color: theme.colors.defaultText,
                                 paddingRight: 2,
                             }}
                             children={<FontAwesomeIcon icon="moon" />}
@@ -171,7 +171,6 @@ const Component: FunctionComponent<HeaderProps> = ({
 const StyledComponent = styled(Component)`
     width: 100vw;
     height: 7vh;
-    position: fixed;
     top: 0;
     left: 0;
     background: transparent;
