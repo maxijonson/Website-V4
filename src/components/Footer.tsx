@@ -31,6 +31,7 @@ const StyledComponent = styled(Component)`
     background-color: ${({ theme }: FooterProps) =>
         theme.colors.pageBackground};
     font-family: ${fonts.fonts.oswald.family};
+    width: 100vw;
 `;
 
 const mapStateToProps: MapStateToPropsParam<IStateProps, void, IStoreState> = ({

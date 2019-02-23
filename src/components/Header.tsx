@@ -17,7 +17,7 @@ import { IStoreState } from "../store/config";
 const { fonts } = CSS.fonts;
 const { light, dark } = themes.themes;
 
-export interface IHeaderOwnProps {
+interface IHeaderOwnProps {
     className?: string;
 }
 
@@ -64,24 +64,26 @@ const Component: FunctionComponent<HeaderProps> = ({
             className={className}
             style={{
                 display: "grid",
-                gridTemplateColumns: "1fr 3fr 1fr",
+                gridTemplateColumns: "20% 60% 20%",
             }}
         >
             <div
                 style={{
                     gridColumnStart: 1,
-                    marginTop: "2%",
-                    marginLeft: "5%",
+                    paddingTop: "2%",
                 }}
             >
                 <NavLink
                     to="/"
-                    children={
-                        <img
-                            style={{ maxWidth: "100%", maxHeight: "60%" }}
-                            src="/assets/images/logo.png"
-                        />
-                    }
+                    style={{
+                        position: "relative",
+                        display: "block",
+                        width: "10%",
+                        height: "100%",
+                        backgroundImage: `url("/assets/images/logo.png")`,
+                        backgroundSize: "contain",
+                        backgroundRepeat: "no-repeat",
+                    }}
                 />
             </div>
             <div
@@ -120,7 +122,6 @@ const Component: FunctionComponent<HeaderProps> = ({
                     gridColumnStart: 3,
                     textAlign: "right",
                     paddingTop: "2%",
-                    paddingRight: "5%",
                 }}
             >
                 <Switch
@@ -169,8 +170,7 @@ const Component: FunctionComponent<HeaderProps> = ({
 };
 
 const StyledComponent = styled(Component)`
-    width: 100vw;
-    height: 7vh;
+    height: 5vh;
     top: 0;
     left: 0;
     background: transparent;

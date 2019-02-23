@@ -1,8 +1,10 @@
 import React from "react";
-import { Header } from "../components";
+import { Header, ViewportContainer } from "../components";
 
 export const HomePage = () => (
     <React.Fragment>
-        <Header />
+        <ViewportContainer>
+            <Header />
+        </ViewportContainer>
     </React.Fragment>
 );
