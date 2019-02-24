@@ -16,19 +16,3 @@ body {
     display: flex;
     flex-direction: column;
 }
-
-/* SCROLLBAR */
-
-::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: lightgray;
-}
-
-/* /SCROLLBAR */
