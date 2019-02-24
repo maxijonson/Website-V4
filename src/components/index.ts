@@ -6,3 +6,6 @@ export { Footer };
 
 import ViewportContainer from "./ViewportContainer";
 export { ViewportContainer };
+
+import ViewportContainerBackground from "./ViewportContainerBackground";
+export { ViewportContainerBackground };

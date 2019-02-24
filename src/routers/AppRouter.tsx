@@ -35,7 +35,6 @@ const PageWrapperStyled = styled(PageWrapper)`
     min-height: 98.45250474vh;
     transition: all 0.2s linear;
     flex: 1 0 auto;
-    padding: 0 1vw;
 `;
 
 const mapStateToProps = ({ theme }: IStoreState): IPageWrapperProps => ({
