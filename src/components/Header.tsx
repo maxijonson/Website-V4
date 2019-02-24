@@ -75,15 +75,12 @@ const Component: FunctionComponent<HeaderProps> = ({
             >
                 <NavLink
                     to="/"
-                    style={{
-                        position: "relative",
-                        display: "block",
-                        width: "10%",
-                        height: "100%",
-                        backgroundImage: `url("/assets/images/logo.png")`,
-                        backgroundSize: "contain",
-                        backgroundRepeat: "no-repeat",
-                    }}
+                    children={
+                        <img
+                            style={{ maxWidth: "100%", maxHeight: "60%" }}
+                            src="/assets/images/logo.png"
+                        />
+                    }
                 />
             </div>
             <div
