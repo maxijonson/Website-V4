@@ -10,7 +10,6 @@ export default (props: IViewportContainerProps) => (
             display: "grid",
             maxWidth: "100vw",
             height: "100vh",
-            padding: "0 1vw",
             ...props.style,
         }}
     />
