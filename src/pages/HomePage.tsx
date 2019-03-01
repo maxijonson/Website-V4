@@ -1,17 +1,110 @@
 import React from "react";
+import { connect, MapStateToPropsParam } from "react-redux";
+import { STYLE_CENTERED, THEME_TRANSITION_TIME } from "src/config/config";
+import { CSS } from "src/modules";
+import { ITheme } from "src/modules/CSS/themes";
+import { IStoreState } from "src/store/config";
 import { Header, ViewportContainer } from "../components";
 
-export const HomePage = () => (
-    <React.Fragment>
-        <ViewportContainer
-            background={{
-                backgroundImage: "url('/assets/images/home-intro-bg.jpg')",
-                transform: "scale(1.2)",
-                filter: "blur(3px)",
-            }}
-            style={{ overflow: "hidden" }}
-        >
-            <Header />
-        </ViewportContainer>
-    </React.Fragment>
-);
+interface IOwnProps {}
+
+interface IStateProps {
+    theme: ITheme;
+}
+
+type HomePageProps = IOwnProps & IStateProps;
+
+const { fonts } = CSS.fonts;
+
+const HomePage = (props: HomePageProps) => {
+    const { theme } = props;
+
+    return (
+        <React.Fragment>
+            {/*** INTRO ***/}
+            <ViewportContainer
+                background={{
+                    backgroundImage: "url('/assets/images/home-intro-bg.jpg')",
+                    transform: "scale(1.2)",
+                    transition: `all ${THEME_TRANSITION_TIME}s`,
+                    filter: `${
+                        theme.name == "light"
+                            ? "blur(5px) brightness(90%)"
+                            : "blur(5px) brightness(30%)"
+                    }`,
+                }}
+                style={{ overflow: "hidden" }}
+                backgroundOverlay
+                backgroundOverlayProps={{
+                    style: {
+                        background: theme.colors.introOverlay,
+                        transition: `all ${THEME_TRANSITION_TIME}s`,
+                    },
+                }}
+            >
+                <Header />
+                <div
+                    style={{
+                        ...STYLE_CENTERED,
+                        display: "table",
+                        width: "100%",
+                        textShadow: `0 0 .75em ${theme.colors.introOverlay}`,
+                    }}
+                >
+                    <div
+                        style={{
+                            textAlign: "center",
+                            display: "table-cell",
+                            verticalAlign: "middle",
+                            transition: `all ${THEME_TRANSITION_TIME}s`,
+                            color: theme.colors.intro,
+                        }}
+                    >
+                        <div
+                            style={{
+                                fontSize: "4rem",
+                                fontFamily: fonts.Kaushan.family,
+                            }}
+                        >
+                            Welcome to
+                        </div>
+                        <div
+                            style={{
+                                fontSize: "6rem",
+                                fontFamily: fonts.exo.family,
+                            }}
+                        >
+                            MAXIJONSON'S OFFICIAL WEBSITE
+                        </div>
+                        <hr
+                            style={{
+                                margin: "1% 35%",
+                                transition: `all ${THEME_TRANSITION_TIME}s`,
+                                borderColor: theme.colors.defaultText,
+                            }}
+                        />
+                        <div
+                            style={{
+                                fontSize: "2rem",
+                                fontFamily: fonts.openSans.family,
+                            }}
+                        >
+                            Former Youtuber | Computer science student
+                        </div>
+                    </div>
+                </div>
+            </ViewportContainer>
+            {/*** /INTRO ***/}
+        </React.Fragment>
+    );
+};
+
+const mapStateToProps: MapStateToPropsParam<
+    IStateProps,
+    IOwnProps,
+    IStoreState
+> = ({ theme }: IStoreState): IStateProps => ({
+    theme,
+});
+
+export default connect(mapStateToProps)(HomePage);

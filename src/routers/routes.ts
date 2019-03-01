@@ -1,8 +1,9 @@
+import { ConnectedComponentClass } from "react-redux";
 import { HomePage, NotFoundPage } from "../pages";
 
 export interface IRoute {
     name: string;
-    component: () => JSX.Element | null;
+    component: ConnectedComponentClass<any, any> | (() => JSX.Element | null);
     hidden?: boolean;
     path: string;
     exact?: boolean;

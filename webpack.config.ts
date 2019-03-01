@@ -60,6 +60,7 @@ const config = (env: string): webpack.Configuration => {
             ],
         },
         resolve: {
+            modules: [path.resolve(__dirname), "node_modules"],
             extensions: [".tsx", ".ts", ".js", ".json"],
         },
         plugins: [CSSExtract, TSLint],

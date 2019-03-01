@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { connect, MapStateToPropsParam } from "react-redux";
+import { THEME_TRANSITION_TIME } from "src/config/config";
 import styled from "styled-components";
 import { fonts } from "../modules/CSS";
 import { ITheme } from "../modules/CSS/themes";
@@ -27,7 +28,7 @@ const StyledComponent = styled(Component)`
     color: ${({ theme }: FooterProps) => theme.colors.defaultText};
     font-size: 1.2rem;
     text-align: center;
-    transition: all 0.2s linear;
+    transition: all ${THEME_TRANSITION_TIME}s linear;
     background-color: ${({ theme }: FooterProps) =>
         theme.colors.pageBackground};
     font-family: ${fonts.fonts.oswald.family};

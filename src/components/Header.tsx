@@ -7,7 +7,8 @@ import Switch from "react-switch";
 import { Dispatch } from "redux";
 import styled from "styled-components";
 
-import { themes } from "../../src/modules/CSS";
+import { THEME_TRANSITION_TIME } from "src/config/config";
+import { themes } from "src/modules/CSS";
 import { setTheme } from "../actions";
 import { CSS } from "../modules";
 import { ITheme } from "../modules/CSS/themes";
@@ -17,7 +18,7 @@ import { IStoreState } from "../store/config";
 const { fonts } = CSS.fonts;
 const { light, dark } = themes.themes;
 
-interface IHeaderOwnProps {
+interface IOwnProps {
     className?: string;
 }
 
@@ -29,12 +30,12 @@ interface IDispatchProps {
     readonly setTheme?: (theme: ITheme) => void;
 }
 
-type HeaderProps = IHeaderOwnProps & IStateProps & IDispatchProps;
+type HeaderProps = IOwnProps & IStateProps & IDispatchProps;
 
 const RouteLink = styled.div`
     display: inline-block;
     color: ${({ theme }: IStateProps) => theme.colors.defaultText};
-    transition: all 0.2s linear;
+    transition: all ${THEME_TRANSITION_TIME}s linear;
     border-width: 0.15em;
     border-top-style: solid;
     border-top-color: transparent;
@@ -173,11 +174,12 @@ const StyledComponent = styled(Component)`
     background: transparent;
     font-family: '${fonts.oswald.family}';
     font-size: 2rem;
+    z-index: 10;
 `;
 
 const mapStateToProps: MapStateToPropsParam<
     IStateProps,
-    IHeaderOwnProps,
+    IOwnProps,
     IStoreState
 > = ({ theme }: IStoreState): IStateProps => ({
     theme,

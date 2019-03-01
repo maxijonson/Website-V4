@@ -9,3 +9,6 @@ export { ViewportContainer };
 
 import ViewportContainerBackground from "./ViewportContainerBackground";
 export { ViewportContainerBackground };
+
+import ColorOverlay from "./ColorOverlay";
+export { ColorOverlay };

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Route, Router, Switch } from "react-router-dom";
 import styled from "styled-components";
 
+import { THEME_TRANSITION_TIME } from "src/config/config";
 import { ITheme } from "../../src/modules/CSS/themes";
 import { IStoreState } from "../../src/store/config";
 import { Footer } from "../components";
@@ -33,7 +34,7 @@ const PageWrapperStyled = styled(PageWrapper)`
     width: auto;
     font-family: ${fonts.fonts.oswald.family};
     min-height: 98.45250474vh;
-    transition: all 0.2s linear;
+    transition: all ${THEME_TRANSITION_TIME}s linear;
     flex: 1 0 auto;
 `;
 
