@@ -8,9 +8,8 @@ const night = {
     end: 5,
 };
 const now = Number(moment().format(format));
-
 const isNight = now > night.start || now < night.end;
-console.log(isNight);
+
 export const themesReducerDefaultState: ITheme = isNight
     ? themes.dark
     : themes.light;
