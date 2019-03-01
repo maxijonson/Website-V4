@@ -19,7 +19,6 @@ export default (props: IViewportContainerProps) => {
     } = props;
     return (
         <div
-            {...props}
             style={{
                 display: "grid",
                 position: "relative",

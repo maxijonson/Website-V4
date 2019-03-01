@@ -1,7 +1,19 @@
+import moment from "moment";
 import { ThemeAction } from "../../actions";
 import { ITheme, themes } from "../../modules/CSS/themes";
 
-export const themesReducerDefaultState: ITheme = themes.light;
+const format = "H";
+const night = {
+    start: 21,
+    end: 5,
+};
+const now = Number(moment().format(format));
+
+const isNight = now > night.start || now < night.end;
+console.log(isNight);
+export const themesReducerDefaultState: ITheme = isNight
+    ? themes.dark
+    : themes.light;
 
 export const themesReducer = (
     state: ITheme = themesReducerDefaultState,
