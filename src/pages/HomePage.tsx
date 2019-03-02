@@ -100,10 +100,10 @@ const HomePage = (props: HomePageProps) => {
             <div
                 style={{
                     background: `${theme.colors.sectionCard}`,
-                    width: "90%",
+                    width: "75%",
                     display: "grid",
                     gridTemplateColumns: "75% 25%",
-                    margin: "2.5% auto",
+                    margin: "5% auto",
                     filter: `drop-shadow(0 .35em .35em ${
                         theme.colors.sectionCardShadow
                     })`,
@@ -118,11 +118,13 @@ const HomePage = (props: HomePageProps) => {
                 <div
                     style={{
                         gridColumnStart: "1",
-                        padding: "0.5% 1.5%",
+                        padding: "0.5% 3%",
                     }}
                 >
-                    <h1>Title</h1>
-                    <h3>Sub-title</h3>
+                    <h1 style={{}}>Title</h1>
+                    <h3 style={{ color: theme.colors.sectionSubtitle }}>
+                        Sub-title
+                    </h3>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Placeat omnis totam inventore cum repellat eligendi
@@ -149,8 +151,23 @@ const HomePage = (props: HomePageProps) => {
                         background:
                             "url('/assets/images/home-youtube-card.jpg')",
                         backgroundSize: "cover",
+                        position: "relative",
                     }}
-                />
+                >
+                    <div
+                        style={{
+                            backgroundImage: `linear-gradient(95deg, ${
+                                theme.colors.sectionCard
+                            } 20%, transparent 100%)`,
+                            position: "absolute",
+                            transition: `all ${THEME_TRANSITION_TIME}s`,
+                            left: 0,
+                            top: 0,
+                            width: "100%",
+                            height: "100%",
+                        }}
+                    />
+                </div>
             </div>
         </>
     );
