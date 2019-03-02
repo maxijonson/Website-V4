@@ -17,14 +17,14 @@ interface IStateProps {
 
 type FooterProps = IStateProps & IFooterOwnProps;
 
-const Component = ({ className }: FooterProps) => (
+const Footer = ({ className }: FooterProps) => (
     <footer className={className}>
         Copyright <FontAwesomeIcon icon={["far", "copyright"]} />{" "}
         {new Date().getFullYear()} MaxiJonson. All rights reserved.
     </footer>
 );
 
-const StyledComponent = styled(Component)`
+const StyledFooter = styled(Footer)`
     color: ${({ theme }: FooterProps) => theme.colors.defaultText};
     font-size: 1.2rem;
     text-align: center;
@@ -41,4 +41,4 @@ const mapStateToProps: MapStateToPropsParam<IStateProps, void, IStoreState> = ({
     theme,
 });
 
-export default connect(mapStateToProps)(StyledComponent);
+export default connect(mapStateToProps)(StyledFooter);

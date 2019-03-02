@@ -18,7 +18,7 @@ import { IStoreState } from "../store/config";
 const { fonts } = CSS.fonts;
 const { light, dark } = themes.themes;
 
-interface IOwnProps {
+interface IHeaderOwnProps {
     className?: string;
 }
 
@@ -30,7 +30,7 @@ interface IDispatchProps {
     readonly setTheme?: (theme: ITheme) => void;
 }
 
-type HeaderProps = IOwnProps & IStateProps & IDispatchProps;
+type HeaderProps = IHeaderOwnProps & IStateProps & IDispatchProps;
 
 const RouteLink = styled.div`
     display: inline-block;
@@ -46,7 +46,7 @@ const RouteLink = styled.div`
     }
 `;
 
-const Component: FunctionComponent<HeaderProps> = ({
+const Header: FunctionComponent<HeaderProps> = ({
     className,
     theme,
     setTheme,
@@ -167,7 +167,7 @@ const Component: FunctionComponent<HeaderProps> = ({
     );
 };
 
-const StyledComponent = styled(Component)`
+const StyledHeader = styled(Header)`
     height: 5vh;
     top: 0;
     left: 0;
@@ -179,7 +179,7 @@ const StyledComponent = styled(Component)`
 
 const mapStateToProps: MapStateToPropsParam<
     IStateProps,
-    IOwnProps,
+    IHeaderOwnProps,
     IStoreState
 > = ({ theme }: IStoreState): IStateProps => ({
     theme,
@@ -192,4 +192,4 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): IDispatchProps => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(StyledComponent);
+)(StyledHeader);

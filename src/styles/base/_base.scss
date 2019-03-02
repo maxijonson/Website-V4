@@ -1,10 +1,36 @@
 /**** DEBUG ****/
 // * {
 //     border: 1px solid red;
+
+//     @media (min-width: $sm-breakpoint) {
+//         border: 1px solid green;
+//     }
+//     @media (min-width: $md-breakpoint) {
+//         border: 1px solid blue;
+//     }
+//     @media (min-width: $lg-breakpoint) {
+//         border: 1px solid #00ffd5;
+//     }
+//     @media (min-width: $xl-breakpoint) {
+//         border: 1px solid orange;
+//     }
 // }
 
 html {
-    font-size: 62.5%;
+    font-size: 26.25%;
+
+    @media (min-width: $sm-breakpoint) {
+        font-size: 32.5%;
+    }
+    @media (min-width: $md-breakpoint) {
+        font-size: 62.5%;
+    }
+    @media (min-width: $lg-breakpoint) {
+        font-size: 62.5%;
+    }
+    @media (min-width: $xl-breakpoint) {
+        font-size: 62.5%;
+    }
 }
 
 html,
