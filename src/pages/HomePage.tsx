@@ -147,7 +147,7 @@ const HomePage = (props: HomePageProps) => {
                     style={{
                         gridColumnStart: "2",
                         background:
-                            "url('/assets/images/home-youtube-card.jpg') center no-repeat",
+                            "url('/assets/images/home-youtube-card.jpg')",
                         backgroundSize: "cover",
                     }}
                 />
