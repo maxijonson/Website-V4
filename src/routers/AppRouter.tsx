@@ -34,8 +34,9 @@ const PageWrapperStyled = styled(PageWrapper)`
     width: auto;
     font-family: ${fonts.fonts.oswald.family};
     min-height: 98.45250474vh;
-    transition: all ${THEME_TRANSITION_TIME}s linear;
+    transition: all ${THEME_TRANSITION_TIME}s;
     flex: 1 0 auto;
+    overflow: auto;
 `;
 
 const mapStateToProps = ({ theme }: IStoreState): IPageWrapperProps => ({

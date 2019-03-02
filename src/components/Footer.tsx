@@ -28,7 +28,7 @@ const StyledFooter = styled(Footer)`
     color: ${({ theme }: FooterProps) => theme.colors.defaultText};
     font-size: 1.2rem;
     text-align: center;
-    transition: all ${THEME_TRANSITION_TIME}s linear;
+    transition: all ${THEME_TRANSITION_TIME}s;
     background-color: ${({ theme }: FooterProps) =>
         theme.colors.pageBackground};
     font-family: ${fonts.fonts.oswald.family};

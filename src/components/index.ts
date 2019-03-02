@@ -12,3 +12,6 @@ export { ViewportContainerBackground };
 
 import ColorOverlay from "./ColorOverlay";
 export { ColorOverlay };
+
+import SectionCard from "./SectionCard";
+export { SectionCard };

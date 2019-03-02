@@ -6,7 +6,11 @@ export type Section =
     | "defaultText"
     | "themeSwitchOn"
     | "intro"
-    | "introOverlay";
+    | "introOverlay"
+    | "sectionCard"
+    | "defaultShadow"
+    | "altDefaultShadow"
+    | "sectionCardShadow";
 export type Theme = "light" | "dark";
 
 export type IPalette = { [name in Section]: string };
@@ -27,16 +31,24 @@ export const themes: IThemes = {
             themeSwitchOn: colors.normal.white,
             intro: colors.ultraDark.black,
             introOverlay: colors.light.white,
+            sectionCard: colors.veryLight.white,
+            defaultShadow: colors.normal.black,
+            altDefaultShadow: colors.light.white,
+            sectionCardShadow: colors.light.black,
         },
     },
     dark: {
         name: "dark",
         colors: {
-            pageBackground: colors.ultraDark.white,
+            pageBackground: colors.veryDark.black,
             defaultText: colors.ultraLight.white,
             themeSwitchOn: colors.normal.white,
             intro: colors.normal.white,
             introOverlay: colors.ultraDark.black,
+            sectionCard: colors.veryDark.black,
+            defaultShadow: colors.normal.white,
+            altDefaultShadow: colors.light.black,
+            sectionCardShadow: colors.ultraDark.black,
         },
     },
 };

@@ -35,7 +35,7 @@ type HeaderProps = IHeaderOwnProps & IStateProps & IDispatchProps;
 const RouteLink = styled.div`
     display: inline-block;
     color: ${({ theme }: IStateProps) => theme.colors.defaultText};
-    transition: all ${THEME_TRANSITION_TIME}s linear;
+    transition: all ${THEME_TRANSITION_TIME}s;
     border-width: 0.15em;
     border-top-style: solid;
     border-top-color: transparent;
@@ -72,6 +72,7 @@ const Header: FunctionComponent<HeaderProps> = ({
                 style={{
                     gridColumnStart: 1,
                     paddingTop: "2%",
+                    paddingLeft: "5%",
                 }}
             >
                 <NavLink
@@ -120,6 +121,7 @@ const Header: FunctionComponent<HeaderProps> = ({
                     gridColumnStart: 3,
                     textAlign: "right",
                     paddingTop: "2%",
+                    paddingRight: "5%",
                 }}
             >
                 <Switch
@@ -171,7 +173,9 @@ const StyledHeader = styled(Header)`
     height: 5vh;
     top: 0;
     left: 0;
+    width: 100vw;
     background: transparent;
+    position: fixed;
     font-family: '${fonts.oswald.family}';
     font-size: 2rem;
     z-index: 10;

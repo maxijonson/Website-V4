@@ -23,7 +23,7 @@ export default (props: IViewportContainerProps) => {
                 display: "grid",
                 position: "relative",
                 maxWidth: "100vw",
-                height: "100vh",
+                minHeight: "100vh",
                 ...props.style,
             }}
         >
