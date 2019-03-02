@@ -16,7 +16,7 @@ import { routes } from "../routers/routes";
 import { IStoreState } from "../store/config";
 
 const { fonts } = CSS.fonts;
-const { light, dark } = themes.themes;
+const { light, dark } = themes;
 
 interface IHeaderOwnProps {
     className?: string;

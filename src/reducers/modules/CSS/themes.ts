@@ -1,6 +1,6 @@
 import moment from "moment";
-import { ThemeAction } from "../../actions";
-import { ITheme, themes } from "../../modules/CSS/themes";
+import { ThemeAction } from "src/actions";
+import { ITheme, themes } from "src/modules/CSS";
 
 const format = "H";
 const night = {
@@ -19,9 +19,9 @@ export const themesReducer = (
     action: ThemeAction,
 ): ITheme => {
     switch (action.type) {
-        case "SET_THEME":
+        case "themes/SET_THEME":
             return action.theme;
-        case "RESET_THEME":
+        case "themes/RESET_THEME":
             return themesReducerDefaultState;
         default:
             return state;
