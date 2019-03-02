@@ -99,9 +99,10 @@ const HomePage = (props: HomePageProps) => {
             {/*** /INTRO ***/}
             <div
                 style={{
-                    background: theme.colors.sectionCard,
+                    background: `${theme.colors.sectionCard}`,
                     width: "90%",
-                    padding: "0.5% 1.5%",
+                    display: "grid",
+                    gridTemplateColumns: "75% 25%",
                     margin: "2.5% auto",
                     filter: `drop-shadow(0 .35em .35em ${
                         theme.colors.sectionCardShadow
@@ -110,35 +111,46 @@ const HomePage = (props: HomePageProps) => {
                     fontSize: "1.6rem",
                     color: theme.colors.defaultText,
                     transition: `all ${THEME_TRANSITION_TIME}s`,
+                    textAlign: "justify",
+                    overflow: "hidden",
                 }}
             >
                 <div
                     style={{
+                        gridColumnStart: "1",
+                        padding: "0.5% 1.5%",
+                    }}
+                >
+                    <h1>Title</h1>
+                    <h3>Sub-title</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Placeat omnis totam inventore cum repellat eligendi
+                        perspiciatis, mollitia, quo corrupti atque in magnam
+                        odit maxime molestias voluptate dicta. Esse, a eius.
+                        Lorem ipsum dolor sit amet consectetur, adipisicing
+                        elit. Quia repellendus eligendi quod velit ipsum ducimus
+                        reprehenderit ratione sapiente aperiam repellat tempora,
+                        ipsam aut! Voluptatum veniam repudiandae architecto iure
+                        reprehenderit ipsa? Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Vel similique ipsam nihil
+                        animi quasi placeat, dolorum pariatur incidunt tenetur
+                        ipsa? Sint vel maiores esse molestias ad perspiciatis
+                        totam, error voluptas! Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Animi reprehenderit
+                        facilis porro et, doloribus error, rerum voluptate,
+                        earum quis in quam. Alias maiores doloribus commodi
+                        soluta omnis perferendis quos accusamus?
+                    </p>
+                </div>
+                <div
+                    style={{
+                        gridColumnStart: "2",
                         background:
                             "url('/assets/images/home-youtube-card.jpg') center no-repeat",
                         backgroundSize: "cover",
                     }}
                 />
-                <h1>Title</h1>
-                <h3>Sub-title</h3>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Placeat omnis totam inventore cum repellat eligendi
-                    perspiciatis, mollitia, quo corrupti atque in magnam odit
-                    maxime molestias voluptate dicta. Esse, a eius. Lorem ipsum
-                    dolor sit amet consectetur, adipisicing elit. Quia
-                    repellendus eligendi quod velit ipsum ducimus reprehenderit
-                    ratione sapiente aperiam repellat tempora, ipsam aut!
-                    Voluptatum veniam repudiandae architecto iure reprehenderit
-                    ipsa? Lorem ipsum dolor sit amet consectetur adipisicing
-                    elit. Vel similique ipsam nihil animi quasi placeat, dolorum
-                    pariatur incidunt tenetur ipsa? Sint vel maiores esse
-                    molestias ad perspiciatis totam, error voluptas! Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Animi
-                    reprehenderit facilis porro et, doloribus error, rerum
-                    voluptate, earum quis in quam. Alias maiores doloribus
-                    commodi soluta omnis perferendis quos accusamus?
-                </p>
             </div>
         </>
     );
