@@ -12,6 +12,3 @@ export { ViewportContainerBackground };
 
 import ColorOverlay from "./ColorOverlay";
 export { ColorOverlay };
-
-import Debug from "./Debug";
-export { Debug };

@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { THEME_TRANSITION_TIME } from "src/config/config";
 import { ITheme } from "../../src/modules/CSS/themes";
 import { IStoreState } from "../../src/store/config";
-import { Debug, Footer } from "../components";
+import { Footer } from "../components";
 import { fonts } from "../modules/CSS";
 import { routes } from "./routes";
 
@@ -58,7 +58,6 @@ const AppRouter = ({ theme }: IAppRouterProps) => (
                 </Switch>
             </PageWrapperStyled>
             <Footer />
-            <Debug />
         </React.Fragment>
     </Router>
 );
