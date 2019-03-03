@@ -13,9 +13,8 @@ import { setTheme } from "../actions";
 import { CSS } from "../modules";
 import { ITheme } from "../modules/CSS/themes";
 import { routes } from "../routers/routes";
-import { IStoreState } from "../store/config";
 
-const { fonts } = CSS.fonts;
+const { fonts } = CSS;
 const { light, dark } = themes;
 
 interface IHeaderOwnProps {

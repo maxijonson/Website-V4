@@ -7,7 +7,6 @@ import styled from "styled-components";
 
 import { THEME_TRANSITION_TIME } from "src/config/config";
 import { ITheme } from "../../src/modules/CSS/themes";
-import { IStoreState } from "../../src/store/config";
 import { Footer } from "../components";
 import { fonts } from "../modules/CSS";
 import { routes } from "./routes";
@@ -32,7 +31,7 @@ const PageWrapperStyled = styled(PageWrapper)`
     background-color: ${({ theme }: IPageWrapperProps) =>
         theme.colors.pageBackground};
     width: auto;
-    font-family: ${fonts.fonts.oswald.family};
+    font-family: ${fonts.oswald.family};
     min-height: 98.45250474vh;
     transition: all ${THEME_TRANSITION_TIME}s;
     flex: 1 0 auto;

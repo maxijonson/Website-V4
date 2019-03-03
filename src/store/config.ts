@@ -13,8 +13,10 @@ declare global {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export interface IStoreState {
-    theme: ITheme;
+declare global {
+    interface IStoreState {
+        theme: ITheme;
+    }
 }
 
 export default () =>

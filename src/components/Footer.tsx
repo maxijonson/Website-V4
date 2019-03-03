@@ -5,7 +5,6 @@ import { THEME_TRANSITION_TIME } from "src/config/config";
 import styled from "styled-components";
 import { fonts } from "../modules/CSS";
 import { ITheme } from "../modules/CSS/themes";
-import { IStoreState } from "../store/config";
 
 interface IFooterOwnProps {
     className?: string;
@@ -31,7 +30,7 @@ const StyledFooter = styled(Footer)`
     transition: all ${THEME_TRANSITION_TIME}s;
     background-color: ${({ theme }: FooterProps) =>
         theme.colors.pageBackground};
-    font-family: ${fonts.fonts.oswald.family};
+    font-family: ${fonts.oswald.family};
     width: 100%;
 `;
 
