@@ -12,7 +12,8 @@ export type Section =
     | "defaultShadow"
     | "altDefaultShadow"
     | "sectionCardShadow"
-    | "sectionSubtitle";
+    | "sectionSubtitle"
+    | "sectionFooter";
 export type Theme = "light" | "dark";
 
 export type IPalette = { [name in Section]: string };
@@ -39,6 +40,7 @@ export const themes: IThemes = {
             altDefaultShadow: colors.light.white,
             sectionCardShadow: colors.light.black,
             sectionSubtitle: colors.light.orange,
+            sectionFooter: colors.light.black,
         },
     },
     dark: {
@@ -55,6 +57,7 @@ export const themes: IThemes = {
             altDefaultShadow: colors.light.black,
             sectionCardShadow: colors.ultraDark.black,
             sectionSubtitle: colors.dark.orange,
+            sectionFooter: colors.dark.white,
         },
     },
 };

@@ -102,12 +102,13 @@ const HomePage = (props: HomePageProps) => {
                     background: `${theme.colors.sectionCard}`,
                     width: "75%",
                     display: "grid",
+                    gridGap: "1rem",
                     gridTemplateColumns: "75% 25%",
                     margin: "5% auto",
-                    filter: `drop-shadow(0 .35em .35em ${
+                    boxShadow: `.5rem .75rem 2.5rem ${
                         theme.colors.sectionCardShadow
-                    })`,
-                    borderRadius: "1em",
+                    }`,
+                    borderRadius: "0 .5em .5em 0",
                     fontSize: "1.6rem",
                     color: theme.colors.defaultText,
                     transition: `all ${THEME_TRANSITION_TIME}s`,
@@ -121,17 +122,30 @@ const HomePage = (props: HomePageProps) => {
                         padding: "0.5% 3%",
                     }}
                 >
-                    <h1 style={{ fontSize: "4rem" }}>Title</h1>
-                    <h3
+                    <h1
+                        style={{
+                            fontSize: "4rem",
+                            fontFamily: fonts.roboto.family,
+                        }}
+                    >
+                        Welcome
+                    </h1>
+                    <h2
                         style={{
                             fontSize: "2.25rem",
                             color: theme.colors.sectionSubtitle,
+                            fontFamily: fonts.openSans.family,
                         }}
                     >
-                        Sub-title
-                    </h3>
-                    <hr style={{ margin: "0 50% 0 0" }} />
-                    <p>
+                        Get to know me and my experience
+                    </h2>
+                    <hr />
+                    <p
+                        style={{
+                            fontSize: "2rem",
+                            fontFamily: fonts.roboto.family,
+                        }}
+                    >
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Placeat omnis totam inventore cum repellat eligendi
                         perspiciatis, mollitia, quo corrupti atque in magnam
@@ -150,25 +164,32 @@ const HomePage = (props: HomePageProps) => {
                         earum quis in quam. Alias maiores doloribus commodi
                         soluta omnis perferendis quos accusamus?
                     </p>
+                    <hr />
+                    <footer
+                        style={{
+                            color: theme.colors.sectionFooter,
+                            padding: "1% 0 2% 0",
+                            fontFamily: fonts.roboto.family,
+                        }}
+                    >
+                        Footer
+                    </footer>
                 </div>
                 <div
                     style={{
                         gridColumnStart: "2",
                         background:
-                            "url('/assets/images/home-youtube-card.jpg')",
+                            "url('/assets/images/logo.png') center no-repeat",
                         backgroundSize: "cover",
                         position: "relative",
+                        overflow: "hidden",
                     }}
                 >
                     <div
                         style={{
-                            backgroundImage: `linear-gradient(95deg, ${
-                                theme.colors.sectionCard
-                            } 20%, transparent 100%)`,
-                            position: "absolute",
+                            background: theme.colors.sectionCard,
+                            transform: "skew(5deg) translateX(-80%)",
                             transition: `all ${THEME_TRANSITION_TIME}s`,
-                            left: 0,
-                            top: 0,
                             width: "100%",
                             height: "100%",
                         }}
