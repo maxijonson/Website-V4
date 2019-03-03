@@ -121,10 +121,16 @@ const HomePage = (props: HomePageProps) => {
                         padding: "0.5% 3%",
                     }}
                 >
-                    <h1 style={{}}>Title</h1>
-                    <h3 style={{ color: theme.colors.sectionSubtitle }}>
+                    <h1 style={{ fontSize: "4rem" }}>Title</h1>
+                    <h3
+                        style={{
+                            fontSize: "2.25rem",
+                            color: theme.colors.sectionSubtitle,
+                        }}
+                    >
                         Sub-title
                     </h3>
+                    <hr style={{ margin: "0 50% 0 0" }} />
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Placeat omnis totam inventore cum repellat eligendi
