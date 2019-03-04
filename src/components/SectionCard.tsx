@@ -8,6 +8,11 @@ interface IStyledProps {
     className?: string;
 }
 
+type Alignment = "right" | "left";
+interface ICommonProps {
+    bodyAlignment?: Alignment;
+}
+
 interface ISectionCardTitleProps extends IStyledProps {
     title?: JSX.Element | string;
 }
@@ -19,11 +24,12 @@ interface ISectionCardSubtitleProps extends IStyledProps {
 interface ISectionCardBodyProps
     extends ISectionCardTitleProps,
         ISectionCardSubtitleProps,
-        IStyledProps {
+        IStyledProps,
+        ICommonProps {
     body?: JSX.Element | string;
 }
 
-interface ISectionCardImageProps extends IStyledProps {
+interface ISectionCardImageProps extends IStyledProps, ICommonProps {
     backgroundUrl?: string;
 }
 
@@ -40,6 +46,7 @@ type SectionCardProps = ISectionCardTitleProps &
     ISectionCardBodyProps &
     ISectionCardImageProps &
     IStyledProps &
+    ICommonProps &
     IOwnProps &
     IStateProps;
 
@@ -87,12 +94,13 @@ const SectionCardBody = ({
         {title && <StyledSectionCardTitle title={title} />}
         {subtitle && <ConnectedSectionCardSubtitle subtitle={subtitle} />}
         {(!!title || !!subtitle) && <hr />}
-        {body}
+        {body && <p>{body}</p>}
     </div>
 );
 
 const StyledSectionCardBody = styled(SectionCardBody)`
-    grid-column-start: 1;
+    grid-column-start: ${({ bodyAlignment }: ISectionCardBodyProps) =>
+        bodyAlignment == "left" ? 1 : 2};
     padding: 0.5% 3%;
 `;
 
@@ -104,7 +112,10 @@ const SectionCardImageHider = ({ className }: ISectionCardImageProps) => (
 
 const StyledSectionCardImageHider = styled(SectionCardImageHider)`
     background: ${({ theme }: IStateProps) => theme.colors.sectionCard};
-    transform: skew(5deg) translateX(-80%);
+    transform: ${({ bodyAlignment }: ISectionCardImageProps) =>
+        bodyAlignment == "left"
+            ? "skew(10deg) translateX(-70%)"
+            : "skew(-10deg) translateX(70%)"};
     transition: all ${THEME_TRANSITION_TIME}s;
     width: 100%;
     height: 100%;
@@ -121,14 +132,19 @@ const ConnectedSectionCardImageHider = connect(mapStateToProps)(
 const SectionCardImage = ({
     backgroundUrl,
     className,
+    bodyAlignment,
 }: ISectionCardImageProps) => (
     <div className={className}>
-        <ConnectedSectionCardImageHider backgroundUrl={backgroundUrl} />
+        <ConnectedSectionCardImageHider
+            bodyAlignment={bodyAlignment}
+            backgroundUrl={backgroundUrl}
+        />
     </div>
 );
 
 const StyledSectionCardImage = styled(SectionCardImage)`
-    grid-column-start: 2;
+    grid-column-start: ${({ bodyAlignment }: ISectionCardImageProps) =>
+        bodyAlignment == "left" ? 2 : 1};
     background-size: cover;
     position: relative;
     overflow: hidden;
@@ -145,14 +161,40 @@ const SectionCard = ({
     backgroundUrl,
     children,
     className,
+    bodyAlignment = "left",
 }: SectionCardProps) => (
     <div className={className}>
-        <StyledSectionCardBody
-            title={title}
-            subtitle={subtitle}
-            body={children}
-        />
-        <StyledSectionCardImage backgroundUrl={backgroundUrl} />
+        {bodyAlignment == "left" ? (
+            <>
+                <StyledSectionCardBody
+                    title={title}
+                    subtitle={subtitle}
+                    body={children}
+                    bodyAlignment={bodyAlignment}
+                />
+                {backgroundUrl && (
+                    <StyledSectionCardImage
+                        bodyAlignment={bodyAlignment}
+                        backgroundUrl={backgroundUrl}
+                    />
+                )}
+            </>
+        ) : (
+            <>
+                {backgroundUrl && (
+                    <StyledSectionCardImage
+                        bodyAlignment={bodyAlignment}
+                        backgroundUrl={backgroundUrl}
+                    />
+                )}
+                <StyledSectionCardBody
+                    title={title}
+                    subtitle={subtitle}
+                    body={children}
+                    bodyAlignment={bodyAlignment}
+                />
+            </>
+        )}
     </div>
 );
 
@@ -161,12 +203,20 @@ const StyledSectionCard = styled(SectionCard)`
     width: 75%;
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: 75% 25%;
+    grid-template-columns: ${({
+        backgroundUrl,
+        bodyAlignment = "left",
+    }: SectionCardProps) =>
+        backgroundUrl
+            ? bodyAlignment == "left"
+                ? "75% 25%"
+                : "25% 75%"
+            : "100%"};
     margin: 5% auto;
     box-shadow: 0.5rem 0.75rem 2.5rem
         ${({ theme }: IStateProps) => theme.colors.sectionCardShadow};
     border-radius: 0.25em;
-    font-size: 1.6rem;
+    font-size: 2.3rem;
     color: ${({ theme }: IStateProps) => theme.colors.defaultText};
     transition: all ${THEME_TRANSITION_TIME}s;
     text-align: justify;

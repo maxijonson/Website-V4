@@ -101,24 +101,21 @@ const HomePage = (props: HomePageProps) => {
                 subtitle="Get to know me and my experience"
                 backgroundUrl="assets/images/logo.png"
             >
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Placeat omnis totam inventore cum repellat eligendi
-                    perspiciatis, mollitia, quo corrupti atque in magnam odit
-                    maxime molestias voluptate dicta. Esse, a eius. Lorem ipsum
-                    dolor sit amet consectetur, adipisicing elit. Quia
-                    repellendus eligendi quod velit ipsum ducimus reprehenderit
-                    ratione sapiente aperiam repellat tempora, ipsam aut!
-                    Voluptatum veniam repudiandae architecto iure reprehenderit
-                    ipsa? Lorem ipsum dolor sit amet consectetur adipisicing
-                    elit. Vel similique ipsam nihil animi quasi placeat, dolorum
-                    pariatur incidunt tenetur ipsa? Sint vel maiores esse
-                    molestias ad perspiciatis totam, error voluptas! Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Animi
-                    reprehenderit facilis porro et, doloribus error, rerum
-                    voluptate, earum quis in quam. Alias maiores doloribus
-                    commodi soluta omnis perferendis quos accusamus?
-                </p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
+                omnis totam inventore cum repellat eligendi perspiciatis,
+                mollitia, quo corrupti atque in magnam odit maxime molestias
+                voluptate dicta. Esse, a eius. Lorem ipsum dolor sit amet
+                consectetur, adipisicing elit. Quia repellendus eligendi quod
+                velit ipsum ducimus reprehenderit ratione sapiente aperiam
+                repellat tempora, ipsam aut! Voluptatum veniam repudiandae
+                architecto iure reprehenderit ipsa? Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Vel similique ipsam nihil animi
+                quasi placeat, dolorum pariatur incidunt tenetur ipsa? Sint vel
+                maiores esse molestias ad perspiciatis totam, error voluptas!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
+                reprehenderit facilis porro et, doloribus error, rerum
+                voluptate, earum quis in quam. Alias maiores doloribus commodi
+                soluta omnis perferendis quos accusamus?
             </SectionCard>
         </>
     );
