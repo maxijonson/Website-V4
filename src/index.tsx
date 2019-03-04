@@ -5,6 +5,7 @@ import "normalize.css/normalize.css"; // Reset stylesheet for cross-browser comp
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import "src/modules/i18n/i18n";
 import "./styles/styles.scss";
 
 import AppRouter from "./routers/AppRouter";

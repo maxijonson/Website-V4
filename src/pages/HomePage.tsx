@@ -1,5 +1,6 @@
 import React from "react";
 import { connect, MapStateToPropsParam } from "react-redux";
+import { t } from "src/app";
 import { STYLE_CENTERED, THEME_TRANSITION_TIME } from "src/config/config";
 import { CSS } from "src/modules";
 import { ITheme } from "src/modules/CSS/themes";
@@ -67,7 +68,7 @@ const HomePage = (props: HomePageProps) => {
                                 fontFamily: fonts.Kaushan.family,
                             }}
                         >
-                            Welcome to
+                            {t("home.intro.welcome")}
                         </div>
                         <div
                             style={{
@@ -75,7 +76,7 @@ const HomePage = (props: HomePageProps) => {
                                 fontFamily: fonts.exo.family,
                             }}
                         >
-                            MAXIJONSON'S OFFICIAL WEBSITE
+                            {t("home.intro.maxijonson")}
                         </div>
                         <hr
                             style={{
@@ -90,7 +91,7 @@ const HomePage = (props: HomePageProps) => {
                                 fontFamily: fonts.openSans.family,
                             }}
                         >
-                            Former Youtuber | Computer science student
+                            {t("home.intro.tagline")}
                         </div>
                     </div>
                 </div>

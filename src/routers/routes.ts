@@ -1,4 +1,5 @@
 import { ConnectedComponentClass } from "react-redux";
+import { t } from "src/app";
 import { HomePage, NotFoundPage } from "../pages";
 
 export interface IRoute {
@@ -11,13 +12,13 @@ export interface IRoute {
 
 export const routes: IRoute[] = [
     {
-        name: "Home",
+        name: t("header.home"),
         path: "/",
         exact: true,
         component: HomePage,
     },
     {
-        name: "Portfolio",
+        name: t("header.portfolio"),
         path: "/portfolio",
         exact: true,
         component: HomePage,

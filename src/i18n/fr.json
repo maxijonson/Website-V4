@@ -1,0 +1,13 @@
+{
+    "header": {
+        "home": "Accueil",
+        "portfolio": "Portfolio"
+    },
+    "home": {
+        "intro": {
+            "maxijonson": "SITE OFFICIEL DE MAXIJONSON",
+            "tagline": "Ancien Youtuber | Étudiant en Informatique",
+            "welcome": "Bienvenue sur le"
+        }
+    }
+}
