@@ -4,7 +4,7 @@ import { ITheme, themes } from "src/modules/CSS";
 
 const format = "H";
 const night = {
-    start: 21,
+    start: 19,
     end: 5,
 };
 const now = Number(moment().format(format));
