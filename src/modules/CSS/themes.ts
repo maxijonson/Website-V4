@@ -7,13 +7,13 @@ export type Section =
     | "themeSwitchOn"
     | "intro"
     | "introOverlay"
-    | "sectionCard"
-    | "altSectionCard"
+    | "card"
+    | "altCard"
     | "defaultShadow"
     | "altDefaultShadow"
-    | "sectionCardShadow"
-    | "sectionSubtitle"
-    | "sectionFooter";
+    | "cardShadow"
+    | "cardSubtitle"
+    | "cardFooter";
 export type Theme = "light" | "dark";
 
 export type IPalette = { [name in Section]: string };
@@ -34,13 +34,13 @@ export const themes: IThemes = {
             themeSwitchOn: colors.normal.white,
             intro: colors.ultraDark.black,
             introOverlay: colors.light.white,
-            sectionCard: colors.veryLight.white,
-            altSectionCard: colors.veryDark.black,
+            card: colors.veryLight.white,
+            altCard: colors.veryDark.black,
             defaultShadow: colors.normal.black,
             altDefaultShadow: colors.light.white,
-            sectionCardShadow: colors.light.black,
-            sectionSubtitle: colors.light.orange,
-            sectionFooter: colors.light.black,
+            cardShadow: colors.light.black,
+            cardSubtitle: colors.light.orange,
+            cardFooter: colors.light.black,
         },
     },
     dark: {
@@ -51,13 +51,13 @@ export const themes: IThemes = {
             themeSwitchOn: colors.normal.white,
             intro: colors.normal.white,
             introOverlay: colors.ultraDark.black,
-            sectionCard: colors.veryDark.black,
-            altSectionCard: colors.veryLight.white,
+            card: colors.veryDark.black,
+            altCard: colors.veryLight.white,
             defaultShadow: colors.normal.white,
             altDefaultShadow: colors.light.black,
-            sectionCardShadow: colors.ultraDark.black,
-            sectionSubtitle: colors.dark.orange,
-            sectionFooter: colors.dark.white,
+            cardShadow: colors.ultraDark.black,
+            cardSubtitle: colors.dark.orange,
+            cardFooter: colors.dark.white,
         },
     },
 };

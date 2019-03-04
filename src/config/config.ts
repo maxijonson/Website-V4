@@ -8,3 +8,14 @@ export const STYLE_CENTERED: React.CSSProperties = {
     bottom: 0,
     margin: "auto",
 };
+
+export const BREAKPOINTS = {
+    sm: 600,
+    smpx: "600px",
+    md: 768,
+    mdpx: "768px",
+    lg: 992,
+    lgpx: "992px",
+    xl: 1200,
+    xlpx: "1200px",
+};

@@ -3,7 +3,7 @@ import { connect, MapStateToPropsParam } from "react-redux";
 import { STYLE_CENTERED, THEME_TRANSITION_TIME } from "src/config/config";
 import { CSS } from "src/modules";
 import { ITheme } from "src/modules/CSS/themes";
-import { Header, SectionCard, ViewportContainer } from "../components";
+import { Card, Header, ViewportContainer } from "../components";
 
 interface IOwnProps {}
 
@@ -96,7 +96,29 @@ const HomePage = (props: HomePageProps) => {
                 </div>
             </ViewportContainer>
             {/*** /INTRO ***/}
-            <SectionCard
+            <Card
+                title="Welcome"
+                subtitle="Get to know me and my experience"
+                backgroundUrl="assets/images/logo.png"
+                bodyAlignment="right"
+            >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
+                omnis totam inventore cum repellat eligendi perspiciatis,
+                mollitia, quo corrupti atque in magnam odit maxime molestias
+                voluptate dicta. Esse, a eius. Lorem ipsum dolor sit amet
+                consectetur, adipisicing elit. Quia repellendus eligendi quod
+                velit ipsum ducimus reprehenderit ratione sapiente aperiam
+                repellat tempora, ipsam aut! Voluptatum veniam repudiandae
+                architecto iure reprehenderit ipsa? Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Vel similique ipsam nihil animi
+                quasi placeat, dolorum pariatur incidunt tenetur ipsa? Sint vel
+                maiores esse molestias ad perspiciatis totam, error voluptas!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
+                reprehenderit facilis porro et, doloribus error, rerum
+                voluptate, earum quis in quam. Alias maiores doloribus commodi
+                soluta omnis perferendis quos accusamus?
+            </Card>
+            <Card
                 title="Welcome"
                 subtitle="Get to know me and my experience"
                 backgroundUrl="assets/images/logo.png"
@@ -116,7 +138,7 @@ const HomePage = (props: HomePageProps) => {
                 reprehenderit facilis porro et, doloribus error, rerum
                 voluptate, earum quis in quam. Alias maiores doloribus commodi
                 soluta omnis perferendis quos accusamus?
-            </SectionCard>
+            </Card>
         </>
     );
 };

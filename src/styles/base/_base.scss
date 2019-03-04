@@ -16,9 +16,13 @@
 //     }
 // }
 
+* {
+    box-sizing: border-box;
+}
+
 html {
     font-size: 26.25%;
-
+    text-rendering: optimizeLegibility;
     @media (min-width: $sm-breakpoint) {
         font-size: 32.5%;
     }

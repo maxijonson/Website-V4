@@ -1,9 +1,11 @@
 import React from "react";
+import { BREAKPOINTS } from "src/config";
+import styled from "styled-components";
 
 interface IViewportContainerProps
     extends React.HTMLAttributes<HTMLDivElement> {}
 
-export default (props: IViewportContainerProps) => (
+const Component = (props: IViewportContainerProps) => (
     <div
         {...props}
         style={{
@@ -19,3 +21,11 @@ export default (props: IViewportContainerProps) => (
         }}
     />
 );
+
+const StyledComponent = styled(Component)`
+    @media (max-width: ${BREAKPOINTS.smpx}) {
+        background-attachment: scroll !important;
+    }
+`;
+
+export default StyledComponent;
