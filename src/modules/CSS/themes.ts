@@ -5,6 +5,7 @@ export type Section =
     | "pageBackground"
     | "defaultText"
     | "themeSwitchOn"
+    | "themeSwitchOff"
     | "intro"
     | "introOverlay"
     | "card"
@@ -32,6 +33,7 @@ export const themes: IThemes = {
             pageBackground: colors.light.white,
             defaultText: colors.ultraDark.black,
             themeSwitchOn: colors.normal.white,
+            themeSwitchOff: colors.normal.black,
             intro: colors.ultraDark.black,
             introOverlay: colors.light.white,
             card: colors.veryLight.white,
@@ -49,6 +51,7 @@ export const themes: IThemes = {
             pageBackground: colors.veryDark.black,
             defaultText: colors.ultraLight.white,
             themeSwitchOn: colors.normal.white,
+            themeSwitchOff: colors.normal.black,
             intro: colors.normal.white,
             introOverlay: colors.ultraDark.black,
             card: colors.veryDark.black,

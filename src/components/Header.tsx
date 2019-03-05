@@ -130,84 +130,98 @@ const Header: FunctionComponent<HeaderProps> = ({
                     paddingRight: "5%",
                 }}
             >
-                <Switch
-                    activeBoxShadow={theme.colors.defaultText}
-                    ariaLabelledby={t("header.changeLang")}
-                    checked={language == "en"}
-                    onChange={handleLangChange}
-                    handleDiameter={15}
-                    onColor={theme.colors.themeSwitchOn}
-                    onHandleColor={theme.colors.defaultText}
-                    offHandleColor={theme.colors.defaultText}
-                    checkedIcon={
-                        <div
-                            style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                height: "100%",
-                                fontSize: 15,
-                                color: theme.colors.defaultText,
-                                paddingRight: 2,
-                            }}
-                            children={"EN"}
-                        />
-                    }
-                    uncheckedIcon={
-                        <div
-                            style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                height: "100%",
-                                fontSize: 15,
-                                color: theme.colors.defaultText,
-                                paddingRight: 2,
-                            }}
-                            children={"FR"}
-                        />
-                    }
-                />
-                <Switch
-                    activeBoxShadow={theme.colors.defaultText}
-                    ariaLabelledby={`Switch to ${
-                        theme.name == "light" ? theme.name : "dark"
-                    } theme`}
-                    checked={checked}
-                    onChange={handleThemeChange}
-                    handleDiameter={15}
-                    onColor={theme.colors.themeSwitchOn}
-                    onHandleColor={theme.colors.defaultText}
-                    offHandleColor={theme.colors.defaultText}
-                    checkedIcon={
-                        <div
-                            style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                height: "100%",
-                                fontSize: 15,
-                                color: theme.colors.defaultText,
-                                paddingRight: 2,
-                            }}
-                            children={<FontAwesomeIcon icon="sun" />}
-                        />
-                    }
-                    uncheckedIcon={
-                        <div
-                            style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                height: "100%",
-                                fontSize: 15,
-                                color: theme.colors.defaultText,
-                                paddingRight: 2,
-                            }}
-                            children={<FontAwesomeIcon icon="moon" />}
-                        />
-                    }
-                />
+                <div style={{ display: "inline-block", margin: "0 3%" }}>
+                    <Switch
+                        activeBoxShadow={theme.colors.defaultText}
+                        ariaLabelledby={t("header.changeLang")}
+                        checked={language == "en"}
+                        onChange={handleLangChange}
+                        handleDiameter={15}
+                        offColor={
+                            theme.name == "light"
+                                ? theme.colors.themeSwitchOn
+                                : theme.colors.themeSwitchOff
+                        }
+                        onColor={
+                            theme.name == "light"
+                                ? theme.colors.themeSwitchOn
+                                : theme.colors.themeSwitchOff
+                        }
+                        onHandleColor={theme.colors.defaultText}
+                        offHandleColor={theme.colors.defaultText}
+                        checkedIcon={
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    height: "100%",
+                                    fontSize: 15,
+                                    color: theme.colors.defaultText,
+                                    paddingRight: 2,
+                                }}
+                                children={"EN"}
+                            />
+                        }
+                        uncheckedIcon={
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    height: "100%",
+                                    fontSize: 15,
+                                    color: theme.colors.defaultText,
+                                    paddingRight: 2,
+                                }}
+                                children={"FR"}
+                            />
+                        }
+                    />
+                </div>
+                <div style={{ display: "inline-block", margin: "0 3%" }}>
+                    <Switch
+                        activeBoxShadow={theme.colors.defaultText}
+                        ariaLabelledby={`Switch to ${
+                            theme.name == "light" ? theme.name : "dark"
+                        } theme`}
+                        checked={checked}
+                        onChange={handleThemeChange}
+                        handleDiameter={15}
+                        onColor={theme.colors.themeSwitchOn}
+                        offColor={theme.colors.themeSwitchOff}
+                        onHandleColor={theme.colors.defaultText}
+                        offHandleColor={theme.colors.defaultText}
+                        checkedIcon={
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    height: "100%",
+                                    fontSize: 15,
+                                    color: theme.colors.defaultText,
+                                    paddingRight: 2,
+                                }}
+                                children={<FontAwesomeIcon icon="sun" />}
+                            />
+                        }
+                        uncheckedIcon={
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    height: "100%",
+                                    fontSize: 15,
+                                    color: theme.colors.defaultText,
+                                    paddingRight: 2,
+                                }}
+                                children={<FontAwesomeIcon icon="moon" />}
+                            />
+                        }
+                    />
+                </div>
             </div>
         </div>
     );
