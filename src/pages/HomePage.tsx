@@ -103,6 +103,14 @@ const HomePage = (props: HomePageProps) => {
                 title={t("home.welcome.title")}
                 subtitle={t("home.welcome.subtitle")}
                 backgroundUrl="assets/images/logo.png"
+                bodyAlignment="right"
+            >
+                {t("long.home.welcome.body")}
+            </Card>
+            <Card
+                title={t("home.welcome.title")}
+                subtitle={t("home.welcome.subtitle")}
+                backgroundUrl="assets/images/react-ts.jpg"
             >
                 {t("long.home.welcome.body")}
             </Card>
