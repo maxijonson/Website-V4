@@ -1,20 +1,30 @@
 import i18n from "i18next";
 import * as _ from "lodash";
 import { initReactI18next } from "react-i18next";
-import en from "src/i18n/en.json";
-import fr from "src/i18n/fr.json";
+import enLong from "src/i18n/en/en-long.json";
+import en from "src/i18n/en/en.json";
+import frLong from "src/i18n/fr/fr-long.json";
+import fr from "src/i18n/fr/fr.json";
 
 const DEFAULT_LNG = "en";
 
-i18n.languages = ["en", "fr"];
+i18n.languages = [DEFAULT_LNG, "fr"];
 i18n.use(initReactI18next).init({
     load: "languageOnly",
     resources: {
         en: {
-            translation: en,
+            translation: {
+                ...{ long: enLong },
+                ...en,
+            },
         },
         fr: {
-            translation: fr,
+            translation: {
+                ...en,
+                ...{ long: enLong },
+                ...{ long: frLong },
+                ...fr,
+            },
         },
     },
     lng: (() => {

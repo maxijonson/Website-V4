@@ -13,6 +13,10 @@
             "maxijonson": "SITE OFFICIEL DE MAXIJONSON",
             "tagline": "Ancien Youtuber | Étudiant en Informatique",
             "welcome": "Bienvenue sur le"
+        },
+        "welcome": {
+            "subtitle": "Apprenez à me connaître, moi et mon expérience",
+            "title": "Bienvenue"
         }
     }
 }

@@ -13,6 +13,10 @@
             "maxijonson": "MAXIJONSON'S OFFICIAL WEBSITE",
             "tagline": "Former Youtuber | Computer Science Student",
             "welcome": "Welcome to"
+        },
+        "welcome": {
+            "subtitle": "Get to know me and my experience",
+            "title": "Welcome"
         }
     }
 }

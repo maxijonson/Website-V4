@@ -33,12 +33,14 @@ const HomePage = (props: HomePageProps) => {
                             : "blur(5px) brightness(30%)"
                     }`,
                 }}
-                style={{ overflow: "hidden" }}
+                style={{
+                    overflow: "hidden",
+                    transition: `all ${THEME_TRANSITION_TIME}s`,
+                }}
                 backgroundOverlay
                 backgroundOverlayProps={{
                     style: {
                         background: theme.colors.introOverlay,
-                        transition: `all ${THEME_TRANSITION_TIME}s`,
                     },
                 }}
             >
@@ -98,47 +100,11 @@ const HomePage = (props: HomePageProps) => {
             </ViewportContainer>
             {/*** /INTRO ***/}
             <Card
-                title="Welcome"
-                subtitle="Get to know me and my experience"
-                backgroundUrl="assets/images/logo.png"
-                bodyAlignment="right"
-            >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
-                omnis totam inventore cum repellat eligendi perspiciatis,
-                mollitia, quo corrupti atque in magnam odit maxime molestias
-                voluptate dicta. Esse, a eius. Lorem ipsum dolor sit amet
-                consectetur, adipisicing elit. Quia repellendus eligendi quod
-                velit ipsum ducimus reprehenderit ratione sapiente aperiam
-                repellat tempora, ipsam aut! Voluptatum veniam repudiandae
-                architecto iure reprehenderit ipsa? Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Vel similique ipsam nihil animi
-                quasi placeat, dolorum pariatur incidunt tenetur ipsa? Sint vel
-                maiores esse molestias ad perspiciatis totam, error voluptas!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
-                reprehenderit facilis porro et, doloribus error, rerum
-                voluptate, earum quis in quam. Alias maiores doloribus commodi
-                soluta omnis perferendis quos accusamus?
-            </Card>
-            <Card
-                title="Welcome"
-                subtitle="Get to know me and my experience"
+                title={t("home.welcome.title")}
+                subtitle={t("home.welcome.subtitle")}
                 backgroundUrl="assets/images/logo.png"
             >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
-                omnis totam inventore cum repellat eligendi perspiciatis,
-                mollitia, quo corrupti atque in magnam odit maxime molestias
-                voluptate dicta. Esse, a eius. Lorem ipsum dolor sit amet
-                consectetur, adipisicing elit. Quia repellendus eligendi quod
-                velit ipsum ducimus reprehenderit ratione sapiente aperiam
-                repellat tempora, ipsam aut! Voluptatum veniam repudiandae
-                architecto iure reprehenderit ipsa? Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Vel similique ipsam nihil animi
-                quasi placeat, dolorum pariatur incidunt tenetur ipsa? Sint vel
-                maiores esse molestias ad perspiciatis totam, error voluptas!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
-                reprehenderit facilis porro et, doloribus error, rerum
-                voluptate, earum quis in quam. Alias maiores doloribus commodi
-                soluta omnis perferendis quos accusamus?
+                {t("long.home.welcome.body")}
             </Card>
         </>
     );

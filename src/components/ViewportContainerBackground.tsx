@@ -23,7 +23,7 @@ const Component = (props: IViewportContainerProps) => (
 );
 
 const StyledComponent = styled(Component)`
-    @media (max-width: ${BREAKPOINTS.smpx}) {
+    @media (max-width: ${BREAKPOINTS.mdpx}) {
         background-attachment: scroll !important;
     }
 `;
