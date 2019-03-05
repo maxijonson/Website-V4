@@ -1,7 +1,12 @@
 {
     "header": {
+        "changeLang": "Change language",
         "home": "Home",
-        "portfolio": "Portfolio"
+        "portfolio": "Portfolio",
+        "theme": {
+            "dark": "dark",
+            "light": "light"
+        }
     },
     "home": {
         "intro": {

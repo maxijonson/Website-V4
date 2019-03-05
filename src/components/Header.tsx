@@ -9,6 +9,7 @@ import styled from "styled-components";
 
 import { THEME_TRANSITION_TIME } from "src/config/config";
 import { themes } from "src/modules/CSS";
+import i18n, { t } from "src/modules/i18n/i18n";
 import { setTheme } from "../actions";
 import { CSS } from "../modules";
 import { ITheme } from "../modules/CSS/themes";
@@ -51,12 +52,18 @@ const Header: FunctionComponent<HeaderProps> = ({
     setTheme,
 }) => {
     const [checked, setChecked] = React.useState(theme.name == "light");
+    const [language, setLanguage] = React.useState(i18n.language);
 
     const handleThemeChange = (checked: boolean) => {
         setChecked(checked);
         if (setTheme) {
             setTheme(checked ? light : dark);
         }
+    };
+
+    const handleLangChange = (checked: boolean) => {
+        i18n.changeLanguage(checked ? "en" : "fr");
+        setLanguage(checked ? "en" : "fr");
     };
 
     return (
@@ -123,6 +130,44 @@ const Header: FunctionComponent<HeaderProps> = ({
                     paddingRight: "5%",
                 }}
             >
+                <Switch
+                    activeBoxShadow={theme.colors.defaultText}
+                    ariaLabelledby={t("header.changeLang")}
+                    checked={language == "en"}
+                    onChange={handleLangChange}
+                    handleDiameter={15}
+                    onColor={theme.colors.themeSwitchOn}
+                    onHandleColor={theme.colors.defaultText}
+                    offHandleColor={theme.colors.defaultText}
+                    checkedIcon={
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                height: "100%",
+                                fontSize: 15,
+                                color: theme.colors.defaultText,
+                                paddingRight: 2,
+                            }}
+                            children={"EN"}
+                        />
+                    }
+                    uncheckedIcon={
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                height: "100%",
+                                fontSize: 15,
+                                color: theme.colors.defaultText,
+                                paddingRight: 2,
+                            }}
+                            children={"FR"}
+                        />
+                    }
+                />
                 <Switch
                     activeBoxShadow={theme.colors.defaultText}
                     ariaLabelledby={`Switch to ${

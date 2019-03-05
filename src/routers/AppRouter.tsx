@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Route, Router, Switch } from "react-router-dom";
 import styled from "styled-components";
 
+import { Translation } from "react-i18next";
 import { THEME_TRANSITION_TIME } from "src/config/config";
 import { ITheme } from "../../src/modules/CSS/themes";
 import { Footer } from "../components";
@@ -62,4 +63,8 @@ const AppRouter = ({ theme }: IAppRouterProps) => (
     </Router>
 );
 
-export default connect(mapStateToProps)(AppRouter);
+const TranslatedAppRouter = ({ theme }: IAppRouterProps) => (
+    <Translation>{() => <AppRouter theme={theme} />}</Translation>
+);
+
+export default connect(mapStateToProps)(TranslatedAppRouter);
