@@ -99,11 +99,11 @@ const Header: FunctionComponent<HeaderProps> = ({
             >
                 {_.map(
                     routes,
-                    ({ name, path, hidden, exact }) =>
+                    ({ key, name, path, hidden, exact }) =>
                         !hidden && (
                             <NavLink
                                 to={path}
-                                key={name}
+                                key={key}
                                 style={{
                                     display: "inline-block",
                                     textDecoration: "none",
@@ -116,7 +116,7 @@ const Header: FunctionComponent<HeaderProps> = ({
                                 exact={exact}
                             >
                                 <RouteLink theme={theme}>
-                                    {name.toUpperCase()}
+                                    {name().toUpperCase()}
                                 </RouteLink>
                             </NavLink>
                         ),

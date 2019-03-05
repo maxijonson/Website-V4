@@ -48,9 +48,9 @@ const AppRouter = ({ theme }: IAppRouterProps) => (
         <React.Fragment>
             <PageWrapperStyled theme={theme}>
                 <Switch>
-                    {_.map(routes, ({ name, path, component, exact }) => (
+                    {_.map(routes, ({ key, path, component, exact }) => (
                         <Route
-                            key={name}
+                            key={key}
                             path={path}
                             component={component}
                             exact={exact}
