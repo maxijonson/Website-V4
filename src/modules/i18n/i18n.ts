@@ -18,9 +18,9 @@ i18n.use(initReactI18next).init({
         },
     },
     lng: (() => {
-        for (let i = 0; i < i18n.languages.length; ++i) {
-            if (_.includes(navigator.language, i18n.languages[i])) {
-                return i18n.languages[i];
+        for (const lng of i18n.languages) {
+            if (_.includes(navigator.language, lng)) {
+                return lng;
             }
         }
         return DEFAULT_LNG;
