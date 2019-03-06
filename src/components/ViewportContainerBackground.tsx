@@ -5,7 +5,7 @@ import styled from "styled-components";
 interface IViewportContainerProps
     extends React.HTMLAttributes<HTMLDivElement> {}
 
-const Component = (props: IViewportContainerProps) => (
+export default styled((props: IViewportContainerProps) => (
     <div
         {...props}
         style={{
@@ -20,12 +20,8 @@ const Component = (props: IViewportContainerProps) => (
             ...props.style,
         }}
     />
-);
-
-const StyledComponent = styled(Component)`
+))`
     @media (max-width: ${BREAKPOINTS.mdpx}) {
         background-attachment: scroll !important;
     }
 `;
-
-export default StyledComponent;
