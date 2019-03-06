@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import _ from "lodash";
-import React, { FunctionComponent } from "react";
+import React from "react";
 import { connect, MapStateToPropsParam } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Switch from "react-switch";
@@ -46,11 +46,7 @@ const RouteLink = styled.div`
     }
 `;
 
-const Header: FunctionComponent<HeaderProps> = ({
-    className,
-    theme,
-    setTheme,
-}) => {
+const Header = styled(({ className, theme, setTheme }: HeaderProps) => {
     const [checked, setChecked] = React.useState(theme.name == "light");
     const [language, setLanguage] = React.useState(i18n.language);
 
@@ -225,9 +221,7 @@ const Header: FunctionComponent<HeaderProps> = ({
             </div>
         </div>
     );
-};
-
-const StyledHeader = styled(Header)`
+})`
     height: 5vh;
     top: 0;
     left: 0;
@@ -254,4 +248,4 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): IDispatchProps => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(StyledHeader);
+)(Header);
