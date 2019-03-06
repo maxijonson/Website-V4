@@ -61,11 +61,9 @@ const mapStateToProps = ({ theme }: IStoreState): IStateProps => ({
 
 // CARD TITLE
 
-const CardTitle = ({ title, className }: ICardTitleProps) => (
+const CardTitle = styled(({ title, className }: ICardTitleProps) => (
     <h1 className={className}>{title}</h1>
-);
-
-const StyledCardTitle = styled(CardTitle)`
+))`
     font-size: 4rem;
     font-family: ${fonts.roboto.family};
 
@@ -79,75 +77,66 @@ const StyledCardTitle = styled(CardTitle)`
 
 // CARD SUBTITLE
 
-const CardSubtitle = ({ subtitle, className }: ICardSubtitleProps) => (
-    <h2 className={className}>{subtitle}</h2>
+const CardSubtitle = connect(mapStateToProps)(
+    styled(({ subtitle, className }: ICardSubtitleProps) => (
+        <h2 className={className}>{subtitle}</h2>
+    ))`
+        font-size: 2.25rem;
+        color: ${({ theme }: IStateProps) => theme.colors.cardSubtitle};
+        font-family: ${fonts.openSans.family};
+
+        @media (max-width: ${BREAKPOINTS.smpx}) {
+            position: relative;
+            z-index: 2;
+            text-align: ${({ bodyAlignment }: ICardSubtitleProps) =>
+                bodyAlignment == "left" ? "left" : "right"};
+        }
+    `,
 );
-
-const StyledCardSubtitle = styled(CardSubtitle)`
-    font-size: 2.25rem;
-    color: ${({ theme }: IStateProps) => theme.colors.cardSubtitle};
-    font-family: ${fonts.openSans.family};
-
-    @media (max-width: ${BREAKPOINTS.smpx}) {
-        position: relative;
-        z-index: 2;
-        text-align: ${({ bodyAlignment }: ICardSubtitleProps) =>
-            bodyAlignment == "left" ? "left" : "right"};
-    }
-`;
-
-const ConnectedCardSubtitle = connect(mapStateToProps)(StyledCardSubtitle);
 
 // CARD HEADER HIDER
 
-const StyledCardHeaderHider = styled.div<ICardImageProps>`
-    @media (max-width: ${BREAKPOINTS.smpx}) {
-        background: ${({ theme }: IStateProps) => theme.colors.card};
-        transition: all ${THEME_TRANSITION_TIME}s;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        box-shadow: 0 0 1.5rem
-            ${({ theme }: IStateProps) => theme.colors.cardShadow};
-        transform: ${({ bodyAlignment }: ICardImageProps) =>
-            bodyAlignment == "left"
-                ? "skew(70deg) translateX(-35%)"
-                : "skew(-70deg) translateX(35%)"};
-    }
-`;
-
-const ConnectedCardHeaderHider = connect(mapStateToProps)(
-    StyledCardHeaderHider,
+const CardHeaderHider = connect(mapStateToProps)(
+    styled.div<ICardImageProps>`
+        @media (max-width: ${BREAKPOINTS.smpx}) {
+            background: ${({ theme }: IStateProps) => theme.colors.card};
+            transition: all ${THEME_TRANSITION_TIME}s;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 1.5rem
+                ${({ theme }: IStateProps) => theme.colors.cardShadow};
+            transform: ${({ bodyAlignment }: ICardImageProps) =>
+                bodyAlignment == "left"
+                    ? "skew(70deg) translateX(-35%)"
+                    : "skew(-70deg) translateX(35%)"};
+        }
+    `,
 );
 
 // CARD HEADER
 
-const CardHeader = ({
-    title,
-    subtitle,
-    className,
-    bodyAlignment,
-}: ICardHeaderProps) => (
-    <>
-        <div className={className}>
-            <ConnectedCardHeaderHider bodyAlignment={bodyAlignment} />
-            {title && (
-                <StyledCardTitle bodyAlignment={bodyAlignment} title={title} />
-            )}
-            {subtitle && (
-                <ConnectedCardSubtitle
-                    bodyAlignment={bodyAlignment}
-                    subtitle={subtitle}
-                />
-            )}
-        </div>
-    </>
-);
-
-const StyledCardHeader = styled(CardHeader)`
+const CardHeader = styled(
+    ({ title, subtitle, className, bodyAlignment }: ICardHeaderProps) => (
+        <>
+            <div className={className}>
+                <CardHeaderHider bodyAlignment={bodyAlignment} />
+                {title && (
+                    <CardTitle bodyAlignment={bodyAlignment} title={title} />
+                )}
+                {subtitle && (
+                    <CardSubtitle
+                        bodyAlignment={bodyAlignment}
+                        subtitle={subtitle}
+                    />
+                )}
+            </div>
+        </>
+    ),
+)`
     @media (max-width: ${BREAKPOINTS.smpx}) {
         background:
             url("${({ backgroundUrl }) => backgroundUrl}")
@@ -161,11 +150,9 @@ const StyledCardHeader = styled(CardHeader)`
 
 // CARD BODY
 
-const CardBody = ({ body, className }: ICardBodyProps) => (
+const CardBody = styled(({ body, className }: ICardBodyProps) => (
     <p className={className}>{body}</p>
-);
-
-const StyledCardBody = styled(CardBody)`
+))`
     @media (max-width: ${BREAKPOINTS.smpx}) {
         padding: 0.5% 3%;
     }
@@ -173,27 +160,27 @@ const StyledCardBody = styled(CardBody)`
 
 // CARD CONTENT
 
-const CardContent = ({
-    title,
-    subtitle,
-    body,
-    className,
-    backgroundUrl,
-    bodyAlignment,
-}: ICardContentProps) => (
-    <div className={className}>
-        <StyledCardHeader
-            backgroundUrl={backgroundUrl}
-            title={title}
-            subtitle={subtitle}
-            bodyAlignment={bodyAlignment}
-        />
-        {(!!title || !!subtitle) && <hr />}
-        <StyledCardBody body={body} />
-    </div>
-);
-
-const StyledCardContent = styled(CardContent)`
+const CardContent = styled(
+    ({
+        title,
+        subtitle,
+        body,
+        className,
+        backgroundUrl,
+        bodyAlignment,
+    }: ICardContentProps) => (
+        <div className={className}>
+            <CardHeader
+                backgroundUrl={backgroundUrl}
+                title={title}
+                subtitle={subtitle}
+                bodyAlignment={bodyAlignment}
+            />
+            {(!!title || !!subtitle) && <hr />}
+            <CardBody body={body} />
+        </div>
+    ),
+)`
     grid-column-start: ${({ bodyAlignment }: ICardContentProps) =>
         bodyAlignment == "left" ? 1 : 2};
     padding: 0.5% 3%;
@@ -206,37 +193,33 @@ const StyledCardContent = styled(CardContent)`
 
 // CARD IMAGE HIDER
 
-const StyledCardImageHider = styled.div<ICardImageProps>`
-    background: ${({ theme }: IStateProps) => theme.colors.card};
-    transform: ${({ bodyAlignment }: ICardImageProps) =>
-        bodyAlignment == "left"
-            ? "skew(10deg) translateX(-70%)"
-            : "skew(-10deg) translateX(70%)"};
-    transition: all ${THEME_TRANSITION_TIME}s;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0 0 1.5rem
-        ${({ theme }: IStateProps) => theme.colors.cardShadow};
-`;
-
-const ConnectedCardImageHider = connect(mapStateToProps)(StyledCardImageHider);
+const CardImageHider = connect(mapStateToProps)(
+    styled.div<ICardImageProps>`
+        background: ${({ theme }: IStateProps) => theme.colors.card};
+        transform: ${({ bodyAlignment }: ICardImageProps) =>
+            bodyAlignment == "left"
+                ? "skew(10deg) translateX(-70%)"
+                : "skew(-10deg) translateX(70%)"};
+        transition: all ${THEME_TRANSITION_TIME}s;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 0 1.5rem
+            ${({ theme }: IStateProps) => theme.colors.cardShadow};
+    `,
+);
 
 // CARD IMAGE
 
-const cardImage = ({
-    backgroundUrl,
-    className,
-    bodyAlignment,
-}: ICardImageProps) => (
-    <div className={className}>
-        <ConnectedCardImageHider
-            bodyAlignment={bodyAlignment}
-            backgroundUrl={backgroundUrl}
-        />
-    </div>
-);
-
-const StyledCardImage = styled(cardImage)`
+const CardImage = styled(
+    ({ backgroundUrl, className, bodyAlignment }: ICardImageProps) => (
+        <div className={className}>
+            <CardImageHider
+                bodyAlignment={bodyAlignment}
+                backgroundUrl={backgroundUrl}
+            />
+        </div>
+    ),
+)`
     grid-column-start: ${({ bodyAlignment }: ICardImageProps) =>
         bodyAlignment == "left" ? 2 : 1};
     background-size: cover;
@@ -249,81 +232,81 @@ const StyledCardImage = styled(cardImage)`
 
 // CARD
 
-const Base = ({
-    title,
-    subtitle,
-    backgroundUrl,
-    children,
-    className,
-    bodyAlignment = "left",
-}: CardProps) => (
-    <div className={className}>
-        {bodyAlignment == "left" ? (
-            <>
-                <StyledCardContent
-                    title={title}
-                    subtitle={subtitle}
-                    body={children}
-                    bodyAlignment={bodyAlignment}
-                    backgroundUrl={backgroundUrl}
-                />
-                {backgroundUrl && (
-                    <StyledCardImage
-                        bodyAlignment={bodyAlignment}
-                        backgroundUrl={backgroundUrl}
-                    />
-                )}
-            </>
-        ) : (
-            <>
-                {backgroundUrl && (
-                    <StyledCardImage
-                        bodyAlignment={bodyAlignment}
-                        backgroundUrl={backgroundUrl}
-                    />
-                )}
-                <StyledCardContent
-                    title={title}
-                    subtitle={subtitle}
-                    body={children}
-                    bodyAlignment={bodyAlignment}
-                    backgroundUrl={backgroundUrl}
-                />
-            </>
-        )}
-    </div>
-);
-
-const StyledCard = styled(Base)`
-    background: ${({ theme }: IStateProps) => theme.colors.card};
-    width: 75%;
-    display: grid;
-    margin: 5% auto;
-    box-shadow: 0.5rem 0.75rem 2.5rem
-        ${({ theme }: IStateProps) => theme.colors.cardShadow};
-    border-radius: 0.25em;
-    font-size: 2.3rem;
-    color: ${({ theme }: IStateProps) => theme.colors.defaultText};
-    transition: all ${THEME_TRANSITION_TIME}s;
-    text-align: justify;
-    overflow: hidden;
-
-    @media (max-width: ${BREAKPOINTS.smpx}) {
-        font-size: 4rem;
-    }
-
-    @media (min-width: ${BREAKPOINTS.smpx}) {
-        grid-gap: 1rem;
-        grid-template-columns: ${({
+export const Card = connect(mapStateToProps)(
+    styled(
+        ({
+            title,
+            subtitle,
             backgroundUrl,
+            children,
+            className,
             bodyAlignment = "left",
-        }: CardProps) =>
-            backgroundUrl
-                ? bodyAlignment == "left"
-                    ? "75% 25%"
-                    : "25% 75%"
-                : "100%"};
-    }
-`;
+        }: CardProps) => (
+            <div className={className}>
+                {bodyAlignment == "left" ? (
+                    <>
+                        <CardContent
+                            title={title}
+                            subtitle={subtitle}
+                            body={children}
+                            bodyAlignment={bodyAlignment}
+                            backgroundUrl={backgroundUrl}
+                        />
+                        {backgroundUrl && (
+                            <CardImage
+                                bodyAlignment={bodyAlignment}
+                                backgroundUrl={backgroundUrl}
+                            />
+                        )}
+                    </>
+                ) : (
+                    <>
+                        {backgroundUrl && (
+                            <CardImage
+                                bodyAlignment={bodyAlignment}
+                                backgroundUrl={backgroundUrl}
+                            />
+                        )}
+                        <CardContent
+                            title={title}
+                            subtitle={subtitle}
+                            body={children}
+                            bodyAlignment={bodyAlignment}
+                            backgroundUrl={backgroundUrl}
+                        />
+                    </>
+                )}
+            </div>
+        ),
+    )`
+        background: ${({ theme }: IStateProps) => theme.colors.card};
+        width: 75%;
+        display: grid;
+        margin: 5% auto;
+        box-shadow: 0.5rem 0.75rem 2.5rem
+            ${({ theme }: IStateProps) => theme.colors.cardShadow};
+        border-radius: 0.25em;
+        font-size: 2.3rem;
+        color: ${({ theme }: IStateProps) => theme.colors.defaultText};
+        transition: all ${THEME_TRANSITION_TIME}s;
+        text-align: justify;
+        overflow: hidden;
 
-export const Card = connect(mapStateToProps)(StyledCard);
+        @media (max-width: ${BREAKPOINTS.smpx}) {
+            font-size: 4rem;
+        }
+
+        @media (min-width: ${BREAKPOINTS.smpx}) {
+            grid-gap: 1rem;
+            grid-template-columns: ${({
+                backgroundUrl,
+                bodyAlignment = "left",
+            }: CardProps) =>
+                backgroundUrl
+                    ? bodyAlignment == "left"
+                        ? "75% 25%"
+                        : "25% 75%"
+                    : "100%"};
+        }
+    `,
+);
