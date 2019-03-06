@@ -16,28 +16,26 @@ interface IStateProps {
 
 type FooterProps = IStateProps & IFooterOwnProps;
 
-const Footer = ({ className }: FooterProps) => (
-    <footer className={className}>
-        Copyright <FontAwesomeIcon icon={["far", "copyright"]} />{" "}
-        {new Date().getFullYear()} MaxiJonson. All rights reserved.
-    </footer>
-);
-
-const StyledFooter = styled(Footer)`
-    color: ${({ theme }: FooterProps) => theme.colors.defaultText};
-    font-size: 1.2rem;
-    text-align: center;
-    transition: all ${THEME_TRANSITION_TIME}s;
-    background-color: ${({ theme }: FooterProps) =>
-        theme.colors.pageBackground};
-    font-family: ${fonts.oswald.family};
-    width: 100%;
-`;
-
 const mapStateToProps: MapStateToPropsParam<IStateProps, void, IStoreState> = ({
     theme,
 }: IStoreState): IStateProps => ({
     theme,
 });
 
-export default connect(mapStateToProps)(StyledFooter);
+export default connect(mapStateToProps)(
+    styled(({ className }: FooterProps) => (
+        <footer className={className}>
+            Copyright <FontAwesomeIcon icon={["far", "copyright"]} />{" "}
+            {new Date().getFullYear()} MaxiJonson. All rights reserved.
+        </footer>
+    ))`
+        color: ${({ theme }: FooterProps) => theme.colors.defaultText};
+        font-size: 1.2rem;
+        text-align: center;
+        transition: all ${THEME_TRANSITION_TIME}s;
+        background-color: ${({ theme }: FooterProps) =>
+            theme.colors.pageBackground};
+        font-family: ${fonts.oswald.family};
+        width: 100%;
+    `,
+);
