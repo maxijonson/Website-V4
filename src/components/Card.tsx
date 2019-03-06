@@ -249,7 +249,7 @@ const StyledCardImage = styled(cardImage)`
 
 // CARD
 
-const Card = ({
+const Base = ({
     title,
     subtitle,
     backgroundUrl,
@@ -294,7 +294,7 @@ const Card = ({
     </div>
 );
 
-const StyledCard = styled(Card)`
+const StyledCard = styled(Base)`
     background: ${({ theme }: IStateProps) => theme.colors.card};
     width: 75%;
     display: grid;
@@ -326,4 +326,4 @@ const StyledCard = styled(Card)`
     }
 `;
 
-export default connect(mapStateToProps)(StyledCard);
+export const Card = connect(mapStateToProps)(StyledCard);

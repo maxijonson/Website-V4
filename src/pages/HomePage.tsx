@@ -16,6 +16,8 @@ type HomePageProps = IOwnProps & IStateProps;
 
 const { fonts } = CSS;
 
+console.log(t("header.home"));
+
 const HomePage = (props: HomePageProps) => {
     const { theme } = props;
 
@@ -105,14 +107,17 @@ const HomePage = (props: HomePageProps) => {
                 backgroundUrl="assets/images/logo.png"
                 bodyAlignment="right"
             >
-                {t("long.home.welcome.body")}
+                <>
+                    {t("long.home.welcome.body")}
+                    <footer>footer</footer>
+                </>
             </Card>
             <Card
-                title={t("home.welcome.title")}
-                subtitle={t("home.welcome.subtitle")}
+                title={t("home.playground.title")}
+                subtitle={t("home.playground.subtitle")}
                 backgroundUrl="assets/images/react-ts.jpg"
             >
-                {t("long.home.welcome.body")}
+                {t("long.home.playground.body")}
             </Card>
         </>
     );
