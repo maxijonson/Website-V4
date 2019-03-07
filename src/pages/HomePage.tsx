@@ -4,7 +4,7 @@ import { t } from "src/app";
 import { STYLE_CENTERED, THEME_TRANSITION_TIME } from "src/config/config";
 import { CSS } from "src/modules";
 import { ITheme } from "src/modules/CSS/themes";
-import { Card, Header, ViewportContainer } from "../components";
+import { Card, Cards, Header, ViewportContainer } from "../components";
 
 interface IOwnProps {}
 
@@ -99,14 +99,13 @@ const HomePage = (props: HomePageProps) => {
                 </div>
             </ViewportContainer>
             {/*** /INTRO ***/}
-            <Card
+            <Cards.Alt
                 title={t("home.welcome.title")}
                 subtitle={t("home.welcome.subtitle")}
                 backgroundUrl="assets/images/logo.png"
-                bodyAlignment="right"
             >
                 {t("long.home.welcome.body")}
-            </Card>
+            </Cards.Alt>
             <Card
                 title={t("home.playground.title")}
                 subtitle={t("home.playground.subtitle")}

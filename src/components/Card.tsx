@@ -232,8 +232,40 @@ const CardImage = styled(
 
 // CARD
 
-export const Card = connect(mapStateToProps)(
-    styled(
+const Base = styled.div`
+    background: ${({ theme }: IStateProps) => theme.colors.card};
+    width: 75%;
+    display: grid;
+    margin: 5% auto;
+    box-shadow: 0.5rem 0.75rem 2.5rem
+        ${({ theme }: IStateProps) => theme.colors.cardShadow};
+    border-radius: 0.25em;
+    font-size: 2.3rem;
+    color: ${({ theme }: IStateProps) => theme.colors.defaultText};
+    transition: all ${THEME_TRANSITION_TIME}s;
+    text-align: justify;
+    overflow: hidden;
+
+    @media (max-width: ${BREAKPOINTS.smpx}) {
+        font-size: 4rem;
+    }
+
+    @media (min-width: ${BREAKPOINTS.smpx}) {
+        grid-gap: 1rem;
+        /* grid-template-columns: ${({
+            backgroundUrl,
+            bodyAlignment = "left",
+        }: CardProps) =>
+            backgroundUrl
+                ? bodyAlignment == "left"
+                    ? "75% 25%"
+                    : "25% 75%"
+                : "100%"}; */
+    }
+`;
+
+export const Primary = connect(mapStateToProps)(
+    Base.withComponent(styled(
         ({
             title,
             subtitle,
@@ -243,70 +275,63 @@ export const Card = connect(mapStateToProps)(
             bodyAlignment = "left",
         }: CardProps) => (
             <div className={className}>
-                {bodyAlignment == "left" ? (
-                    <>
-                        <CardContent
-                            title={title}
-                            subtitle={subtitle}
-                            body={children}
+                <>
+                    <CardContent
+                        title={title}
+                        subtitle={subtitle}
+                        body={children}
+                        bodyAlignment={bodyAlignment}
+                        backgroundUrl={backgroundUrl}
+                    />
+                    {backgroundUrl && (
+                        <CardImage
                             bodyAlignment={bodyAlignment}
                             backgroundUrl={backgroundUrl}
                         />
-                        {backgroundUrl && (
-                            <CardImage
-                                bodyAlignment={bodyAlignment}
-                                backgroundUrl={backgroundUrl}
-                            />
-                        )}
-                    </>
-                ) : (
-                    <>
-                        {backgroundUrl && (
-                            <CardImage
-                                bodyAlignment={bodyAlignment}
-                                backgroundUrl={backgroundUrl}
-                            />
-                        )}
-                        <CardContent
-                            title={title}
-                            subtitle={subtitle}
-                            body={children}
-                            bodyAlignment={bodyAlignment}
-                            backgroundUrl={backgroundUrl}
-                        />
-                    </>
-                )}
+                    )}
+                </>
             </div>
         ),
     )`
-        background: ${({ theme }: IStateProps) => theme.colors.card};
-        width: 75%;
-        display: grid;
-        margin: 5% auto;
-        box-shadow: 0.5rem 0.75rem 2.5rem
-            ${({ theme }: IStateProps) => theme.colors.cardShadow};
-        border-radius: 0.25em;
-        font-size: 2.3rem;
-        color: ${({ theme }: IStateProps) => theme.colors.defaultText};
-        transition: all ${THEME_TRANSITION_TIME}s;
-        text-align: justify;
-        overflow: hidden;
-
-        @media (max-width: ${BREAKPOINTS.smpx}) {
-            font-size: 4rem;
-        }
-
         @media (min-width: ${BREAKPOINTS.smpx}) {
-            grid-gap: 1rem;
-            grid-template-columns: ${({
-                backgroundUrl,
-                bodyAlignment = "left",
-            }: CardProps) =>
-                backgroundUrl
-                    ? bodyAlignment == "left"
-                        ? "75% 25%"
-                        : "25% 75%"
-                    : "100%"};
+            grid-template-columns: ${({ backgroundUrl }: CardProps) =>
+                backgroundUrl ? "75% 25%" : "100%"};
         }
-    `,
+    `),
+);
+
+export const Alt = connect(mapStateToProps)(
+    Base.withComponent(styled(
+        ({
+            title,
+            subtitle,
+            backgroundUrl,
+            children,
+            className,
+            bodyAlignment = "right",
+        }: CardProps) => (
+            <div className={className}>
+                <>
+                    {backgroundUrl && (
+                        <CardImage
+                            bodyAlignment={bodyAlignment}
+                            backgroundUrl={backgroundUrl}
+                        />
+                    )}
+                    <CardContent
+                        title={title}
+                        subtitle={subtitle}
+                        body={children}
+                        bodyAlignment={bodyAlignment}
+                        backgroundUrl={backgroundUrl}
+                    />
+                </>
+            </div>
+        ),
+    )`
+        @media (min-width: ${BREAKPOINTS.smpx}) {
+            grid-template-columns: ${({ backgroundUrl }: CardProps) =>
+                backgroundUrl ? "25% 75%" : "100%"};
+        }
+    `),
 );
