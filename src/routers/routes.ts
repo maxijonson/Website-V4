@@ -32,7 +32,7 @@ export const routes: IRoute[] = [
         key: "intellibot",
         exact: true,
         component: () => {
-            window.location.href = "http://maxijonson.com/intellibot/";
+            window.location.href = "/intellibot";
             return null;
         },
     },
