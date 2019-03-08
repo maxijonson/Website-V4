@@ -252,15 +252,6 @@ const Base = styled.div`
 
     @media (min-width: ${BREAKPOINTS.smpx}) {
         grid-gap: 1rem;
-        /* grid-template-columns: ${({
-            backgroundUrl,
-            bodyAlignment = "left",
-        }: CardProps) =>
-            backgroundUrl
-                ? bodyAlignment == "left"
-                    ? "75% 25%"
-                    : "25% 75%"
-                : "100%"}; */
     }
 `;
 
