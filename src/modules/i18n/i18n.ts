@@ -36,9 +36,11 @@ i18n.use(initReactI18next).init({
         return DEFAULT_LNG;
     })(),
     fallbackLng: DEFAULT_LNG,
-    interpolation: {
-        escapeValue: false,
-    },
 });
-export const t = (key: string) => i18n.t(key);
+
+export const t = (
+    key: string | string[],
+    options?: string | i18n.TOptions<i18n.StringMap> | undefined,
+) => i18n.t(key, options);
+
 export default i18n;

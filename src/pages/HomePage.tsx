@@ -113,6 +113,20 @@ const HomePage = (props: HomePageProps) => {
             >
                 {t("long.home.playground.body")}
             </Card>
+            <Cards.Alt
+                title={t("home.share.title")}
+                subtitle={t("home.share.subtitle")}
+                backgroundUrl="assets/images/code-1.jpg"
+            >
+                <>
+                    {/* TODO: Find a better way */}
+                    {t("long.home.share.body1")}
+                    <a href="https://github.com/maxijonson/Website">Github</a>
+                    {t("long.home.share.body2")}
+                    <a href="https://trello.com/b/9iho7pi4">Trello</a>
+                    {t("long.home.share.body3")}
+                </>
+            </Cards.Alt>
         </>
     );
 };

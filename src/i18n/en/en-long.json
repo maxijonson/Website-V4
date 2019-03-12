@@ -5,6 +5,11 @@
         },
         "welcome": {
             "body": "Welcome to the 4th edition of my website! The previous one was made on very basic code in my early programming days. I've been wanting to re-make it from scratch for a while, since I grew a lot it knowledge since then, but never found the time, until now! I'm very proud to have the opportunity to put my new skills to work! This website is mainly some kind of blog about me and my story, as well as a portfolio to showcase my programming works! If you're here from Youtube, where the name \"MaxiJonson\" was born, you guys were awesome followers! Unfortunately, I didn't have the time nor the motivation to make videos anymore, I hope you understand!"
+        },
+        "share": {
+            "body1": "For the interested, the website's code is on ",
+            "body2": " for you to use as reference, maybe you'll learn one thing or two! If you're not too much into programming, you can still follow the website's roadmap on ",
+            "body3": "!"
         }
     }
 }
