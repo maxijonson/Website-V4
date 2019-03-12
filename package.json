@@ -8,7 +8,7 @@
         "build:prod": "webpack -p --env production",
         "dev-server": "webpack-dev-server --host 0.0.0.0",
         "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
-        "start": "node server/server.js",
+        "start": "ts-node server/server.ts",
         "heroku-postbuild": "npm run build:prod",
         "init": "tslint --init",
         "lint": "tslint --project src/"
@@ -70,7 +70,7 @@
         "eslint": "^5.13.0",
         "eslint-loader": "^2.1.2",
         "source-map-loader": "^0.2.4",
-        "ts-node": "^8.0.2",
+        "ts-node": "^8.0.3",
         "tslint": "^5.12.1",
         "tslint-loader": "^3.5.4",
         "tslint-webpack-plugin": "^2.0.2",
