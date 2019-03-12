@@ -118,14 +118,9 @@ const HomePage = (props: HomePageProps) => {
                 subtitle={t("home.share.subtitle")}
                 backgroundUrl="assets/images/code-1.jpg"
             >
-                <>
-                    {/* TODO: Find a better way */}
-                    {t("long.home.share.body1")}
-                    <a href="https://github.com/maxijonson/Website">Github</a>
-                    {t("long.home.share.body2")}
-                    <a href="https://trello.com/b/9iho7pi4">Trello</a>
-                    {t("long.home.share.body3")}
-                </>
+                {t("long.home.share.body", {
+                    postProcess: "markdown-jsx",
+                })}
             </Cards.Alt>
         </>
     );
