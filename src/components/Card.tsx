@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { THEME_TRANSITION_TIME } from "src/config/config";
 import { fonts, ITheme } from "src/modules/CSS";
@@ -121,7 +121,7 @@ const CardHeaderHider = connect(mapStateToProps)(
 
 const CardHeader = styled(
     ({ title, subtitle, className, bodyAlignment }: ICardHeaderProps) => (
-        <>
+        <Fragment>
             <div className={className}>
                 <CardHeaderHider bodyAlignment={bodyAlignment} />
                 {title && (
@@ -134,7 +134,7 @@ const CardHeader = styled(
                     />
                 )}
             </div>
-        </>
+        </Fragment>
     ),
 )`
     @media (max-width: ${BREAKPOINTS.smpx}) {
@@ -266,7 +266,7 @@ export const Primary = connect(mapStateToProps)(
             bodyAlignment = "left",
         }: CardProps) => (
             <div className={className}>
-                <>
+                <Fragment>
                     <CardContent
                         title={title}
                         subtitle={subtitle}
@@ -280,7 +280,7 @@ export const Primary = connect(mapStateToProps)(
                             backgroundUrl={backgroundUrl}
                         />
                     )}
-                </>
+                </Fragment>
             </div>
         ),
     )`
@@ -302,7 +302,7 @@ export const Alt = connect(mapStateToProps)(
             bodyAlignment = "right",
         }: CardProps) => (
             <div className={className}>
-                <>
+                <Fragment>
                     {backgroundUrl && (
                         <CardImage
                             bodyAlignment={bodyAlignment}
@@ -316,7 +316,7 @@ export const Alt = connect(mapStateToProps)(
                         bodyAlignment={bodyAlignment}
                         backgroundUrl={backgroundUrl}
                     />
-                </>
+                </Fragment>
             </div>
         ),
     )`

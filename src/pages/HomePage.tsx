@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect, MapStateToPropsParam } from "react-redux";
 import { t } from "src/app";
 import { STYLE_CENTERED, THEME_TRANSITION_TIME } from "src/config/config";
@@ -20,7 +20,7 @@ const HomePage = (props: HomePageProps) => {
     const { theme } = props;
 
     return (
-        <>
+        <Fragment>
             {/*** INTRO ***/}
             <ViewportContainer
                 background={{
@@ -118,16 +118,16 @@ const HomePage = (props: HomePageProps) => {
                 subtitle={t("home.share.subtitle")}
                 backgroundUrl="assets/images/code-1.jpg"
             >
-                <>
+                <Fragment>
                     {/* TODO: Find a better way */}
                     {t("long.home.share.body1")}
                     <a href="https://github.com/maxijonson/Website">Github</a>
                     {t("long.home.share.body2")}
                     <a href="https://trello.com/b/9iho7pi4">Trello</a>
                     {t("long.home.share.body3")}
-                </>
+                </Fragment>
             </Cards.Alt>
-        </>
+        </Fragment>
     );
 };
 
