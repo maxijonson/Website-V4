@@ -6,7 +6,7 @@ import styled, { ThemeProvider } from "styled-components";
 
 import { BREAKPOINTS } from "src/config";
 
-type IChildren = React.ReactNode | React.FunctionComponent;
+type IChildren = React.ReactNode;
 type IRenderer = (props: { children?: IChildren }) => JSX.Element;
 type IBodyAlignment = "left" | "right";
 
