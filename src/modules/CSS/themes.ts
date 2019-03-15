@@ -48,7 +48,7 @@ export const themes: IThemes = {
     dark: {
         name: "dark",
         colors: {
-            pageBackground: colors.veryDark.black,
+            pageBackground: colors.ultraDark.black,
             defaultText: colors.ultraLight.white,
             themeSwitchOn: colors.normal.white,
             themeSwitchOff: colors.normal.black,
@@ -58,7 +58,7 @@ export const themes: IThemes = {
             altCard: colors.veryLight.white,
             defaultShadow: colors.normal.white,
             altDefaultShadow: colors.light.black,
-            cardShadow: colors.ultraDark.black,
+            cardShadow: colors.veryDark.black,
             cardSubtitle: colors.dark.orange,
             cardFooter: colors.dark.white,
         },
