@@ -102,21 +102,21 @@ const HomePage = (props: HomePageProps) => {
             <Cards.Alt
                 title={t("home.welcome.title")}
                 subtitle={t("home.welcome.subtitle")}
-                backgroundUrl="assets/images/logo.png"
+                imageUrl="assets/images/logo.png"
             >
                 {t("long.home.welcome.body")}
             </Cards.Alt>
             <Card
                 title={t("home.playground.title")}
                 subtitle={t("home.playground.subtitle")}
-                backgroundUrl="assets/images/react-ts.jpg"
+                imageUrl="assets/images/react-ts.jpg"
             >
                 {t("long.home.playground.body")}
             </Card>
             <Cards.Alt
                 title={t("home.share.title")}
                 subtitle={t("home.share.subtitle")}
-                backgroundUrl="assets/images/code-1.jpg"
+                imageUrl="assets/images/code-1.jpg"
             >
                 {t("long.home.share.body", {
                     postProcess: "markdown-jsx",

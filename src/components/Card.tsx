@@ -2,58 +2,91 @@ import React from "react";
 import { connect } from "react-redux";
 import { THEME_TRANSITION_TIME } from "src/config/config";
 import { fonts, ITheme } from "src/modules/CSS";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 
 import { BREAKPOINTS } from "src/config";
 
-interface IStyledProps {
+type IChildren = React.ReactNode | React.FunctionComponent;
+type IRenderer = (props: { children?: IChildren }) => JSX.Element;
+type IBodyAlignment = "left" | "right";
+
+interface ISCProps {
     className?: string;
 }
 
-type Alignment = "right" | "left";
-interface ICommonProps {
-    bodyAlignment?: Alignment;
-}
-
-interface ICardTitleProps extends IStyledProps, ICommonProps {
-    title?: JSX.Element | string;
-}
-
-interface ICardSubtitleProps extends IStyledProps, ICommonProps {
-    subtitle?: JSX.Element | string;
-}
-
-type ICardHeaderProps = ICardTitleProps & ICardSubtitleProps & ICardImageProps;
-
-interface ICardBodyProps extends IStyledProps {
-    body?: JSX.Element | string;
-}
-
-type ICardContentProps = ICardTitleProps &
-    ICardSubtitleProps &
-    ICardImageProps &
-    ICardBodyProps;
-
-interface ICardImageProps extends IStyledProps, ICommonProps {
-    backgroundUrl?: string;
-}
-
 interface IStateProps {
-    theme: ITheme;
+    readonly theme: ITheme;
+}
+
+interface IInternalProps extends IStateProps {
+    bodyAlignment?: IBodyAlignment;
+}
+interface IThemeProviderProps {
+    theme: IInternalProps & IOwnProps;
 }
 
 interface IOwnProps {
-    children: JSX.Element | string;
-}
+    /**
+     * Defines the Content container
+     */
+    ContentRenderer?: IRenderer;
 
-type CardProps = ICardTitleProps &
-    ICardSubtitleProps &
-    ICardContentProps &
-    ICardImageProps &
-    IStyledProps &
-    ICommonProps &
-    IOwnProps &
-    IStateProps;
+    /**
+     * Defines the Header container
+     */
+    HeaderRenderer?: IRenderer;
+
+    /**
+     * Defines the Title container
+     */
+    TitleRenderer?: IRenderer;
+    /**
+     * Rendered inside the Title container
+     */
+    title?: IChildren;
+
+    /**
+     * Defines the Subtitle container
+     */
+    SubtitleRenderer?: IRenderer;
+    /**
+     * Rendered inside the Subtitle container
+     */
+    subtitle?: IChildren;
+
+    /**
+     * On mobile, hides part of the header to give a desktop like look
+     */
+    HeaderHiderRenderer?: IRenderer;
+
+    /**
+     * Defines the Body container
+     */
+    BodyRenderer?: IRenderer;
+    /**
+     * Rendered inside the Body container
+     */
+    children?: IChildren;
+
+    /**
+     * Defines the Image container
+     */
+    ImageRenderer?: IRenderer;
+    /**
+     * Defines the ImageHider container. Hides part of the image.
+     */
+    ImageHiderRenderer?: IRenderer;
+
+    /**
+     * The url to the image
+     */
+    imageUrl?: string;
+
+    /**
+     * Will be rendered between the Header and Body (if Header exists)
+     */
+    headerSeparator?: IRenderer;
+}
 
 const mapStateToProps = ({ theme }: IStoreState): IStateProps => ({
     theme,
@@ -61,85 +94,63 @@ const mapStateToProps = ({ theme }: IStoreState): IStateProps => ({
 
 // CARD TITLE
 
-const CardTitle = styled(({ title, className }: ICardTitleProps) => (
-    <h1 className={className}>{title}</h1>
-))`
+const Title = styled.h1`
     font-size: 4rem;
     font-family: ${fonts.roboto.family};
 
     @media (max-width: ${BREAKPOINTS.smpx}) {
         position: relative;
         z-index: 2;
-        text-align: ${({ bodyAlignment }: ICardSubtitleProps) =>
+        text-align: ${({ theme: { bodyAlignment } }: IThemeProviderProps) =>
             bodyAlignment == "left" ? "left" : "right"};
     }
 `;
 
 // CARD SUBTITLE
 
-const CardSubtitle = connect(mapStateToProps)(
-    styled(({ subtitle, className }: ICardSubtitleProps) => (
-        <h2 className={className}>{subtitle}</h2>
-    ))`
-        font-size: 2.25rem;
-        color: ${({ theme }: IStateProps) => theme.colors.cardSubtitle};
-        font-family: ${fonts.openSans.family};
+const Subtitle = styled.h2`
+    font-size: 2.25rem;
+    color: ${({ theme: { theme } }: IThemeProviderProps) =>
+        theme.colors.cardSubtitle};
+    font-family: ${fonts.openSans.family};
 
-        @media (max-width: ${BREAKPOINTS.smpx}) {
-            position: relative;
-            z-index: 2;
-            text-align: ${({ bodyAlignment }: ICardSubtitleProps) =>
-                bodyAlignment == "left" ? "left" : "right"};
-        }
-    `,
-);
+    @media (max-width: ${BREAKPOINTS.smpx}) {
+        position: relative;
+        z-index: 2;
+        text-align: ${({ theme: { bodyAlignment } }: IThemeProviderProps) =>
+            bodyAlignment == "left" ? "left" : "right"};
+    }
+`;
 
 // CARD HEADER HIDER
 
-const CardHeaderHider = connect(mapStateToProps)(
-    styled.div<ICardImageProps>`
-        @media (max-width: ${BREAKPOINTS.smpx}) {
-            background: ${({ theme }: IStateProps) => theme.colors.card};
-            transition: all ${THEME_TRANSITION_TIME}s;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            box-shadow: 0 0 1.5rem
-                ${({ theme }: IStateProps) => theme.colors.cardShadow};
-            transform: ${({ bodyAlignment }: ICardImageProps) =>
-                bodyAlignment == "left"
-                    ? "skew(70deg) translateX(-35%)"
-                    : "skew(-70deg) translateX(35%)"};
-        }
-    `,
-);
+const HeaderHider = styled.div`
+    @media (max-width: ${BREAKPOINTS.smpx}) {
+        background: ${({ theme: { theme } }: IThemeProviderProps) =>
+            theme.colors.card};
+        transition: all ${THEME_TRANSITION_TIME}s;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        box-shadow: 0 0 1.5rem
+            ${({ theme: { theme } }: IThemeProviderProps) =>
+                theme.colors.cardShadow};
+        transform: ${({ theme: { bodyAlignment } }: IThemeProviderProps) =>
+            bodyAlignment == "left"
+                ? "skew(70deg) translateX(-35%)"
+                : "skew(-70deg) translateX(35%)"};
+    }
+`;
 
 // CARD HEADER
 
-const CardHeader = styled(
-    ({ title, subtitle, className, bodyAlignment }: ICardHeaderProps) => (
-        <>
-            <div className={className}>
-                <CardHeaderHider bodyAlignment={bodyAlignment} />
-                {title && (
-                    <CardTitle bodyAlignment={bodyAlignment} title={title} />
-                )}
-                {subtitle && (
-                    <CardSubtitle
-                        bodyAlignment={bodyAlignment}
-                        subtitle={subtitle}
-                    />
-                )}
-            </div>
-        </>
-    ),
-)`
+const Header = styled.div`
     @media (max-width: ${BREAKPOINTS.smpx}) {
         background:
-            url("${({ backgroundUrl }) => backgroundUrl}")
+            url("${({ theme: { imageUrl } }: IThemeProviderProps) => imageUrl}")
             center center / cover no-repeat;
         overflow-y: auto;
         overflow-x: hidden;
@@ -150,40 +161,18 @@ const CardHeader = styled(
 
 // CARD BODY
 
-const CardBody = styled(({ body, className }: ICardBodyProps) => (
-    <p className={className}>{body}</p>
-))`
+const Body = styled.div`
     @media (max-width: ${BREAKPOINTS.smpx}) {
-        padding: 0.5% 3%;
+        padding: 2% 3%;
     }
 `;
 
 // CARD CONTENT
 
-const CardContent = styled(
-    ({
-        title,
-        subtitle,
-        body,
-        className,
-        backgroundUrl,
-        bodyAlignment,
-    }: ICardContentProps) => (
-        <div className={className}>
-            <CardHeader
-                backgroundUrl={backgroundUrl}
-                title={title}
-                subtitle={subtitle}
-                bodyAlignment={bodyAlignment}
-            />
-            {(!!title || !!subtitle) && <hr />}
-            <CardBody body={body} />
-        </div>
-    ),
-)`
-    grid-column-start: ${({ bodyAlignment }: ICardContentProps) =>
+const Content = styled.div`
+    grid-column-start: ${({ theme: { bodyAlignment } }: IThemeProviderProps) =>
         bodyAlignment == "left" ? 1 : 2};
-    padding: 0.5% 3%;
+    padding: 2% 3%;
 
     @media (max-width: ${BREAKPOINTS.smpx}) {
         grid-column-start: 1;
@@ -193,136 +182,172 @@ const CardContent = styled(
 
 // CARD IMAGE HIDER
 
-const CardImageHider = connect(mapStateToProps)(
-    styled.div<ICardImageProps>`
-        background: ${({ theme }: IStateProps) => theme.colors.card};
-        transform: ${({ bodyAlignment }: ICardImageProps) =>
-            bodyAlignment == "left"
-                ? "skew(10deg) translateX(-70%)"
-                : "skew(-10deg) translateX(70%)"};
-        transition: all ${THEME_TRANSITION_TIME}s;
-        width: 100%;
-        height: 100%;
-        box-shadow: 0 0 1.5rem
-            ${({ theme }: IStateProps) => theme.colors.cardShadow};
-    `,
-);
+const ImageHider = styled.div`
+    background: ${({ theme: { theme } }: IThemeProviderProps) =>
+        theme.colors.card};
+    transform: ${({ theme: { bodyAlignment } }: IThemeProviderProps) =>
+        bodyAlignment == "left"
+            ? "skew(10deg) translateX(-70%)"
+            : "skew(-10deg) translateX(70%)"};
+    transition: all ${THEME_TRANSITION_TIME}s;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 1.5rem
+        ${({ theme: { theme } }: IThemeProviderProps) =>
+            theme.colors.cardShadow};
+`;
 
 // CARD IMAGE
 
-const CardImage = styled(
-    ({ backgroundUrl, className, bodyAlignment }: ICardImageProps) => (
-        <div className={className}>
-            <CardImageHider
-                bodyAlignment={bodyAlignment}
-                backgroundUrl={backgroundUrl}
-            />
-        </div>
-    ),
-)`
-    grid-column-start: ${({ bodyAlignment }: ICardImageProps) =>
+const Image = styled.div`
+    @media (min-width: ${BREAKPOINTS.smpx}) {
+    grid-column-start: ${({ theme: { bodyAlignment } }: IThemeProviderProps) =>
         bodyAlignment == "left" ? 2 : 1};
     background-size: cover;
     position: relative;
     overflow: hidden;
     background:
-        url("${({ backgroundUrl }) => backgroundUrl}")
+        url("${({ theme: { imageUrl } }: IThemeProviderProps) => imageUrl}")
         center center / cover no-repeat;
+    }
 `;
 
 // CARD
 
-const Base = styled.div`
-    background: ${({ theme }: IStateProps) => theme.colors.card};
-    width: 75%;
-    display: grid;
-    margin: 5% auto;
-    box-shadow: 0.5rem 0.75rem 2.5rem
-        ${({ theme }: IStateProps) => theme.colors.cardShadow};
-    border-radius: 0.25em;
-    font-size: 2.3rem;
-    color: ${({ theme }: IStateProps) => theme.colors.defaultText};
-    transition: all ${THEME_TRANSITION_TIME}s;
-    text-align: justify;
-    overflow: hidden;
-
-    @media (max-width: ${BREAKPOINTS.smpx}) {
-        font-size: 4rem;
-    }
-
-    @media (min-width: ${BREAKPOINTS.smpx}) {
-        grid-gap: 1rem;
-    }
-`;
-
-export const Primary = connect(mapStateToProps)(
-    Base.withComponent(styled(
-        ({
+const Card = connect(mapStateToProps)(
+    styled((props: IOwnProps & ISCProps & IInternalProps & IStateProps) => {
+        const {
+            ContentRenderer,
+            HeaderRenderer,
             title,
+            TitleRenderer,
             subtitle,
-            backgroundUrl,
+            SubtitleRenderer,
+            HeaderHiderRenderer,
+            BodyRenderer,
             children,
+            ImageRenderer,
+            ImageHiderRenderer,
+            imageUrl,
+            headerSeparator,
+            theme,
             className,
-            bodyAlignment = "left",
-        }: CardProps) => (
-            <div className={className}>
-                <>
-                    <CardContent
-                        title={title}
-                        subtitle={subtitle}
-                        body={children}
-                        bodyAlignment={bodyAlignment}
-                        backgroundUrl={backgroundUrl}
-                    />
-                    {backgroundUrl && (
-                        <CardImage
-                            bodyAlignment={bodyAlignment}
-                            backgroundUrl={backgroundUrl}
-                        />
+            bodyAlignment,
+        } = props;
+
+        // Content
+        const CContent = ContentRenderer || Content;
+
+        // Header
+        const renderHeader = !!title || !!subtitle;
+        const CHeader =
+            HeaderRenderer || ((renderHeader && Header) || (() => null));
+        const CTitle = TitleRenderer || Title;
+        const CSubtitle = SubtitleRenderer || Subtitle;
+        const CHeaderHider = HeaderHiderRenderer || HeaderHider;
+
+        // Body
+        const CBody = BodyRenderer || Body;
+
+        // Image
+        const CImage = ImageRenderer || ((imageUrl && Image) || (() => null));
+        const CImageHider = ImageHiderRenderer || ImageHider;
+
+        const themeValue: IInternalProps & IOwnProps = {
+            bodyAlignment,
+            theme,
+            imageUrl,
+        };
+
+        return (
+            <ThemeProvider theme={themeValue}>
+                <div className={className}>
+                    {bodyAlignment == "right" && (
+                        <CImage>
+                            <CImageHider />
+                        </CImage>
                     )}
-                </>
-            </div>
-        ),
-    )`
-        @media (min-width: ${BREAKPOINTS.smpx}) {
-            grid-template-columns: ${({ backgroundUrl }: CardProps) =>
-                backgroundUrl ? "75% 25%" : "100%"};
+                    <CContent>
+                        {renderHeader && (
+                            <CHeader>
+                                {title && <CTitle children={title} />}
+                                {subtitle && <CSubtitle children={subtitle} />}
+                                <CHeaderHider />
+                            </CHeader>
+                        )}
+
+                        {renderHeader &&
+                            children &&
+                            (headerSeparator || <hr />)}
+
+                        {children && <CBody children={children} />}
+                    </CContent>
+                    {bodyAlignment == "left" && (
+                        <CImage>
+                            <CImageHider />
+                        </CImage>
+                    )}
+                </div>
+            </ThemeProvider>
+        );
+    })`
+        background: ${({ theme }: IStateProps) => theme.colors.card};
+        width: 75%;
+        display: grid;
+        margin: 5% auto;
+        box-shadow: 0 0.5rem 0.5rem
+            ${({ theme }: IStateProps) => theme.colors.cardShadow};
+        border-radius: 0.25em;
+        font-size: 2.3rem;
+        color: ${({ theme }: IStateProps) => theme.colors.defaultText};
+        transition: all ${THEME_TRANSITION_TIME}s;
+        text-align: justify;
+        overflow: hidden;
+
+        @media (max-width: ${BREAKPOINTS.smpx}) {
+            font-size: 4rem;
         }
-    `),
+
+        @media (min-width: ${BREAKPOINTS.smpx}) {
+            grid-gap: 1rem;
+            grid-template-columns: ${({
+                imageUrl,
+                bodyAlignment,
+            }: IOwnProps & IInternalProps) =>
+                imageUrl
+                    ? bodyAlignment == "left"
+                        ? "75% 25%"
+                        : "25% 75%"
+                    : "100%"};
+        }
+    `,
 );
 
-export const Alt = connect(mapStateToProps)(
-    Base.withComponent(styled(
-        ({
-            title,
-            subtitle,
-            backgroundUrl,
-            children,
-            className,
-            bodyAlignment = "right",
-        }: CardProps) => (
-            <div className={className}>
-                <>
-                    {backgroundUrl && (
-                        <CardImage
-                            bodyAlignment={bodyAlignment}
-                            backgroundUrl={backgroundUrl}
-                        />
-                    )}
-                    <CardContent
-                        title={title}
-                        subtitle={subtitle}
-                        body={children}
-                        bodyAlignment={bodyAlignment}
-                        backgroundUrl={backgroundUrl}
-                    />
-                </>
-            </div>
-        ),
-    )`
-        @media (min-width: ${BREAKPOINTS.smpx}) {
-            grid-template-columns: ${({ backgroundUrl }: CardProps) =>
-                backgroundUrl ? "25% 75%" : "100%"};
-        }
-    `),
+/**
+ * Flexible Card component with default containers, or you can define your own.
+ * Primary: body is aligned to the left (use Alt to align to the right)
+ * @structure
+ * ```tsx
+    <>
+        <Content>
+            <Header>
+                <Title>{title}</Title>
+                <Subtitle>{subtitle}</Subtitle>
+                <HeaderHider />
+            </Header>
+            <Body>{body}</Body>
+        </Content>
+        <Image>
+            <ImageHider />
+        </Image>
+    </>
+ * ```
+ */
+export default (props: IOwnProps) => <Card {...props} bodyAlignment="left" />;
+
+/**
+ * Shows text to the right (when there's an image)
+ */
+export const Alt = (props: IOwnProps) => (
+    <Card {...props} bodyAlignment="right" />
 );

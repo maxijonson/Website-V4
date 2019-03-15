@@ -13,6 +13,6 @@ export { ViewportContainerBackground };
 import ColorOverlay from "./ColorOverlay";
 export { ColorOverlay };
 
+export { default as Card } from "./Card";
 import * as Cards from "./Card";
-export const Card = Cards.Primary;
 export { Cards };
