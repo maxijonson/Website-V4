@@ -17,6 +17,10 @@ const config = (env: string): webpack.Configuration => {
     const CSSExtract = new ExtractTextPlugin("styles.css");
     const TSLint = new TSLintPlugin({
         files: ["./src/**/*.ts"],
+        config: "./tslint.json",
+        project: "./tsconfig.json",
+        outputAbsolutePaths: false,
+        warningsAsError: true,
     });
 
     return {
