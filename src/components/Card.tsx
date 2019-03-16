@@ -1,5 +1,28 @@
 import React from "react";
 import { connect } from "react-redux";
+import * as Reveal from "react-reveal";
+// @ts-ignore:noImplicitAny
+import RevealFlash from "react-reveal/Flash";
+// @ts-ignore:noImplicitAny
+import RevealHeadShake from "react-reveal/HeadShake";
+// @ts-ignore:noImplicitAny
+import RevealJello from "react-reveal/Jello";
+// @ts-ignore:noImplicitAny
+import RevealJump from "react-reveal/Jump";
+// @ts-ignore:noImplicitAny
+import RevealPulse from "react-reveal/Pulse";
+// @ts-ignore:noImplicitAny
+import RevealRubberBand from "react-reveal/RubberBand";
+// @ts-ignore:noImplicitAny
+import RevealShake from "react-reveal/Shake";
+// @ts-ignore:noImplicitAny
+import RevealSpin from "react-reveal/Spin";
+// @ts-ignore:noImplicitAny
+import RevealSwing from "react-reveal/Swing";
+// @ts-ignore:noImplicitAny
+import RevealTada from "react-reveal/Tada";
+// @ts-ignore:noImplicitAny
+import RevealWobble from "react-reveal/Wobble";
 import { THEME_TRANSITION_TIME } from "src/config/config";
 import { fonts, ITheme } from "src/modules/CSS";
 import styled, { ThemeProvider } from "styled-components";
@@ -9,6 +32,7 @@ import { BREAKPOINTS } from "src/config";
 type IChildren = React.ReactNode;
 type IRenderer = (props: { children?: IChildren }) => JSX.Element;
 type IBodyAlignment = "left" | "right";
+const defaultBodyAlignment: IBodyAlignment = "left";
 
 interface ISCProps {
     className?: string;
@@ -232,9 +256,8 @@ const Card = connect(mapStateToProps)(
             headerSeparator,
             theme,
             className,
-            bodyAlignment,
+            bodyAlignment = defaultBodyAlignment,
         } = props;
-
         // Content
         const CContent = ContentRenderer || Content;
 
@@ -312,7 +335,7 @@ const Card = connect(mapStateToProps)(
             grid-gap: 1rem;
             grid-template-columns: ${({
                 imageUrl,
-                bodyAlignment,
+                bodyAlignment = defaultBodyAlignment,
             }: IOwnProps & IInternalProps) =>
                 imageUrl
                     ? bodyAlignment == "left"
@@ -323,6 +346,26 @@ const Card = connect(mapStateToProps)(
     `,
 );
 
+interface IRevealProps {
+    alt?: boolean;
+    big?: boolean;
+    bottom?: boolean;
+    cascade?: boolean;
+    count?: number;
+    delay?: number;
+    distance?: string;
+    duration?: number;
+    forever?: boolean;
+    fraction?: number;
+    left?: boolean;
+    mirror?: boolean;
+    opposite?: boolean;
+    out?: boolean;
+    right?: boolean;
+    spy?: any;
+    timeout?: number;
+    top?: boolean;
+}
 /**
  * Flexible Card component with default containers, or you can define your own.
  * Primary: body is aligned to the left (use Alt to align to the right)
@@ -350,4 +393,120 @@ export default (props: IOwnProps) => <Card {...props} bodyAlignment="left" />;
  */
 export const Alt = (props: IOwnProps) => (
     <Card {...props} bodyAlignment="right" />
+);
+
+/// --- ANIMATED ON VIEWPORT ENTER ---///
+
+export const Fade = (props: IOwnProps & IRevealProps) => (
+    <Reveal.Fade {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </Reveal.Fade>
+);
+
+export const Flip = (props: IOwnProps & IRevealProps) => (
+    <Reveal.Flip {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </Reveal.Flip>
+);
+
+export const Rotate = (props: IOwnProps & IRevealProps) => (
+    <Reveal.Rotate {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </Reveal.Rotate>
+);
+
+export const Zoom = (props: IOwnProps & IRevealProps) => (
+    <Reveal.Zoom {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </Reveal.Zoom>
+);
+
+export const Bounce = (props: IOwnProps & IRevealProps) => (
+    <Reveal.Bounce {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </Reveal.Bounce>
+);
+
+export const Slide = (props: IOwnProps & IRevealProps) => (
+    <Reveal.Slide {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </Reveal.Slide>
+);
+
+export const Roll = (props: IOwnProps & IRevealProps) => (
+    <Reveal.Roll {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </Reveal.Roll>
+);
+
+export const LightSpeed = (props: IOwnProps & IRevealProps) => (
+    <Reveal.LightSpeed {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </Reveal.LightSpeed>
+);
+
+export const Jump = (props: IOwnProps & IRevealProps) => (
+    <RevealJump {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </RevealJump>
+);
+
+export const Flash = (props: IOwnProps & IRevealProps) => (
+    <RevealFlash {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </RevealFlash>
+);
+
+export const HeadShake = (props: IOwnProps & IRevealProps) => (
+    <RevealHeadShake {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </RevealHeadShake>
+);
+
+export const Jello = (props: IOwnProps & IRevealProps) => (
+    <RevealJello {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </RevealJello>
+);
+
+export const Pulse = (props: IOwnProps & IRevealProps) => (
+    <RevealPulse {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </RevealPulse>
+);
+
+export const RubberBand = (props: IOwnProps & IRevealProps) => (
+    <RevealRubberBand {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </RevealRubberBand>
+);
+
+export const Shake = (props: IOwnProps & IRevealProps) => (
+    <RevealShake {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </RevealShake>
+);
+
+export const Spin = (props: IOwnProps & IRevealProps) => (
+    <RevealSpin {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </RevealSpin>
+);
+
+export const Swing = (props: IOwnProps & IRevealProps) => (
+    <RevealSwing {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </RevealSwing>
+);
+
+export const Tada = (props: IOwnProps & IRevealProps) => (
+    <RevealTada {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </RevealTada>
+);
+
+export const Wobble = (props: IOwnProps & IRevealProps) => (
+    <RevealWobble {...props}>
+        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
+    </RevealWobble>
 );
