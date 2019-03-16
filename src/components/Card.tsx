@@ -106,6 +106,7 @@ interface IOwnProps {
 
     /**
      * The url to the image
+     * Not specifying it will remove the Image container
      */
     imageUrl?: string;
 
@@ -116,8 +117,16 @@ interface IOwnProps {
 
     /**
      * Animate the Card internal content on viewport entry
+     * @default false
      */
     animate?: boolean;
+
+    /**
+     * Internal Card animation delay is based on the Card reveal animation's delay + duration divided by this factor
+     * @preRequisite animate == true
+     * @default 4
+     */
+    animationDelayFactor?: number;
 }
 
 const mapStateToProps = ({ theme }: IStoreState): IStateProps => ({
@@ -237,6 +246,12 @@ const Image = styled.div`
         bodyAlignment == "left" ? 2 : 1};
     background-size: cover;
     position: relative;
+    transition: all 1s;
+    transition-delay: 0.25s;
+    right: ${({ theme: { hasRevealed, bodyAlignment } }: IThemeProviderProps) =>
+        bodyAlignment == "right" && (hasRevealed ? 0 : "100%")};
+    left: ${({ theme: { hasRevealed, bodyAlignment } }: IThemeProviderProps) =>
+        bodyAlignment == "left" && (hasRevealed ? 0 : "100%")};
     overflow: hidden;
     background:
         url("${({ theme: { imageUrl } }: IThemeProviderProps) => imageUrl}")
@@ -251,11 +266,13 @@ const defaultProps: {
     animate: boolean;
     delay: number;
     duration: number;
+    animationDelayFactor: number;
 } = {
     bodyAlignment: "left",
     animate: false,
     delay: 0,
     duration: 1000,
+    animationDelayFactor: 4,
 };
 
 const Card = connect(mapStateToProps)(
@@ -281,6 +298,7 @@ const Card = connect(mapStateToProps)(
             delay = defaultProps.delay, // Animation delay provided by same props we give to React-Reveal
             duration = defaultProps.duration, // by React-Reveal
             hasRevealed,
+            animationDelayFactor = defaultProps.duration,
         } = props;
         // Content
         const CContent = ContentRenderer || Content;
@@ -304,22 +322,27 @@ const Card = connect(mapStateToProps)(
             bodyAlignment,
             theme,
             imageUrl,
+            hasRevealed,
         };
 
-        const baseDelay = delay + duration;
+        const baseDelay = Math.round((delay + duration) / animationDelayFactor);
         const AnimateSide = animate
             ? ({
                   children,
                   delay = 0,
+                  cascade = false,
               }: {
                   children: JSX.Element;
                   delay?: number;
+                  cascade?: boolean;
               }) => (
                   <Reveal.Fade
                       left={bodyAlignment == "left"}
                       right={bodyAlignment == "right"}
                       delay={baseDelay + delay}
                       children={children}
+                      factor={0}
+                      cascade={cascade}
                       appear={hasRevealed}
                   />
               )
@@ -338,15 +361,15 @@ const Card = connect(mapStateToProps)(
                     <CContent>
                         {renderHeader && (
                             <CHeader>
-                                <AnimateSide>
-                                    <>
+                                <AnimateSide cascade>
+                                    <div>
                                         {title && <CTitle children={title} />}
                                         {subtitle && (
                                             <CSubtitle children={subtitle} />
                                         )}
-                                        <CHeaderHider />
-                                    </>
+                                    </div>
                                 </AnimateSide>
+                                <CHeaderHider />
                             </CHeader>
                         )}
 
