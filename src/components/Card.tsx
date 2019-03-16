@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import React from "react";
 import { connect } from "react-redux";
 import * as Reveal from "react-reveal";
@@ -32,7 +33,6 @@ import { BREAKPOINTS } from "src/config";
 type IChildren = React.ReactNode;
 type IRenderer = (props: { children?: IChildren }) => JSX.Element;
 type IBodyAlignment = "left" | "right";
-const defaultBodyAlignment: IBodyAlignment = "left";
 
 interface ISCProps {
     className?: string;
@@ -42,11 +42,14 @@ interface IStateProps {
     readonly theme: ITheme;
 }
 
-interface IInternalProps extends IStateProps {
+interface IInternalProps {
     bodyAlignment?: IBodyAlignment;
+    delay?: number;
+    duration?: number;
+    hasRevealed?: boolean;
 }
 interface IThemeProviderProps {
-    theme: IInternalProps & IOwnProps;
+    theme: IInternalProps & IStateProps & IOwnProps;
 }
 
 interface IOwnProps {
@@ -110,6 +113,11 @@ interface IOwnProps {
      * Will be rendered between the Header and Body (if Header exists)
      */
     headerSeparator?: IRenderer;
+
+    /**
+     * Animate the Card internal content on viewport entry
+     */
+    animate?: boolean;
 }
 
 const mapStateToProps = ({ theme }: IStoreState): IStateProps => ({
@@ -238,6 +246,18 @@ const Image = styled.div`
 
 // CARD
 
+const defaultProps: {
+    bodyAlignment: IBodyAlignment;
+    animate: boolean;
+    delay: number;
+    duration: number;
+} = {
+    bodyAlignment: "left",
+    animate: false,
+    delay: 0,
+    duration: 1000,
+};
+
 const Card = connect(mapStateToProps)(
     styled((props: IOwnProps & ISCProps & IInternalProps & IStateProps) => {
         const {
@@ -256,7 +276,11 @@ const Card = connect(mapStateToProps)(
             headerSeparator,
             theme,
             className,
-            bodyAlignment = defaultBodyAlignment,
+            bodyAlignment = defaultProps.bodyAlignment,
+            animate = defaultProps.animate,
+            delay = defaultProps.delay, // Animation delay provided by same props we give to React-Reveal
+            duration = defaultProps.duration, // by React-Reveal
+            hasRevealed,
         } = props;
         // Content
         const CContent = ContentRenderer || Content;
@@ -276,11 +300,32 @@ const Card = connect(mapStateToProps)(
         const CImage = ImageRenderer || ((imageUrl && Image) || (() => null));
         const CImageHider = ImageHiderRenderer || ImageHider;
 
-        const themeValue: IInternalProps & IOwnProps = {
+        const themeValue: IStateProps & IInternalProps & IOwnProps = {
             bodyAlignment,
             theme,
             imageUrl,
         };
+
+        const baseDelay = delay + duration;
+        const AnimateSide = animate
+            ? ({
+                  children,
+                  delay = 0,
+              }: {
+                  children: JSX.Element;
+                  delay?: number;
+              }) => (
+                  <Reveal.Fade
+                      left={bodyAlignment == "left"}
+                      right={bodyAlignment == "right"}
+                      delay={baseDelay + delay}
+                      children={children}
+                      appear={hasRevealed}
+                  />
+              )
+            : ({ children }: { children: JSX.Element }) => (
+                  <div children={children} />
+              );
 
         return (
             <ThemeProvider theme={themeValue}>
@@ -293,17 +338,30 @@ const Card = connect(mapStateToProps)(
                     <CContent>
                         {renderHeader && (
                             <CHeader>
-                                {title && <CTitle children={title} />}
-                                {subtitle && <CSubtitle children={subtitle} />}
-                                <CHeaderHider />
+                                <AnimateSide>
+                                    <>
+                                        {title && <CTitle children={title} />}
+                                        {subtitle && (
+                                            <CSubtitle children={subtitle} />
+                                        )}
+                                        <CHeaderHider />
+                                    </>
+                                </AnimateSide>
                             </CHeader>
                         )}
 
                         {renderHeader &&
                             children &&
-                            (headerSeparator || <hr />)}
+                            (headerSeparator || (
+                                <AnimateSide delay={250} children={<hr />} />
+                            ))}
 
-                        {children && <CBody children={children} />}
+                        {children && (
+                            <AnimateSide
+                                delay={500}
+                                children={<CBody children={children} />}
+                            />
+                        )}
                     </CContent>
                     {bodyAlignment == "left" && (
                         <CImage>
@@ -335,7 +393,7 @@ const Card = connect(mapStateToProps)(
             grid-gap: 1rem;
             grid-template-columns: ${({
                 imageUrl,
-                bodyAlignment = defaultBodyAlignment,
+                bodyAlignment = defaultProps.bodyAlignment,
             }: IOwnProps & IInternalProps) =>
                 imageUrl
                     ? bodyAlignment == "left"
@@ -348,23 +406,29 @@ const Card = connect(mapStateToProps)(
 
 interface IRevealProps {
     alt?: boolean;
+    appear?: boolean;
     big?: boolean;
     bottom?: boolean;
     cascade?: boolean;
+    collapse?: boolean;
     count?: number;
     delay?: number;
     distance?: string;
     duration?: number;
+    enter?: boolean;
+    exit?: boolean;
     forever?: boolean;
     fraction?: number;
     left?: boolean;
     mirror?: boolean;
+    mountOnEnter?: boolean;
     opposite?: boolean;
     out?: boolean;
     right?: boolean;
     spy?: any;
     timeout?: number;
     top?: boolean;
+    when?: boolean;
 }
 /**
  * Flexible Card component with default containers, or you can define your own.
@@ -397,116 +461,306 @@ export const Alt = (props: IOwnProps) => (
 
 /// --- ANIMATED ON VIEWPORT ENTER ---///
 
-export const Fade = (props: IOwnProps & IRevealProps) => (
-    <Reveal.Fade {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </Reveal.Fade>
-);
+export const Fade = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
 
-export const Flip = (props: IOwnProps & IRevealProps) => (
-    <Reveal.Flip {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </Reveal.Flip>
-);
+    const onReveal = () => setHasRevealed(true);
 
-export const Rotate = (props: IOwnProps & IRevealProps) => (
-    <Reveal.Rotate {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </Reveal.Rotate>
-);
+    return (
+        <Reveal.Fade {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </Reveal.Fade>
+    );
+};
 
-export const Zoom = (props: IOwnProps & IRevealProps) => (
-    <Reveal.Zoom {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </Reveal.Zoom>
-);
+export const Flip = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
 
-export const Bounce = (props: IOwnProps & IRevealProps) => (
-    <Reveal.Bounce {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </Reveal.Bounce>
-);
+    const onReveal = () => setHasRevealed(true);
 
-export const Slide = (props: IOwnProps & IRevealProps) => (
-    <Reveal.Slide {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </Reveal.Slide>
-);
+    return (
+        <Reveal.Flip {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </Reveal.Flip>
+    );
+};
 
-export const Roll = (props: IOwnProps & IRevealProps) => (
-    <Reveal.Roll {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </Reveal.Roll>
-);
+export const Rotate = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
 
-export const LightSpeed = (props: IOwnProps & IRevealProps) => (
-    <Reveal.LightSpeed {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </Reveal.LightSpeed>
-);
+    const onReveal = () => setHasRevealed(true);
 
-export const Jump = (props: IOwnProps & IRevealProps) => (
-    <RevealJump {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </RevealJump>
-);
+    return (
+        <Reveal.Rotate {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </Reveal.Rotate>
+    );
+};
 
-export const Flash = (props: IOwnProps & IRevealProps) => (
-    <RevealFlash {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </RevealFlash>
-);
+export const Zoom = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
 
-export const HeadShake = (props: IOwnProps & IRevealProps) => (
-    <RevealHeadShake {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </RevealHeadShake>
-);
+    const onReveal = () => setHasRevealed(true);
 
-export const Jello = (props: IOwnProps & IRevealProps) => (
-    <RevealJello {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </RevealJello>
-);
+    return (
+        <Reveal.Zoom {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </Reveal.Zoom>
+    );
+};
 
-export const Pulse = (props: IOwnProps & IRevealProps) => (
-    <RevealPulse {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </RevealPulse>
-);
+export const Bounce = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
 
-export const RubberBand = (props: IOwnProps & IRevealProps) => (
-    <RevealRubberBand {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </RevealRubberBand>
-);
+    const onReveal = () => setHasRevealed(true);
 
-export const Shake = (props: IOwnProps & IRevealProps) => (
-    <RevealShake {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </RevealShake>
-);
+    return (
+        <Reveal.Bounce {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </Reveal.Bounce>
+    );
+};
 
-export const Spin = (props: IOwnProps & IRevealProps) => (
-    <RevealSpin {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </RevealSpin>
-);
+export const Slide = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
 
-export const Swing = (props: IOwnProps & IRevealProps) => (
-    <RevealSwing {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </RevealSwing>
-);
+    const onReveal = () => setHasRevealed(true);
 
-export const Tada = (props: IOwnProps & IRevealProps) => (
-    <RevealTada {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </RevealTada>
-);
+    return (
+        <Reveal.Slide {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </Reveal.Slide>
+    );
+};
 
-export const Wobble = (props: IOwnProps & IRevealProps) => (
-    <RevealWobble {...props}>
-        <Card {...props} bodyAlignment={props.alt ? "right" : "left"} />
-    </RevealWobble>
-);
+export const Roll = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
+
+    const onReveal = () => setHasRevealed(true);
+
+    return (
+        <Reveal.Roll {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </Reveal.Roll>
+    );
+};
+
+export const LightSpeed = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
+
+    const onReveal = () => setHasRevealed(true);
+
+    return (
+        <Reveal.LightSpeed {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </Reveal.LightSpeed>
+    );
+};
+
+export const Jump = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
+
+    const onReveal = () => setHasRevealed(true);
+
+    return (
+        <RevealJump {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </RevealJump>
+    );
+};
+
+export const Flash = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
+
+    const onReveal = () => setHasRevealed(true);
+
+    return (
+        <RevealFlash {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </RevealFlash>
+    );
+};
+
+export const HeadShake = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
+
+    const onReveal = () => setHasRevealed(true);
+
+    return (
+        <RevealHeadShake {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </RevealHeadShake>
+    );
+};
+
+export const Jello = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
+
+    const onReveal = () => setHasRevealed(true);
+
+    return (
+        <RevealJello {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </RevealJello>
+    );
+};
+
+export const Pulse = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
+
+    const onReveal = () => setHasRevealed(true);
+
+    return (
+        <RevealPulse {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </RevealPulse>
+    );
+};
+
+export const RubberBand = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
+
+    const onReveal = () => setHasRevealed(true);
+
+    return (
+        <RevealRubberBand {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </RevealRubberBand>
+    );
+};
+
+export const Shake = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
+
+    const onReveal = () => setHasRevealed(true);
+
+    return (
+        <RevealShake {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </RevealShake>
+    );
+};
+
+export const Spin = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
+
+    const onReveal = () => setHasRevealed(true);
+
+    return (
+        <RevealSpin {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </RevealSpin>
+    );
+};
+
+export const Swing = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
+
+    const onReveal = () => setHasRevealed(true);
+
+    return (
+        <RevealSwing {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </RevealSwing>
+    );
+};
+
+export const Tada = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
+
+    const onReveal = () => setHasRevealed(true);
+
+    return (
+        <RevealTada {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </RevealTada>
+    );
+};
+
+export const Wobble = (props: IOwnProps & IRevealProps) => {
+    const [hasRevealed, setHasRevealed] = React.useState(false);
+
+    const onReveal = () => setHasRevealed(true);
+
+    return (
+        <RevealWobble {...props} onReveal={onReveal}>
+            <Card
+                {...props}
+                bodyAlignment={props.alt ? "right" : "left"}
+                hasRevealed={hasRevealed}
+            />
+        </RevealWobble>
+    );
+};
