@@ -104,8 +104,10 @@ const HomePage = (props: HomePageProps) => {
                 animate
                 top
                 fraction={0.8}
-                title={t("home.welcome.title")}
-                subtitle={t("home.welcome.subtitle")}
+                title="Some long asss title"
+                subtitle="Some extraa long asss fuuckkkkk subtitle asdfasdf f sd asd fkl asdkfj alskdf"
+                // title={t("home.welcome.title")}
+                // subtitle={t("home.welcome.subtitle")}
                 imageUrl="assets/images/logo.png"
             >
                 {t("long.home.welcome.body")}

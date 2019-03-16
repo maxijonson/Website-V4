@@ -142,6 +142,10 @@ const Title = styled.h1`
 
     @media (max-width: ${BREAKPOINTS.smpx}) {
         position: relative;
+        padding-left: ${({ theme: { bodyAlignment } }: IThemeProviderProps) =>
+            bodyAlignment == "right" && "50%"};
+        padding-right: ${({ theme: { bodyAlignment } }: IThemeProviderProps) =>
+            bodyAlignment == "left" && "50%"};
         z-index: 2;
         text-align: ${({ theme: { bodyAlignment } }: IThemeProviderProps) =>
             bodyAlignment == "left" ? "left" : "right"};
@@ -158,6 +162,10 @@ const Subtitle = styled.h2`
 
     @media (max-width: ${BREAKPOINTS.smpx}) {
         position: relative;
+        padding-left: ${({ theme: { bodyAlignment } }: IThemeProviderProps) =>
+            bodyAlignment == "right" && "25%"};
+        padding-right: ${({ theme: { bodyAlignment } }: IThemeProviderProps) =>
+            bodyAlignment == "left" && "25%"};
         z-index: 2;
         text-align: ${({ theme: { bodyAlignment } }: IThemeProviderProps) =>
             bodyAlignment == "left" ? "left" : "right"};
@@ -182,8 +190,8 @@ const HeaderHider = styled.div`
                 theme.colors.cardShadow};
         transform: ${({ theme: { bodyAlignment } }: IThemeProviderProps) =>
             bodyAlignment == "left"
-                ? "skew(70deg) translateX(-35%)"
-                : "skew(-70deg) translateX(35%)"};
+                ? "skew(70deg) translateX(-35%) scale(1.2)"
+                : "skew(-70deg) translateX(35%) scale(1.2)"};
     }
 `;
 
