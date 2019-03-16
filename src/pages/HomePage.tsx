@@ -103,7 +103,7 @@ const HomePage = (props: HomePageProps) => {
                 alt
                 bottom
                 left
-                fraction={0.5}
+                fraction={0.8}
                 title={t("home.welcome.title")}
                 subtitle={t("home.welcome.subtitle")}
                 imageUrl="assets/images/logo.png"
@@ -113,7 +113,7 @@ const HomePage = (props: HomePageProps) => {
             <Cards.Rotate
                 bottom
                 right
-                fraction={0.5}
+                fraction={0.8}
                 title={t("home.playground.title")}
                 subtitle={t("home.playground.subtitle")}
                 imageUrl="assets/images/react-ts.jpg"
@@ -123,7 +123,7 @@ const HomePage = (props: HomePageProps) => {
             <Cards.Fade
                 bottom
                 alt
-                fraction={0.5}
+                fraction={0.8}
                 title={t("home.share.title")}
                 subtitle={t("home.share.subtitle")}
                 imageUrl="assets/images/code-1.jpg"
