@@ -4,7 +4,7 @@ import { t } from "src/app";
 import { STYLE_CENTERED, THEME_TRANSITION_TIME } from "src/config/config";
 import { CSS } from "src/modules";
 import { ITheme } from "src/modules/CSS/themes";
-import { Cards, Header, ViewportContainer } from "../components";
+import { Card, Cards, Header, ViewportContainer } from "../components";
 
 interface IOwnProps {}
 
@@ -99,10 +99,9 @@ const HomePage = (props: HomePageProps) => {
                 </div>
             </ViewportContainer>
             {/*** /INTRO ***/}
-            <Cards.Rotate
+            {/* <Cards.Fade
                 alt
-                bottom
-                left
+                top
                 animate
                 fraction={0.8}
                 title={t("home.welcome.title")}
@@ -110,10 +109,24 @@ const HomePage = (props: HomePageProps) => {
                 imageUrl="assets/images/logo.png"
             >
                 {t("long.home.welcome.body")}
-            </Cards.Rotate>
-            <Cards.Rotate
-                bottom
-                right
+            </Cards.Fade> */}
+            <Card
+                animate
+                title={t("home.welcome.title")}
+                subtitle={t("home.welcome.subtitle")}
+                imageUrl="assets/images/logo.png"
+            >
+                {t("long.home.welcome.body")}
+            </Card>
+            <Card
+                title={t("home.welcome.title")}
+                subtitle={t("home.welcome.subtitle")}
+                imageUrl="assets/images/logo.png"
+            >
+                {t("long.home.welcome.body")}
+            </Card>
+            <Cards.Fade
+                top
                 animate
                 fraction={0.8}
                 title={t("home.playground.title")}
@@ -121,9 +134,9 @@ const HomePage = (props: HomePageProps) => {
                 imageUrl="assets/images/react-ts.jpg"
             >
                 {t("long.home.playground.body")}
-            </Cards.Rotate>
+            </Cards.Fade>
             <Cards.Fade
-                bottom
+                top
                 alt
                 animate
                 fraction={0.8}
