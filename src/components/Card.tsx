@@ -47,6 +47,7 @@ interface IInternalProps {
     delay?: number;
     duration?: number;
     hasRevealed?: boolean;
+    isReveal?: boolean; // If Card is a child of a react-reveal component
 }
 interface IThemeProviderProps {
     theme: IInternalProps & IStateProps & IOwnProps;
@@ -267,12 +268,14 @@ const defaultProps: {
     delay: number;
     duration: number;
     animationDelayFactor: number;
+    isReveal: boolean;
 } = {
     bodyAlignment: "left",
     animate: false,
     delay: 0,
     duration: 1000,
     animationDelayFactor: 4,
+    isReveal: false,
 };
 
 const Card = connect(mapStateToProps)(
@@ -299,6 +302,7 @@ const Card = connect(mapStateToProps)(
             duration = defaultProps.duration, // by React-Reveal
             hasRevealed,
             animationDelayFactor = defaultProps.duration,
+            isReveal = defaultProps.isReveal,
         } = props;
         // Content
         const CContent = ContentRenderer || Content;
@@ -318,11 +322,20 @@ const Card = connect(mapStateToProps)(
         const CImage = ImageRenderer || ((imageUrl && Image) || (() => null));
         const CImageHider = ImageHiderRenderer || ImageHider;
 
+        // When animate && !(child of a react-reveal component): The internal react-reveal will take care of updating that state onReveal
+        const [fallbackHasRevealed, setFallbackHasRevealed] = React.useState(
+            false,
+        );
+
         const themeValue: IStateProps & IInternalProps & IOwnProps = {
             bodyAlignment,
             theme,
             imageUrl,
-            hasRevealed,
+            hasRevealed: isReveal
+                ? hasRevealed
+                : animate
+                ? fallbackHasRevealed
+                : true,
         };
 
         const baseDelay = Math.round((delay + duration) / animationDelayFactor);
@@ -344,6 +357,7 @@ const Card = connect(mapStateToProps)(
                       factor={0}
                       cascade={cascade}
                       appear={hasRevealed}
+                      onReveal={() => setFallbackHasRevealed(true)}
                   />
               )
             : ({ children }: { children: JSX.Element }) => (
@@ -495,6 +509,7 @@ export const Fade = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </Reveal.Fade>
     );
@@ -511,6 +526,7 @@ export const Flip = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </Reveal.Flip>
     );
@@ -527,6 +543,7 @@ export const Rotate = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </Reveal.Rotate>
     );
@@ -543,6 +560,7 @@ export const Zoom = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </Reveal.Zoom>
     );
@@ -559,6 +577,7 @@ export const Bounce = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </Reveal.Bounce>
     );
@@ -575,6 +594,7 @@ export const Slide = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </Reveal.Slide>
     );
@@ -591,6 +611,7 @@ export const Roll = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </Reveal.Roll>
     );
@@ -607,6 +628,7 @@ export const LightSpeed = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </Reveal.LightSpeed>
     );
@@ -623,6 +645,7 @@ export const Jump = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </RevealJump>
     );
@@ -639,6 +662,7 @@ export const Flash = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </RevealFlash>
     );
@@ -655,6 +679,7 @@ export const HeadShake = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </RevealHeadShake>
     );
@@ -671,6 +696,7 @@ export const Jello = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </RevealJello>
     );
@@ -687,6 +713,7 @@ export const Pulse = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </RevealPulse>
     );
@@ -703,6 +730,7 @@ export const RubberBand = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </RevealRubberBand>
     );
@@ -719,6 +747,7 @@ export const Shake = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </RevealShake>
     );
@@ -735,6 +764,7 @@ export const Spin = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </RevealSpin>
     );
@@ -751,6 +781,7 @@ export const Swing = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </RevealSwing>
     );
@@ -767,6 +798,7 @@ export const Tada = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </RevealTada>
     );
@@ -783,6 +815,7 @@ export const Wobble = (props: IOwnProps & IRevealProps) => {
                 {...props}
                 bodyAlignment={props.alt ? "right" : "left"}
                 hasRevealed={hasRevealed}
+                isReveal
             />
         </RevealWobble>
     );
