@@ -4,7 +4,7 @@ import { t } from "src/app";
 import { STYLE_CENTERED, THEME_TRANSITION_TIME } from "src/config/config";
 import { CSS } from "src/modules";
 import { ITheme } from "src/modules/CSS/themes";
-import { Card, Cards, Header, ViewportContainer } from "../components";
+import { Cards, Header, ViewportContainer } from "../components";
 
 interface IOwnProps {}
 
@@ -99,21 +99,34 @@ const HomePage = (props: HomePageProps) => {
                 </div>
             </ViewportContainer>
             {/*** /INTRO ***/}
-            <Cards.Alt
+            <Cards.Rotate
+                alt
+                bottom
+                left
+                fraction={1}
+                duration={500}
                 title={t("home.welcome.title")}
                 subtitle={t("home.welcome.subtitle")}
                 imageUrl="assets/images/logo.png"
             >
                 {t("long.home.welcome.body")}
-            </Cards.Alt>
-            <Card
+            </Cards.Rotate>
+            <Cards.Rotate
+                bottom
+                right
+                fraction={1}
+                duration={500}
                 title={t("home.playground.title")}
                 subtitle={t("home.playground.subtitle")}
                 imageUrl="assets/images/react-ts.jpg"
             >
                 {t("long.home.playground.body")}
-            </Card>
-            <Cards.Alt
+            </Cards.Rotate>
+            <Cards.Fade
+                bottom
+                alt
+                fraction={1}
+                duration={500}
                 title={t("home.share.title")}
                 subtitle={t("home.share.subtitle")}
                 imageUrl="assets/images/code-1.jpg"
@@ -121,7 +134,7 @@ const HomePage = (props: HomePageProps) => {
                 {t("long.home.share.body", {
                     postProcess: "markdown-jsx",
                 })}
-            </Cards.Alt>
+            </Cards.Fade>
         </>
     );
 };
