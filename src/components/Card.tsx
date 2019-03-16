@@ -227,11 +227,14 @@ const Content = styled.div`
 const ImageHider = styled.div`
     background: ${({ theme: { theme } }: IThemeProviderProps) =>
         theme.colors.card};
-    transform: ${({ theme: { bodyAlignment } }: IThemeProviderProps) =>
-        bodyAlignment == "left"
+    transform: ${({
+        theme: { bodyAlignment, hasRevealed },
+    }: IThemeProviderProps) =>
+        hasRevealed &&
+        (bodyAlignment == "left"
             ? "skew(10deg) translateX(-70%)"
-            : "skew(-10deg) translateX(70%)"};
-    transition: all ${THEME_TRANSITION_TIME}s;
+            : "skew(-10deg) translateX(70%)")};
+    transition: all ${THEME_TRANSITION_TIME}s, transform 1s;
     width: 100%;
     height: 100%;
     box-shadow: 0 0 1.5rem
@@ -249,10 +252,12 @@ const Image = styled.div`
     position: relative;
     transition: all 1s;
     transition-delay: 0.25s;
-    right: ${({ theme: { hasRevealed, bodyAlignment } }: IThemeProviderProps) =>
+    /* right: ${({
+        theme: { hasRevealed, bodyAlignment },
+    }: IThemeProviderProps) =>
         bodyAlignment == "right" && (hasRevealed ? 0 : "100%")};
     left: ${({ theme: { hasRevealed, bodyAlignment } }: IThemeProviderProps) =>
-        bodyAlignment == "left" && (hasRevealed ? 0 : "100%")};
+        bodyAlignment == "left" && (hasRevealed ? 0 : "100%")}; */
     overflow: hidden;
     background:
         url("${({ theme: { imageUrl } }: IThemeProviderProps) => imageUrl}")
@@ -322,47 +327,64 @@ const Card = connect(mapStateToProps)(
         const CImage = ImageRenderer || ((imageUrl && Image) || (() => null));
         const CImageHider = ImageHiderRenderer || ImageHider;
 
-        // When animate && !(child of a react-reveal component): The internal react-reveal will take care of updating that state onReveal
+        // Extra state to control the revealing ourselves for things that aren't in react-reveal's scope
+        // e.g: changing language or theme would be considered like a change and re-fire the animations, we don't want that!
         const [fallbackHasRevealed, setFallbackHasRevealed] = React.useState(
             false,
         );
+        const [isBeingRevealed, setIsBeingRevealed] = React.useState(false);
 
         const themeValue: IStateProps & IInternalProps & IOwnProps = {
             bodyAlignment,
             theme,
             imageUrl,
             hasRevealed: isReveal
-                ? hasRevealed
+                ? animate
+                    ? hasRevealed
+                    : true
                 : animate
-                ? fallbackHasRevealed
+                ? isBeingRevealed
                 : true,
         };
 
         const baseDelay = Math.round((delay + duration) / animationDelayFactor);
-        const AnimateSide = animate
-            ? ({
-                  children,
-                  delay = 0,
-                  cascade = false,
-              }: {
-                  children: JSX.Element;
-                  delay?: number;
-                  cascade?: boolean;
-              }) => (
-                  <Reveal.Fade
-                      left={bodyAlignment == "left"}
-                      right={bodyAlignment == "right"}
-                      delay={baseDelay + delay}
-                      children={children}
-                      factor={0}
-                      cascade={cascade}
-                      appear={hasRevealed}
-                      onReveal={() => setFallbackHasRevealed(true)}
-                  />
-              )
-            : ({ children }: { children: JSX.Element }) => (
-                  <div children={children} />
-              );
+
+        const onRevealTrigger = (timeout: number = 2000) => {
+            if (isReveal ? hasRevealed : true) {
+                setIsBeingRevealed(true);
+                setTimeout(() => setFallbackHasRevealed(true), timeout);
+            }
+        };
+
+        // Component that animates internally (if animate is true)
+        // After the animation is done, this becomes a React.Fragment to prevent any more animations
+        const AnimateSide =
+            animate && !fallbackHasRevealed
+                ? ({
+                      children,
+                      delay = 0,
+                      cascade = false,
+                      onReveal,
+                  }: {
+                      children: JSX.Element;
+                      delay?: number;
+                      cascade?: boolean;
+                      onReveal?: () => void;
+                  }) => (
+                      <Reveal.Fade
+                          left={bodyAlignment == "left"}
+                          right={bodyAlignment == "right"}
+                          delay={baseDelay + delay}
+                          children={children}
+                          factor={0}
+                          cascade={cascade}
+                          appear={hasRevealed}
+                          onReveal={onReveal}
+                      />
+                  )
+                : ({ children }: { children: JSX.Element }) => (
+                      <div children={children} />
+                  );
 
         return (
             <ThemeProvider theme={themeValue}>
@@ -375,7 +397,14 @@ const Card = connect(mapStateToProps)(
                     <CContent>
                         {renderHeader && (
                             <CHeader>
-                                <AnimateSide cascade>
+                                <AnimateSide
+                                    cascade
+                                    onReveal={
+                                        !children
+                                            ? () => onRevealTrigger(1750)
+                                            : () => {}
+                                    }
+                                >
                                     <div>
                                         {title && <CTitle children={title} />}
                                         {subtitle && (
@@ -396,6 +425,7 @@ const Card = connect(mapStateToProps)(
                         {children && (
                             <AnimateSide
                                 delay={500}
+                                onReveal={onRevealTrigger}
                                 children={<CBody children={children} />}
                             />
                         )}

@@ -4,7 +4,7 @@ import { t } from "src/app";
 import { STYLE_CENTERED, THEME_TRANSITION_TIME } from "src/config/config";
 import { CSS } from "src/modules";
 import { ITheme } from "src/modules/CSS/themes";
-import { Card, Cards, Header, ViewportContainer } from "../components";
+import { Cards, Header, ViewportContainer } from "../components";
 
 interface IOwnProps {}
 
@@ -99,32 +99,17 @@ const HomePage = (props: HomePageProps) => {
                 </div>
             </ViewportContainer>
             {/*** /INTRO ***/}
-            {/* <Cards.Fade
+            <Cards.Fade
                 alt
-                top
                 animate
+                top
                 fraction={0.8}
                 title={t("home.welcome.title")}
                 subtitle={t("home.welcome.subtitle")}
                 imageUrl="assets/images/logo.png"
             >
                 {t("long.home.welcome.body")}
-            </Cards.Fade> */}
-            <Card
-                animate
-                title={t("home.welcome.title")}
-                subtitle={t("home.welcome.subtitle")}
-                imageUrl="assets/images/logo.png"
-            >
-                {t("long.home.welcome.body")}
-            </Card>
-            <Card
-                title={t("home.welcome.title")}
-                subtitle={t("home.welcome.subtitle")}
-                imageUrl="assets/images/logo.png"
-            >
-                {t("long.home.welcome.body")}
-            </Card>
+            </Cards.Fade>
             <Cards.Fade
                 top
                 animate
