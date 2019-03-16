@@ -103,6 +103,7 @@ const HomePage = (props: HomePageProps) => {
                 alt
                 bottom
                 left
+                animate
                 fraction={0.8}
                 title={t("home.welcome.title")}
                 subtitle={t("home.welcome.subtitle")}
@@ -113,6 +114,7 @@ const HomePage = (props: HomePageProps) => {
             <Cards.Rotate
                 bottom
                 right
+                animate
                 fraction={0.8}
                 title={t("home.playground.title")}
                 subtitle={t("home.playground.subtitle")}
@@ -123,6 +125,7 @@ const HomePage = (props: HomePageProps) => {
             <Cards.Fade
                 bottom
                 alt
+                animate
                 fraction={0.8}
                 title={t("home.share.title")}
                 subtitle={t("home.share.subtitle")}
