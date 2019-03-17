@@ -41,8 +41,7 @@ const RouteLink = styled.div`
     border-top-color: transparent;
     padding: 0.2em 0.4em;
     &:hover {
-        border-top-color: ${({ theme }: IHeaderStateProps) =>
-            theme.colors.defaultText};
+        border-top-color: ${({ theme }: IHeaderStateProps) => theme.colors.defaultText};
     }
 `;
 
@@ -77,15 +76,7 @@ const Header = styled(({ className, theme, setTheme }: IHeaderProps) => {
                     paddingLeft: "5%",
                 }}
             >
-                <NavLink
-                    to="/"
-                    children={
-                        <img
-                            style={{ maxWidth: "100%", maxHeight: "60%" }}
-                            src="/assets/images/logo.png"
-                        />
-                    }
-                />
+                <NavLink to="/" children={<img style={{ maxWidth: "100%", maxHeight: "60%" }} src="/assets/images/logo.png" />} />
             </div>
             <div
                 style={{
@@ -111,9 +102,7 @@ const Header = styled(({ className, theme, setTheme }: IHeaderProps) => {
                                 }}
                                 exact={exact}
                             >
-                                <RouteLink theme={theme}>
-                                    {name().toUpperCase()}
-                                </RouteLink>
+                                <RouteLink theme={theme}>{name().toUpperCase()}</RouteLink>
                             </NavLink>
                         ),
                 )}
@@ -133,16 +122,8 @@ const Header = styled(({ className, theme, setTheme }: IHeaderProps) => {
                         checked={language == "en"}
                         onChange={handleLangChange}
                         handleDiameter={15}
-                        offColor={
-                            theme.name == "light"
-                                ? theme.colors.themeSwitchOn
-                                : theme.colors.themeSwitchOff
-                        }
-                        onColor={
-                            theme.name == "light"
-                                ? theme.colors.themeSwitchOn
-                                : theme.colors.themeSwitchOff
-                        }
+                        offColor={theme.name == "light" ? theme.colors.themeSwitchOn : theme.colors.themeSwitchOff}
+                        onColor={theme.name == "light" ? theme.colors.themeSwitchOn : theme.colors.themeSwitchOff}
                         onHandleColor={theme.colors.defaultText}
                         offHandleColor={theme.colors.defaultText}
                         checkedIcon={
@@ -178,9 +159,7 @@ const Header = styled(({ className, theme, setTheme }: IHeaderProps) => {
                 <div style={{ display: "inline-block", margin: "0 3%" }}>
                     <Switch
                         activeBoxShadow={theme.colors.defaultText}
-                        ariaLabelledby={`Switch to ${
-                            theme.name == "light" ? theme.name : "dark"
-                        } theme`}
+                        ariaLabelledby={`Switch to ${theme.name == "light" ? theme.name : "dark"} theme`}
                         checked={checked}
                         onChange={handleThemeChange}
                         handleDiameter={15}
@@ -233,11 +212,7 @@ const Header = styled(({ className, theme, setTheme }: IHeaderProps) => {
     z-index: 10;
 `;
 
-const mapStateToProps: MapStateToPropsParam<
-    IHeaderStateProps,
-    IHeaderOwnProps,
-    IStoreState
-> = ({ theme }: IStoreState): IHeaderStateProps => ({
+const mapStateToProps: MapStateToPropsParam<IHeaderStateProps, IHeaderOwnProps, IStoreState> = ({ theme }: IStoreState): IHeaderStateProps => ({
     theme,
 });
 

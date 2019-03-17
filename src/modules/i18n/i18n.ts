@@ -42,9 +42,6 @@ i18n.use(markdownJsx)
         fallbackLng: DEFAULT_LNG,
     });
 
-export const t = (
-    key: string | string[],
-    options?: i18n.TOptions<i18n.StringMap> | undefined,
-) => i18n.t(key, options);
+export const t = (key: string | string[], options?: i18n.TOptions<i18n.StringMap> | undefined) => i18n.t(key, options);
 
 export default i18n;

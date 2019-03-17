@@ -10,13 +10,7 @@ interface IViewportContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export default (props: IViewportContainerProps) => {
-    const {
-        children,
-        background,
-        contentStyle,
-        backgroundOverlay,
-        backgroundOverlayProps,
-    } = props;
+    const { children, background, contentStyle, backgroundOverlay, backgroundOverlayProps } = props;
     return (
         <div
             style={{
