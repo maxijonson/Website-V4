@@ -87,8 +87,9 @@ const Subtitle = styled.h2`
 
 const HeaderHider = styled.div`
     @media (max-width: ${BREAKPOINTS.smpx}) {
-        background: ${({ theme: { theme } }: ICardThemeProviderProps) =>
-            theme.colors.card};
+        background: ${({
+            theme: { theme, background },
+        }: ICardThemeProviderProps) => background || theme.colors.card};
         transition: all ${THEME_TRANSITION_TIME}s;
         position: absolute;
         width: 100%;
@@ -144,8 +145,8 @@ const Content = styled.div`
 // CARD IMAGE HIDER
 
 const ImageHider = styled.div`
-    background: ${({ theme: { theme } }: ICardThemeProviderProps) =>
-        theme.colors.card};
+    background: ${({ theme: { theme, background } }: ICardThemeProviderProps) =>
+        background || theme.colors.card};
     transform: ${({
         theme: { bodyAlignment, hasRevealed },
     }: ICardThemeProviderProps) =>
@@ -181,6 +182,8 @@ const Image = styled.div`
 
 // CARD
 
+let crashed = false;
+
 const Base = connect(mapStateToProps)(
     styled(
         (
@@ -209,6 +212,7 @@ const Base = connect(mapStateToProps)(
                 hasRevealed,
                 animationDelayFactor = defaultProps.duration,
                 isReveal = defaultProps.isReveal,
+                background,
             } = props;
             // Content
             const CContent = ContentRenderer || Content;
@@ -250,6 +254,7 @@ const Base = connect(mapStateToProps)(
                     : animate
                     ? isBeingRevealed
                     : true,
+                background,
             };
 
             const baseDelay = Math.round(
@@ -293,7 +298,10 @@ const Base = connect(mapStateToProps)(
                           <div children={children} />
                       );
 
-            throw new Error("Test");
+            if (!crashed) {
+                crashed = true;
+                throw new Error("Test");
+            }
 
             return (
                 <ThemeProvider theme={themeValue}>
@@ -355,7 +363,8 @@ const Base = connect(mapStateToProps)(
             );
         },
     )`
-        background: ${({ theme }: ICardStateProps) => theme.colors.card};
+        background: ${({ theme, background }: ICardStateProps & ICardProps) =>
+            background || theme.colors.card};
         width: 75%;
         display: grid;
         margin: 5% auto;

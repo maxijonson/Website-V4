@@ -16,7 +16,8 @@ export type Section =
     | "cardSubtitle"
     | "cardFooter"
     | "defaultErrorBg"
-    | "defaultErrorText";
+    | "defaultErrorText"
+    | "altErrorText";
 export type Theme = "light" | "dark";
 
 export type IPalette = { [name in Section]: string };
@@ -46,7 +47,8 @@ export const themes: IThemes = {
             cardSubtitle: colors.light.orange,
             cardFooter: colors.light.black,
             defaultErrorBg: colors.light.red,
-            defaultErrorText: colors.dark.red,
+            defaultErrorText: colors.veryDark.red,
+            altErrorText: colors.dark.red,
         },
     },
     dark: {
@@ -65,8 +67,9 @@ export const themes: IThemes = {
             cardShadow: colors.veryDark.black,
             cardSubtitle: colors.dark.orange,
             cardFooter: colors.dark.white,
-            defaultErrorBg: colors.dark.red,
-            defaultErrorText: colors.light.red,
+            defaultErrorBg: colors.veryDark.red,
+            defaultErrorText: colors.veryLight.red,
+            altErrorText: colors.light.red,
         },
     },
 };
