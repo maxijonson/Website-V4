@@ -24,13 +24,10 @@ interface IPageWrapperProps {
 
 export const history = createHistory();
 
-const PageWrapper = (props: IPageWrapperProps) => (
-    <div className={props.className}>{props.children}</div>
-);
+const PageWrapper = (props: IPageWrapperProps) => <div className={props.className}>{props.children}</div>;
 
 const PageWrapperStyled = styled(PageWrapper)`
-    background-color: ${({ theme }: IPageWrapperProps) =>
-        theme.colors.pageBackground};
+    background-color: ${({ theme }: IPageWrapperProps) => theme.colors.pageBackground};
     width: auto;
     font-family: ${fonts.oswald.family};
     min-height: 98.45250474vh;
@@ -49,12 +46,7 @@ const AppRouter = ({ theme }: IAppRouterProps) => (
             <PageWrapperStyled theme={theme}>
                 <Switch>
                     {_.map(routes, ({ key, path, component, exact }) => (
-                        <Route
-                            key={key}
-                            path={path}
-                            component={component}
-                            exact={exact}
-                        />
+                        <Route key={key} path={path} component={component} exact={exact} />
                     ))}
                 </Switch>
             </PageWrapperStyled>
@@ -63,8 +55,6 @@ const AppRouter = ({ theme }: IAppRouterProps) => (
     </Router>
 );
 
-const TranslatedAppRouter = ({ theme }: IAppRouterProps) => (
-    <Translation>{() => <AppRouter theme={theme} />}</Translation>
-);
+const TranslatedAppRouter = ({ theme }: IAppRouterProps) => <Translation>{() => <AppRouter theme={theme} />}</Translation>;
 
 export default connect(mapStateToProps)(TranslatedAppRouter);
