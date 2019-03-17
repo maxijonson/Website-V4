@@ -1,18 +1,17 @@
-import Header from "./Header";
-export { Header };
+export { default as Header } from "./Header";
 
-import Footer from "./Footer";
-export { Footer };
+export { default as Footer } from "./Footer";
 
-import ViewportContainer from "./ViewportContainer";
-export { ViewportContainer };
+export { default as ViewportContainer } from "./ViewportContainer";
 
-import ViewportContainerBackground from "./ViewportContainerBackground";
-export { ViewportContainerBackground };
+export {
+    default as ViewportContainerBackground,
+} from "./ViewportContainerBackground";
 
-import ColorOverlay from "./ColorOverlay";
-export { ColorOverlay };
+export { default as ColorOverlay } from "./ColorOverlay";
 
 export { default as Card } from "./Card";
 import * as Cards from "./Card";
 export { Cards };
+
+export { default as Catcher } from "./Catcher";
