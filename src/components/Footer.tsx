@@ -16,21 +16,27 @@ interface IFooterStateProps {
 
 type IFooterProps = IFooterStateProps & IFooterOwnProps;
 
-const mapStateToProps: MapStateToPropsParam<IFooterStateProps, void, IStoreState> = ({ theme }: IStoreState): IFooterStateProps => ({
+const mapStateToProps: MapStateToPropsParam<
+    IFooterStateProps,
+    void,
+    IStoreState
+> = ({ theme }: IStoreState): IFooterStateProps => ({
     theme,
 });
 
 export default connect(mapStateToProps)(
     styled(({ className }: IFooterProps) => (
         <footer className={className}>
-            Copyright <FontAwesomeIcon icon={["far", "copyright"]} /> {new Date().getFullYear()} MaxiJonson. All rights reserved.
+            Copyright <FontAwesomeIcon icon={["far", "copyright"]} />{" "}
+            {new Date().getFullYear()} MaxiJonson. All rights reserved.
         </footer>
     ))`
         color: ${({ theme }: IFooterProps) => theme.colors.defaultText};
         font-size: 1.2rem;
         text-align: center;
         transition: all ${THEME_TRANSITION_TIME}s;
-        background-color: ${({ theme }: IFooterProps) => theme.colors.pageBackground};
+        background-color: ${({ theme }: IFooterProps) =>
+            theme.colors.pageBackground};
         font-family: ${fonts.oswald.family};
         width: 100%;
     `,
