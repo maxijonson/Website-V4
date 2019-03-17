@@ -1,7 +1,7 @@
 import { ITheme } from "src/modules/CSS";
 
 export type IChildren = React.ReactNode;
-export type IRenderer = (props: { children?: IChildren }) => JSX.Element | null;
+export type IRenderer = React.ComponentType;
 export type IBodyAlignment = "left" | "right";
 
 export interface ISCProps {
