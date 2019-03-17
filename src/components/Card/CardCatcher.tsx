@@ -43,10 +43,15 @@ export const CardCatcher = connect(mapStateToProps)(
                 }
                 imageUrl="assets/images/warn.png"
             >
-                <span style={{ color: theme.colors.defaultErrorText }}>
+                <div
+                    style={{
+                        color: theme.colors.defaultErrorText,
+                        textAlign: "center",
+                    }}
+                >
                     An unexpected error happened and this component could not be
                     rendererd
-                </span>
+                </div>
             </Card>
         );
     },
