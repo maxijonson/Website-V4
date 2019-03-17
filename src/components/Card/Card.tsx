@@ -298,6 +298,7 @@ const Base = connect(mapStateToProps)(
                           <div children={children} />
                       );
 
+            // TODO: Cleanup `crahsed`
             if (!crashed) {
                 crashed = true;
                 throw new Error("Test");

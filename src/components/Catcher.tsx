@@ -90,7 +90,7 @@ export default class Catcher extends React.Component<
  * @param [options.wrappedProps] - Props that should be given to the Fallback component (defaults to the props given to the WrappedComponent)
  */
 export const withCatcher = (
-    WrappedComponent: React.ComponentType,
+    WrappedComponent: React.ComponentType<any>,
     options?: {
         Fallback?: IFallback;
         onError?: IOnError;

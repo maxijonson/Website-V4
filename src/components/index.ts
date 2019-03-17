@@ -15,3 +15,5 @@ import * as Cards from "./Card/Card";
 export { Cards };
 
 export { default as Catcher } from "./Catcher";
+
+export { default as Button } from "./Button";
