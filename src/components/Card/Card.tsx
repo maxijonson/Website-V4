@@ -307,9 +307,9 @@ const Base = connect(mapStateToProps)(
                 <ThemeProvider theme={themeValue}>
                     <div className={className}>
                         {bodyAlignment == "right" && (
-                            <CImage>
+                            <Image>
                                 <CImageHider />
-                            </CImage>
+                            </Image>
                         )}
                         <CContent>
                             {renderHeader && (

@@ -1,7 +1,7 @@
 import { ITheme } from "src/modules/CSS";
 
 export type IChildren = React.ReactNode;
-export type IRenderer = React.ComponentType;
+export type IRenderer = (props: { children?: IChildren }) => JSX.Element;
 export type IBodyAlignment = "left" | "right";
 
 export interface ISCProps {
@@ -84,7 +84,7 @@ export interface ICardProps {
     /**
      * Will be rendered between the Header and Body (if Header exists)
      */
-    headerSeparator?: IRenderer;
+    headerSeparator?: IChildren;
 
     /**
      * Animate the Card internal content on viewport entry

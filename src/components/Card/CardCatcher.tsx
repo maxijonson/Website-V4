@@ -1,7 +1,5 @@
 import * as React from "react";
 import { connect } from "react-redux";
-// import { BREAKPOINTS, THEME_TRANSITION_TIME } from "src/config";
-// import styled from "styled-components";
 import Card from "./Card";
 import {
     // defaultProps,
@@ -41,7 +39,7 @@ export const CardCatcher = connect(mapStateToProps)(
                         children="Something went wrong..."
                     />
                 }
-                headerSeparator={() => null}
+                headerSeparator={<span />}
                 imageUrl="assets/images/warn.png"
             >
                 <div
@@ -50,8 +48,10 @@ export const CardCatcher = connect(mapStateToProps)(
                         textAlign: "center",
                     }}
                 >
-                    An unexpected error happened and this component could not be
-                    rendererd
+                    <p>
+                        An unexpected error happened and this component could
+                        not be rendered
+                    </p>
                 </div>
             </Card>
         );
