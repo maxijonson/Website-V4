@@ -10,8 +10,8 @@ export {
 
 export { default as ColorOverlay } from "./ColorOverlay";
 
-export { default as Card } from "./Card";
-import * as Cards from "./Card";
+export { default as Card } from "./Card/Card";
+import * as Cards from "./Card/Card";
 export { Cards };
 
 export { default as Catcher } from "./Catcher";
