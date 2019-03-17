@@ -2,7 +2,8 @@ import React from "react";
 import { BREAKPOINTS } from "src/config";
 import styled from "styled-components";
 
-interface IViewportContainerProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface IViewportContainerProps
+    extends React.HTMLAttributes<HTMLDivElement> {}
 
 export default styled((props: IViewportContainerProps) => (
     <div

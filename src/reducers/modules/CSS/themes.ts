@@ -10,9 +10,14 @@ const night = {
 const now = Number(moment().format(format));
 const isNight = now > night.start || now < night.end;
 
-export const themesReducerDefaultState: ITheme = isNight ? themes.dark : themes.light;
+export const themesReducerDefaultState: ITheme = isNight
+    ? themes.dark
+    : themes.light;
 
-export const themesReducer = (state: ITheme = themesReducerDefaultState, action: ThemeAction): ITheme => {
+export const themesReducer = (
+    state: ITheme = themesReducerDefaultState,
+    action: ThemeAction,
+): ITheme => {
     switch (action.type) {
         case "themes/SET_THEME":
             return action.theme;
