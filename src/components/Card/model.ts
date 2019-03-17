@@ -98,6 +98,11 @@ export interface ICardProps {
      * @default 4
      */
     animationDelayFactor?: number;
+
+    /**
+     * Override the Card background
+     */
+    background?: string;
 }
 
 export const mapStateToProps = ({ theme }: IStoreState): ICardStateProps => ({
