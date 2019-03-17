@@ -10,30 +10,32 @@ interface IFooterOwnProps {
     className?: string;
 }
 
-interface IStateProps {
+interface IFooterStateProps {
     readonly theme: ITheme;
 }
 
-type FooterProps = IStateProps & IFooterOwnProps;
+type IFooterProps = IFooterStateProps & IFooterOwnProps;
 
-const mapStateToProps: MapStateToPropsParam<IStateProps, void, IStoreState> = ({
-    theme,
-}: IStoreState): IStateProps => ({
+const mapStateToProps: MapStateToPropsParam<
+    IFooterStateProps,
+    void,
+    IStoreState
+> = ({ theme }: IStoreState): IFooterStateProps => ({
     theme,
 });
 
 export default connect(mapStateToProps)(
-    styled(({ className }: FooterProps) => (
+    styled(({ className }: IFooterProps) => (
         <footer className={className}>
             Copyright <FontAwesomeIcon icon={["far", "copyright"]} />{" "}
             {new Date().getFullYear()} MaxiJonson. All rights reserved.
         </footer>
     ))`
-        color: ${({ theme }: FooterProps) => theme.colors.defaultText};
+        color: ${({ theme }: IFooterProps) => theme.colors.defaultText};
         font-size: 1.2rem;
         text-align: center;
         transition: all ${THEME_TRANSITION_TIME}s;
-        background-color: ${({ theme }: FooterProps) =>
+        background-color: ${({ theme }: IFooterProps) =>
             theme.colors.pageBackground};
         font-family: ${fonts.oswald.family};
         width: 100%;

@@ -6,17 +6,17 @@ import { CSS } from "src/modules";
 import { ITheme } from "src/modules/CSS/themes";
 import { Cards, Header, ViewportContainer } from "../components";
 
-interface IOwnProps {}
+interface IHomePageOwnProps {}
 
-interface IStateProps {
+interface IHomePageStateProps {
     theme: ITheme;
 }
 
-type HomePageProps = IOwnProps & IStateProps;
+type IHomePageProps = IHomePageOwnProps & IHomePageStateProps;
 
 const { fonts } = CSS;
 
-const HomePage = (props: HomePageProps) => {
+const HomePage = (props: IHomePageProps) => {
     const { theme } = props;
 
     return (
@@ -138,10 +138,10 @@ const HomePage = (props: HomePageProps) => {
 };
 
 const mapStateToProps: MapStateToPropsParam<
-    IStateProps,
-    IOwnProps,
+    IHomePageStateProps,
+    IHomePageOwnProps,
     IStoreState
-> = ({ theme }: IStoreState): IStateProps => ({
+> = ({ theme }: IStoreState): IHomePageStateProps => ({
     theme,
 });
 

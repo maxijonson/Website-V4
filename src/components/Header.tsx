@@ -22,31 +22,31 @@ interface IHeaderOwnProps {
     className?: string;
 }
 
-interface IStateProps {
+interface IHeaderStateProps {
     readonly theme: ITheme;
 }
 
-interface IDispatchProps {
+interface IHeaderDispatchProps {
     readonly setTheme?: (theme: ITheme) => void;
 }
 
-type HeaderProps = IHeaderOwnProps & IStateProps & IDispatchProps;
+type IHeaderProps = IHeaderOwnProps & IHeaderStateProps & IHeaderDispatchProps;
 
 const RouteLink = styled.div`
     display: inline-block;
-    color: ${({ theme }: IStateProps) => theme.colors.defaultText};
+    color: ${({ theme }: IHeaderStateProps) => theme.colors.defaultText};
     transition: all ${THEME_TRANSITION_TIME}s;
     border-width: 0.15em;
     border-top-style: solid;
     border-top-color: transparent;
     padding: 0.2em 0.4em;
     &:hover {
-        border-top-color: ${({ theme }: IStateProps) =>
+        border-top-color: ${({ theme }: IHeaderStateProps) =>
             theme.colors.defaultText};
     }
 `;
 
-const Header = styled(({ className, theme, setTheme }: HeaderProps) => {
+const Header = styled(({ className, theme, setTheme }: IHeaderProps) => {
     const [checked, setChecked] = React.useState(theme.name == "light");
     const [language, setLanguage] = React.useState(i18n.language);
 
@@ -234,14 +234,14 @@ const Header = styled(({ className, theme, setTheme }: HeaderProps) => {
 `;
 
 const mapStateToProps: MapStateToPropsParam<
-    IStateProps,
+    IHeaderStateProps,
     IHeaderOwnProps,
     IStoreState
-> = ({ theme }: IStoreState): IStateProps => ({
+> = ({ theme }: IStoreState): IHeaderStateProps => ({
     theme,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<any>): IDispatchProps => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>): IHeaderDispatchProps => ({
     setTheme: (theme: ITheme) => dispatch(setTheme(theme)),
 });
 
