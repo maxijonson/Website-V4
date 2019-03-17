@@ -47,7 +47,6 @@ export default class Catcher extends React.Component<
             error,
             stack: info,
         };
-        console.warn("caught error");
         if (onError) {
             onError(errorReport);
         }
