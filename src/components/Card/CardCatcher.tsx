@@ -41,6 +41,7 @@ export const CardCatcher = connect(mapStateToProps)(
                         children="Something went wrong..."
                     />
                 }
+                headerSeparator={() => null}
                 imageUrl="assets/images/warn.png"
             >
                 <div
