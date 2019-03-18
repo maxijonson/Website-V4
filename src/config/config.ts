@@ -19,3 +19,8 @@ export const BREAKPOINTS = {
     xl: 1200,
     xlpx: "1200px",
 };
+
+export const ZINDEX = {
+    header: 100,
+    modal: 200,
+};
