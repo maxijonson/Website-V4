@@ -17,3 +17,5 @@ export { Cards };
 export { default as Catcher } from "./Catcher";
 
 export { default as Button } from "./Button";
+
+export { default as Modal } from "./Modal/Modal";

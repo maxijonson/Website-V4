@@ -7,7 +7,7 @@ import Switch from "react-switch";
 import { Dispatch } from "redux";
 import styled from "styled-components";
 
-import { THEME_TRANSITION_TIME } from "src/config/config";
+import { THEME_TRANSITION_TIME, ZINDEX } from "src/config/config";
 import { themes } from "src/modules/CSS";
 import i18n, { t } from "src/modules/i18n/i18n";
 import { setTheme } from "../actions";
@@ -230,7 +230,7 @@ const Header = styled(({ className, theme, setTheme }: IHeaderProps) => {
     position: fixed;
     font-family: '${fonts.oswald.family}';
     font-size: 2rem;
-    z-index: 10;
+    z-index: ${ZINDEX.header};
 `;
 
 const mapStateToProps: MapStateToPropsParam<
