@@ -75,7 +75,7 @@ const Container = styled(
     z-index: ${ZINDEX.modal + 2};
     margin: auto;
     max-height: 100%;
-    overflow: scroll;
+    overflow-y: auto;
     border-radius: 1rem;
     font-size: 2rem;
     font-family: "${fonts.roboto.family}";
