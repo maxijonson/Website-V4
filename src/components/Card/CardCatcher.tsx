@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Button, Modal } from "src/components";
+import { Button, ErrorModal } from "src/components";
 import { withCatcher } from "../Catcher";
 import Card from "./Card";
 import {
@@ -25,7 +25,7 @@ const mapStateToProps = ({ theme }: IStoreState): ICardStateProps => ({
 // TODO: i18n
 const Base = connect(mapStateToProps)(
     (props: ICardCatcherProps & ICardStateProps & ICardProps & ISCProps) => {
-        const { theme } = props;
+        const { theme, errorReport } = props;
 
         const [modalVisible, setModalVisible] = React.useState(false);
 
@@ -72,39 +72,11 @@ const Base = connect(mapStateToProps)(
                         />
                     </div>
                 </Card>
-                <Modal
+                <ErrorModal
+                    errorReport={errorReport}
                     visible={modalVisible}
                     onRequestClose={onModalRequestClose}
-                >
-                    <Card
-                        cardClassName="cardCatcher--modal--card"
-                        title="title"
-                        subtitle="sub"
-                    >
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Voluptate praesentium molestiae ea quia
-                        accusantium dolores tempora recusandae nobis aspernatur
-                        facere incidunt, est aliquid id porro consectetur optio
-                        odit ratione ipsam. Lorem ipsum dolor sit amet,
-                        consectetur adipisicing elit. Accusamus recusandae
-                        consequuntur perspiciatis iure, fugiat nostrum et id
-                        explicabo! Cupiditate voluptatibus fugit blanditiis
-                        magni tenetur impedit dolorem ullam repudiandae delectus
-                        ea. Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Veritatis omnis qui eius consequatur odit modi non
-                        dolorem mollitia nesciunt nemo eligendi veniam,
-                        recusandae sed eveniet? Iure dolore consequuntur
-                        expedita sint. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Voluptas enim eveniet ad provident
-                        odio excepturi autem similique aperiam nisi rerum, vero
-                        cum esse, magnam suscipit doloremque culpa? Magnam, ab
-                        nam! Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Error eveniet eum delectus magnam ipsum sequi
-                        possimus unde veritatis quae facere blanditiis quod
-                        repellat officia sunt commodi voluptatum est, porro
-                        fugit.
-                    </Card>
-                </Modal>
+                />
             </>
         );
     },
