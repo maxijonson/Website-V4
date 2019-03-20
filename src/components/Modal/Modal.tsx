@@ -1,9 +1,11 @@
 import * as React from "react";
+import * as ReactDOM from "react-dom";
+import posed from "react-pose";
 import { connect } from "react-redux";
-import { ITheme } from "src/modules/CSS";
+import { ZINDEX } from "src/config";
+import { fonts, ITheme } from "src/modules/CSS";
 import styled, { ThemeProvider } from "styled-components";
 import tinycolor from "tinycolor2";
-import { ZINDEX } from "src/config";
 
 interface IModalStateProps {
     readonly theme: ITheme;
@@ -12,6 +14,9 @@ interface IModalStateProps {
 interface IModalOwnProps {
     visible?: boolean;
     children?: React.ReactNode;
+    onRequestClose: () => void;
+    parent?: HTMLElement;
+    ContainerRenderer?: React.ComponentType<any>;
 }
 
 interface IThemeProvider {
@@ -22,61 +27,116 @@ interface IModalThemeProviderProps {
     readonly theme: ITheme;
 }
 
-interface IModalContext {
-    setModalVisible: (visible: boolean) => void;
-}
-
 const mapStateToProps = ({ theme }: IStoreState): IModalStateProps => ({
     theme,
 });
 
-const Overlay = styled.div`
-    position: fixed;
-    width: 100vw;
+const Overlay = styled(
+    posed.div({
+        visible: {
+            opacity: 1,
+            zIndex: ZINDEX.modal,
+            transition: {
+                zIndex: { duration: 0 },
+                default: { duration: 250 },
+            },
+        },
+        hidden: {
+            opacity: 0,
+            zIndex: -1,
+            transition: {
+                default: { duration: 250 },
+            },
+        },
+    }),
+)`
+    display: grid;
     height: 100vh;
-    top: 0;
     left: 0;
-    z-index: ${ZINDEX.modal}; /* Z-index cannot go higher than its parent prop! https://cssreset.com/z-indexnotworking/ */
+    padding: 15%;
+    position: fixed;
+    top: 0;
+    width: 100vw;
     background: ${({ theme: { theme } }: IThemeProvider) =>
         tinycolor(theme.colors.pageBackground)
             .setAlpha(0.8)
             .toRgbString()};
 `;
 
-const Container = styled.div`
+const Container = styled(
+    posed.div({
+        visible: {
+            y: "0%",
+        },
+        hidden: {
+            y: "100%",
+        },
+    }),
+)`
     padding: 5% 10%;
-    background: ${({ theme: { theme } }: IThemeProvider) =>
-        tinycolor(theme.colors.pageBackground)
-            .setAlpha(0.8)
-            .toRgbString()};
+    ${({ theme: { theme } }: IThemeProvider) =>
+        `
+        background: ${theme.colors.modalBg}
+        color: ${theme.colors.modalText}
+        box-shadow: 0 0.25rem 0.5rem ${theme.colors.modalShadow}
+        `};
+    z-index: ${ZINDEX.modal + 2};
+    margin: auto;
+    width: 100%;
+    max-height: 100%;
+    overflow: scroll;
+    border-radius: 1rem;
+    font-size: 2rem;
+    font-family: "${fonts.roboto.family}";
 `;
 
-export const ModalContext = React.createContext<IModalContext | null>(null);
+const usePortal = (parent: HTMLElement = document.body) => {
+    const el = React.useRef(document.createElement("div"));
+    React.useEffect(() => {
+        parent.appendChild(el.current);
+        return () => el.current.remove();
+    });
+    return el.current;
+};
+
+const preventPropagation = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+) => {
+    e.stopPropagation();
+};
 
 export default connect(mapStateToProps)(
     (props: IModalOwnProps & IModalStateProps) => {
-        const { theme, visible, children } = props;
-
-        const [modalVisible, setModalVisible] = React.useState(false);
+        const {
+            theme,
+            visible = false,
+            children,
+            onRequestClose,
+            parent,
+            ContainerRenderer,
+        } = props;
 
         const themeValue: IModalThemeProviderProps = {
             theme,
         };
-        console.log("visible", visible, props.visible);
+
+        const target = usePortal(parent);
+
+        const MContainer = ContainerRenderer || Container;
+
+        const pose = visible ? "visible" : "hidden";
+
         return (
-            (modalVisible && (
-                <ModalContext.Provider value={{ setModalVisible }}>
-                    <>
-                        <ThemeProvider theme={themeValue}>
-                            <Overlay>
-                                <Container />
-                            </Overlay>
-                        </ThemeProvider>
-                        {children}
-                    </>
-                </ModalContext.Provider>
-            )) ||
-            null
+            ReactDOM.createPortal(
+                <ThemeProvider theme={themeValue}>
+                    <Overlay onClick={onRequestClose} pose={pose}>
+                        <MContainer onClick={preventPropagation} pose={pose}>
+                            {children}
+                        </MContainer>
+                    </Overlay>
+                </ThemeProvider>,
+                target,
+            ) || null
         );
     },
 );

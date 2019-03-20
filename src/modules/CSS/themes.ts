@@ -19,7 +19,10 @@ export type Section =
     | "defaultErrorText"
     | "altErrorText"
     | "buttonBg"
-    | "buttonText";
+    | "buttonText"
+    | "modalBg"
+    | "modalText"
+    | "modalShadow";
 export type Theme = "light" | "dark";
 
 export type IPalette = { [name in Section]: string };
@@ -53,6 +56,9 @@ export const themes: IThemes = {
             altErrorText: colors.dark.red,
             buttonBg: colors.dark.black,
             buttonText: colors.normal.white,
+            modalBg: colors.veryLight.white,
+            modalText: colors.normal.black,
+            modalShadow: colors.normal.black,
         },
     },
     dark: {
@@ -76,6 +82,9 @@ export const themes: IThemes = {
             altErrorText: colors.light.red,
             buttonBg: colors.light.white,
             buttonText: colors.normal.black,
+            modalBg: colors.veryDark.black,
+            modalText: colors.normal.white,
+            modalShadow: colors.veryDark.black,
         },
     },
 };

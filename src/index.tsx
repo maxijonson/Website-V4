@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import "src/modules/i18n/i18n";
 import "./styles/styles.scss";
 
+import { APP_ROOT } from "./config";
 import AppRouter from "./routers/AppRouter";
 import configureStore from "./store/config";
 
@@ -19,5 +20,5 @@ ReactDOM.render(
     <Provider store={store}>
         <AppRouter />
     </Provider>,
-    document.getElementById("app"),
+    document.getElementById(APP_ROOT),
 );

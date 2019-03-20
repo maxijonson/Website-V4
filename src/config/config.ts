@@ -24,3 +24,5 @@ export const ZINDEX = {
     header: 100,
     modal: 200,
 };
+
+export const APP_ROOT = "app";
