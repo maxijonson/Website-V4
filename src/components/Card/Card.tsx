@@ -86,10 +86,12 @@ const Subtitle = styled.h2`
 // CARD HEADER HIDER
 
 const HeaderHider = styled.div`
-    @media (max-width: ${BREAKPOINTS.smpx}) {
-        background: ${({
-            theme: { theme, background },
-        }: ICardThemeProviderProps) => background || theme.colors.card};
+    ${({
+        theme: { imageUrl, background, theme, bodyAlignment },
+    }: ICardThemeProviderProps) =>
+        imageUrl &&
+        `@media (max-width: ${BREAKPOINTS.smpx}) {
+        background: ${background || theme.colors.card};
         transition: all ${THEME_TRANSITION_TIME}s;
         position: absolute;
         width: 100%;
@@ -97,14 +99,13 @@ const HeaderHider = styled.div`
         z-index: 1;
         top: 0;
         left: 0;
-        box-shadow: 0 0 1.5rem
-            ${({ theme: { theme } }: ICardThemeProviderProps) =>
-                theme.colors.cardShadow};
-        transform: ${({ theme: { bodyAlignment } }: ICardThemeProviderProps) =>
+        box-shadow: 0 0 1.5rem ${theme.colors.cardShadow};
+        transform: ${
             bodyAlignment == "left"
                 ? "skew(70deg) translateX(-35%) scale(1.2)"
-                : "skew(-70deg) translateX(35%) scale(1.2)"};
-    }
+                : "skew(-70deg) translateX(35%) scale(1.2)"
+        };
+    }`}
 `;
 
 // CARD HEADER
