@@ -110,7 +110,7 @@ const HomePage = (props: IHomePageProps) => {
             >
                 {t("long.home.welcome.body")}
             </Cards.Fade>
-            {/* <Cards.Fade
+            <Cards.Fade
                 top
                 animate
                 fraction={0.8}
@@ -132,7 +132,7 @@ const HomePage = (props: IHomePageProps) => {
                 {t("long.home.share.body", {
                     postProcess: "markdown-jsx",
                 })}
-            </Cards.Fade> */}
+            </Cards.Fade>
         </>
     );
 };
