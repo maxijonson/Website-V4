@@ -13,7 +13,7 @@ export default (props: IErrorModalOwnProps) => {
     return (
         <Modal visible={visible} onRequestClose={onRequestClose}>
             <Card
-                cardClassName="cardCatcher--modal--card"
+                cardClassName="ErrorModal--Modal--Card"
                 title="title"
                 subtitle="sub"
             >
