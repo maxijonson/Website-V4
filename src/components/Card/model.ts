@@ -103,6 +103,11 @@ export interface ICardProps {
      * Override the Card background
      */
     background?: string;
+
+    /**
+     * Defines another class to add along the Styled-Component one
+     */
+    cardClassName?: string;
 }
 
 export const mapStateToProps = ({ theme }: IStoreState): ICardStateProps => ({

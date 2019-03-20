@@ -123,6 +123,7 @@ const Header = styled.div`
 // CARD BODY
 
 const Body = styled.div`
+    font-family: "${fonts.openSans.family}";
     @media (max-width: ${BREAKPOINTS.smpx}) {
         padding: 2% 3%;
     }
@@ -192,7 +193,7 @@ const Base = connect(mapStateToProps)(
             const {
                 ContentRenderer,
                 HeaderRenderer,
-                title,
+                title: title,
                 TitleRenderer,
                 subtitle,
                 SubtitleRenderer,
@@ -213,6 +214,7 @@ const Base = connect(mapStateToProps)(
                 animationDelayFactor = defaultProps.duration,
                 isReveal = defaultProps.isReveal,
                 background,
+                cardClassName,
             } = props;
             // Content
             const CContent = ContentRenderer || Content;
@@ -306,7 +308,7 @@ const Base = connect(mapStateToProps)(
 
             return (
                 <ThemeProvider theme={themeValue}>
-                    <div className={className}>
+                    <div className={`${cardClassName} ${className}`}>
                         {bodyAlignment == "right" && (
                             <Image>
                                 <CImageHider />
@@ -364,19 +366,24 @@ const Base = connect(mapStateToProps)(
             );
         },
     )`
-        background: ${({ theme, background }: ICardStateProps & ICardProps) =>
-            background || theme.colors.card};
-        width: 75%;
-        display: grid;
-        margin: 5% auto;
-        box-shadow: 0 0.5rem 0.5rem
-            ${({ theme }: ICardStateProps) => theme.colors.cardShadow};
-        border-radius: 0.25em;
-        font-size: 2.3rem;
-        color: ${({ theme }: ICardStateProps) => theme.colors.defaultText};
-        transition: all ${THEME_TRANSITION_TIME}s;
-        text-align: justify;
-        overflow: hidden;
+        && {
+            background: ${({
+                theme,
+                background,
+            }: ICardStateProps & ICardProps) =>
+                background || theme.colors.card};
+            width: 75%;
+            display: grid;
+            margin: 5% auto;
+            box-shadow: 0 0.5rem 0.5rem
+                ${({ theme }: ICardStateProps) => theme.colors.cardShadow};
+            border-radius: 0.25em;
+            font-size: 2.3rem;
+            color: ${({ theme }: ICardStateProps) => theme.colors.defaultText};
+            transition: all ${THEME_TRANSITION_TIME}s;
+            text-align: justify;
+            overflow: hidden;
+        }
 
         @media (max-width: ${BREAKPOINTS.smpx}) {
             font-size: 4rem;

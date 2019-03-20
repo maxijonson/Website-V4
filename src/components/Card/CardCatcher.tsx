@@ -33,7 +33,7 @@ const Base = connect(mapStateToProps)(
             setModalVisible(true);
         };
 
-        console.log(modalVisible);
+        const onModalRequestClose = () => setModalVisible(false);
 
         return (
             <>
@@ -61,8 +61,9 @@ const Base = connect(mapStateToProps)(
                         }}
                     >
                         <p>
-                            An unexpected error happened and this component
-                            could not be rendered
+                            An unexpected error happened and this message was
+                            rendered as fallback to prevent the rest from
+                            crashing!
                         </p>
                         <Button
                             title="Debug"
@@ -71,7 +72,17 @@ const Base = connect(mapStateToProps)(
                         />
                     </div>
                 </Card>
-                <Modal visible={modalVisible} />
+                <Modal
+                    visible={modalVisible}
+                    onRequestClose={onModalRequestClose}
+                    ContainerRenderer={({ children }) => (
+                        <Card cardClassName="cardCatcher--modal--card">
+                            {children}
+                        </Card>
+                    )}
+                >
+                    Hello
+                </Modal>
             </>
         );
     },
