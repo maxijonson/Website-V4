@@ -184,8 +184,6 @@ const Image = styled.div`
 
 // CARD
 
-let crashed = false;
-
 const Base = connect(mapStateToProps)(
     styled(
         (
@@ -300,12 +298,6 @@ const Base = connect(mapStateToProps)(
                     : ({ children }: { children: JSX.Element }) => (
                           <div children={children} />
                       );
-
-            // TODO: Cleanup `crahsed`
-            if (!crashed) {
-                crashed = true;
-                throw new Error("Test");
-            }
 
             return (
                 <ThemeProvider theme={themeValue}>
