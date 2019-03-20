@@ -16,7 +16,6 @@ interface IModalOwnProps {
     children?: React.ReactNode;
     onRequestClose: () => void;
     parent?: HTMLElement;
-    ContainerRenderer?: React.ComponentType<any>;
 }
 
 interface IThemeProvider {
@@ -73,16 +72,8 @@ const Container = styled(
         },
     }),
 )`
-    padding: 5% 10%;
-    ${({ theme: { theme } }: IThemeProvider) =>
-        `
-        background: ${theme.colors.modalBg}
-        color: ${theme.colors.modalText}
-        box-shadow: 0 0.25rem 0.5rem ${theme.colors.modalShadow}
-        `};
     z-index: ${ZINDEX.modal + 2};
     margin: auto;
-    width: 100%;
     max-height: 100%;
     overflow: scroll;
     border-radius: 1rem;
@@ -113,7 +104,6 @@ export default connect(mapStateToProps)(
             children,
             onRequestClose,
             parent,
-            ContainerRenderer,
         } = props;
 
         const themeValue: IModalThemeProviderProps = {
@@ -122,17 +112,15 @@ export default connect(mapStateToProps)(
 
         const target = usePortal(parent);
 
-        const MContainer = ContainerRenderer || Container;
-
         const pose = visible ? "visible" : "hidden";
 
         return (
             ReactDOM.createPortal(
                 <ThemeProvider theme={themeValue}>
                     <Overlay onClick={onRequestClose} pose={pose}>
-                        <MContainer onClick={preventPropagation} pose={pose}>
+                        <Container onClick={preventPropagation}>
                             {children}
-                        </MContainer>
+                        </Container>
                     </Overlay>
                 </ThemeProvider>,
                 target,
