@@ -1,10 +1,10 @@
 import React from "react";
 import { connect, MapStateToPropsParam } from "react-redux";
 import { t } from "src/app";
-import { STYLE_CENTERED, THEME_TRANSITION_TIME } from "src/config/config";
-import { CSS } from "src/modules";
+import { Cards, Header, ViewportContainer } from "src/components";
+import { THEME_TRANSITION_TIME } from "src/config/config";
 import { ITheme } from "src/modules/CSS/themes";
-import { Cards, Header, ViewportContainer } from "../components";
+import Landing from "./Landing";
 
 interface IHomePageOwnProps {}
 
@@ -14,13 +14,12 @@ interface IHomePageStateProps {
 
 type IHomePageProps = IHomePageOwnProps & IHomePageStateProps;
 
-const { fonts } = CSS;
-
 const HomePage = (props: IHomePageProps) => {
     const { theme } = props;
 
     return (
         <>
+            <Header />
             {/*** INTRO ***/}
             <ViewportContainer
                 background={{
@@ -44,59 +43,7 @@ const HomePage = (props: IHomePageProps) => {
                     },
                 }}
             >
-                <Header />
-                <div
-                    style={{
-                        ...STYLE_CENTERED,
-                        display: "table",
-                        width: "100%",
-                        textShadow: `0 0 .75em ${
-                            theme.colors.altDefaultShadow
-                        }`,
-                    }}
-                >
-                    <div
-                        style={{
-                            textAlign: "center",
-                            display: "table-cell",
-                            verticalAlign: "middle",
-                            transition: `all ${THEME_TRANSITION_TIME}s`,
-                            color: theme.colors.intro,
-                        }}
-                    >
-                        <div
-                            style={{
-                                fontSize: "4rem",
-                                fontFamily: fonts.Kaushan.family,
-                            }}
-                        >
-                            {t("home.intro.welcome")}
-                        </div>
-                        <div
-                            style={{
-                                fontSize: "6rem",
-                                fontFamily: fonts.exo.family,
-                            }}
-                        >
-                            {t("home.intro.maxijonson")}
-                        </div>
-                        <hr
-                            style={{
-                                margin: "1% 35%",
-                                transition: `all ${THEME_TRANSITION_TIME}s`,
-                                borderColor: theme.colors.defaultText,
-                            }}
-                        />
-                        <div
-                            style={{
-                                fontSize: "2rem",
-                                fontFamily: fonts.openSans.family,
-                            }}
-                        >
-                            {t("home.intro.tagline")}
-                        </div>
-                    </div>
-                </div>
+                <Landing />
             </ViewportContainer>
             {/*** /INTRO ***/}
             <Cards.Fade
@@ -108,10 +55,7 @@ const HomePage = (props: IHomePageProps) => {
                 subtitle={t("home.welcome.subtitle")}
                 imageUrl="assets/images/logo.png"
             >
-                <>
                 {t("long.home.welcome.body")}
-                {new Error()}
-                </>
             </Cards.Fade>
             <Cards.Fade
                 top

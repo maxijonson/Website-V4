@@ -54,12 +54,19 @@ const Overlay = styled(
     left: 0;
     padding: 15%;
     position: fixed;
-    top: 0;
     width: 100vw;
+    top: 0;
     background: ${({ theme: { theme } }: IThemeProvider) =>
         tinycolor(theme.colors.pageBackground)
             .setAlpha(0.8)
             .toRgbString()};
+    cursor: url("/assets/images/back-cursor.png"), auto;
+    > * {
+        cursor: default;
+    }
+    &:active {
+        cursor: default;
+    }
 `;
 
 const Container = styled(
@@ -73,7 +80,7 @@ const Container = styled(
     }),
 )`
     z-index: ${ZINDEX.modal + 2};
-    margin: auto;
+    margin: auto 0;
     max-height: 100%;
     overflow-y: auto;
     border-radius: 1rem;
