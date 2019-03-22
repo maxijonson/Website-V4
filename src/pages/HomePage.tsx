@@ -108,7 +108,10 @@ const HomePage = (props: IHomePageProps) => {
                 subtitle={t("home.welcome.subtitle")}
                 imageUrl="assets/images/logo.png"
             >
+                <>
                 {t("long.home.welcome.body")}
+                {new Error()}
+                </>
             </Cards.Fade>
             <Cards.Fade
                 top

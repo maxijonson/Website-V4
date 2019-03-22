@@ -16,7 +16,7 @@ export default (props: IErrorModalOwnProps) => {
             <Card
                 cardClassName="ErrorModal--Modal--Card"
                 title="Error Report"
-                subtitle={errorReport.error.message}
+                subtitle={errorReport.error.name}
             >
                 <pre>{errorReport.error.stack}</pre>
             </Card>
