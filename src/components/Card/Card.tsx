@@ -301,7 +301,7 @@ const Base = connect(mapStateToProps)(
 
             return (
                 <ThemeProvider theme={themeValue}>
-                    <div className={`${cardClassName} ${className}`}>
+                    <div className={`${className} ${cardClassName || ""}`}>
                         {bodyAlignment == "right" && (
                             <Image>
                                 <CImageHider />
