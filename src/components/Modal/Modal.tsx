@@ -14,7 +14,7 @@ interface IModalStateProps {
 interface IModalOwnProps {
     visible?: boolean;
     children?: React.ReactNode;
-    onRequestClose: () => void;
+    onRequestClose: (e: React.MouseEvent<HTMLDivElement>) => void;
     parent?: HTMLElement;
 }
 
@@ -81,12 +81,13 @@ const Container = styled(
     font-family: "${fonts.roboto.family}";
 `;
 
-const usePortal = (parent: HTMLElement = document.body) => {
+const usePortal = (parent: HTMLElement) => {
     const el = React.useRef(document.createElement("div"));
     React.useEffect(() => {
         parent.appendChild(el.current);
+
         return () => el.current.remove();
-    });
+    }, []);
     return el.current;
 };
 
@@ -100,10 +101,10 @@ export default connect(mapStateToProps)(
     (props: IModalOwnProps & IModalStateProps) => {
         const {
             theme,
-            visible = false,
+            visible,
             children,
             onRequestClose,
-            parent,
+            parent = document.body,
         } = props;
 
         const themeValue: IModalThemeProviderProps = {
