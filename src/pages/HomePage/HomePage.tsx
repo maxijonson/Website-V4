@@ -1,6 +1,6 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { connect, MapStateToPropsParam } from "react-redux";
-import { t } from "src/app";
 import { Cards, Header, ViewportContainer } from "src/components";
 import { THEME_TRANSITION_TIME } from "src/config/config";
 import { ITheme } from "src/modules/CSS/themes";
@@ -16,6 +16,7 @@ type IHomePageProps = IHomePageOwnProps & IHomePageStateProps;
 
 const HomePage = (props: IHomePageProps) => {
     const { theme } = props;
+    const { t } = useTranslation();
 
     return (
         <>

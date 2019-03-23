@@ -11,11 +11,20 @@ interface IModalStateProps {
     readonly theme: ITheme;
 }
 
-interface IModalOwnProps {
+interface IPoseOptions {
+    top?: boolean;
+    right?: boolean;
+    bottom?: boolean;
+    left?: boolean;
+}
+
+interface IModalOwnProps extends IPoseOptions {
     visible?: boolean;
     children?: React.ReactNode;
     onRequestClose: (e: React.MouseEvent<HTMLDivElement>) => void;
     parent?: HTMLElement;
+    overlayClassName?: string;
+    containerClassName?: string;
 }
 
 interface IThemeProvider {
@@ -60,7 +69,11 @@ const Overlay = styled(
         tinycolor(theme.colors.pageBackground)
             .setAlpha(0.8)
             .toRgbString()};
-    cursor: url("/assets/images/back-cursor.png"), auto;
+    cursor: ${({ theme: { theme } }: IThemeProvider) =>
+            theme.name == "light"
+                ? "url(/assets/images/back-cursor-black.png)"
+                : "url(/assets/images/back-cursor-white.png)"},
+        auto;
     > * {
         cursor: default;
     }
@@ -73,9 +86,13 @@ const Container = styled(
     posed.div({
         visible: {
             y: "0%",
+            x: "0%",
         },
         hidden: {
-            y: "100%",
+            y: ({ top, bottom }: IPoseOptions) =>
+                top || bottom ? (top ? "-100%" : "100%") : "0%",
+            x: ({ left, right }: IPoseOptions) =>
+                left || right ? (left ? "-100%" : "100%") : "0%",
         },
     }),
 )`
@@ -83,7 +100,6 @@ const Container = styled(
     margin: auto 0;
     max-height: 100%;
     overflow-y: auto;
-    border-radius: 1rem;
     font-size: 2rem;
     font-family: "${fonts.roboto.family}";
 `;
@@ -112,6 +128,12 @@ export default connect(mapStateToProps)(
             children,
             onRequestClose,
             parent = document.body,
+            top,
+            bottom,
+            left,
+            right,
+            overlayClassName,
+            containerClassName,
         } = props;
 
         const themeValue: IModalThemeProviderProps = {
@@ -125,8 +147,19 @@ export default connect(mapStateToProps)(
         return (
             ReactDOM.createPortal(
                 <ThemeProvider theme={themeValue}>
-                    <Overlay onClick={onRequestClose} pose={pose}>
-                        <Container onClick={preventPropagation}>
+                    <Overlay
+                        onClick={onRequestClose}
+                        pose={pose}
+                        className={overlayClassName}
+                    >
+                        <Container
+                            onClick={preventPropagation}
+                            top={top}
+                            right={right}
+                            bottom={bottom}
+                            left={left}
+                            className={containerClassName}
+                        >
                             {children}
                         </Container>
                     </Overlay>
