@@ -262,12 +262,17 @@ const Base = connect(mapStateToProps)(
                 (delay + duration) / animationDelayFactor,
             );
 
+            let timeout: number;
             const onRevealTrigger = (timeout: number = 2000) => {
                 if (isReveal ? hasRevealed : true) {
                     setIsBeingRevealed(true);
-                    setTimeout(() => setFallbackHasRevealed(true), timeout);
+                    timeout = window.setTimeout(
+                        () => setFallbackHasRevealed(true),
+                        timeout,
+                    );
                 }
             };
+            React.useEffect(() => () => window.clearTimeout(timeout));
 
             // Component that animates internally (if animate is true)
             // After the animation is done, this becomes a React.Fragment to prevent any more animations
@@ -303,13 +308,13 @@ const Base = connect(mapStateToProps)(
                 <ThemeProvider theme={themeValue}>
                     <div className={`${className} ${cardClassName || ""}`}>
                         {bodyAlignment == "right" && (
-                            <Image>
-                                <CImageHider />
+                            <Image className="card-image  card-bodyAlignment-right">
+                                <CImageHider className="card-image-hider  card-bodyAlignment-right" />
                             </Image>
                         )}
-                        <CContent>
+                        <CContent className="card-content">
                             {renderHeader && (
-                                <CHeader>
+                                <CHeader className="card-header">
                                     <AnimateSide
                                         cascade
                                         onReveal={
@@ -320,16 +325,20 @@ const Base = connect(mapStateToProps)(
                                     >
                                         <div>
                                             {title && (
-                                                <CTitle children={title} />
+                                                <CTitle
+                                                    children={title}
+                                                    className="card-title"
+                                                />
                                             )}
                                             {subtitle && (
                                                 <CSubtitle
                                                     children={subtitle}
+                                                    className="card-subtitle"
                                                 />
                                             )}
                                         </div>
                                     </AnimateSide>
-                                    <CHeaderHider />
+                                    <CHeaderHider className="card-header-hider" />
                                 </CHeader>
                             )}
                             {renderHeader &&
@@ -337,7 +346,7 @@ const Base = connect(mapStateToProps)(
                                 (headerSeparator || (
                                     <AnimateSide
                                         delay={250}
-                                        children={<hr />}
+                                        children={<hr className="card-hr" />}
                                     />
                                 ))}
 
@@ -345,13 +354,18 @@ const Base = connect(mapStateToProps)(
                                 <AnimateSide
                                     delay={500}
                                     onReveal={onRevealTrigger}
-                                    children={<CBody children={children} />}
+                                    children={
+                                        <CBody
+                                            children={children}
+                                            className="card-body"
+                                        />
+                                    }
                                 />
                             )}
                         </CContent>
                         {bodyAlignment == "left" && (
-                            <CImage>
-                                <CImageHider />
+                            <CImage className="card-image  card-bodyAlignment-left">
+                                <CImageHider className="card-image-hider card-bodyAlignment-left" />
                             </CImage>
                         )}
                     </div>
