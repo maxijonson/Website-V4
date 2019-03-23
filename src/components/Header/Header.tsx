@@ -12,7 +12,7 @@ import { setTheme } from "src/actions";
 import { Card, Modal } from "src/components";
 import { ZINDEX } from "src/config";
 import { ITheme } from "src/modules/CSS/themes";
-import { routes } from "src/routers/routes";
+import { routes, socials } from "src/routers/routes";
 import LangSwitch from "./LangSwitch";
 import Nav from "./Nav";
 
@@ -82,6 +82,19 @@ const Header = styled(({ className, theme }: IHeaderProps) => {
                             >
                                 <ThemeSwitch />
                             </div>
+                        </div>
+                    }
+                    footer={
+                        <div style={{ textAlign: "center" }}>
+                            {_.map(socials, ({ Icon, name, url }) => (
+                                <a
+                                    style={{ margin: "0 4%" }}
+                                    href={url}
+                                    key={name}
+                                    title={name}
+                                    children={<Icon />}
+                                />
+                            ))}
                         </div>
                     }
                     cardClassName="header--card"
