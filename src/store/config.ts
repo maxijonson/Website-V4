@@ -19,10 +19,11 @@ declare global {
     }
 }
 
-export default () =>
-    createStore(
-        combineReducers<IStoreState>({
-            theme: themesReducer,
-        }),
-        composeEnhancers(applyMiddleware(thunk)),
-    );
+const store = createStore(
+    combineReducers<IStoreState>({
+        theme: themesReducer,
+    }),
+    composeEnhancers(applyMiddleware(thunk)),
+);
+
+export { store };
