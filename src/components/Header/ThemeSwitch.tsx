@@ -41,7 +41,7 @@ export default connect(
     };
 
     return (
-        <div style={{ display: "inline-block", margin: "0 3%" }}>
+        <div style={{ display: "inline-block" }}>
             <Switch
                 activeBoxShadow={theme.colors.defaultText}
                 ariaLabelledby={`Switch to ${

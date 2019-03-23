@@ -22,7 +22,7 @@ export default connect(mapStateToProps)(({ theme }: ILangSwitchStateProps) => {
     };
 
     return (
-        <div style={{ display: "inline-block", margin: "0 3%" }}>
+        <div style={{ display: "inline-block" }}>
             <Switch
                 activeBoxShadow={theme.colors.defaultText}
                 ariaLabelledby={t("header.changeLang")}

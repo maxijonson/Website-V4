@@ -1,6 +1,12 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCopyright } from "@fortawesome/free-regular-svg-icons";
-import { faBars, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import {
+    faBars,
+    faBookOpen,
+    faHome,
+    faMoon,
+    faSun,
+} from "@fortawesome/free-solid-svg-icons";
 import "normalize.css/normalize.css"; // Reset stylesheet for cross-browser compatibility
 import * as React from "react";
 import * as ReactDOM from "react-dom";
@@ -8,16 +14,14 @@ import { Provider } from "react-redux";
 import "src/modules/i18n/i18n";
 import "./styles/styles.scss";
 
+import * as app from "src/app";
 import { APP_ROOT } from "./config";
 import AppRouter from "./routers/AppRouter";
-import configureStore from "./store/config";
 
-library.add(faMoon, faSun, faCopyright, faBars);
-
-const store = configureStore();
+library.add(faMoon, faSun, faCopyright, faBars, faHome, faBookOpen);
 
 ReactDOM.render(
-    <Provider store={store}>
+    <Provider store={app.store}>
         <AppRouter />
     </Provider>,
     document.getElementById(APP_ROOT),

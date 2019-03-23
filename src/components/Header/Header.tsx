@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import _ from "lodash";
+import * as _ from "lodash";
 import React from "react";
 import { connect, MapStateToPropsParam } from "react-redux";
 import { Dispatch } from "redux";
@@ -12,7 +12,9 @@ import { setTheme } from "src/actions";
 import { Card, Modal } from "src/components";
 import { ZINDEX } from "src/config";
 import { ITheme } from "src/modules/CSS/themes";
+import { routes } from "src/routers/routes";
 import LangSwitch from "./LangSwitch";
+import Nav from "./Nav";
 
 // const { light, dark } = themes;
 
@@ -75,14 +77,37 @@ const Header = styled(({ className, theme }: IHeaderProps) => {
                 <Card
                     title={<CardTitle />}
                     subtitle={
-                        <>
-                            <LangSwitch />
-                            <ThemeSwitch />
-                        </>
+                        <div
+                            style={{
+                                display: "grid",
+                                gridTemplateColumns: "1fr 1fr",
+                            }}
+                        >
+                            <div
+                                style={{
+                                    gridColumnStart: 1,
+                                    textAlign: "center",
+                                }}
+                            >
+                                <LangSwitch />
+                            </div>
+                            <div
+                                style={{
+                                    gridColumnStart: 2,
+                                    textAlign: "center",
+                                }}
+                            >
+                                <ThemeSwitch />
+                            </div>
+                        </div>
                     }
                     cardClassName="header--card"
                 >
-                    This is a Card
+                    {_.map(
+                        routes,
+                        ({ hidden, component, ...route }) =>
+                            !hidden && <Nav {...route} />,
+                    )}
                 </Card>
             </Modal>
         </>
