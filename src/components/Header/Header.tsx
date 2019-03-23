@@ -47,7 +47,7 @@ const CardTitle = () => (
             style={{
                 gridColumnStart: 2,
                 backgroundImage: "url(/assets/images/logo.png)",
-                backgroundSize: "30%",
+                backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center right",
             }}
@@ -64,7 +64,12 @@ const Header = styled(({ className, theme }: IHeaderProps) => {
 
     return (
         <>
-            <div className={className} onClick={onMenuClick}>
+            <div
+                className={`${className} header--button ${
+                    menuVisible ? "active" : ""
+                }`}
+                onClick={onMenuClick}
+            >
                 <FontAwesomeIcon icon="bars" color={theme.colors.defaultText} />
             </div>
             <Modal

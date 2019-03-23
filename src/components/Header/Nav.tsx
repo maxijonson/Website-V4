@@ -53,7 +53,7 @@ export default connect(mapStateToProps)(
         &:hover {
             background: ${({ theme }: INavProps) =>
                 tinycolor(theme.colors.card)
-                    .darken()
+                    .darken(5)
                     .toHexString()};
         }
     `,
