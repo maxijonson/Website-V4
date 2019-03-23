@@ -40,19 +40,19 @@ export const routes: IRoute[] = [
             />
         ),
     },
-    {
-        name: "header.portfolio",
-        path: "/portfolio",
-        key: "portfolio",
-        exact: true,
-        component: HomePage,
-        Icon: () => (
-            <FontAwesomeIcon
-                icon="book-open"
-                color={store.getState().theme.colors.defaultText}
-            />
-        ),
-    },
+    // {
+    //     name: "header.portfolio",
+    //     path: "/portfolio",
+    //     key: "portfolio",
+    //     exact: true,
+    //     component: HomePage,
+    //     Icon: () => (
+    //         <FontAwesomeIcon
+    //             icon="book-open"
+    //             color={store.getState().theme.colors.defaultText}
+    //         />
+    //     ),
+    // },
     {
         name: "Intellibot",
         path: "/intellibot",
