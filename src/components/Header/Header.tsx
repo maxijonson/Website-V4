@@ -32,29 +32,6 @@ interface IHeaderDispatchProps {
 
 type IHeaderProps = IHeaderOwnProps & IHeaderStateProps & IHeaderDispatchProps;
 
-const CardTitle = () => (
-    <div
-        style={{
-            display: "grid",
-            gridTemplateColumns: "3fr 1fr",
-            width: "100%",
-        }}
-    >
-        <div style={{ gridColumnStart: 1 }}>
-            <h1 style={{ fontSize: "3.5rem", margin: 0 }}>Navigation</h1>
-        </div>
-        <div
-            style={{
-                gridColumnStart: 2,
-                backgroundImage: "url(/assets/images/logo.png)",
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center right",
-            }}
-        />
-    </div>
-);
-
 const Header = styled(({ className, theme }: IHeaderProps) => {
     const [menuVisible, setMenuVisible] = React.useState(false);
 
@@ -80,7 +57,6 @@ const Header = styled(({ className, theme }: IHeaderProps) => {
                 containerClassName="header--modal-container"
             >
                 <Card
-                    title={<CardTitle />}
                     subtitle={
                         <div
                             style={{
