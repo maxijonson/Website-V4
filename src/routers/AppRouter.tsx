@@ -8,7 +8,7 @@ import styled from "styled-components";
 // import { Translation } from "react-i18next";
 import { THEME_TRANSITION_TIME } from "src/config/config";
 import { ITheme } from "../../src/modules/CSS/themes";
-import { Footer } from "../components";
+import { Footer, Header } from "../components";
 import { fonts } from "../modules/CSS";
 import { routes } from "./routes";
 
@@ -47,6 +47,7 @@ const AppRouter = ({ theme }: IAppRouterProps) => (
     <Router history={history}>
         <React.Fragment>
             <PageWrapperStyled theme={theme}>
+                <Header />
                 <Switch>
                     {_.map(routes, ({ key, path, component, exact }) => (
                         <Route

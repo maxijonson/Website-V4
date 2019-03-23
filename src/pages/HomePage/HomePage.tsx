@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { connect, MapStateToPropsParam } from "react-redux";
-import { Cards, Header, ViewportContainer } from "src/components";
+import { Cards, ViewportContainer } from "src/components";
 import { THEME_TRANSITION_TIME } from "src/config/config";
 import { ITheme } from "src/modules/CSS/themes";
 import Landing from "./Landing";
@@ -20,7 +20,6 @@ const HomePage = (props: IHomePageProps) => {
 
     return (
         <>
-            <Header />
             {/*** INTRO ***/}
             <ViewportContainer
                 background={{

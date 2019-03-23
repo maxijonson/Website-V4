@@ -21,6 +21,7 @@ interface INavOwnProps {
     path: string;
     exact?: boolean;
     Icon: () => JSX.Element;
+    onPathChange?: () => void;
 }
 
 type INavProps = INavState & INavOwnProps & INavStyledProps;
@@ -29,19 +30,61 @@ const mapStateToProps = ({ theme }: IStoreState): INavState => ({
     theme,
 });
 
-export default connect(mapStateToProps)(
-    styled(({ className, path, key, exact, name, Icon }: INavProps) => {
-        const { t } = useTranslation();
+// TODO: Put somewhere else
+const useForceUpdate = () => {
+    const [, forceUpdate] = React.useReducer((x) => x + 1, 0);
+    return () => forceUpdate({});
+};
 
-        return (
-            <NavLink to={path} key={key} exact={exact} className={className}>
-                <div style={{ textAlign: "center" }}>
-                    <Icon />
-                </div>
-                <div>{t(name).toUpperCase()}</div>
-            </NavLink>
-        );
-    })`
+export default connect(mapStateToProps)(
+    styled(
+        ({
+            className,
+            path,
+            key,
+            exact,
+            name,
+            Icon,
+            theme,
+            onPathChange,
+        }: INavProps) => {
+            const { t } = useTranslation();
+            const forceUpdate = useForceUpdate();
+            const handleClick = () => {
+                if (onPathChange) {
+                    onPathChange();
+                }
+                forceUpdate();
+            };
+            return (
+                <NavLink
+                    to={path}
+                    key={key}
+                    exact={exact}
+                    onClick={handleClick}
+                    activeClassName="nav--active"
+                    activeStyle={{
+                        borderRadius: "0 3rem 3rem 0",
+                        background: (() => {
+                            const color = tinycolor(theme.colors.card).setAlpha(
+                                0.25,
+                            );
+                            theme.name == "light"
+                                ? color.darken(50)
+                                : color.lighten(5);
+                            return color.toRgbString();
+                        })(),
+                    }}
+                    className={className}
+                >
+                    <div style={{ textAlign: "center" }}>
+                        <Icon />
+                    </div>
+                    <div>{t(name).toUpperCase()}</div>
+                </NavLink>
+            );
+        },
+    )`
         transition: all ${THEME_TRANSITION_TIME}s;
         width: 100%;
         display: grid;
@@ -50,11 +93,15 @@ export default connect(mapStateToProps)(
         color: ${({ theme }: INavProps) => theme.colors.defaultText};
         font-size: 3rem;
         padding: 3% 0 3% 2%;
-        &:hover {
+        border-radius: none;
+        &:hover:not(.nav--active) {
+            padding-left: 5%;
+            border-radius: 0 3rem 3rem 0;
             background: ${({ theme }: INavProps) =>
                 tinycolor(theme.colors.card)
-                    .darken(5)
-                    .toHexString()};
+                    .darken(15)
+                    .setAlpha(0.4)
+                    .toRgbString()};
         }
     `,
 );
