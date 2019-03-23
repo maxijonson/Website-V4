@@ -39,6 +39,8 @@ const Header = styled(({ className, theme }: IHeaderProps) => {
 
     const onMenuClick = () => setMenuVisible(true);
 
+    const handlePathChange = () => setMenuVisible(false);
+
     return (
         <>
             <div
@@ -87,7 +89,12 @@ const Header = styled(({ className, theme }: IHeaderProps) => {
                     {_.map(
                         routes,
                         ({ hidden, component, ...route }) =>
-                            !hidden && <Nav {...route} />,
+                            !hidden && (
+                                <Nav
+                                    {...route}
+                                    onPathChange={handlePathChange}
+                                />
+                            ),
                     )}
                 </Card>
             </Modal>
