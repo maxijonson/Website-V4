@@ -182,6 +182,10 @@ const Image = styled.div`
     }
 `;
 
+// Footer
+
+const Footer = styled.div``;
+
 // CARD
 
 const Base = connect(mapStateToProps)(
@@ -214,6 +218,9 @@ const Base = connect(mapStateToProps)(
                 isReveal = defaultProps.isReveal,
                 background,
                 cardClassName,
+                footerSeparator,
+                FooterRenderer,
+                footer,
             } = props;
             // Content
             const CContent = ContentRenderer || Content;
@@ -228,6 +235,9 @@ const Base = connect(mapStateToProps)(
 
             // Body
             const CBody = BodyRenderer || Body;
+
+            // Footer
+            const CFooter = FooterRenderer || Footer;
 
             // Image
             const CImage =
@@ -346,7 +356,9 @@ const Base = connect(mapStateToProps)(
                                 (headerSeparator || (
                                     <AnimateSide
                                         delay={250}
-                                        children={<hr className="card-hr" />}
+                                        children={
+                                            <hr className="card-hr header" />
+                                        }
                                     />
                                 ))}
 
@@ -360,6 +372,24 @@ const Base = connect(mapStateToProps)(
                                             className="card-body"
                                         />
                                     }
+                                />
+                            )}
+
+                            {children &&
+                                footer &&
+                                (footerSeparator || (
+                                    <AnimateSide
+                                        delay={750}
+                                        children={
+                                            <hr className="card-hr footer" />
+                                        }
+                                    />
+                                ))}
+
+                            {footer && (
+                                <AnimateSide
+                                    delay={1000}
+                                    children={<CFooter children={footer} />}
                                 />
                             )}
                         </CContent>

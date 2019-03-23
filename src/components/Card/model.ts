@@ -86,6 +86,12 @@ export interface ICardProps {
      */
     headerSeparator?: IChildren;
 
+    footerSeparator?: IChildren;
+
+    FooterRenderer?: IRenderer;
+
+    footer?: IChildren;
+
     /**
      * Animate the Card internal content on viewport entry
      * @default false
