@@ -1,38 +1,20 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as _ from "lodash";
 import React from "react";
-import { connect, MapStateToPropsParam } from "react-redux";
-import { Dispatch } from "redux";
 import styled from "styled-components";
-import ThemeSwitch from "./ThemeSwitch";
 
-// import { themes } from "src/modules/CSS";
-// import i18n from "src/modules/i18n/i18n";
-import { setTheme } from "src/actions";
 import { Card, Modal } from "src/components";
 import { ZINDEX } from "src/config";
-import { ITheme } from "src/modules/CSS/themes";
+import { Hooks } from "src/modules";
 import { routes, socials } from "src/routers/routes";
 import LangSwitch from "./LangSwitch";
 import Nav from "./Nav";
+import ThemeSwitch from "./ThemeSwitch";
 
-// const { light, dark } = themes;
+const { useMapState } = Hooks;
 
-interface IHeaderOwnProps {
-    className?: string;
-}
-
-interface IHeaderStateProps {
-    readonly theme: ITheme;
-}
-
-interface IHeaderDispatchProps {
-    readonly setTheme?: (theme: ITheme) => void;
-}
-
-type IHeaderProps = IHeaderOwnProps & IHeaderStateProps & IHeaderDispatchProps;
-
-const Header = styled(({ className, theme }: IHeaderProps) => {
+export default styled(({ className }: { className?: string }) => {
+    const { theme } = useMapState(({ theme }) => ({ theme }));
     const [menuVisible, setMenuVisible] = React.useState(false);
 
     const onRequestClose = () => setMenuVisible(false);
@@ -122,20 +104,3 @@ const Header = styled(({ className, theme }: IHeaderProps) => {
     cursor: pointer;
     z-index: ${ZINDEX.header};
 `;
-
-const mapStateToProps: MapStateToPropsParam<
-    IHeaderStateProps,
-    IHeaderOwnProps,
-    IStoreState
-> = ({ theme }: IStoreState): IHeaderStateProps => ({
-    theme,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch<any>): IHeaderDispatchProps => ({
-    setTheme: (theme: ITheme) => dispatch(setTheme(theme)),
-});
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Header);
