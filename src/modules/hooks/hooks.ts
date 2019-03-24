@@ -3,9 +3,7 @@ import { Dispatch } from "redux";
 import { store } from "src/app";
 import { Utils } from "src/modules";
 
-export const useMapState = <S extends {}>(
-    mapState: (state: IStoreState) => S,
-) => {
+export const useMapState = <S>(mapState: (state: IStoreState) => S) => {
     const initialState = React.useRef(mapState(store.getState()));
     const stateProps = React.useRef(initialState.current);
     React.useEffect(() => {
@@ -27,7 +25,7 @@ export const useMapState = <S extends {}>(
     return stateProps.current;
 };
 
-export const useMapDispatch = <D extends {}>(
+export const useMapDispatch = <D>(
     mapDispatch: (dispatch: Dispatch<any>) => D,
 ) => {
     const initialDispatch = React.useRef(mapDispatch(store.dispatch));
@@ -36,9 +34,14 @@ export const useMapDispatch = <D extends {}>(
     return dispatchProps.current;
 };
 
-// export const useConnect = <S extends {}, D extends {}>(
-//     mapState?: (state: IStoreState) => S,
-//     mapDispatch?: (dispatch: Dispatch<any>) => D,
-// ) => {
-
-// };
+export const useConnect = <S extends {}, D extends {}>(
+    mapState?: (state: IStoreState) => S,
+    mapDispatch?: (dispatch: Dispatch<any>) => D,
+) => {
+    const stateProps = mapState ? useMapState(mapState) : {};
+    const dispatchProps = mapDispatch ? useMapDispatch(mapDispatch) : {};
+    return {
+        ...stateProps,
+        ...dispatchProps,
+    } as S & D;
+};
