@@ -3,6 +3,7 @@ import { Dispatch } from "redux";
 import { store } from "src/app";
 import { Utils } from "src/modules";
 
+// NOTE: Hard to test performance since we only have 1 state (theme)
 export const useMapState = <S>(mapState: (state: IStoreState) => S) => {
     const initialState = React.useRef(mapState(store.getState()));
     const stateProps = React.useRef(initialState.current);

@@ -53,6 +53,7 @@ const HomePage = (props: IHomePageProps) => {
                 fraction={0.8}
                 title={t("home.welcome.title")}
                 subtitle={t("home.welcome.subtitle")}
+                footer={t("long.home.welcome.footer")}
                 imageUrl="assets/images/logo.png"
             >
                 {t("long.home.welcome.body")}

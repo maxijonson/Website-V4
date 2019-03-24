@@ -6,6 +6,7 @@ import { BREAKPOINTS } from "src/config";
 import { THEME_TRANSITION_TIME } from "src/config/config";
 import { fonts } from "src/modules/CSS";
 import styled, { ThemeProvider } from "styled-components";
+import tinycolor from "tinycolor2";
 import { withCatcher } from "../Catcher";
 import {
     defaultProps,
@@ -184,7 +185,15 @@ const Image = styled.div`
 
 // Footer
 
-const Footer = styled.div``;
+const Footer = styled.div`
+    font-family: "${fonts.roboto.family}";
+    font-size: 1.6rem;
+    color: ${({ theme: { theme } }: ICardThemeProviderProps) => {
+        const color = tinycolor(theme.colors.defaultText);
+        theme.name == "light" ? color.lighten(25) : color.darken(25);
+        return color.toRgbString();
+    }};
+`;
 
 // CARD
 
