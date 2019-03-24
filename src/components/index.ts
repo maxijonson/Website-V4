@@ -10,9 +10,11 @@ export {
 
 export { default as ColorOverlay } from "./ColorOverlay";
 
-export { default as Card } from "./Card/Card";
-import * as Cards from "./Card/Card";
-export { Cards };
+import { default as Card } from "./Card/Card";
+import * as CardsBase from "./Card/Card";
+import * as CardsAnimated from "./Card/CardAnimated";
+const Cards = { ...CardsAnimated, Alt: CardsBase.Alt };
+export { Cards, Card };
 
 export { default as Catcher } from "./Catcher";
 
