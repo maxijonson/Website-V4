@@ -1,21 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { connect, MapStateToPropsParam } from "react-redux";
 import { Cards, ViewportContainer } from "src/components";
 import { THEME_TRANSITION_TIME } from "src/config/config";
-import { ITheme } from "src/modules/CSS/themes";
+import { Hooks } from "src/modules";
 import Landing from "./Landing";
 
-interface IHomePageOwnProps {}
+const { useMapState } = Hooks;
 
-interface IHomePageStateProps {
-    theme: ITheme;
-}
-
-type IHomePageProps = IHomePageOwnProps & IHomePageStateProps;
-
-const HomePage = (props: IHomePageProps) => {
-    const { theme } = props;
+export default () => {
+    const { theme } = useMapState(({ theme }) => ({ theme }));
     const { t } = useTranslation();
 
     return (
@@ -84,13 +77,3 @@ const HomePage = (props: IHomePageProps) => {
         </>
     );
 };
-
-const mapStateToProps: MapStateToPropsParam<
-    IHomePageStateProps,
-    IHomePageOwnProps,
-    IStoreState
-> = ({ theme }: IStoreState): IHomePageStateProps => ({
-    theme,
-});
-
-export default connect(mapStateToProps)(HomePage);

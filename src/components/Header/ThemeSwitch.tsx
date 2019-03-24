@@ -23,7 +23,6 @@ export default () => {
             setTheme(checked ? light : dark);
         }
     };
-    console.log("render");
     return (
         <div style={{ display: "inline-block" }}>
             <Switch

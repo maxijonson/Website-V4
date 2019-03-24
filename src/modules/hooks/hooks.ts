@@ -46,3 +46,18 @@ export const useConnect = <S extends {}, D extends {}>(
         ...dispatchProps,
     } as S & D;
 };
+
+export const useForceUpdate = () => {
+    const [, forceUpdate] = React.useReducer((x) => x + 1, 0);
+    return () => forceUpdate({});
+};
+
+export const usePortal = (parent: HTMLElement) => {
+    const el = React.useRef(document.createElement("div"));
+    React.useEffect(() => {
+        parent.appendChild(el.current);
+
+        return () => el.current.remove();
+    }, []);
+    return el.current;
+};

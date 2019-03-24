@@ -7,11 +7,11 @@ $bump: 1.5%;
     padding: 0;
 }
 
-.header--button.header--button.header--button {
+.header.header {
     transition: all 0.15s;
 }
 
-.header--button.header--button.header--button.active {
+.header.header.active {
     left: $default-size + $bump;
 
     @media (min-width: $sm-breakpoint) {

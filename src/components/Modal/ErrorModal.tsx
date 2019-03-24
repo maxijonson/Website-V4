@@ -8,18 +8,18 @@ interface IErrorModalOwnProps {
     onRequestClose: () => void;
 }
 
-export default (props: IErrorModalOwnProps) => {
-    const { visible, onRequestClose, errorReport } = props;
-    console.log(errorReport.stack);
-    return (
-        <Modal visible={visible} onRequestClose={onRequestClose}>
-            <Card
-                cardClassName="ErrorModal--Modal--Card"
-                title="Error Report"
-                subtitle={errorReport.error.name}
-            >
-                <pre>{errorReport.error.stack}</pre>
-            </Card>
-        </Modal>
-    );
-};
+export default ({
+    visible,
+    onRequestClose,
+    errorReport,
+}: IErrorModalOwnProps) => (
+    <Modal visible={visible} onRequestClose={onRequestClose}>
+        <Card
+            cardClassName="ErrorModal--Modal--Card"
+            title="Error Report"
+            subtitle={errorReport.error.name}
+        >
+            <pre>{errorReport.error.stack}</pre>
+        </Card>
+    </Modal>
+);
