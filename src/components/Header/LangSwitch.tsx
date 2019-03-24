@@ -1,20 +1,15 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { connect } from "react-redux";
 import Switch from "react-switch";
-import { ITheme } from "src/modules/CSS";
+import { Hooks } from "src/modules";
 
-interface ILangSwitchStateProps {
-    readonly theme: ITheme;
-}
+const { useMapState } = Hooks;
 
-const mapStateToProps = (state: IStoreState): ILangSwitchStateProps => ({
-    theme: state.theme,
-});
-
-export default connect(mapStateToProps)(({ theme }: ILangSwitchStateProps) => {
+export default () => {
     const { i18n, t } = useTranslation();
     const [language, setLanguage] = React.useState(i18n.language);
+
+    const { theme } = useMapState(({ theme }) => ({ theme }));
 
     const handleLangChange = (checked: boolean) => {
         i18n.changeLanguage(checked ? "en" : "fr");
@@ -72,4 +67,4 @@ export default connect(mapStateToProps)(({ theme }: ILangSwitchStateProps) => {
             />
         </div>
     );
-});
+};
