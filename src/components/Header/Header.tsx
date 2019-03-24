@@ -13,7 +13,7 @@ import ThemeSwitch from "./ThemeSwitch";
 
 const { useMapState } = Hooks;
 
-export default styled(({ className }: { className?: string }) => {
+export default () => {
     const { theme } = useMapState(({ theme }) => ({ theme }));
     const [menuVisible, setMenuVisible] = React.useState(false);
 
@@ -23,14 +23,22 @@ export default styled(({ className }: { className?: string }) => {
 
     const handlePathChange = () => setMenuVisible(false);
 
+    const Header = React.useMemo(
+        () => styled.div`
+            position: fixed;
+            top: 0;
+            left: 0;
+            font-size: 3.6rem;
+            margin: 1.5rem 0 0 2rem;
+            cursor: pointer;
+            z-index: ${ZINDEX.header};
+        `,
+        [],
+    );
+
     return (
-        <>
-            <div
-                className={`${className} header--button ${
-                    menuVisible ? "active" : ""
-                }`}
-                onClick={onMenuClick}
-            >
+        <Header className={`header ${menuVisible ? "active" : ""}`}>
+            <div className={`header--button`} onClick={onMenuClick}>
                 <FontAwesomeIcon icon="bars" color={theme.colors.defaultText} />
             </div>
             <Modal
@@ -93,14 +101,6 @@ export default styled(({ className }: { className?: string }) => {
                     )}
                 </Card>
             </Modal>
-        </>
+        </Header>
     );
-})`
-    position: fixed;
-    top: 0;
-    left: 0;
-    font-size: 3.6rem;
-    margin: 1.5rem 0 0 2rem;
-    cursor: pointer;
-    z-index: ${ZINDEX.header};
-`;
+};

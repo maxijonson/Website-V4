@@ -1,4 +1,7 @@
 {
+    "footer": {
+        "copyright": "All rights reserved."
+    },
     "header": {
         "changeLang": "Change language",
         "home": "Home",

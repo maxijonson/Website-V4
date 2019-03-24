@@ -1,16 +1,14 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { connect } from "react-redux";
 import { STYLE_CENTERED, THEME_TRANSITION_TIME } from "src/config";
-import { fonts, ITheme } from "src/modules/CSS";
+import { Hooks } from "src/modules";
+import { fonts } from "src/modules/CSS";
 
-const mapStateToProps = (state: IStoreState): { theme: ITheme } => ({
-    theme: state.theme,
-});
+const { useMapState } = Hooks;
 
-export default connect(mapStateToProps)(({ theme }: { theme: ITheme }) => {
+export default () => {
     const { t } = useTranslation();
-
+    const { theme } = useMapState(({ theme }) => ({ theme }));
     return (
         <div
             style={{
@@ -63,4 +61,4 @@ export default connect(mapStateToProps)(({ theme }: { theme: ITheme }) => {
             </div>
         </div>
     );
-});
+};
