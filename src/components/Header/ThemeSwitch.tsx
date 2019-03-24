@@ -5,15 +5,17 @@ import { setTheme as setThemeAction } from "src/actions";
 import { Hooks } from "src/modules";
 import { ITheme, themes } from "src/modules/CSS";
 
-const { useMapDispatch, useMapState } = Hooks;
+const { useConnect } = Hooks;
 
 const { light, dark } = themes;
 
 export default () => {
-    const { theme } = useMapState(({ theme }) => ({ theme }));
-    const { setTheme } = useMapDispatch((dispatch) => ({
-        setTheme: (theme: ITheme) => dispatch(setThemeAction(theme)),
-    }));
+    const { theme, setTheme } = useConnect(
+        ({ theme }) => ({ theme }),
+        (dispatch) => ({
+            setTheme: (theme: ITheme) => dispatch(setThemeAction(theme)),
+        }),
+    );
     const [themeSwitch, setThemeSwitch] = React.useState(theme.name == "light");
     const handleThemeChange = (checked: boolean) => {
         setThemeSwitch(checked);
