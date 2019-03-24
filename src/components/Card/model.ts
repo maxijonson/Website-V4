@@ -116,6 +116,35 @@ export interface ICardProps {
     cardClassName?: string;
 }
 
+export interface IRevealProps {
+    alt?: boolean;
+    appear?: boolean;
+    big?: boolean;
+    bottom?: boolean;
+    cascade?: boolean;
+    collapse?: boolean;
+    count?: number;
+    delay?: number;
+    distance?: string;
+    duration?: number;
+    enter?: boolean;
+    exit?: boolean;
+    forever?: boolean;
+    fraction?: number;
+    left?: boolean;
+    mirror?: boolean;
+    mountOnEnter?: boolean;
+    opposite?: boolean;
+    out?: boolean;
+    right?: boolean;
+    spy?: any;
+    timeout?: number;
+    top?: boolean;
+    when?: boolean;
+}
+
+export type IAnimatedCardProps = ICardProps & IRevealProps;
+
 export const mapStateToProps = ({ theme }: IStoreState): ICardStateProps => ({
     theme,
 });
