@@ -1,37 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
-import { connect } from "react-redux";
 import Switch from "react-switch";
-import { Dispatch } from "redux";
-import { setTheme } from "src/actions";
+import { setTheme as setThemeAction } from "src/actions";
+import { Hooks } from "src/modules";
 import { ITheme, themes } from "src/modules/CSS";
 
-interface IThemeSwitchStateProps {
-    readonly theme: ITheme;
-}
-
-interface IThemeSwitchDispatchProps {
-    readonly setTheme?: (theme: ITheme) => void;
-}
-
-type IThemeSwitchProps = IThemeSwitchStateProps & IThemeSwitchDispatchProps;
+const { useMapDispatch, useMapState } = Hooks;
 
 const { light, dark } = themes;
 
-const mapStateToProps = (state: IStoreState): IThemeSwitchStateProps => ({
-    theme: state.theme,
-});
-
-const mapDispatchToProps = (
-    dispatch: Dispatch<any>,
-): IThemeSwitchDispatchProps => ({
-    setTheme: (theme: ITheme) => dispatch(setTheme(theme)),
-});
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(({ theme, setTheme }: IThemeSwitchProps) => {
+export default () => {
+    const { theme } = useMapState(({ theme }) => ({ theme }));
+    const { setTheme } = useMapDispatch((dispatch) => ({
+        setTheme: (theme: ITheme) => dispatch(setThemeAction(theme)),
+    }));
     const [themeSwitch, setThemeSwitch] = React.useState(theme.name == "light");
     const handleThemeChange = (checked: boolean) => {
         setThemeSwitch(checked);
@@ -85,4 +67,4 @@ export default connect(
             />
         </div>
     );
-});
+};
