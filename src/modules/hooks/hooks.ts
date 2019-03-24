@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Dispatch } from "redux";
 import { store } from "src/app";
 import { Utils } from "src/modules";
 
@@ -24,6 +25,15 @@ export const useMapState = <S extends {}>(
         };
     }, [store, mapState]);
     return stateProps.current;
+};
+
+export const useMapDispatch = <D extends {}>(
+    mapDispatch: (dispatch: Dispatch<any>) => D,
+) => {
+    const initialDispatch = React.useRef(mapDispatch(store.dispatch));
+    const dispatchProps = React.useRef(initialDispatch.current);
+
+    return dispatchProps.current;
 };
 
 // export const useConnect = <S extends {}, D extends {}>(
