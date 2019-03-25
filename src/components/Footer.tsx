@@ -22,7 +22,7 @@ export default () => {
             font-family: ${fonts.oswald.family};
             width: 100%;
         `,
-        [theme],
+        [],
     );
 
     return (
