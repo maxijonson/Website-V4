@@ -1,16 +1,6 @@
-import { ITheme } from "src/modules/CSS";
-
 export type IChildren = React.ReactNode;
 export type IRenderer = (props: { children?: IChildren }) => JSX.Element;
 export type IBodyAlignment = "left" | "right";
-
-export interface ISCProps {
-    className?: string;
-}
-
-export interface ICardStateProps {
-    readonly theme: ITheme;
-}
 
 export interface ICardInternalProps {
     bodyAlignment?: IBodyAlignment;
@@ -18,9 +8,6 @@ export interface ICardInternalProps {
     duration?: number;
     hasRevealed?: boolean;
     isReveal?: boolean; // If Card is a child of a react-reveal component
-}
-export interface ICardThemeProviderProps {
-    theme: ICardInternalProps & ICardStateProps & ICardProps;
 }
 
 export interface ICardProps {
@@ -144,10 +131,6 @@ export interface IRevealProps {
 }
 
 export type IAnimatedCardProps = ICardProps & IRevealProps;
-
-export const mapStateToProps = ({ theme }: IStoreState): ICardStateProps => ({
-    theme,
-});
 
 export const defaultProps: {
     bodyAlignment: IBodyAlignment;
