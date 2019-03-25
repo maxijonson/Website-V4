@@ -41,8 +41,8 @@ export default () => {
             {/*** /INTRO ***/}
             <Cards.Fade
                 alt
-                animate
                 top
+                animate
                 fraction={0.8}
                 title={t("home.welcome.title")}
                 subtitle={t("home.welcome.subtitle")}
