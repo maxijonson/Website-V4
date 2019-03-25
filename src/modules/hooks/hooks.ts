@@ -4,26 +4,43 @@ import { store } from "src/app";
 import { Utils } from "src/modules";
 
 // NOTE: Hard to test performance since we only have 1 state (theme)
-export const useMapState = <S>(mapState: (state: IStoreState) => S) => {
-    const initialState = React.useRef(mapState(store.getState()));
-    const stateProps = React.useRef(initialState.current);
-    React.useEffect(() => {
-        let didUnsubscribe = false;
+export const useMapState = <S extends {}>(
+    mapState: (state: IStoreState) => S,
+) => {
+    const error = React.useRef(null);
+    const derivedState = React.useRef<S>(mapState(store.getState()));
+    const forceUpdate = useForceUpdate();
+
+    React.useLayoutEffect(() => {
+        let hasUnsubbed = false;
+
         const unsubscribe = store.subscribe(() => {
-            if (didUnsubscribe) {
+            if (hasUnsubbed) {
                 return;
             }
-            const newState = mapState(store.getState());
-            if (!Utils.shallowEqual(stateProps.current, newState)) {
-                stateProps.current = newState;
+            try {
+                const newState = mapState(store.getState());
+                if (!Utils.shallowEqual(newState, derivedState.current)) {
+                    derivedState.current = newState;
+                    forceUpdate();
+                }
+            } catch (e) {
+                error.current = e;
+                forceUpdate();
             }
         });
+
         return () => {
-            didUnsubscribe = true;
+            hasUnsubbed = true;
             unsubscribe();
         };
-    }, [store, mapState]);
-    return stateProps.current;
+    }, []);
+
+    if (error.current) {
+        throw error.current;
+    }
+
+    return derivedState.current;
 };
 
 export const useMapDispatch = <D>(
