@@ -73,7 +73,7 @@ export default (props: IButtonOwnProps) => {
                     outline: 0;
                 }
             `,
-        [theme, background, textColor],
+        [],
     );
 
     const Title = React.useMemo(

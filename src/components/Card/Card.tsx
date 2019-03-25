@@ -116,7 +116,7 @@ const Base = (props: ICardProps & ICardInternalProps) => {
                     padding: 0;
                 }
             `,
-        [bodyAlignment],
+        [],
     );
 
     // Header
@@ -136,7 +136,7 @@ const Base = (props: ICardProps & ICardInternalProps) => {
                       }
                   `
                 : () => null),
-        [imageUrl],
+        [],
     );
 
     const Title = React.useMemo(
@@ -154,7 +154,7 @@ const Base = (props: ICardProps & ICardInternalProps) => {
                     text-align: ${bodyAlignment == "left" ? "left" : "right"};
                 }
             `,
-        [bodyAlignment],
+        [],
     );
 
     const Subtitle = React.useMemo(
@@ -173,7 +173,7 @@ const Base = (props: ICardProps & ICardInternalProps) => {
                     text-align: ${bodyAlignment == "left" ? "left" : "right"};
                 }
             `,
-        [theme, bodyAlignment],
+        [],
     );
 
     const HeaderHider = React.useMemo(
@@ -197,7 +197,7 @@ const Base = (props: ICardProps & ICardInternalProps) => {
                       }
                   `
                 : () => null),
-        [imageUrl, background, theme, bodyAlignment],
+        [],
     );
 
     // Body
@@ -226,7 +226,7 @@ const Base = (props: ICardProps & ICardInternalProps) => {
             return color.toRgbString();
         }};
     `,
-        [theme],
+        [],
     );
 
     // Image
@@ -248,7 +248,7 @@ const Base = (props: ICardProps & ICardInternalProps) => {
                         }
                     `
                 : () => null),
-        [bodyAlignment, imageUrl],
+        [],
     );
     const ImageHider = React.useMemo(
         () =>
@@ -264,7 +264,7 @@ const Base = (props: ICardProps & ICardInternalProps) => {
                 height: 100%;
                 box-shadow: 0 0 1.5rem ${theme.colors.cardShadow};
             `,
-        [theme, background, bodyAlignment, hasRevealed],
+        [hasRevealed, theme],
     );
 
     // Component that animates internally (if animate is true)

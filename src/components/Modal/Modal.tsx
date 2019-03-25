@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import posed from "react-pose";
-import { ZINDEX } from "src/config";
+import { THEME_TRANSITION_TIME, ZINDEX } from "src/config";
 import { Hooks } from "src/modules";
 import { fonts } from "src/modules/CSS";
 import styled from "styled-components";
@@ -78,9 +78,10 @@ export default (props: IModalOwnProps) => {
             position: fixed;
             width: 100vw;
             top: 0;
+            transition: all ${THEME_TRANSITION_TIME}s;
             background: ${() =>
                 tinycolor(theme.colors.pageBackground)
-                    .setAlpha(0.8)
+                    .setAlpha(0.4)
                     .toRgbString()};
             cursor: ${theme.name == "light"
                     ? "url(/assets/images/back-cursor-black.png)"
@@ -93,7 +94,7 @@ export default (props: IModalOwnProps) => {
                 cursor: default;
             }
         `,
-        [theme],
+        [],
     );
 
     const Container = React.useMemo(
@@ -118,7 +119,7 @@ export default (props: IModalOwnProps) => {
         font-size: 2rem;
         font-family: "${fonts.roboto.family}";
     `,
-        [top, bottom, right, left],
+        [],
     );
 
     return (

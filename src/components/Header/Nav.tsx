@@ -49,7 +49,7 @@ export default ({ path, exact, name, Icon, onPathChange }: INavProps) => {
                 }};
             }
         `,
-        [theme],
+        [],
     );
     return (
         <Nav
