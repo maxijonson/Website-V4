@@ -15,27 +15,24 @@ const { useMapState } = Hooks;
 
 export const history = createHistory();
 
+const PageWrapperStyled = styled.div`
+        background-color: ${({theme}) => theme.colors.pageBackground};
+        width: auto;
+        font-family: ${fonts.oswald.family};
+        min-height: 98.45250474vh;
+        transition: all ${THEME_TRANSITION_TIME}s;
+        flex: 1 0 auto;
+        overflow: auto;
+    `;
+
 export default () => {
     const { theme } = useMapState(({ theme }) => ({ theme }));
-
-    const PageWrapperStyled = React.useMemo(
-        () => styled.div`
-            background-color: ${theme.colors.pageBackground};
-            width: auto;
-            font-family: ${fonts.oswald.family};
-            min-height: 98.45250474vh;
-            transition: all ${THEME_TRANSITION_TIME}s;
-            flex: 1 0 auto;
-            overflow: auto;
-        `,
-        [],
-    );
 
     return (
         <Router history={history}>
             <React.Fragment>
-                <Header />
                 <PageWrapperStyled theme={theme}>
+                    <Header />
                     <Switch>
                         {_.map(routes, ({ key, path, component, exact }) => (
                             <Route

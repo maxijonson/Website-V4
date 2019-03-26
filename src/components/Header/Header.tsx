@@ -47,6 +47,7 @@ export default () => {
                 left
                 overlayClassName="header--modal-overlay"
                 containerClassName="header--modal-container"
+                parent={document.getElementById("app")}
             >
                 <Card
                     subtitle={
