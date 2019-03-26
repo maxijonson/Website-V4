@@ -69,8 +69,9 @@ export const useForceUpdate = () => {
     return () => forceUpdate({});
 };
 
-export const usePortal = (parent: HTMLElement) => {
+export const usePortal = (parent: HTMLElement, className?: string) => {
     const el = React.useRef(document.createElement("div"));
+    el.current.className = className || "";
     React.useEffect(() => {
         parent.appendChild(el.current);
 

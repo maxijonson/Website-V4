@@ -20,7 +20,7 @@ interface IModalOwnProps extends IPoseOptions {
     visible?: boolean;
     children?: React.ReactNode;
     onRequestClose: (e: React.MouseEvent<HTMLDivElement>) => void;
-    parent?: HTMLElement;
+    parent?: HTMLElement | null;
     overlayClassName?: string;
     containerClassName?: string;
 }
@@ -30,7 +30,7 @@ export default (props: IModalOwnProps) => {
         visible,
         children,
         onRequestClose,
-        parent = document.body,
+        parent,
         top,
         bottom,
         left,
@@ -40,7 +40,7 @@ export default (props: IModalOwnProps) => {
     } = props;
 
     const { theme } = useMapState(({ theme }) => ({ theme }));
-    const target = usePortal(parent);
+    const target = usePortal(parent || document.body, "modal");
 
     const preventPropagation = React.useMemo(
         () => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -127,7 +127,7 @@ export default (props: IModalOwnProps) => {
             <Overlay
                 onClick={onRequestClose}
                 pose={pose}
-                className={overlayClassName}
+                className={`${overlayClassName}`}
             >
                 <Container
                     onClick={preventPropagation}
