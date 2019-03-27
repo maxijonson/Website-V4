@@ -32,18 +32,6 @@ export default () => {
             cursor: pointer;
             z-index: ${ZINDEX.header};
         `);
-    // const Header = React.useMemo(
-    //     () => styled.div`
-    //         position: fixed;
-    //         top: 0;
-    //         left: 0;
-    //         font-size: 3.6rem;
-    //         margin: 1.5rem 0 0 2rem;
-    //         cursor: pointer;
-    //         z-index: ${ZINDEX.header};
-    //     `,
-    //     [],
-    // );
 
     return (
         <Header className={`header ${menuVisible ? "active" : ""}`}>
