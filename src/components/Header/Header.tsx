@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as _ from "lodash";
 import React from "react";
-import styled from "styled-components";
 
 import { Card, Modal } from "src/components";
 import { ZINDEX } from "src/config";
 import { Hooks } from "src/modules";
+import { useStyled } from "src/modules/hooks/hooks";
 import { routes, socials } from "src/routers/routes";
 import LangSwitch from "./LangSwitch";
 import Nav from "./Nav";
@@ -23,8 +23,7 @@ export default () => {
 
     const handlePathChange = () => setMenuVisible(false);
 
-    const Header = React.useMemo(
-        () => styled.div`
+    const Header = useStyled.div(`
             position: fixed;
             top: 0;
             left: 0;
@@ -32,9 +31,19 @@ export default () => {
             margin: 1.5rem 0 0 2rem;
             cursor: pointer;
             z-index: ${ZINDEX.header};
-        `,
-        [],
-    );
+        `);
+    // const Header = React.useMemo(
+    //     () => styled.div`
+    //         position: fixed;
+    //         top: 0;
+    //         left: 0;
+    //         font-size: 3.6rem;
+    //         margin: 1.5rem 0 0 2rem;
+    //         cursor: pointer;
+    //         z-index: ${ZINDEX.header};
+    //     `,
+    //     [],
+    // );
 
     return (
         <Header className={`header ${menuVisible ? "active" : ""}`}>

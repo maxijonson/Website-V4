@@ -3,6 +3,8 @@ import { Dispatch } from "redux";
 import { store } from "src/app";
 import { Utils } from "src/modules";
 
+export * from "./useStyled";
+
 // NOTE: Hard to test performance since we only have 1 state (theme)
 export const useMapState = <S extends {}>(
     mapState: (state: IStoreState) => S,
