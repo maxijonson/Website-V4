@@ -16,6 +16,27 @@ interface INavProps {
     onPathChange?: () => void;
 }
 
+const Nav = styled(NavLink)`
+    transition: all ${THEME_TRANSITION_TIME}s;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    font-weight: 100;
+    color: ${({ theme }) => theme.colors.defaultText};
+    font-size: 3rem;
+    padding: 3% 0 3% 2%;
+    border-radius: none;
+    &:hover:not(.nav--active) {
+        padding-left: 5%;
+        border-radius: 0 3rem 3rem 0;
+        background: ${({ theme }) => {
+            const color = tinycolor(theme.colors.card).setAlpha(0.4);
+            theme.name == "light" ? color.darken(15) : color.lighten();
+            return color.toRgbString();
+        }};
+    }
+`;
+
 export default ({ path, exact, name, Icon, onPathChange }: INavProps) => {
     const { theme } = useMapState(({ theme }) => ({ theme }));
     const { t } = useTranslation();
@@ -28,31 +49,9 @@ export default ({ path, exact, name, Icon, onPathChange }: INavProps) => {
         forceUpdate();
     };
 
-    const Nav = React.useMemo(
-        () => styled(NavLink)`
-            transition: all ${THEME_TRANSITION_TIME}s;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 2fr 8fr;
-            font-weight: 100;
-            color: ${theme.colors.defaultText};
-            font-size: 3rem;
-            padding: 3% 0 3% 2%;
-            border-radius: none;
-            &:hover:not(.nav--active) {
-                padding-left: 5%;
-                border-radius: 0 3rem 3rem 0;
-                background: ${() => {
-                    const color = tinycolor(theme.colors.card).setAlpha(0.4);
-                    theme.name == "light" ? color.darken(15) : color.lighten();
-                    return color.toRgbString();
-                }};
-            }
-        `,
-        [],
-    );
     return (
         <Nav
+            theme={theme}
             to={path}
             exact={exact}
             onClick={handleClick}

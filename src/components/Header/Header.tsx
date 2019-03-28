@@ -5,13 +5,23 @@ import React from "react";
 import { Card, Modal } from "src/components";
 import { ZINDEX } from "src/config";
 import { Hooks } from "src/modules";
-import { useStyled } from "src/modules/hooks/hooks";
 import { routes, socials } from "src/routers/routes";
+import styled from "styled-components";
 import LangSwitch from "./LangSwitch";
 import Nav from "./Nav";
 import ThemeSwitch from "./ThemeSwitch";
 
 const { useMapState } = Hooks;
+
+const Header = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 3.6rem;
+    margin: 1.5rem 0 0 2rem;
+    cursor: pointer;
+    z-index: ${ZINDEX.header};
+`;
 
 export default () => {
     const { theme } = useMapState(({ theme }) => ({ theme }));
@@ -22,16 +32,6 @@ export default () => {
     const onMenuClick = () => setMenuVisible(true);
 
     const handlePathChange = () => setMenuVisible(false);
-
-    const Header = useStyled.div(`
-            position: fixed;
-            top: 0;
-            left: 0;
-            font-size: 3.6rem;
-            margin: 1.5rem 0 0 2rem;
-            cursor: pointer;
-            z-index: ${ZINDEX.header};
-        `);
 
     return (
         <Header className={`header ${menuVisible ? "active" : ""}`}>
