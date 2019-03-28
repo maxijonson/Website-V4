@@ -3,8 +3,7 @@ import * as ReactDOM from "react-dom";
 import posed from "react-pose";
 import { THEME_TRANSITION_TIME, ZINDEX } from "src/config";
 import { CSS, Hooks } from "src/modules";
-import { ITheme } from "src/modules/CSS";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import tinycolor from "tinycolor2";
 
 const { useMapState, usePortal } = Hooks;
@@ -24,10 +23,6 @@ interface IModalOwnProps extends IPoseOptions {
     parent?: HTMLElement | null;
     overlayClassName?: string;
     containerClassName?: string;
-}
-
-interface IThemeProvider {
-    theme: { theme: ITheme };
 }
 
 const Overlay = styled(
@@ -57,11 +52,11 @@ const Overlay = styled(
     width: 100vw;
     top: 0;
     transition: all ${THEME_TRANSITION_TIME}s;
-    background: ${({ theme: { theme } }: IThemeProvider) =>
+    background: ${({ theme }) =>
         tinycolor(theme.colors.pageBackground)
             .setAlpha(0.4)
             .toRgbString()};
-    cursor: ${({ theme: { theme } }: IThemeProvider) =>
+    cursor: ${({ theme }) =>
             theme.name == "light"
                 ? "url(/assets/images/back-cursor-black.png)"
                 : "url(/assets/images/back-cursor-white.png)"},
@@ -124,24 +119,23 @@ export default (props: IModalOwnProps) => {
 
     return (
         ReactDOM.createPortal(
-            <ThemeProvider theme={{ theme }}>
-                <Overlay
-                    onClick={onRequestClose}
-                    pose={pose}
-                    className={`${overlayClassName}`}
+            <Overlay
+                theme={theme}
+                onClick={onRequestClose}
+                pose={pose}
+                className={`${overlayClassName}`}
+            >
+                <Container
+                    onClick={preventPropagation}
+                    top={top}
+                    right={right}
+                    bottom={bottom}
+                    left={left}
+                    className={containerClassName}
                 >
-                    <Container
-                        onClick={preventPropagation}
-                        top={top}
-                        right={right}
-                        bottom={bottom}
-                        left={left}
-                        className={containerClassName}
-                    >
-                        {children}
-                    </Container>
-                </Overlay>
-            </ThemeProvider>,
+                    {children}
+                </Container>
+            </Overlay>,
             target,
         ) || null
     );
