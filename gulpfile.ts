@@ -144,6 +144,7 @@ gulp.task(REQUIRE_VERSION.task, (done) => {
 
     if (!major || !minor || !patch) {
         exit(EC.VERSION_SYNTAX);
+        return done(EC.VERSION_SYNTAX);
     }
     done();
 });
@@ -155,6 +156,7 @@ gulp.task(REQUIRE_MESSAGE.task, (done) => {
 
     if (!getCommitMsg()) {
         exit(EC.MISSING_MESSAGE);
+        return done(EC.MISSING_MESSAGE);
     }
     done();
 });
@@ -248,17 +250,17 @@ gulp.task(
 
         console.log(chalk.cyan(`Checking out to ${GITHUB}...`));
         if (!exec(`git checkout ${GITHUB}`)) {
-            done();
+            done(EC.CHECKOUT_GITHUB_ERROR);
             return exit(EC.CHECKOUT_GITHUB_ERROR);
         }
         console.log(chalk.cyan(`Cherry picking last commit...`));
         if (!exec(`git cherry-pick ${commitID} --allow-empty`)) {
-            done();
+            done(EC.CHERRY_PICK_ERROR);
             return exit(EC.CHERRY_PICK_ERROR);
         }
         console.log(chalk.cyan(`Checking out to ${HEROKU}...`));
         if (!exec(`git checkout ${HEROKU}`)) {
-            done();
+            done(EC.CHECKOUT_HEROKU_ERROR);
             return exit(EC.CHECKOUT_HEROKU_ERROR);
         }
         console.log(chalk.green(`Cherry picked ${commitID} into ${GITHUB}`));
