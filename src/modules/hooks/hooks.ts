@@ -81,3 +81,37 @@ export const usePortal = (parent: HTMLElement, className?: string) => {
     }, []);
     return el.current;
 };
+
+export const useSetInterval = (cb: () => void, time: number = 1000) => {
+    let interval: number;
+    React.useEffect(() => {
+        interval = window.setInterval(cb, time);
+        return () => {
+            if (interval) {
+                window.clearInterval(interval);
+            }
+        };
+    });
+    return () => {
+        if (interval) {
+            window.clearInterval(interval);
+        }
+    };
+};
+
+export const useSetTimeout = (cb: () => void, time: number = 1000) => {
+    let timeout: number;
+    React.useEffect(() => {
+        timeout = window.setTimeout(cb, time);
+        return () => {
+            if (timeout) {
+                window.clearTimeout(timeout);
+            }
+        };
+    });
+    return () => {
+        if (timeout) {
+            window.clearTimeout(timeout);
+        }
+    };
+};
