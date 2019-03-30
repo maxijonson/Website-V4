@@ -11,8 +11,7 @@
         "start": "ts-node server/server.ts",
         "heroku-postbuild": "npm run build:prod",
         "init": "tslint --init",
-        "lint": "tslint --project src/",
-        "pre-commit": "ts-node ./pre-commit.ts --message \"NCP  test\" "
+        "lint": "tslint --project src/"
     },
     "author": "Tristan Chin",
     "license": "ISC",
@@ -84,12 +83,15 @@
         "webpack-dev-server": "^3.1.14"
     },
     "devDependencies": {
+        "@types/chalk": "^2.2.0",
         "@types/git-branch": "^2.0.1",
         "@types/gulp": "^4.0.6",
-        "@types/yargs": "^12.0.10",
+        "@types/shelljs": "^0.8.3",
+        "chalk": "^2.4.2",
         "git-branch": "^2.0.1",
         "gulp": "^4.0.0",
+        "gulpclass": "^0.2.0",
         "husky": "^1.3.1",
-        "yargs": "^13.2.2"
+        "shelljs": "^0.8.3"
     }
 }
