@@ -16,8 +16,8 @@ import {
 } from "./gulpTasks.json";
 import pkg from "./package.json";
 
-shell.config.silent = false;
-shell.config.verbose = true;
+shell.config.silent = true;
+shell.config.verbose = false;
 
 // > 1000 = Good exit
 // < 1000 = Bad exit (error)
