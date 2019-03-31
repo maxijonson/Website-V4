@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import { ConnectedComponentClass } from "react-redux";
 import { store } from "src/app";
-import { HomePage, NotFoundPage } from "../pages";
+import { HomePage, NotFoundPage, Sandbox } from "../pages";
 
 export interface IRoute {
     name: string;
@@ -36,6 +36,19 @@ export const routes: IRoute[] = [
         Icon: () => (
             <FontAwesomeIcon
                 icon="home"
+                color={store.getState().theme.colors.defaultText}
+            />
+        ),
+    },
+    {
+        name: "header.sandbox",
+        key: "sandbox",
+        path: "/sandbox",
+        exact: true,
+        component: Sandbox,
+        Icon: () => (
+            <FontAwesomeIcon
+                icon="tools"
                 color={store.getState().theme.colors.defaultText}
             />
         ),

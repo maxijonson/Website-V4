@@ -26,6 +26,7 @@ const Nav = styled(NavLink)`
     font-size: 3rem;
     padding: 3% 0 3% 2%;
     border-radius: none;
+    text-align: left;
     &:hover:not(.nav--active) {
         padding-left: 5%;
         border-radius: 0 3rem 3rem 0;
@@ -67,7 +68,7 @@ export default ({ path, exact, name, Icon, onPathChange }: INavProps) => {
                 })(),
             }}
         >
-            <div style={{ textAlign: "center" }}>
+            <div style={{ textAlign: "center", margin: "auto 0" }}>
                 <Icon />
             </div>
             <div>{t(name).toUpperCase()}</div>

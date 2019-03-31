@@ -26,3 +26,10 @@ export const ZINDEX = {
 };
 
 export const APP_ROOT = "app";
+
+export const PATHS = {
+    images: {
+        homeIntroBg: "/assets/images/home-intro-bg.jpg",
+        sandboxIntroBg: "/assets/images/sandbox-intro-bg.jpg",
+    },
+};
