@@ -1,6 +1,6 @@
 {
     "name": "maxijonson-website-v4",
-    "version": "4.2.2",
+    "version": "4.2.3",
     "description": "MaxiJonson's official website. 4th Edition.",
     "main": "index.js",
     "scripts": {
