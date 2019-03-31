@@ -6,7 +6,6 @@ import {
     faHome,
     faMoon,
     faSun,
-    faTools,
 } from "@fortawesome/free-solid-svg-icons";
 import "normalize.css/normalize.css"; // Reset stylesheet for cross-browser compatibility
 import * as React from "react";
@@ -19,7 +18,7 @@ import * as app from "src/app";
 import { APP_ROOT } from "./config";
 import AppRouter from "./routers/AppRouter";
 
-library.add(faMoon, faSun, faCopyright, faBars, faHome, faBookOpen, faTools);
+library.add(faMoon, faSun, faCopyright, faBars, faHome, faBookOpen);
 
 ReactDOM.render(
     <Provider store={app.store}>
