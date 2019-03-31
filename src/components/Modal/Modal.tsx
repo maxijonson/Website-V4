@@ -23,6 +23,7 @@ interface IModalOwnProps extends IPoseOptions {
     parent?: HTMLElement | null;
     overlayClassName?: string;
     containerClassName?: string;
+    overlayOpacity?: number;
 }
 
 const Overlay = styled(
@@ -52,9 +53,9 @@ const Overlay = styled(
     width: 100vw;
     top: 0;
     transition: all ${THEME_TRANSITION_TIME}s;
-    background: ${({ theme }) =>
+    background: ${({ theme, overlayOpacity }) =>
         tinycolor(theme.colors.pageBackground)
-            .setAlpha(0.4)
+            .setAlpha(overlayOpacity || 0.4)
             .toRgbString()};
     cursor: ${({ theme }) =>
             theme.name == "light"
@@ -103,6 +104,7 @@ export default (props: IModalOwnProps) => {
         right,
         overlayClassName,
         containerClassName,
+        overlayOpacity,
     } = props;
 
     const { theme } = useMapState(({ theme }) => ({ theme }));
@@ -124,6 +126,7 @@ export default (props: IModalOwnProps) => {
                 onClick={onRequestClose}
                 pose={pose}
                 className={`${overlayClassName}`}
+                overlayOpacity={overlayOpacity}
             >
                 <Container
                     onClick={preventPropagation}

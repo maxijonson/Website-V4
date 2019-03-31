@@ -6,14 +6,14 @@ import { Hooks } from "src/modules";
 import styled from "styled-components";
 import tinycolor from "tinycolor2";
 
-const { useForceUpdate, useMapState } = Hooks;
+const { useMapState } = Hooks;
 
 interface INavProps {
     name: string;
     path: string;
     exact?: boolean;
     Icon: () => JSX.Element;
-    onPathChange?: () => void;
+    onPathChange?: (e: React.MouseEvent, path: string) => void;
 }
 
 const Nav = styled(NavLink)`
@@ -41,13 +41,10 @@ const Nav = styled(NavLink)`
 export default ({ path, exact, name, Icon, onPathChange }: INavProps) => {
     const { theme } = useMapState(({ theme }) => ({ theme }));
     const { t } = useTranslation();
-    const forceUpdate = useForceUpdate();
-
-    const handleClick = () => {
+    const handleClick = (e: React.MouseEvent) => {
         if (onPathChange) {
-            onPathChange();
+            onPathChange(e, path);
         }
-        forceUpdate();
     };
 
     return (

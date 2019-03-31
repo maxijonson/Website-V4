@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as _ from "lodash";
 import React from "react";
 
+import { history } from "src/app";
 import { Card, Modal } from "src/components";
 import { ZINDEX } from "src/config";
 import { Hooks } from "src/modules";
@@ -26,12 +27,39 @@ const Header = styled.div`
 export default () => {
     const { theme } = useMapState(({ theme }) => ({ theme }));
     const [menuVisible, setMenuVisible] = React.useState(false);
+    const [isNavigating, setIsNavigating] = React.useState(false);
+
+    let hideTimeout: number;
+    let showTimeout: number;
 
     const onRequestClose = () => setMenuVisible(false);
 
     const onMenuClick = () => setMenuVisible(true);
 
-    const handlePathChange = () => setMenuVisible(false);
+    const handlePathChange = (e: React.MouseEvent, path: string) => {
+        if (e.defaultPrevented) {
+            return;
+        }
+        e.preventDefault();
+
+        setIsNavigating(true);
+        hideTimeout = window.setTimeout(() => {
+            history.push(path);
+            showTimeout = window.setTimeout(() => {
+                setIsNavigating(false);
+                setMenuVisible(false);
+            }, 500);
+        }, 500);
+    };
+
+    React.useEffect(() => {
+        if (showTimeout) {
+            window.clearTimeout(showTimeout);
+        }
+        if (hideTimeout) {
+            window.clearTimeout(hideTimeout);
+        }
+    });
 
     return (
         <Header className={`header ${menuVisible ? "active" : ""}`}>
@@ -39,6 +67,7 @@ export default () => {
                 <FontAwesomeIcon icon="bars" color={theme.colors.defaultText} />
             </div>
             <Modal
+                overlayOpacity={isNavigating ? 1 : undefined}
                 onRequestClose={onRequestClose}
                 visible={menuVisible}
                 left
