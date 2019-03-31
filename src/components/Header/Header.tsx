@@ -40,6 +40,10 @@ export default () => {
         if (e.defaultPrevented) {
             return;
         }
+        if (path == history.location.pathname) {
+            setMenuVisible(false);
+            return;
+        }
         e.preventDefault();
 
         setIsNavigating(true);
