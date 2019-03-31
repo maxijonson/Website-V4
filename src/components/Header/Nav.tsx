@@ -36,6 +36,15 @@ const Nav = styled(NavLink)`
             return color.toRgbString();
         }};
     }
+    &.nav--active {
+        transition: all 1s;
+        border-radius: 0 3rem 3rem 0;
+        background: ${({ theme }) => {
+            const color = tinycolor(theme.colors.card).setAlpha(0.25);
+            theme.name == "light" ? color.darken(50) : color.lighten(50);
+            return color.toRgbString();
+        }};
+    }
 `;
 
 export default ({ path, exact, name, Icon, onPathChange }: INavProps) => {
@@ -54,16 +63,6 @@ export default ({ path, exact, name, Icon, onPathChange }: INavProps) => {
             exact={exact}
             onClick={handleClick}
             activeClassName="nav--active"
-            activeStyle={{
-                borderRadius: "0 3rem 3rem 0",
-                background: (() => {
-                    const color = tinycolor(theme.colors.card).setAlpha(0.25);
-                    theme.name == "light"
-                        ? color.darken(50)
-                        : color.lighten(50);
-                    return color.toRgbString();
-                })(),
-            }}
         >
             <div style={{ textAlign: "center", margin: "auto 0" }}>
                 <Icon />
