@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import { STYLE_CENTERED, THEME_TRANSITION_TIME } from "src/config";
 import { Hooks } from "src/modules";
 import { fonts } from "src/modules/CSS";
@@ -7,6 +8,8 @@ const { useMapState } = Hooks;
 
 export default () => {
     const { theme } = useMapState(({ theme }) => ({ theme }));
+    const { t } = useTranslation();
+
     return (
         <div
             style={{
@@ -37,17 +40,15 @@ export default () => {
                         fontSize: "6rem",
                         fontFamily: fonts.exo.family,
                     }}
-                >
-                    THE SANDBOX
-                </div>
+                    children={t("sandbox.intro.title")}
+                />
                 <div
                     style={{
                         fontSize: "2rem",
                         fontFamily: fonts.openSans.family,
                     }}
-                >
-                    Where ideas are born
-                </div>
+                    children={t("sandbox.intro.subtitle")}
+                />
                 <hr
                     style={{
                         margin: "1% 30%",

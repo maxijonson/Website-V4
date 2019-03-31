@@ -30,5 +30,11 @@
             "subtitle": "Get to know me and my experience",
             "title": "Welcome"
         }
+    },
+    "sandbox": {
+        "intro": {
+            "subtitle": "Where ideas come to life",
+            "title": "THE SANDBOX"
+        }
     }
 }
