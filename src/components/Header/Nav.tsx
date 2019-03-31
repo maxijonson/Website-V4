@@ -30,16 +30,16 @@ const Nav = styled(NavLink)`
     &:hover:not(.nav--active) {
         padding-left: 5%;
         border-radius: 0 3rem 3rem 0;
-        background: ${({ theme }) => {
+        background-color: ${({ theme }) => {
             const color = tinycolor(theme.colors.card).setAlpha(0.4);
             theme.name == "light" ? color.darken(15) : color.lighten();
             return color.toRgbString();
         }};
     }
     &.nav--active {
-        transition: all 1s;
+        transition: background-color 1s, color ${THEME_TRANSITION_TIME}s;
         border-radius: 0 3rem 3rem 0;
-        background: ${({ theme }) => {
+        background-color: ${({ theme }) => {
             const color = tinycolor(theme.colors.card).setAlpha(0.25);
             theme.name == "light" ? color.darken(50) : color.lighten(50);
             return color.toRgbString();
