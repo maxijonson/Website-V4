@@ -1,9 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Cards, ViewportContainer } from "src/components";
-import { THEME_TRANSITION_TIME } from "src/config/config";
+import { PATHS, THEME_TRANSITION_TIME } from "src/config/config";
 import { Hooks } from "src/modules";
-import Landing from "./Landing";
+import HomeLanding from "./HomeLanding";
 
 const { useMapState } = Hooks;
 
@@ -16,7 +16,7 @@ export default () => {
             {/*** INTRO ***/}
             <ViewportContainer
                 background={{
-                    backgroundImage: "url('/assets/images/home-intro-bg.jpg')",
+                    backgroundImage: `url(${PATHS.images.homeIntroBg})`,
                     transform: "scale(1.2)",
                     transition: `all ${THEME_TRANSITION_TIME}s`,
                     filter: `${
@@ -36,7 +36,7 @@ export default () => {
                     },
                 }}
             >
-                <Landing />
+                <HomeLanding />
             </ViewportContainer>
             {/*** /INTRO ***/}
             <Cards.Fade

@@ -6,6 +6,7 @@
         "changeLang": "Change language",
         "home": "Home",
         "portfolio": "Portfolio",
+        "sandbox": "Sandbox",
         "theme": {
             "dark": "dark",
             "light": "light"

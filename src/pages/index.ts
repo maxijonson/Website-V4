@@ -1,4 +1,5 @@
 import HomePage from "./HomePage/HomePage";
-export { HomePage };
-
+import Sandbox from "./Sandbox/Sandbox";
 export * from "./NotFoundPage";
+
+export { HomePage, Sandbox };
