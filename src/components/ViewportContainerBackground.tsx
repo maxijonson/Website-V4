@@ -7,7 +7,10 @@ interface IViewportContainerProps
 
 const Container = styled.div`
     @media (max-width: ${BREAKPOINTS.mdpx}) {
-        background-attachment: scroll !important;
+        & > div {
+            background-attachment: scroll !important;
+            background-size: cover !important;
+        }
     }
 `;
 
