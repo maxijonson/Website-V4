@@ -23,3 +23,5 @@ export { default as Button } from "./Button";
 export { default as Modal } from "./Modal/Modal";
 
 export { default as ErrorModal } from "./Modal/ErrorModal";
+
+export { default as Section } from "./Section";
