@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Cards, ViewportContainer } from "src/components";
+import { Cards, Section, ViewportContainer } from "src/components";
 import { PATHS, THEME_TRANSITION_TIME } from "src/config/config";
 import { Hooks } from "src/modules";
 import HomeLanding from "./HomeLanding";
@@ -74,6 +74,40 @@ export default () => {
                     postProcess: "markdown-jsx",
                 })}
             </Cards.Fade>
+            <Section
+                items={[
+                    {
+                        title: "Title",
+                        content: "content",
+                        titlePosition: "left",
+                    },
+                    {
+                        title: "Two",
+                        content: "Second",
+                        titlePosition: "right",
+                    },
+                    {
+                        title: "Three",
+                        content: "Third",
+                        titlePosition: "top",
+                    },
+                    {
+                        title: "Four",
+                        content: "Fourth",
+                        titlePosition: "left",
+                    },
+                    {
+                        title: "Five",
+                        content: "Fifth",
+                        titlePosition: "right",
+                    },
+                    {
+                        title: "Six",
+                        content: "Sixth",
+                        titlePosition: "top",
+                    },
+                ]}
+            />
         </>
     );
 };
