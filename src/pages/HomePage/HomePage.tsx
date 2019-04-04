@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Cards, Section, ViewportContainer } from "src/components";
@@ -52,7 +53,7 @@ export default () => {
                 {t("long.home.welcome.body")}
             </Cards.Fade>
             <Cards.Fade
-                top
+                left
                 animate
                 fraction={0.8}
                 title={t("home.playground.title")}
@@ -62,7 +63,7 @@ export default () => {
                 {t("long.home.playground.body")}
             </Cards.Fade>
             <Cards.Fade
-                top
+                right
                 alt
                 animate
                 fraction={0.8}
@@ -74,39 +75,13 @@ export default () => {
                     postProcess: "markdown-jsx",
                 })}
             </Cards.Fade>
+
             <Section
-                items={[
-                    {
-                        title: "Title",
-                        content: "content",
-                        titlePosition: "left",
-                    },
-                    {
-                        title: "Two",
-                        content: "Second",
-                        titlePosition: "right",
-                    },
-                    {
-                        title: "Three",
-                        content: "Third",
-                        titlePosition: "top",
-                    },
-                    {
-                        title: "Four",
-                        content: "Fourth",
-                        titlePosition: "left",
-                    },
-                    {
-                        title: "Five",
-                        content: "Fifth",
-                        titlePosition: "right",
-                    },
-                    {
-                        title: "Six",
-                        content: "Sixth",
-                        titlePosition: "top",
-                    },
-                ]}
+                items={_.times(10, (i) => ({
+                    title: `Title ${i}`,
+                    content:
+                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore itaque rem quasi impedit dicta culpa, cupiditate nisi quis nemo necessitatibus beatae dolor! Obcaecati non quaerat totam quam omnis nisi dolorem?",
+                }))}
             />
         </>
     );
