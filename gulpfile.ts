@@ -1,11 +1,17 @@
 import chalk from "chalk";
+import express from "express";
 import * as fs from "fs";
 import branch from "git-branch";
 import gulp from "gulp";
+import * as _ from "lodash";
+import path from "path";
 import * as shell from "shelljs";
+import webpack from "webpack";
+import webpackDevServer from "webpack-dev-server";
 import {
     BUMP_VERSION,
     CHERRY_PICK,
+    DEV_SERVER,
     POST_COMMIT,
     PRE_COMMIT,
     PREPARE_COMMIT,
@@ -15,6 +21,7 @@ import {
     REQUIRE_VERSION,
 } from "./gulpTasks.json";
 import pkg from "./package.json";
+import getWebpackConfig from "./webpack.config";
 
 shell.config.silent = true;
 shell.config.verbose = false;
@@ -35,6 +42,23 @@ const PATCH_PREFIX = "MJ";
 const HEROKU = "master";
 const GITHUB = "Github";
 const BUMP_MSG = "Bumped version";
+
+const showVariables = () => {
+    const shown = ["NODE_ENV"];
+    console.log(chalk.magenta(`process.env variables: `) + chalk.cyan(`{`));
+    for (const env in process.env) {
+        if (process.env.hasOwnProperty(env)) {
+            const value = process.env[env];
+            if (_.includes(shown, env)) {
+                console.log(
+                    chalk.blue(`    ${env}: `) +
+                        chalk.gray(value || "undefined"),
+                );
+            }
+        }
+    }
+    console.log(chalk.cyan(`}`));
+};
 
 const getBranchName = () => branch.sync();
 const getCommitMsg = () => fs.readFileSync(".git/COMMIT_EDITMSG", "utf8");
@@ -117,6 +141,10 @@ const EC: IExitCodes = {
         code: 7,
         message: `Couldn't checkout to ${HEROKU}`,
     },
+    WEBPACK_PLUGINS_NOEXIST: {
+        code: 8,
+        message: "Webpack plugins array does not exist",
+    },
 };
 
 const [major, minor, patch] = pkg.version.split(".");
@@ -124,6 +152,58 @@ const [major, minor, patch] = pkg.version.split(".");
 gulp.task("init", (done) => {
     isExiting = false;
     done();
+});
+
+gulp.task(
+    "init:dev",
+    gulp.series("init", (done) => {
+        process.env.NODE_ENV = "development";
+        showVariables();
+        done();
+    }),
+);
+
+gulp.task(DEV_SERVER.task, () => {
+    const webpackConfig = getWebpackConfig(process.env);
+    if (!webpackConfig.plugins) {
+        return exit(EC.WEBPACK_PLUGINS_NOEXIST);
+    }
+    webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+    const options = {
+        contentBase: path.join(__dirname, "public"),
+        historyApiFallback: true,
+        publicPath: "/dist/",
+        hot: true,
+        quiet: false,
+        noInfo: false,
+        compress: true,
+        disableHostCheck: true,
+        host: "0.0.0.0",
+        port: 8080,
+        stats: {
+            colors: true,
+            chunks: true,
+        },
+        before: (app: express.Application) =>
+            app.use("/dist/" + "static", express.static("static")),
+    };
+    webpackDevServer.addDevServerEntrypoints(webpackConfig, options);
+    const compiler = webpack(webpackConfig);
+    const server = new webpackDevServer(compiler, options);
+
+    server.listen(options.port, options.host, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.info(
+                `${chalk.blue(
+                    "✪",
+                )} Webpack Development Server is listening on port ${chalk.blue(
+                    options.port.toString(),
+                )}`,
+            );
+        }
+    });
 });
 
 gulp.task(REQUIRE_HEROKU.task, (done) => {
@@ -281,3 +361,5 @@ gulp.task(
 gulp.task(PRE_COMMIT.task, gulp.series("init", REQUIRE_HEROKU.task));
 
 gulp.task(PREPARE_COMMIT.task, gulp.series("init", REQUIRE_HEROKU.task));
+
+gulp.task("default", gulp.series("init:dev", DEV_SERVER.task));

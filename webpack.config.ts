@@ -12,8 +12,8 @@ if (process.env.NODE_ENV === "test") {
     require("dotenv").config({ path: ".env.development" });
 }
 
-const config = (env: string): webpack.Configuration => {
-    const isProduction = env === "production";
+const config = (env: NodeJS.ProcessEnv): webpack.Configuration => {
+    const isProduction = env.NODE_ENV === "production";
     const CSSExtract = new ExtractTextPlugin("styles.css");
     const TSLint = new TSLintPlugin({
         files: ["./src/**/*.ts"],
