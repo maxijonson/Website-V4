@@ -1,9 +1,9 @@
 import * as _ from "lodash";
 import * as React from "react";
 import { useSwipeable } from "react-swipeable";
-import { BREAKPOINTS } from "src/config";
+import { BREAKPOINTS, THEME_TRANSITION_TIME } from "src/config";
 import { Hooks } from "src/modules";
-import { ITheme } from "src/modules/CSS";
+import { fonts, ITheme } from "src/modules/CSS";
 import styled from "styled-components";
 import tinycolor from "tinycolor2";
 
@@ -25,14 +25,24 @@ interface ISectionProps {
 }
 
 const Wrapper = styled.div<{ theme: ITheme }>`
+    transition: all ${THEME_TRANSITION_TIME}s;
+    user-select: none;
     position: relative;
     width: 100vw;
     padding: 1.5% 0;
-    background: ${({ theme }) => theme.colors.sectionBackground};
+    background: ${({ theme }) =>
+        theme.name == "light"
+            ? theme.colors.sectionBackground
+            : tinycolor(theme.colors.sectionBackground)
+                  .lighten(1)
+                  .toRgbString()};
     color: ${({ theme }) => theme.colors.defaultText};
     font-size: 2.3rem;
     margin: 5% 0;
     overflow: hidden;
+    &:focus {
+        outline: none;
+    }
 `;
 
 const Caroussel = styled.div<{
@@ -58,7 +68,7 @@ const Caroussel = styled.div<{
 const Item = styled.div<{ titlePosition: ITitlePosition }>`
     flex: 1 0 100%;
     flex-basis: 100%;
-    padding: 0 2.5%;
+    padding: 0 10% 0 3%;
     display: grid;
     grid-template: ${({ titlePosition }) => {
         switch (titlePosition) {
@@ -73,19 +83,34 @@ const Item = styled.div<{ titlePosition: ITitlePosition }>`
     grid-gap: 2.5rem;
 `;
 
+const TitleOuter = styled.div`
+    display: table;
+    grid-area: title;
+`;
+
+const TitleInner = styled.div`
+    padding: 50% 0;
+    height: 0;
+`;
+
 const Title = styled.div<ISectionItem>`
     font-size: 5.5rem;
-    grid-area: title;
     text-align: center;
     text-transform: uppercase;
+    transform-origin: top left;
     transform: ${({ titlePosition }) =>
         titlePosition != "top" &&
-        (titlePosition == "left" ? "rotate(-90deg)" : "rotate(90deg)")};
+        (titlePosition == "left"
+            ? "rotate(-90deg) translate(-100%)"
+            : "rotate(90deg) translate(0, -100%)")};
+    margin-top: -50%;
+    white-space: nowrap;
 `;
 
 const Content = styled.div`
     grid-area: content;
     text-align: justify;
+    font-family: "${fonts.openSans.family}";
 `;
 
 const Indicator = styled.div<{ active: boolean; theme: ITheme }>`
@@ -142,10 +167,6 @@ export default (props: ISectionProps) => {
         }, SLIDE_TIME),
     );
 
-    React.useEffect(() => {
-        console.log("last", lastPosition, "cur", position);
-    }, [position]);
-
     const next = () => {
         nextThrottled.current(position);
     };
@@ -162,13 +183,31 @@ export default (props: ISectionProps) => {
         setPosition(destination);
         setSliding(true);
     };
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        switch (e.key) {
+            case "ArrowLeft":
+                prev();
+                break;
+            case "ArrowRight":
+                next();
+                break;
+        }
+    };
+    const focus = (e: React.MouseEvent<HTMLDivElement>) =>
+        e.currentTarget.focus();
 
     React.useEffect(() => {
         setSliding(false);
     }, [sliding]);
 
     return (
-        <Wrapper theme={theme} {...swipeHandlers}>
+        <Wrapper
+            theme={theme}
+            {...swipeHandlers}
+            tabIndex="0"
+            onKeyDown={handleKeyDown}
+            onClick={focus}
+        >
             <Caroussel
                 sliding={sliding}
                 direction={direction}
@@ -177,10 +216,14 @@ export default (props: ISectionProps) => {
             >
                 {_.map(items, ({ titlePosition, title, content }, index) => (
                     <Item titlePosition={titlePosition || "left"} key={index}>
-                        <Title
-                            children={title}
-                            titlePosition={titlePosition || "left"}
-                        />
+                        <TitleOuter>
+                            <TitleInner>
+                                <Title
+                                    children={title}
+                                    titlePosition={titlePosition || "left"}
+                                />
+                            </TitleInner>
+                        </TitleOuter>
                         <Content children={content} />
                     </Item>
                 ))}
@@ -193,15 +236,16 @@ export default (props: ISectionProps) => {
                     width: "100%",
                 }}
             >
-                {_.times(items.length, (i) => (
-                    <Indicator
-                        data-index={i}
-                        theme={theme}
-                        key={i}
-                        active={i == position}
-                        onClick={navigate}
-                    />
-                ))}
+                {items.length > 1 &&
+                    _.times(items.length, (i) => (
+                        <Indicator
+                            data-index={i}
+                            theme={theme}
+                            key={i}
+                            active={i == position}
+                            onClick={navigate}
+                        />
+                    ))}
             </div>
         </Wrapper>
     );

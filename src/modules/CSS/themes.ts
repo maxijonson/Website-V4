@@ -87,7 +87,7 @@ export const themes: IThemes = {
             modalBg: colors.veryDark.black,
             modalText: colors.normal.white,
             modalShadow: colors.veryDark.black,
-            sectionBackground: colors.veryDark.black,
+            sectionBackground: colors.ultraDark.black,
         },
     },
 };
