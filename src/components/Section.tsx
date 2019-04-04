@@ -27,32 +27,37 @@ interface ISectionProps {
 const Wrapper = styled.div<{ theme: ITheme }>`
     position: relative;
     width: 100vw;
-    padding: 1% 0;
+    padding: 1.5% 0;
     background: ${({ theme }) => theme.colors.sectionBackground};
+    color: ${({ theme }) => theme.colors.defaultText};
     font-size: 2.3rem;
     margin: 5% 0;
     overflow: hidden;
 `;
 
-const Caroussel = styled.div<{ sliding: boolean; direction: IDirection }>`
+const Caroussel = styled.div<{
+    sliding: boolean;
+    direction: IDirection;
+    position: number;
+    lastPosition: number;
+}>`
     display: flex;
     transition: ${({ sliding }) =>
         sliding ? "none" : `transform ${SLIDE_TIME}ms ease`};
-    transform: ${({ sliding, direction }) => {
+    transform: ${({ sliding, direction, position, lastPosition }) => {
         if (!sliding) {
-            return "translateX(-100%)";
+            return `translateX(-${position * 100}%)`;
         }
         if (direction == "prev") {
-            return "translateX(-200%)";
+            return `translateX(-${lastPosition * 100}%)`;
         }
-        return "translateX(0)";
+        return `translateX(-${lastPosition * 100}%)`;
     }};
 `;
 
-const Item = styled.div<{ titlePosition: ITitlePosition; order: number }>`
+const Item = styled.div<{ titlePosition: ITitlePosition }>`
     flex: 1 0 100%;
     flex-basis: 100%;
-    order: ${({ order }) => order};
     padding: 0 2.5%;
     display: grid;
     grid-template: ${({ titlePosition }) => {
@@ -72,6 +77,7 @@ const Title = styled.div<ISectionItem>`
     font-size: 5.5rem;
     grid-area: title;
     text-align: center;
+    text-transform: uppercase;
     transform: ${({ titlePosition }) =>
         titlePosition != "top" &&
         (titlePosition == "left" ? "rotate(-90deg)" : "rotate(90deg)")};
@@ -97,8 +103,8 @@ const Indicator = styled.div<{ active: boolean; theme: ITheme }>`
                   .toRgbString()};
 
     @media (min-width: ${BREAKPOINTS.smpx}) {
-        width: 1rem;
-        height: 1rem;
+        width: 0.75rem;
+        height: 0.75rem;
         margin: 0 0.75rem;
     }
 `;
@@ -115,12 +121,14 @@ export default (props: ISectionProps) => {
 
     // State
     const [position, setPosition] = React.useState(startIndex || 0);
+    const [lastPosition, setLastPosition] = React.useState(startIndex || 0);
     const [sliding, setSliding] = React.useState(false);
     const [direction, setDirection] = React.useState<IDirection>("next");
 
     const nextThrottled = React.useRef(
         _.throttle((pos: number) => {
             setDirection("next");
+            setLastPosition(pos);
             setPosition(pos == items.length - 1 ? 0 : pos + 1);
             setSliding(true);
         }, SLIDE_TIME),
@@ -128,10 +136,15 @@ export default (props: ISectionProps) => {
     const prevThrottled = React.useRef(
         _.throttle((pos: number) => {
             setDirection("prev");
+            setLastPosition(pos);
             setPosition(pos == 0 ? items.length - 1 : pos - 1);
             setSliding(true);
         }, SLIDE_TIME),
     );
+
+    React.useEffect(() => {
+        console.log("last", lastPosition, "cur", position);
+    }, [position]);
 
     const next = () => {
         nextThrottled.current(position);
@@ -144,13 +157,11 @@ export default (props: ISectionProps) => {
         if (destination == position) {
             return;
         }
-        setPosition(destination);
         setDirection(destination > position ? "next" : "prev");
+        setLastPosition(position);
+        setPosition(destination);
         setSliding(true);
     };
-
-    const getOrder = (itemIndex: number) =>
-        (items.length + 1 - position + itemIndex) % items.length;
 
     React.useEffect(() => {
         setSliding(false);
@@ -158,13 +169,14 @@ export default (props: ISectionProps) => {
 
     return (
         <Wrapper theme={theme} {...swipeHandlers}>
-            <Caroussel sliding={sliding} direction={direction}>
+            <Caroussel
+                sliding={sliding}
+                direction={direction}
+                position={position}
+                lastPosition={lastPosition}
+            >
                 {_.map(items, ({ titlePosition, title, content }, index) => (
-                    <Item
-                        titlePosition={titlePosition || "left"}
-                        key={index}
-                        order={getOrder(index)}
-                    >
+                    <Item titlePosition={titlePosition || "left"} key={index}>
                         <Title
                             children={title}
                             titlePosition={titlePosition || "left"}
@@ -173,7 +185,14 @@ export default (props: ISectionProps) => {
                     </Item>
                 ))}
             </Caroussel>
-            <div style={{ textAlign: "center" }}>
+            <div
+                style={{
+                    textAlign: "center",
+                    position: "absolute",
+                    bottom: "0.25rem",
+                    width: "100%",
+                }}
+            >
                 {_.times(items.length, (i) => (
                     <Indicator
                         data-index={i}
