@@ -34,5 +34,9 @@
     "REQUIRE_NOT_NCP": {
         "task": "require:not-ncp",
         "hook": null
+    },
+    "DEV_SERVER": {
+        "task": "server:dev",
+        "hook": null
     }
 }
