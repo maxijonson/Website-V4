@@ -22,6 +22,11 @@
             "subtitle": "L'Expérience par la Pratique",
             "title": "Mon terrain de jeu"
         },
+        "sections": {
+            "about": {
+                "title": "À propos de moi"
+            }
+        },
         "share": {
             "subtitle": "Partager, c'est aimer",
             "title": "Le Code"

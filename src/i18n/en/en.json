@@ -22,6 +22,11 @@
             "subtitle": "Experience by practice",
             "title": "My Playground"
         },
+        "sections": {
+            "about": {
+                "title": "About me"
+            }
+        },
         "share": {
             "subtitle": "Sharing is caring",
             "title": "The Code"
