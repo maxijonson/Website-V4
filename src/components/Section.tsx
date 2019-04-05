@@ -29,7 +29,7 @@ const Wrapper = styled.div<{ theme: ITheme }>`
     user-select: none;
     position: relative;
     width: 100vw;
-    padding: 1.5% 0;
+    padding: 2% 0;
     background: ${({ theme }) =>
         theme.name == "light"
             ? theme.colors.sectionBackground
@@ -68,24 +68,34 @@ const Caroussel = styled.div<{
 const Item = styled.div<{ titlePosition: ITitlePosition }>`
     flex: 1 0 100%;
     flex-basis: 100%;
-    padding: 0 10% 0 3%;
+    padding: ${({ titlePosition }) => {
+        switch (titlePosition) {
+            case "top":
+                return "0 12.5% 0 12.5%";
+            case "right":
+                return "0 3% 0 12.5%";
+            case "left":
+                return "0 12.5% 0 3%";
+        }
+    }};
     display: grid;
     grid-template: ${({ titlePosition }) => {
         switch (titlePosition) {
             case "top":
-                return "[title] 1fr [content] auto / [title content] auto";
+                return "[title] 5% [content] auto / [title content] auto";
             case "right":
-                return "[title content] auto / [content] 1fr [title] auto";
+                return "[title content] auto / [content] 1fr [title] 10%";
             case "left":
-                return "[title content] auto / [title] auto [content] 1fr";
+                return "[title content] auto / [title] 10% [content] 1fr";
         }
     }};
-    grid-gap: 2.5rem;
+    gap: 2.5rem;
 `;
 
 const TitleOuter = styled.div`
     display: table;
     grid-area: title;
+    margin: auto 0;
 `;
 
 const TitleInner = styled.div`

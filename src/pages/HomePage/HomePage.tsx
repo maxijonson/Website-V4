@@ -1,4 +1,5 @@
 import * as _ from "lodash";
+import moment from "moment";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Cards, Section, ViewportContainer } from "src/components";
@@ -77,11 +78,15 @@ export default () => {
             </Cards.Fade>
 
             <Section
-                items={_.times(10, (i) => ({
-                    title: `Title ${i}`,
-                    content:
-                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore itaque rem quasi impedit dicta culpa, cupiditate nisi quis nemo necessitatibus beatae dolor! Obcaecati non quaerat totam quam omnis nisi dolorem?",
-                }))}
+                items={[
+                    {
+                        title: t("home.sections.about.title"),
+                        content: t("long.home.sections.about.content", {
+                            postProcess: "markdown-jsx",
+                            age: moment().diff("1998-07-27", "years"),
+                        }),
+                    },
+                ]}
             />
         </>
     );
