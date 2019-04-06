@@ -10,6 +10,8 @@ export const STYLE_CENTERED: React.CSSProperties = {
 };
 
 export const BREAKPOINTS = {
+    xs: 0,
+    xspx: "0px",
     sm: 600,
     smpx: "600px",
     md: 768,

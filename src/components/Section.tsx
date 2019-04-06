@@ -7,7 +7,7 @@ import { fonts, ITheme } from "src/modules/CSS";
 import styled from "styled-components";
 import tinycolor from "tinycolor2";
 
-const { useConnect } = Hooks;
+const { useConnect, useCurrentBreakpoint } = Hooks;
 const SLIDE_TIME = 1000;
 
 type ITitlePosition = "top" | "right" | "left";
@@ -30,12 +30,7 @@ const Wrapper = styled.div<{ theme: ITheme }>`
     position: relative;
     width: 100vw;
     padding: 2% 0;
-    background: ${({ theme }) =>
-        theme.name == "light"
-            ? theme.colors.sectionBackground
-            : tinycolor(theme.colors.sectionBackground)
-                  .lighten(1)
-                  .toRgbString()};
+    background: ${({ theme }) => theme.colors.sectionBackground};
     color: ${({ theme }) => theme.colors.defaultText};
     font-size: 2.3rem;
     margin: 5% 0;
@@ -124,9 +119,9 @@ const Content = styled.div`
 `;
 
 const Indicator = styled.div<{ active: boolean; theme: ITheme }>`
-    width: 1.5rem;
-    height: 1.5rem;
-    margin: 0 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    margin: 0 2rem;
     border-radius: 50%;
     display: inline-block;
     cursor: pointer;
@@ -153,6 +148,7 @@ export default (props: ISectionProps) => {
         preventDefaultTouchmoveEvent: true,
         trackMouse: true,
     });
+    const screenBreakpoint = useCurrentBreakpoint("screen");
 
     // State
     const [position, setPosition] = React.useState(startIndex || 0);
@@ -214,9 +210,17 @@ export default (props: ISectionProps) => {
         <Wrapper
             theme={theme}
             {...swipeHandlers}
-            tabIndex="0"
+            tabIndex={
+                (screenBreakpoint != "xs" && screenBreakpoint != "sm" && "0") ||
+                null
+            }
             onKeyDown={handleKeyDown}
-            onClick={focus}
+            onClick={
+                (screenBreakpoint != "xs" &&
+                    screenBreakpoint != "sm" &&
+                    focus) ||
+                null
+            }
         >
             <Caroussel
                 sliding={sliding}

@@ -8,7 +8,7 @@ export type IShade = { [name in shade]: IColors };
 
 export const colors: IShade = {
     dark: {
-        black: "#2A2621",
+        black: "#11100D",
         blue: "#397EA1",
         navy: "#4B5C71",
         orange: "#BA651C",
@@ -16,7 +16,7 @@ export const colors: IShade = {
         red: "#8D1E22",
     },
     light: {
-        black: "#6F6A66",
+        black: "#171611",
         blue: "#7EC3E5",
         navy: "#90A1B6",
         orange: "#FFA961",
@@ -24,7 +24,7 @@ export const colors: IShade = {
         red: "#D16367",
     },
     normal: {
-        black: "#39332D",
+        black: "#14130F",
         blue: "#4EADDC",
         navy: "#677E9B",
         orange: "#FF8A26",
@@ -40,7 +40,7 @@ export const colors: IShade = {
         red: "#240809",
     },
     ultraLight: {
-        black: "#DBD9D8",
+        black: "#353227",
         blue: "#DEF0F8",
         navy: "#E3E7EC",
         orange: "#FFE9D7",
@@ -48,7 +48,7 @@ export const colors: IShade = {
         red: "#F3D8D9",
     },
     veryDark: {
-        black: "#1A1815",
+        black: "#0E0D0B",
         blue: "#244F64",
         navy: "#2F3A47",
         orange: "#743F12",
@@ -56,7 +56,7 @@ export const colors: IShade = {
         red: "#581315",
     },
     veryLight: {
-        black: "#A5A29F",
+        black: "#26241C",
         blue: "#AED9EF",
         navy: "#B9C4D1",
         orange: "#FFC99C",

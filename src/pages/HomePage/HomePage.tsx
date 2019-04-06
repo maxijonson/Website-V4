@@ -86,6 +86,10 @@ export default () => {
                             age: moment().diff("1998-07-27", "years"),
                         }),
                     },
+                    {
+                        title: t("home.sections.youtube.title"),
+                        content: t("long.home.sections.youtube.content"),
+                    },
                 ]}
             />
         </>
