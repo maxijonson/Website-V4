@@ -132,7 +132,7 @@ const Indicator = styled.div<{ active: boolean; theme: ITheme }>`
                   .setAlpha(0.5)
                   .toRgbString()};
 
-    @media (min-width: ${BREAKPOINTS.smpx}) {
+    @media (min-width: ${BREAKPOINTS.mdpx}) {
         width: 0.75rem;
         height: 0.75rem;
         margin: 0 0.75rem;

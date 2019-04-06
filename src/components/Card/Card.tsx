@@ -130,8 +130,8 @@ const DImageHider = styled.div`
     transform: ${({ theme: { bodyAlignment, hasRevealed } }: IThemeProps) =>
         hasRevealed &&
         (bodyAlignment == "left"
-            ? "skew(10deg) translateX(-70%)"
-            : "skew(-10deg) translateX(70%)")};
+            ? "skew(10deg) translateX(-70%) scale(1.1)"
+            : "skew(-10deg) translateX(70%) scale(1.1)")};
     transition: all ${THEME_TRANSITION_TIME}s, transform 1s;
     width: 100%;
     height: 100%;
