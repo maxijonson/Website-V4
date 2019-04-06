@@ -7,6 +7,22 @@ export type IColors = { [name in Color]: string };
 export type IShade = { [name in shade]: IColors };
 
 export const colors: IShade = {
+    pitchDark: {
+        black: "#030303",
+        blue: "#04080A",
+        navy: "#050607",
+        orange: "#0B0602",
+        white: "#0A0A0A",
+        red: "#090203",
+    },
+    pitchLight: {
+        black: "#F8F8F7",
+        blue: "#F8FCFD",
+        navy: "#F9FAFB",
+        orange: "#FFFBF7",
+        white: "#FDFDFD",
+        red: "#FCF7F8",
+    },
     dark: {
         black: "#11100D",
         blue: "#397EA1",
