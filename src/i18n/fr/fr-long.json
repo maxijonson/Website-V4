@@ -6,6 +6,9 @@
         "sections": {
             "about": {
                 "content": "Si vous ne me connaissez pas déjà, laissez-moi vous mettre à niveau! Je suis un Canadien de {{age}} ans originaire de Montréal et oui, nous avons du lait et des chips au ketchup et non, nous n'avons pas d'ours polaires qui errent par hasard dans nos rues! Je parle français et anglais (pas de chinois, mais je connais les gros mots!). <br /> <br /> Outre mon amour pour la programmation, je pratiquais divers arts martiaux de 8 à 16 ans: judo, aïkido et principalement du muay thaï. J'aime aussi jouer au golf pendant l'été et skier pendant notre hiver sans merci. Je sais aussi jouer de la guitare et préfère jouer « fingerstyle » plutôt que de gratter. En ce qui concerne le gaming, je préfère les mêmes vieux jeux FPS: jeux Call of Duty recyclés, jeux Battlefield pilotés par les DLC et les BRs imitateurs. Un jeu m'a marqué pour la vie cependant: Bioshock, en particulier Infinite. <br /> <br /> J'ai une dépendance étrange au chocolat, rien d’extraordinaire, un simple chocolat au lait alimente ma dépendance. J'aime les côtes, les ailes et les fajitas, ça doit être la sauce ou quelque chose comme ça! J'ai une grande faiblesse pour les massages, tout bon ami à moi sait qu'il peut me toucher le dos et m'envoyer dans une transe profonde. Je prends 2 crèmes et 1 sucre dans mon café et je préfère le café McDonald’s au café renommé de Tim Horton, peut-être parce que j’ai travaillé chez Tim pendant deux ans et demi…"
+            },
+            "youtube": {
+                "content": "Youtube content"
             }
         },
         "share": {

@@ -1,6 +1,8 @@
+import * as _ from "lodash";
 import * as React from "react";
 import { Dispatch } from "redux";
 import { store } from "src/app";
+import { BREAKPOINTS } from "src/config";
 import { Utils } from "src/modules";
 
 export * from "./useStyled";
@@ -114,4 +116,49 @@ export const useSetTimeout = (cb: () => void, time: number = 1000) => {
             window.clearTimeout(timeout);
         }
     };
+};
+
+type IBreakpoint = "xs" | "sm" | "md" | "lg" | "xl";
+type IBreakpointMode = "screen" | "window";
+
+export const useCurrentBreakpoint = (mode: IBreakpointMode = "window") => {
+    const [breakpoint, setBreakpoint] = React.useState<IBreakpoint>("xs");
+
+    const getBreakpoint = (width: number): IBreakpoint => {
+        if (width >= BREAKPOINTS.xl) {
+            return "xl";
+        }
+        if (width >= BREAKPOINTS.lg) {
+            return "lg";
+        }
+        if (width >= BREAKPOINTS.md) {
+            return "md";
+        }
+        if (width >= BREAKPOINTS.sm) {
+            return "sm";
+        }
+
+        return "xs";
+    };
+
+    const onWindowResize = React.useCallback(
+        _.throttle(() => {
+            setBreakpoint(
+                getBreakpoint(
+                    mode === "window" ? window.innerWidth : screen.width,
+                ),
+            );
+        }, 500),
+        [],
+    );
+
+    React.useLayoutEffect(() => {
+        window.addEventListener("resize", onWindowResize);
+        onWindowResize();
+        return () => {
+            window.removeEventListener("resize", onWindowResize);
+        };
+    }, []);
+
+    return breakpoint;
 };

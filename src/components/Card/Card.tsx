@@ -175,20 +175,18 @@ const Card = styled.div`
     width: 75%;
     display: grid;
     margin: 5% auto;
-    box-shadow: 0 0.5rem 0.5rem
+    box-shadow: 0 0.25rem 0.5rem
         ${({ theme: { theme } }: IThemeProps) => theme.colors.cardShadow};
     border-radius: 0.25em;
-    font-size: 2.3rem;
     color: ${({ theme: { theme } }: IThemeProps) => theme.colors.defaultText};
     transition: all ${THEME_TRANSITION_TIME}s;
     text-align: justify;
     overflow: hidden;
 
-    @media (max-width: ${BREAKPOINTS.smpx}) {
-        font-size: 4rem;
-    }
+    font-size: 2.3rem;
 
     @media (min-width: ${BREAKPOINTS.smpx}) {
+        font-size: 1.8rem;
         grid-gap: 1rem;
         grid-template-columns: ${({
             theme: { imageUrl, bodyAlignment },

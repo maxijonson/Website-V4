@@ -25,6 +25,9 @@
         "sections": {
             "about": {
                 "title": "About me"
+            },
+            "youtube": {
+                "title": "Youtube"
             }
         },
         "share": {

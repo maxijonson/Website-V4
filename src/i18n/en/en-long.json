@@ -6,6 +6,9 @@
         "sections": {
             "about": {
                 "content": "If you don’t know me already, let me catch you up to speed! I am a {{age}} years old Canadian from Montreal and yes, we have bagged milk and ketchup chips and no, we don’t have polar bears just randomly roaming our streets! I speak both French and English (no Chinese, but I know the bad words!). <br /> <br /> Other than my love for programming, I also used to do a variety of martial arts from the age of 8 to 16: Judo, Aikido and mostly Muay Thai. I also enjoy golfing during the summer and skiing during our merciless winter. I also know how to play guitar and prefer playing fingerstyle over strumming. Gaming wise, I prefer same old FPS games: recycled Call of Duty games, DLC driven Battlefield games and copycats BRs. One game marked me for life though: Bioshock, particularly Infinite. <br /> <br /> I have some weird addiction to chocolate, nothing fancy, just plain milk chocolate fuels my addiction. I like ribs, wings and fajitas, must be the sauce or something! I have a huge weakness to massages, any good friend of mine knows that they can touch my back and send me into a deep trance. I take 2 creams and 1 sugar in my coffee and prefer McDonald’s coffee over Tim Horton’s renowned coffee, maybe because I worked at Timmies for two and a half years… "
+            },
+            "youtube": {
+                "content": "Youtube content"
             }
         },
         "share": {
