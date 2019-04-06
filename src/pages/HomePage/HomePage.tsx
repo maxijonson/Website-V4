@@ -88,7 +88,9 @@ export default () => {
                     },
                     {
                         title: t("home.sections.youtube.title"),
-                        content: t("long.home.sections.youtube.content"),
+                        content: t("long.home.sections.youtube.content", {
+                            postProcess: "markdown-jsx",
+                        }),
                     },
                 ]}
             />

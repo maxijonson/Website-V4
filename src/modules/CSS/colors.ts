@@ -1,6 +1,13 @@
 import { shade } from "./shades";
 
-export type Color = "black" | "blue" | "navy" | "orange" | "white" | "red";
+export type Color =
+    | "black"
+    | "blue"
+    | "navy"
+    | "orange"
+    | "white"
+    | "red"
+    | "onyx";
 
 export type IColors = { [name in Color]: string };
 
@@ -14,6 +21,7 @@ export const colors: IShade = {
         orange: "#0B0602",
         white: "#0A0A0A",
         red: "#090203",
+        onyx: "#030303",
     },
     pitchLight: {
         black: "#F8F8F7",
@@ -22,6 +30,7 @@ export const colors: IShade = {
         orange: "#FFFBF7",
         white: "#FDFDFD",
         red: "#FCF7F8",
+        onyx: "#F8F8F8",
     },
     dark: {
         black: "#11100D",
@@ -30,6 +39,7 @@ export const colors: IShade = {
         orange: "#BA651C",
         white: "#A5A6A2",
         red: "#8D1E22",
+        onyx: "#25272A",
     },
     light: {
         black: "#171611",
@@ -38,6 +48,7 @@ export const colors: IShade = {
         orange: "#FFA961",
         white: "#E9EBE7",
         red: "#D16367",
+        onyx: "#696C6F",
     },
     normal: {
         black: "#14130F",
@@ -46,6 +57,7 @@ export const colors: IShade = {
         orange: "#FF8A26",
         white: "#E2E4DE",
         red: "#C1292E",
+        onyx: "#323539",
     },
     ultraDark: {
         black: "#0B0A09",
@@ -54,6 +66,7 @@ export const colors: IShade = {
         orange: "#2F1A07",
         white: "#2A2A29",
         red: "#240809",
+        onyx: "#0A0A0B",
     },
     ultraLight: {
         black: "#353227",
@@ -62,6 +75,7 @@ export const colors: IShade = {
         orange: "#FFE9D7",
         white: "#F9FAF9",
         red: "#F3D8D9",
+        onyx: "#D9DADB",
     },
     veryDark: {
         black: "#0E0D0B",
@@ -70,6 +84,7 @@ export const colors: IShade = {
         orange: "#743F12",
         white: "#676865",
         red: "#581315",
+        onyx: "#17191A",
     },
     veryLight: {
         black: "#26241C",
@@ -78,6 +93,7 @@ export const colors: IShade = {
         orange: "#FFC99C",
         white: "#F1F2F0",
         red: "#E29DA0",
+        onyx: "#A1A3A5",
     },
 };
 
