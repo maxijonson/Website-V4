@@ -26,6 +26,9 @@
             "about": {
                 "title": "À propos de moi"
             },
+            "programming": {
+                "title": "Programmation"
+            },
             "youtube": {
                 "title": "Youtube"
             }
