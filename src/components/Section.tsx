@@ -77,7 +77,7 @@ const Item = styled.div<{ titlePosition: ITitlePosition }>`
     grid-template: ${({ titlePosition }) => {
         switch (titlePosition) {
             case "top":
-                return "[title] 5% [content] auto / [title content] auto";
+                return "[title] auto [content] 2fr / [title content] auto";
             case "right":
                 return "[title content] auto / [content] 1fr [title] 10%";
             case "left":

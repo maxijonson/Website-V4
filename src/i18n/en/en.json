@@ -33,7 +33,20 @@
                 "title": "Youtube"
             },
             "experience": {
-                "title": "Experience"
+                "title": "Experience",
+                "legend": "Self-taught",
+                "levels": {
+                    "advanced": "Advanced",
+                    "intermediate": "Intermediate",
+                    "basic": "Basic"
+                },
+                "categories": {
+                    "application": "Application",
+                    "web": "Web",
+                    "database": "Database",
+                    "os": "OS",
+                    "mobile": "Mobile"
+                }
             }
         },
         "share": {
