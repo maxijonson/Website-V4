@@ -101,7 +101,6 @@ export default () => {
                     },
                     {
                         title: t("home.sections.experience.title"),
-                        titlePosition: "top",
                         content: <HomeExperience />,
                     },
                 ]}
