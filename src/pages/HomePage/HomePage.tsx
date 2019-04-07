@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Cards, Section, ViewportContainer } from "src/components";
 import { PATHS, THEME_TRANSITION_TIME } from "src/config/config";
 import { Hooks } from "src/modules";
+import HomeExperience from "./HomeExperience";
 import HomeLanding from "./HomeLanding";
 
 const { useMapState } = Hooks;
@@ -97,6 +98,11 @@ export default () => {
                         content: t("long.home.sections.programming.content", {
                             postProcess: "markdown-jsx",
                         }),
+                    },
+                    {
+                        title: t("home.sections.experience.title"),
+                        titlePosition: "top",
+                        content: <HomeExperience />,
                     },
                 ]}
             />

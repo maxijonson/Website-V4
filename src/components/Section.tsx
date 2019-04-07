@@ -87,29 +87,30 @@ const Item = styled.div<{ titlePosition: ITitlePosition }>`
     gap: 2.5rem;
 `;
 
-const TitleOuter = styled.div`
-    display: table;
+const TitleOuter = styled.div<{ titlePosition: ITitlePosition }>`
+    display: ${({ titlePosition }) => titlePosition != "top" && "table"};
     grid-area: title;
-    margin: auto 0;
+    margin: ${({ titlePosition }) => titlePosition != "top" && "auto 0"};
 `;
 
-const TitleInner = styled.div`
-    padding: 50% 0;
-    height: 0;
+const TitleInner = styled.div<{ titlePosition: ITitlePosition }>`
+    padding: ${({ titlePosition }) => titlePosition != "top" && "50% 0"};
+    height: ${({ titlePosition }) => titlePosition != "top" && 0};
 `;
 
 const Title = styled.div<ISectionItem>`
     font-size: 5.5rem;
     text-align: center;
     text-transform: uppercase;
-    transform-origin: top left;
+    transform-origin: ${({ titlePosition }) =>
+        titlePosition != "top" && "top left"};
     transform: ${({ titlePosition }) =>
         titlePosition != "top" &&
         (titlePosition == "left"
             ? "rotate(-90deg) translate(-100%)"
             : "rotate(90deg) translate(0, -100%)")};
-    margin-top: -50%;
-    white-space: nowrap;
+    margin-top: ${({ titlePosition }) => titlePosition != "top" && "-50%"};
+    white-space: ${({ titlePosition }) => titlePosition != "top" && "nowrap"};
 `;
 
 const Content = styled.div`
@@ -209,6 +210,7 @@ export default (props: ISectionProps) => {
 
     return (
         <Wrapper
+            className="section"
             theme={theme}
             {...swipeHandlers}
             tabIndex={
@@ -224,16 +226,28 @@ export default (props: ISectionProps) => {
             }
         >
             <Caroussel
+                className="section__caroussel"
                 sliding={sliding}
                 direction={direction}
                 position={position}
                 lastPosition={lastPosition}
             >
                 {_.map(items, ({ titlePosition, title, content }, index) => (
-                    <Item titlePosition={titlePosition || "left"} key={index}>
-                        <TitleOuter>
-                            <TitleInner>
+                    <Item
+                        titlePosition={titlePosition || "left"}
+                        key={index}
+                        className="section__item"
+                    >
+                        <TitleOuter
+                            className="section__title-outer"
+                            titlePosition={titlePosition || "left"}
+                        >
+                            <TitleInner
+                                className="section__title-inner"
+                                titlePosition={titlePosition || "left"}
+                            >
                                 <Title
+                                    className="section__title"
                                     children={title}
                                     titlePosition={titlePosition || "left"}
                                 />
@@ -244,6 +258,7 @@ export default (props: ISectionProps) => {
                 ))}
             </Caroussel>
             <div
+                className="section__indicators"
                 style={{
                     textAlign: "center",
                     position: "absolute",
@@ -254,6 +269,7 @@ export default (props: ISectionProps) => {
                 {items.length > 1 &&
                     _.times(items.length, (i) => (
                         <Indicator
+                            className="section__indicator"
                             data-index={i}
                             theme={theme}
                             key={i}
