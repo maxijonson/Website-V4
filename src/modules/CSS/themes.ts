@@ -23,7 +23,9 @@ export type Section =
     | "modalBg"
     | "modalText"
     | "modalShadow"
-    | "sectionBackground";
+    | "sectionBackground"
+    | "tooltip"
+    | "tooltipText";
 export type Theme = "light" | "dark";
 
 export type IPalette = { [name in Section]: string };
@@ -61,6 +63,8 @@ export const themes: IThemes = {
             modalText: colors.normal.black,
             modalShadow: colors.normal.black,
             sectionBackground: colors.pitchLight.white,
+            tooltip: colors.ultraDark.black,
+            tooltipText: colors.normal.white,
         },
     },
     dark: {
@@ -88,6 +92,8 @@ export const themes: IThemes = {
             modalText: colors.normal.white,
             modalShadow: colors.veryDark.black,
             sectionBackground: colors.dark.onyx,
+            tooltip: colors.veryDark.onyx,
+            tooltipText: colors.normal.white,
         },
     },
 };

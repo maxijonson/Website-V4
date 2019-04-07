@@ -25,3 +25,5 @@ export { default as Modal } from "./Modal/Modal";
 export { default as ErrorModal } from "./Modal/ErrorModal";
 
 export { default as Section } from "./Section";
+
+export { default as Tooltip } from "./Tooltip";
