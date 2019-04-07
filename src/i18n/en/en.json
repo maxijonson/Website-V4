@@ -26,27 +26,27 @@
             "about": {
                 "title": "About me"
             },
+            "experience": {
+                "categories": {
+                    "application": "Application",
+                    "database": "Database",
+                    "mobile": "Mobile",
+                    "os": "OS",
+                    "web": "Web"
+                },
+                "legend": "Self-taught",
+                "levels": {
+                    "advanced": "Advanced",
+                    "basic": "Basic",
+                    "intermediate": "Intermediate"
+                },
+                "title": "Experience"
+            },
             "programming": {
                 "title": "Programming"
             },
             "youtube": {
                 "title": "Youtube"
-            },
-            "experience": {
-                "title": "Experience",
-                "legend": "Self-taught",
-                "levels": {
-                    "advanced": "Advanced",
-                    "intermediate": "Intermediate",
-                    "basic": "Basic"
-                },
-                "categories": {
-                    "application": "Application",
-                    "web": "Web",
-                    "database": "Database",
-                    "os": "OS",
-                    "mobile": "Mobile"
-                }
             }
         },
         "share": {

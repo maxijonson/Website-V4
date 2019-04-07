@@ -31,6 +31,22 @@
             },
             "youtube": {
                 "title": "Youtube"
+            },
+            "experience": {
+                "title": "Expérience",
+                "legend": "Autodidacte",
+                "levels": {
+                    "advanced": "Avancé",
+                    "intermediate": "Intermédiaire",
+                    "basic": "Base"
+                },
+                "categories": {
+                    "application": "Application",
+                    "web": "Web",
+                    "database": "Base de données",
+                    "os": "SE",
+                    "mobile": "Mobile"
+                }
             }
         },
         "share": {
