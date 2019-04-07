@@ -92,6 +92,12 @@ export default () => {
                             postProcess: "markdown-jsx",
                         }),
                     },
+                    {
+                        title: t("home.sections.programming.title"),
+                        content: t("long.home.sections.programming.content", {
+                            postProcess: "markdown-jsx",
+                        }),
+                    },
                 ]}
             />
         </>

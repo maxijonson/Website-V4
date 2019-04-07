@@ -32,7 +32,7 @@ const Wrapper = styled.div<{ theme: ITheme }>`
     padding: 2% 0;
     background: ${({ theme }) => theme.colors.sectionBackground};
     color: ${({ theme }) => theme.colors.defaultText};
-    font-size: 2.3rem;
+    font-size: 2rem;
     margin: 5% 0;
     overflow: hidden;
     &:focus {
@@ -115,6 +115,7 @@ const Title = styled.div<ISectionItem>`
 const Content = styled.div`
     grid-area: content;
     text-align: justify;
+    margin: auto 0;
     font-family: "${fonts.openSans.family}";
 `;
 

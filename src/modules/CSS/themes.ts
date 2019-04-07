@@ -67,7 +67,7 @@ export const themes: IThemes = {
         name: "dark",
         colors: {
             pageBackground: colors.veryDark.onyx,
-            defaultText: colors.ultraLight.white,
+            defaultText: colors.pitchLight.white,
             themeSwitchOn: colors.normal.white,
             themeSwitchOff: colors.normal.onyx,
             intro: colors.normal.white,
