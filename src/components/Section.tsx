@@ -1,6 +1,7 @@
 import * as _ from "lodash";
 import * as React from "react";
 import { useSwipeable } from "react-swipeable";
+import { Tooltip } from "src/components";
 import { BREAKPOINTS, THEME_TRANSITION_TIME } from "src/config";
 import { Hooks } from "src/modules";
 import { fonts, ITheme } from "src/modules/CSS";
@@ -268,14 +269,15 @@ export default (props: ISectionProps) => {
             >
                 {items.length > 1 &&
                     _.times(items.length, (i) => (
-                        <Indicator
-                            className="section__indicator"
-                            data-index={i}
-                            theme={theme}
-                            key={i}
-                            active={i == position}
-                            onClick={navigate}
-                        />
+                        <Tooltip tip={items[i].title || ""} key={i}>
+                            <Indicator
+                                className="section__indicator"
+                                data-index={i}
+                                theme={theme}
+                                active={i == position}
+                                onClick={navigate}
+                            />
+                        </Tooltip>
                     ))}
             </div>
         </Wrapper>

@@ -23,6 +23,7 @@ export const BREAKPOINTS = {
 };
 
 export const ZINDEX = {
+    tooltip: 10,
     header: 100,
     modal: 200,
 };
