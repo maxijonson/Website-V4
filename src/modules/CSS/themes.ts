@@ -60,7 +60,7 @@ export const themes: IThemes = {
             modalBg: colors.veryLight.white,
             modalText: colors.normal.black,
             modalShadow: colors.normal.black,
-            sectionBackground: colors.normal.white,
+            sectionBackground: colors.pitchLight.white,
         },
     },
     dark: {
