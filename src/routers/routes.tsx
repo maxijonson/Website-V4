@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import { ConnectedComponentClass } from "react-redux";
 import { store } from "src/app";
-import { HomePage, NotFoundPage } from "../pages";
+import { HomePage, NotFoundPage, PortfolioPage } from "../pages";
 
 export interface IRoute {
     name: string;
@@ -40,19 +40,19 @@ export const routes: IRoute[] = [
             />
         ),
     },
-    // {
-    //     name: "header.portfolio",
-    //     path: "/portfolio",
-    //     key: "portfolio",
-    //     exact: true,
-    //     component: HomePage,
-    //     Icon: () => (
-    //         <FontAwesomeIcon
-    //             icon="book-open"
-    //             color={store.getState().theme.colors.defaultText}
-    //         />
-    //     ),
-    // },
+    {
+        name: "header.portfolio",
+        path: "/portfolio",
+        key: "portfolio",
+        exact: true,
+        component: PortfolioPage,
+        Icon: () => (
+            <FontAwesomeIcon
+                icon="book-open"
+                color={store.getState().theme.colors.defaultText}
+            />
+        ),
+    },
     {
         name: "Intellibot",
         path: "/intellibot",

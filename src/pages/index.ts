@@ -1,4 +1,5 @@
-import HomePage from "./HomePage/HomePage";
-export * from "./NotFoundPage";
+export { default as NotFoundPage } from "./NotFoundPage";
 
-export { HomePage };
+export { default as HomePage } from "./HomePage/HomePage";
+
+export { default as PortfolioPage } from "./PortfolioPage/PortfolioPage";

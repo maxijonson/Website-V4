@@ -44,12 +44,11 @@ export default () => {
             {/*** /INTRO ***/}
             <Cards.Fade
                 alt
-                top
+                right
                 animate
                 fraction={0.8}
                 title={t("home.welcome.title")}
                 subtitle={t("home.welcome.subtitle")}
-                footer={t("long.home.welcome.footer")}
                 imageUrl="assets/images/logo.png"
             >
                 {t("long.home.welcome.body")}
@@ -62,18 +61,7 @@ export default () => {
                 subtitle={t("home.playground.subtitle")}
                 imageUrl="assets/images/react-ts.jpg"
             >
-                {t("long.home.playground.body")}
-            </Cards.Fade>
-            <Cards.Fade
-                right
-                alt
-                animate
-                fraction={0.8}
-                title={t("home.share.title")}
-                subtitle={t("home.share.subtitle")}
-                imageUrl="assets/images/code-1.jpg"
-            >
-                {t("long.home.share.body", {
+                {t("long.home.playground.body", {
                     postProcess: "markdown-jsx",
                 })}
             </Cards.Fade>
