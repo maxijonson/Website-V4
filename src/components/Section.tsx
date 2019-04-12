@@ -23,13 +23,14 @@ interface ISectionItem {
 interface ISectionProps {
     items: ISectionItem[];
     startIndex?: number;
+    sectionClassName?: string;
 }
 
 const Wrapper = styled.div<{ theme: ITheme }>`
     transition: all ${THEME_TRANSITION_TIME}s;
     user-select: none;
     position: relative;
-    width: 100vw;
+    width: 100%;
     padding: 2% 0;
     background: ${({ theme }) => theme.colors.sectionBackground};
     color: ${({ theme }) => theme.colors.defaultText};
@@ -75,6 +76,7 @@ const Item = styled.div<{ titlePosition: ITitlePosition }>`
         }
     }};
     display: grid;
+    width: 100%;
     grid-template: ${({ titlePosition }) => {
         switch (titlePosition) {
             case "top":
@@ -143,7 +145,7 @@ const Indicator = styled.div<{ active: boolean; theme: ITheme }>`
 `;
 
 export default (props: ISectionProps) => {
-    const { items, startIndex } = props;
+    const { items, startIndex, sectionClassName } = props;
     const { theme } = useConnect(({ theme }) => ({ theme }));
     const swipeHandlers = useSwipeable({
         onSwipedLeft: () => next(),
@@ -211,7 +213,7 @@ export default (props: ISectionProps) => {
 
     return (
         <Wrapper
-            className="section"
+            className={`section ${sectionClassName || ""}`}
             theme={theme}
             {...swipeHandlers}
             tabIndex={

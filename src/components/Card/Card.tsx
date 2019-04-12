@@ -112,12 +112,11 @@ const DBody = styled.div`
 // CARD CONTENT
 
 const DContent = styled.div`
-    grid-column-start: ${({ theme: { bodyAlignment } }: IThemeProps) =>
-        bodyAlignment == "left" ? 1 : 2};
+    grid-area: body;
     padding: 2% 3%;
 
     @media (max-width: ${BREAKPOINTS.smpx}) {
-        grid-column-start: 1;
+        grid-area: body;
         padding: 0;
     }
 `;
@@ -143,8 +142,7 @@ const DImageHider = styled.div`
 
 const DImage = styled.div`
     @media (min-width: ${BREAKPOINTS.smpx}) {
-    grid-column-start: ${({ theme: { bodyAlignment } }: IThemeProps) =>
-        bodyAlignment == "left" ? 2 : 1};
+    grid-area: image;
     background-size: cover;
     position: relative;
     transition: all 1s;
@@ -187,15 +185,21 @@ const Card = styled.div`
 
     @media (min-width: ${BREAKPOINTS.smpx}) {
         font-size: 1.8rem;
-        grid-gap: 1rem;
+        grid-gap: 0 1rem;
         grid-template-columns: ${({
-            theme: { imageUrl, bodyAlignment },
-        }: IThemeProps) =>
-            imageUrl
-                ? bodyAlignment == "left"
-                    ? "75% 25%"
-                    : "25% 75%"
-                : "100%"};
+            theme: { bodyAlignment, imageUrl },
+        }: IThemeProps) => {
+            if (!imageUrl) {
+                return "[body] 100%";
+            }
+            switch (bodyAlignment) {
+                default:
+                case "left":
+                    return "[body] 75% [image] 25%";
+                case "right":
+                    return "[image] 25% [body] 75%";
+            }
+        }};
     }
 `;
 
@@ -339,9 +343,9 @@ const Base = (props: ICardProps & ICardInternalProps) => {
                     baseDelay,
                 }}
             >
-                <Card className={cardClassName}>
+                <Card className={`card ${cardClassName || ""}`}>
                     {bodyAlignment == "right" && (
-                        <Image className="card-image  card-bodyAlignment-right">
+                        <Image className="card-image card-bodyAlignment-right">
                             <ImageHider className="card-image-hider  card-bodyAlignment-right" />
                         </Image>
                     )}
@@ -413,7 +417,7 @@ const Base = (props: ICardProps & ICardInternalProps) => {
                         )}
                     </Content>
                     {bodyAlignment == "left" && (
-                        <Image className="card-image  card-bodyAlignment-left">
+                        <Image className="card-image card-bodyAlignment-left">
                             <ImageHider className="card-image-hider card-bodyAlignment-left" />
                         </Image>
                     )}

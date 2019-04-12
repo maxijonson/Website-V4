@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import _ from "lodash";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
+import { THEME_TRANSITION_TIME } from "src/config";
 import { Hooks } from "src/modules";
 import styled, { ThemeProvider } from "styled-components";
 import tinycolor from "tinycolor2";
@@ -17,6 +18,7 @@ const Intro = styled.p`
 `;
 
 const Grid = styled.div`
+    transition: all ${THEME_TRANSITION_TIME}s;
     display: grid;
     background: ${({ theme }) =>
         tinycolor(theme.colors.sectionBackground)
@@ -128,8 +130,8 @@ export default () => {
                         <Level
                             key={level}
                             level={level}
-                            className={`home-experience__grid__level ${i ==
-                                levels.length - 1 && "last"}`}
+                            className={`home-experience__grid__level
+                            ${(i == levels.length - 1 && "last") || ""}`}
                             children={t(
                                 `home.sections.experience.levels.${level}`,
                             )}
@@ -137,9 +139,9 @@ export default () => {
                     ))}
                     {_.map(categories, (category, i) => (
                         <Category
-                            className={`home-experience__grid__category ${i ==
-                                categories.length - 1 && "last"} ${i == 0 &&
-                                "first"}`}
+                            className={`home-experience__grid__category
+                                ${(i == categories.length - 1 && "last") || ""}
+                                ${(i == 0 && "first") || ""}`}
                             key={category}
                             category={category}
                             children={t(
@@ -150,11 +152,15 @@ export default () => {
                     {_.map(levels, (level, lvl) =>
                         _.map(categories, (category, cat) => (
                             <Subjects
-                                className={`home-experience__grid__subjects ${lvl ==
-                                    0 && "first-lvl"} ${cat == 0 &&
-                                    "first-cat"} ${lvl == levels.length - 1 &&
-                                    "last-lvl"} ${cat ==
-                                    categories.length - 1 && "last-cat"}`}
+                                className={`home-experience__grid__subjects
+                                    ${(lvl == 0 && "first-lvl") || ""}
+                                    ${(cat == 0 && "first-cat") || ""}
+                                    ${(lvl == levels.length - 1 &&
+                                        "last-lvl") ||
+                                        ""}
+                                    ${(cat == categories.length - 1 &&
+                                        "last-cat") ||
+                                        ""}`}
                                 key={category}
                                 level={level}
                                 category={category}
