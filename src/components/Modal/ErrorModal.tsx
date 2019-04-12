@@ -15,7 +15,7 @@ export default ({
 }: IErrorModalOwnProps) => (
     <Modal visible={visible} onRequestClose={onRequestClose}>
         <Card
-            cardClassName="ErrorModal--Modal--Card"
+            kClassName="ErrorModal--Modal--Card"
             title="Error Report"
             subtitle={errorReport.error.name}
         >

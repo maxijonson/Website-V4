@@ -33,6 +33,8 @@ interface IButtonOwnProps {
 
     title?: React.ReactNode;
     subtitle?: React.ReactNode;
+
+    kClassName?: string;
 }
 
 interface IThemeProvider {
@@ -77,7 +79,14 @@ const Subtitle = styled.div`
 `;
 
 export default (props: IButtonOwnProps) => {
-    const { onClick, children, title, subtitle, ButtonRenderer } = props;
+    const {
+        onClick,
+        children,
+        title,
+        subtitle,
+        ButtonRenderer,
+        kClassName = "",
+    } = props;
 
     const { theme } = useMapState(({ theme }) => ({ theme }));
 
@@ -86,7 +95,7 @@ export default (props: IButtonOwnProps) => {
     return (
         (!children && !title && !subtitle && null) || (
             <ThemeProvider theme={{ theme, ...props }}>
-                <Button onClick={onClick}>
+                <Button onClick={onClick} className={`button ${kClassName}`}>
                     {children || (
                         <>
                             {title && <Title children={title} />}

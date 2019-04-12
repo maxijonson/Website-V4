@@ -100,7 +100,7 @@ export interface ICardProps {
     /**
      * Defines another class to add along the Styled-Component one
      */
-    cardClassName?: string;
+    kClassName?: string;
 }
 
 export interface IRevealProps {

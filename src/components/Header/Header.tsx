@@ -118,7 +118,7 @@ export default () => {
                             ))}
                         </div>
                     }
-                    cardClassName="header--card"
+                    kClassName="header--card"
                 >
                     {_.map(
                         routes,

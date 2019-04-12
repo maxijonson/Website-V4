@@ -3,41 +3,19 @@ import moment from "moment";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Cards, Section, ViewportContainer } from "src/components";
-import { PATHS, THEME_TRANSITION_TIME } from "src/config/config";
-import { Hooks } from "src/modules";
+import { PATHS } from "src/config/config";
 import HomeExperience from "./HomeExperience";
 import HomeLanding from "./HomeLanding";
 
-const { useMapState } = Hooks;
-
 export default () => {
-    const { theme } = useMapState(({ theme }) => ({ theme }));
     const { t } = useTranslation();
 
     return (
         <>
             {/*** INTRO ***/}
             <ViewportContainer
-                background={{
-                    backgroundImage: `url(${PATHS.images.homeIntroBg})`,
-                    transform: "scale(1.2)",
-                    transition: `all ${THEME_TRANSITION_TIME}s`,
-                    filter: `${
-                        theme.name == "light"
-                            ? "blur(5px) brightness(90%)"
-                            : "blur(5px) brightness(30%)"
-                    }`,
-                }}
-                style={{
-                    overflow: "hidden",
-                    transition: `all ${THEME_TRANSITION_TIME}s`,
-                }}
+                background={`url(${PATHS.images.homeIntroBg})`}
                 backgroundOverlay
-                backgroundOverlayProps={{
-                    style: {
-                        background: theme.colors.introOverlay,
-                    },
-                }}
             >
                 <HomeLanding />
             </ViewportContainer>

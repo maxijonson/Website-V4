@@ -1,53 +1,43 @@
 import React from "react";
-import { ViewportContainerBackground } from "./";
-import ColorOverlay, { IColorOverlayProps } from "./ColorOverlay";
+import { Background } from "src/components";
+import { THEME_TRANSITION_TIME } from "src/config";
+import { Hooks } from "src/modules";
+import styled from "styled-components";
+import ColorOverlay from "./ColorOverlay";
+
+const { useConnect } = Hooks;
 
 interface IViewportContainerProps extends React.HTMLAttributes<HTMLDivElement> {
-    background?: React.CSSProperties;
+    background?: string;
     contentStyle?: React.CSSProperties;
     backgroundOverlay?: boolean;
-    backgroundOverlayProps?: IColorOverlayProps;
+    kClassName?: string;
 }
 
-export default (props: IViewportContainerProps) => {
-    const {
-        children,
-        background,
-        contentStyle,
-        backgroundOverlay,
-        backgroundOverlayProps,
-    } = props;
+const ViewportContainer = styled.div`
+    display: grid;
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+    transition: all ${THEME_TRANSITION_TIME}s;
+`;
+
+export default ({
+    children,
+    background,
+    backgroundOverlay,
+    kClassName = "",
+}: IViewportContainerProps) => {
+    const { theme } = useConnect(({ theme }) => ({ theme }));
+
     return (
-        <div
-            style={{
-                display: "grid",
-                position: "relative",
-                maxWidth: "100vw",
-                minHeight: "100vh",
-                ...props.style,
-            }}
-        >
-            {background && <ViewportContainerBackground style={background} />}
-            {backgroundOverlay && <ColorOverlay {...backgroundOverlayProps} />}
-            <div
-                style={{
-                    position: "absolute",
-                    width: "100%",
-                    height: "100%",
-                    top: 0,
-                    left: 0,
-                }}
-            >
-                <div
-                    style={{
-                        padding: "0 1vw",
-                        height: "100%",
-                        ...contentStyle,
-                    }}
-                >
-                    {children}
-                </div>
-            </div>
-        </div>
+        <ViewportContainer className={`viewport-container ${kClassName}`}>
+            {background && <Background background={background} />}
+            {backgroundOverlay && (
+                <ColorOverlay color={theme.colors.defaultColorOverlay} />
+            )}
+            {children}
+        </ViewportContainer>
     );
 };

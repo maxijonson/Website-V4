@@ -276,7 +276,7 @@ const Base = (props: ICardProps & ICardInternalProps) => {
         hasRevealed: hasRevealedProp,
         animationDelayFactor = defaultProps.duration,
         isReveal = defaultProps.isReveal,
-        cardClassName,
+        kClassName = "",
         footerSeparator,
         FooterRenderer,
         footer,
@@ -343,7 +343,7 @@ const Base = (props: ICardProps & ICardInternalProps) => {
                     baseDelay,
                 }}
             >
-                <Card className={`card ${cardClassName || ""}`}>
+                <Card className={`card ${kClassName}`}>
                     {bodyAlignment == "right" && (
                         <Image className="card-image card-bodyAlignment-right">
                             <ImageHider className="card-image-hider  card-bodyAlignment-right" />

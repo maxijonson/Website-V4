@@ -23,7 +23,7 @@ interface ISectionItem {
 interface ISectionProps {
     items: ISectionItem[];
     startIndex?: number;
-    sectionClassName?: string;
+    kClassName?: string;
 }
 
 const Wrapper = styled.div<{ theme: ITheme }>`
@@ -145,7 +145,7 @@ const Indicator = styled.div<{ active: boolean; theme: ITheme }>`
 `;
 
 export default (props: ISectionProps) => {
-    const { items, startIndex, sectionClassName } = props;
+    const { items, startIndex, kClassName = "" } = props;
     const { theme } = useConnect(({ theme }) => ({ theme }));
     const swipeHandlers = useSwipeable({
         onSwipedLeft: () => next(),
@@ -213,7 +213,7 @@ export default (props: ISectionProps) => {
 
     return (
         <Wrapper
-            className={`section ${sectionClassName || ""}`}
+            className={`section ${kClassName}`}
             theme={theme}
             {...swipeHandlers}
             tabIndex={
