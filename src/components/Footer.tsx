@@ -8,6 +8,10 @@ import { fonts } from "../modules/CSS";
 
 const { useMapState } = Hooks;
 
+interface IFooterProps {
+    kClassName?: string;
+}
+
 const Footer = styled.footer`
     color: ${({ theme }) => theme.colors.defaultText};
     font-size: 1.2rem;
@@ -19,12 +23,12 @@ const Footer = styled.footer`
     width: 100%;
 `;
 
-export default () => {
+export default ({ kClassName = "" }: IFooterProps) => {
     const { theme } = useMapState(({ theme }) => ({ theme }));
     const { t } = useTranslation();
 
     return (
-        <Footer theme={theme}>
+        <Footer theme={theme} className={`footer ${kClassName}`}>
             Copyright <FontAwesomeIcon icon={["far", "copyright"]} />{" "}
             {new Date().getFullYear()} MaxiJonson. {t("footer.copyright")}
         </Footer>

@@ -1,22 +1,36 @@
 import React from "react";
+import { Hooks } from "src/modules";
+import { ITheme } from "src/modules/CSS";
+import styled from "styled-components";
 
-interface IColorOverlayOwnProps extends React.HTMLAttributes<HTMLDivElement> {}
+const { useConnect } = Hooks;
 
-export type IColorOverlayProps = IColorOverlayOwnProps;
+interface IColorOverlayProps {
+    color: string;
+    opacity?: number;
+    kClassName?: string;
+}
 
-export default (props: IColorOverlayProps) => (
-    <div
-        {...props}
-        style={{
-            width: "100%",
-            height: "100%",
-            opacity: 0.5,
-            background: "#000",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            zIndex: 0,
-            ...props.style,
-        }}
-    />
-);
+const ColorOverlay = styled.div<{ theme: ITheme } & IColorOverlayProps>`
+    width: 100%;
+    height: 100%;
+    opacity: ${({ opacity }) => opacity || 0.5};
+    position: absolute;
+    background: ${({ color }) => color};
+    top: 0;
+    left: 0;
+    z-index: 0;
+`;
+
+export default ({ color, opacity, kClassName = "" }: IColorOverlayProps) => {
+    const { theme } = useConnect(({ theme }) => ({ theme }));
+
+    return (
+        <ColorOverlay
+            className={`color-overlay ${kClassName}`}
+            theme={theme}
+            color={color}
+            opacity={opacity}
+        />
+    );
+};

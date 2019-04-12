@@ -4,9 +4,7 @@ export { default as Footer } from "./Footer";
 
 export { default as ViewportContainer } from "./ViewportContainer";
 
-export {
-    default as ViewportContainerBackground,
-} from "./ViewportContainerBackground";
+export { default as Background } from "./Background";
 
 export { default as ColorOverlay } from "./ColorOverlay";
 

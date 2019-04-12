@@ -17,6 +17,7 @@ interface ITooltipProps {
     maxWidth?: string;
     activeOnMobile?: boolean;
     mobileTimeout?: number;
+    kClassName?: string;
 }
 
 const Tooltip = styled.span`
@@ -192,6 +193,7 @@ export default (props: ITooltipProps) => {
         maxWidth,
         activeOnMobile = false,
         mobileTimeout = 1500,
+        kClassName = "",
     } = props;
     const { theme } = useConnect(({ theme }) => ({ theme }));
     const [visibility, setVisibility] = React.useState<IVisibility>("hidden");
@@ -226,7 +228,7 @@ export default (props: ITooltipProps) => {
 
     return (
         <Tooltip
-            className="tooltip"
+            className={`tooltip ${kClassName}`}
             onMouseLeave={
                 (screen != "xs" && screen != "sm" && hide) ||
                 (activeOnMobile && hide) ||
