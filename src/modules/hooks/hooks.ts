@@ -118,43 +118,54 @@ export const useSetTimeout = (cb: () => void, time: number = 1000) => {
     };
 };
 
-type IBreakpoint = "xs" | "sm" | "md" | "lg" | "xl";
+export enum IBreakpoint {
+    "xs" = 0,
+    "sm",
+    "md",
+    "lg",
+    "xl",
+}
 type IBreakpointMode = "screen" | "window";
 
 export const useCurrentBreakpoint = (mode: IBreakpointMode = "window") => {
-    const [breakpoint, setBreakpoint] = React.useState<IBreakpoint>("xs");
-
     const getBreakpoint = (width: number): IBreakpoint => {
         if (width >= BREAKPOINTS.xl) {
-            return "xl";
+            return IBreakpoint.xl;
         }
         if (width >= BREAKPOINTS.lg) {
-            return "lg";
+            return IBreakpoint.lg;
         }
         if (width >= BREAKPOINTS.md) {
-            return "md";
+            return IBreakpoint.md;
         }
         if (width >= BREAKPOINTS.sm) {
-            return "sm";
+            return IBreakpoint.sm;
         }
 
-        return "xs";
+        return IBreakpoint.xs;
     };
 
-    const onWindowResize = React.useCallback(
-        _.throttle(() => {
-            setBreakpoint(
+    const getCurrentBreakpoint = React.useCallback(
+        _.throttle(
+            () =>
                 getBreakpoint(
                     mode === "window" ? window.innerWidth : screen.width,
                 ),
-            );
-        }, 500),
+            500,
+        ),
         [],
+    );
+
+    const onWindowResize = () => {
+        setBreakpoint(getCurrentBreakpoint());
+    };
+
+    const [breakpoint, setBreakpoint] = React.useState<IBreakpoint>(
+        getCurrentBreakpoint(),
     );
 
     React.useLayoutEffect(() => {
         window.addEventListener("resize", onWindowResize);
-        onWindowResize();
         return () => {
             window.removeEventListener("resize", onWindowResize);
         };

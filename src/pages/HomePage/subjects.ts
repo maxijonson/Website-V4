@@ -1,6 +1,28 @@
 export type ICategory = "application" | "web" | "database" | "os" | "mobile";
 export type ILevel = "advanced" | "intermediate" | "basic";
 
+export type ITechName =
+    | "HTML"
+    | "CSS"
+    | "JavaScript"
+    | "JQuery"
+    | "Node"
+    | "TypeScript"
+    | "React"
+    | "ASP.Net"
+    | "PHP"
+    | "C++"
+    | "C#"
+    | "Java"
+    | "Electron"
+    | "Oracle SQL"
+    | "MySQL"
+    | "SQL Server"
+    | "MongoDB"
+    | "SQLite"
+    | "Android"
+    | "Shell";
+
 export const categories: ICategory[] = [
     "web",
     "application",
@@ -13,7 +35,7 @@ export const levels: ILevel[] = ["advanced", "intermediate", "basic"];
 export interface ISubject {
     category: ICategory;
     level: ILevel;
-    name: string;
+    name: ITechName;
     selfTaught?: boolean;
 }
 
@@ -87,7 +109,7 @@ export const subjects: ISubject[] = [
     {
         category: "web",
         level: "intermediate",
-        name: "Typescript",
+        name: "TypeScript",
     },
     {
         category: "web",

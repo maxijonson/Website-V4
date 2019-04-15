@@ -14,7 +14,7 @@ export default () => {
         <>
             {/*** INTRO ***/}
             <ViewportContainer
-                background={`url(${PATHS.images.homeIntroBg})`}
+                background={PATHS.images.homeIntroBg}
                 backgroundOverlay
             >
                 <HomeLanding />

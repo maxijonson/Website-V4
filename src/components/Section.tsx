@@ -5,6 +5,7 @@ import { Tooltip } from "src/components";
 import { BREAKPOINTS, THEME_TRANSITION_TIME } from "src/config";
 import { Hooks } from "src/modules";
 import { fonts, ITheme } from "src/modules/CSS";
+import { IBreakpoint } from "src/modules/hooks/hooks";
 import styled from "styled-components";
 import tinycolor from "tinycolor2";
 
@@ -60,12 +61,19 @@ const Caroussel = styled.div<{
         }
         return `translateX(-${lastPosition * 100}%)`;
     }};
+    padding-bottom: 2.5%;
 `;
 
-const Item = styled.div<{ titlePosition: ITitlePosition }>`
+const Item = styled.div<{
+    titlePosition: ITitlePosition;
+    kTitle: React.ReactNode;
+}>`
     flex: 1 0 100%;
     flex-basis: 100%;
-    padding: ${({ titlePosition }) => {
+    padding: ${({ titlePosition, kTitle }) => {
+        if (!kTitle) {
+            return "0 12.5%";
+        }
         switch (titlePosition) {
             case "top":
                 return "0 12.5% 0 12.5%";
@@ -77,7 +85,10 @@ const Item = styled.div<{ titlePosition: ITitlePosition }>`
     }};
     display: grid;
     width: 100%;
-    grid-template: ${({ titlePosition }) => {
+    grid-template: ${({ titlePosition, kTitle }) => {
+        if (!kTitle) {
+            return "[content] auto / [content] 100%";
+        }
         switch (titlePosition) {
             case "top":
                 return "[title] auto [content] 2fr / [title content] auto";
@@ -216,17 +227,9 @@ export default (props: ISectionProps) => {
             className={`section ${kClassName}`}
             theme={theme}
             {...swipeHandlers}
-            tabIndex={
-                (screenBreakpoint != "xs" && screenBreakpoint != "sm" && "0") ||
-                null
-            }
+            tabIndex={(screenBreakpoint > IBreakpoint.sm && "0") || null}
             onKeyDown={handleKeyDown}
-            onClick={
-                (screenBreakpoint != "xs" &&
-                    screenBreakpoint != "sm" &&
-                    focus) ||
-                null
-            }
+            onClick={(screenBreakpoint > IBreakpoint.sm && focus) || null}
         >
             <Caroussel
                 className="section__caroussel"
@@ -238,24 +241,27 @@ export default (props: ISectionProps) => {
                 {_.map(items, ({ titlePosition, title, content }, index) => (
                     <Item
                         titlePosition={titlePosition || "left"}
+                        kTitle={title}
                         key={index}
                         className="section__item"
                     >
-                        <TitleOuter
-                            className="section__title-outer"
-                            titlePosition={titlePosition || "left"}
-                        >
-                            <TitleInner
-                                className="section__title-inner"
+                        {title && (
+                            <TitleOuter
+                                className="section__title-outer"
                                 titlePosition={titlePosition || "left"}
                             >
-                                <Title
-                                    className="section__title"
-                                    children={title}
+                                <TitleInner
+                                    className="section__title-inner"
                                     titlePosition={titlePosition || "left"}
-                                />
-                            </TitleInner>
-                        </TitleOuter>
+                                >
+                                    <Title
+                                        className="section__title"
+                                        children={title}
+                                        titlePosition={titlePosition || "left"}
+                                    />
+                                </TitleInner>
+                            </TitleOuter>
+                        )}
                         <Content children={content} />
                     </Item>
                 ))}

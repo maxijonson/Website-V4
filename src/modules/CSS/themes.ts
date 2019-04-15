@@ -25,7 +25,8 @@ export type Section =
     | "modalShadow"
     | "sectionBackground"
     | "tooltip"
-    | "tooltipText";
+    | "tooltipText"
+    | "tagText";
 export type Theme = "light" | "dark";
 
 export type IPalette = { [name in Section]: string };
@@ -65,6 +66,7 @@ export const themes: IThemes = {
             sectionBackground: colors.pitchLight.white,
             tooltip: colors.ultraDark.black,
             tooltipText: colors.normal.white,
+            tagText: colors.ultraDark.white,
         },
     },
     dark: {
@@ -94,6 +96,7 @@ export const themes: IThemes = {
             sectionBackground: colors.dark.onyx,
             tooltip: colors.veryDark.onyx,
             tooltipText: colors.normal.white,
+            tagText: colors.normal.white,
         },
     },
 };

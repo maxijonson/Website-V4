@@ -40,7 +40,7 @@ const Overlay = styled(
             opacity: 0,
             zIndex: -1,
             transition: {
-                default: { duration: 250 },
+                default: { duration: 100 },
             },
         },
     }),
@@ -102,8 +102,8 @@ export default (props: IModalOwnProps) => {
         bottom,
         left,
         right,
-        overlayClassName,
-        containerClassName,
+        overlayClassName = "",
+        containerClassName = "",
         overlayOpacity,
     } = props;
 
@@ -125,7 +125,7 @@ export default (props: IModalOwnProps) => {
                 theme={theme}
                 onClick={onRequestClose}
                 pose={pose}
-                className={`${overlayClassName}`}
+                className={`modal__overlay ${overlayClassName}`}
                 overlayOpacity={overlayOpacity}
             >
                 <Container
@@ -134,7 +134,7 @@ export default (props: IModalOwnProps) => {
                     right={right}
                     bottom={bottom}
                     left={left}
-                    className={containerClassName}
+                    className={`modal__container ${containerClassName}`}
                 >
                     {children}
                 </Container>

@@ -12,6 +12,7 @@ interface IViewportContainerProps {
 }
 
 const Background = styled.div<{ background: string; theme: ITheme }>`
+    position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
@@ -20,7 +21,7 @@ const Background = styled.div<{ background: string; theme: ITheme }>`
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: ${({ background }) => background};
+    background-image: ${({ background }) => `url(${background})`};
     transform: scale(1.2);
     transition: all ${THEME_TRANSITION_TIME}s;
     filter: ${({ theme }) =>

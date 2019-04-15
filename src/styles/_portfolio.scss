@@ -1,0 +1,22 @@
+.portfolio-viewport-container.portfolio-viewport-container {
+    min-height: 30vh;
+}
+
+.project__section.project__section {
+    margin: 0;
+
+    & .section__item {
+        padding: 0;
+    }
+}
+
+.project__modal__overlay {
+    & > .modal__container {
+        margin: auto 0;
+
+        & .card {
+            margin: 0;
+            width: 100%;
+        }
+    }
+}

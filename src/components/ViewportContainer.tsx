@@ -15,7 +15,6 @@ interface IViewportContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const ViewportContainer = styled.div`
-    display: grid;
     position: relative;
     width: 100vw;
     min-height: 100vh;

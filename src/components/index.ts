@@ -11,7 +11,7 @@ export { default as ColorOverlay } from "./ColorOverlay";
 import { default as Card } from "./Card/Card";
 import * as CardsBase from "./Card/Card";
 import * as CardsAnimated from "./Card/CardAnimated";
-const Cards = { ...CardsAnimated, Alt: CardsBase.Alt };
+const Cards = { ...CardsAnimated, Alt: CardsBase.Alt, Base: CardsBase.default };
 export { Cards, Card };
 
 export { default as Catcher } from "./Catcher";
@@ -25,3 +25,5 @@ export { default as ErrorModal } from "./Modal/ErrorModal";
 export { default as Section } from "./Section";
 
 export { default as Tooltip } from "./Tooltip";
+
+export { default as Project } from "./Project";
