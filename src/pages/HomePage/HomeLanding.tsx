@@ -1,23 +1,29 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { STYLE_CENTERED, THEME_TRANSITION_TIME } from "src/config";
+import { THEME_TRANSITION_TIME } from "src/config";
 import { Hooks } from "src/modules";
-import { fonts } from "src/modules/CSS";
+import { fonts, ITheme } from "src/modules/CSS";
+import styled from "styled-components";
 
 const { useMapState } = Hooks;
+
+const HomeLanding = styled.div<{ theme: ITheme }>`
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: table;
+    width: 100%;
+    text-shadow: ${({ theme }) => `0 0 .75em ${theme.colors.altDefaultShadow}`};
+`;
 
 export default () => {
     const { t } = useTranslation();
     const { theme } = useMapState(({ theme }) => ({ theme }));
     return (
-        <div
-            style={{
-                ...STYLE_CENTERED,
-                display: "table",
-                width: "100%",
-                textShadow: `0 0 .75em ${theme.colors.altDefaultShadow}`,
-            }}
-        >
+        <HomeLanding theme={theme}>
             <div
                 style={{
                     textAlign: "center",
@@ -59,6 +65,6 @@ export default () => {
                     {t("home.intro.tagline")}
                 </div>
             </div>
-        </div>
+        </HomeLanding>
     );
 };
