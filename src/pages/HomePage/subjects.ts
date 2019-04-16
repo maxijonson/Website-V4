@@ -1,27 +1,7 @@
+import { ITechName } from "../PortfolioPage/techs";
+
 export type ICategory = "application" | "web" | "database" | "os" | "mobile";
 export type ILevel = "advanced" | "intermediate" | "basic";
-
-export type ITechName =
-    | "HTML"
-    | "CSS"
-    | "JavaScript"
-    | "JQuery"
-    | "Node"
-    | "TypeScript"
-    | "React"
-    | "ASP.Net"
-    | "PHP"
-    | "C++"
-    | "C#"
-    | "Java"
-    | "Electron"
-    | "Oracle SQL"
-    | "MySQL"
-    | "SQL Server"
-    | "MongoDB"
-    | "SQLite"
-    | "Android"
-    | "Shell";
 
 export const categories: ICategory[] = [
     "web",
@@ -145,5 +125,11 @@ export const subjects: ISubject[] = [
         category: "database",
         level: "basic",
         name: "SQLite",
+    },
+    {
+        category: "web",
+        level: "basic",
+        name: "SCSS",
+        selfTaught: true,
     },
 ];
