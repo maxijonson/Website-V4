@@ -1,5 +1,12 @@
 .portfolio-viewport-container.portfolio-viewport-container {
-    min-height: 30vh;
+    min-height: 10vh;
+
+    @media (min-width: $md-breakpoint) {
+        min-height: 20vh;
+    }
+    @media (min-width: $lg-breakpoint) {
+        min-height: 30vh;
+    }
 }
 
 .project__section.project__section {

@@ -180,8 +180,8 @@ const Card = styled.div`
     transition: all ${THEME_TRANSITION_TIME}s;
     text-align: justify;
     overflow: hidden;
-
     font-size: 2.3rem;
+    grid-template-columns: [body] 100%;
 
     @media (min-width: ${BREAKPOINTS.smpx}) {
         font-size: 1.8rem;

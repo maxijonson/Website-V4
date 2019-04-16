@@ -10,7 +10,7 @@ import * as _ from "lodash";
 import * as React from "react";
 import posed from "react-pose";
 import { BREAKPOINTS } from "src/config";
-import { Hooks } from "src/modules";
+import { Hooks, t } from "src/modules";
 import { fonts, ITheme } from "src/modules/CSS";
 import { IBreakpoint } from "src/modules/hooks/hooks";
 import { IProject } from "src/pages/PortfolioPage/projects";
@@ -49,9 +49,11 @@ const Project = styled.div<{ theme: ITheme }>`
 `;
 
 const Image = styled.img`
-    height: 100%;
+    max-width: 100%;
+    max-height: 80%;
     display: block;
-    margin: 0 auto;
+    margin: auto;
+    border-radius: 360rem;
 `;
 
 const Title = styled.div`
@@ -78,6 +80,7 @@ const Tag = styled.div<{ kColor: string; theme: ITheme }>`
             .toRgbString()};
     padding: 0.5rem 1rem;
     margin-right: 2%;
+    margin-top: 2%;
     color: ${({ theme }) => theme.colors.tagText};
     font-family: "${fonts.openSans.family}";
 `;
@@ -190,7 +193,7 @@ export default (props: IProjectProps) => {
                             opacity={0.75}
                             color={theme.colors.pageBackground}
                         />
-                        <InfoOverlay>Show Details</InfoOverlay>
+                        <InfoOverlay>{t("portfolio.details")}</InfoOverlay>
                     </Info>
                 )}
             </Project>
