@@ -20,5 +20,39 @@
         "welcome": {
             "body": "Bienvenue à cette 4e édition de mon site web! Le dernier était bâtit sur du code de base qui datent de mes débuts en programmation. J'ai voulu en refaire un depuis un moment, puisque j'ai acquis beaucoup de connaissances depuis, mais je n'ai jamais trouvé le temps, jusqu'à maintenant! Je suis vraiment fier d'avoir cette opportunité de mettre mes nouveaux talents au travail! Ce site est principalement un blog à props de moi et mon parcours, mais il est aussi un portfolio pour montrer mes travaux de programmation. Si vous êtes de Youtube, où le nom \"MaxiJonson\" est né, vous avez été des fans incroyables! Malheureusement, je n'avais plus le temps ni la motivation de faire des vidéos, j'espère que vous comprendrez!"
         }
+    },
+    "portfolio": {
+        "projects": {
+            "cuisto": {
+                "description": {
+                    "one": "Cuisto était un projet dans le cadre de la fin de mes études de programme au cégep et a été réalisé avec 3 de mes amis. L'idée était de proposer aux restaurants une solution pour gérer tout ce dont ils ont besoin pour fonctionner. Cela comprenait les employés, l’inventaire, les fournisseurs, le menu, etc. Elle a également été conçue pour les organisations, ce qui signifie que nous voulions offrir une assistance à une grande organisation, telle qu'une chaîne, afin de gérer plusieurs entités.",
+                    "three": "Le projet était divisé en deux plates-formes: Web et mobile (Android). La partie Web était principalement destinée à la gestion, tandis que le mobile était destiné à un usage en restaurant. Par exemple : pour prendre des commandes. Au début, toute l'équipe était concentrée sur le Web. Peu de temps après, nous avons divisé l’équipe en 2: 2 pour le mobile, 2 pour le Web. J'étais responsable du back-end, réalisé avec Node.js (avec Express), et relevais de nombreux défis, notamment l'authentification qui me coûtait de nombreuses heures de sommeil!",
+                    "two": "Malheureusement, mais sans surprise, un semestre n'a pas suffi pour donner tout ce que nous voulions faire pour ce projet. Nous étions toujours surpris de voir jusqu'où nous étions allés et prévoyons de le reconstruire, si possible. À la fin du semestre, nous avons dû improviser: enlever certaines fonctionnalités telles que les horaires des employés et nous avons été un peu moins sévère quant aux conventions de code. Le projet final était toujours beau, mais il y a beaucoup de détails techniques que nous aurions aimé passer du temps à perfectionner."
+                }
+            },
+            "intellibot": {
+                "description": {
+                    "one": "Intellibot est l'une de mes plus grandes réalisations. Bien qu’il ait été fait en Node.js, je ne savais même pas ce que c’était avant de commencer ce projet. Je ne me souviens pas exactement comment cela a commencé, mais je sais que je faisais simplement surfer sur le net et que je suis probablement tombé sur un message sur la création de bots Discord avec JavaScript et c’est tout ce dont j'avais besoin pour devenir attaché.",
+                    "three": "Le bot n’était pas le plus populaire, mais il conservait en moyenne 35 serveurs à ses débuts, alors que je le maintenais. Cependant, c'était mon premier projet Node, le code n'était donc pas le meilleur. J'ai par la suite suivi un cours en Node avant Cuisto, mais Intellibot est tout simplement un énorme projet à refactoriser. Alors, lentement, j'ai arrêté de le maintenir pour me concentrer sur le perfectionnement de mes compétences et peut-être, un jour, créer une autre version du bot.",
+                    "two": "Pendant tout une session, à mon rythme, j'ai sacrifié le gaming pour créer ce bot polyvalent. Je voulais qu'il fasse tout ce que la plupart des autres bots faisaient, mais dans un seul bot. Cela incluait la musique, la modération du serveur, un système de pointage, des paramètres et des memes personnalisables! Oui, memes! Vous pouvez lui donner un modèle, qui sera sauvegardé et à tout moment, vous pourrez créer un meme avec ce modèle (texte en haut et en bas). Pas de « watermark », pas de sites Web générateurs de meme, juste une commande pour créer du contenu dank!"
+                }
+            },
+            "poly": {
+                "description": "Pour autant que je sache, Poly Wallpaper était mon premier vrai projet JavaScript. Bien sûr, j’ai découvert le langage plus tôt, mais au niveau de la grosseur du projet, c’était le plus grand projet de l’époque. Si vous ne savez pas ce qu'est Wallpaper Engine, il s’agit d’un logiciel disponible sur Steam qui vous permet de créer des fonds d’écran personnalisés (plus qu’une image statique). Ce papier peint réagit au son de votre ordinateur, qui a fière allure avec de la musique. Comme c'était assez de base et que je voulais voir jusqu'où je pouvais aller, j'ai réalisé une deuxième version: React. "
+            },
+            "punchbot": {
+                "description": "PunchBot est probablement l'un de mes plus petits projets. Parce que nous devions enregistrer toutes nos heures sur le projet final au cégep (Cuisto), y compris ce que nous avons fait, il est rapidement devenu difficile de garder une trace du temps passé. Donc, en moins de 24 heures au total, j'ai créé PunchBot, un bot Discord! C’était un projet assez simple: vous poinçonnez quand vous commencez, vous dé-poinçonnez quand vous avez fini, avec un petit message (comme un message de commit, pour ceux qui connaissent Git). Lorsque le moment était venu de publier nos rapports hebdomadaires, une simple commande résumait tout, ce qui simplifiait grandement le suivi de notre temps. Il y avait aussi des mécanismes pour vous rappeler que vous êtes poinçonné si vous oubliez et même que vous dé-poinçonner quand il détecte que vous avez travaillé comme un esclave (12 heures d'affilée)!"
+            },
+            "react": {
+                "description": "Non, pas le framework JavaScript! En fait, je n'avais aucune idée de ce que React.js était à l'époque! C'est fondamentalement une deuxième version de Poly Wallpaper. Celui-ci a ajouté de nombreuses fonctionnalités au-dessus de la première version pour améliorer sa personnalisation. De la couleur à la réactivité audio, en passant par l’horloge. Avec plus de 4000 abonnés, je suis assez fier de ce que j'ai accompli avec seulement une base en JavaScript!"
+            },
+            "website": {
+                "description": {
+                    "one": "Donc, vous en savez déjà un peu sur ce site Web depuis la page d’accueil, mais voici un peu plus d’informations que j’ai omis. Le site précédent a en fait été attaqué! Après avoir étudié de nombreuses formes d’attaques de sites Web et essayé de les insérer dans le mien, j’ai finalement découvert que j’avais peut-être été victime d’une attaque XSS (Google est votre ami!). J'ai donc supprimé la page d'accueil, qui corrigeait tout et prouvait que mes recherches étaient justes!",
+                    "three": "Cependant, je crois que je n’étais qu’une cible de pratique. Le site Web n'avait rien d'autre que du texte. Il n’y avait rien de sensible qui puisse être volé et il n’y avait presque pas de trafic. Néanmoins, c’était un moment instructif et j’ai appris à ne pas commettre les mêmes erreurs!",
+                    "two": "Ce n’est que quelques jours plus tard que j’ai découvert que la page d’accueil n’était pas la seule cible. Le pirate avait installé un « backdoor » PHP sur le serveur, qui servait de gestionnaire de fichiers pour l’ensemble des fichiers de mon serveur. La partie amusante est que j'ai supprimé celle-ci à l'aide du « backdoor » lui-même! Ça c’est ce que j’appelle utiliser l’arme de votre adversaire contre lui-même!"
+                }
+            }
+        }
     }
 }

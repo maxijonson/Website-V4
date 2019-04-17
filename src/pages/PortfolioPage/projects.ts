@@ -1,5 +1,4 @@
 import { PATHS } from "src/config";
-import { t } from "src/modules";
 import { ITech, techs } from "./techs";
 
 export interface IProject {
@@ -16,8 +15,12 @@ export interface IProject {
 
 export const projects: IProject[] = [
     {
-        title: "Website",
-        description: [t("portfolio.projects.website.description")],
+        title: "portfolio.projects.website.title",
+        description: [
+            "long.portfolio.projects.website.description.one",
+            "long.portfolio.projects.website.description.two",
+            "long.portfolio.projects.website.description.three",
+        ],
         logo: PATHS.images.projects.website.logo,
         techs: [
             techs.node,
@@ -28,11 +31,15 @@ export const projects: IProject[] = [
         ],
         github: "https://github.com/maxijonson/Website-V4",
         website: "http://www.chintristan.io/",
-        short: t("portfolio.projects.website.short"),
+        short: "portfolio.projects.website.short",
     },
     {
         title: "Cuisto",
-        description: [t("portfolio.projects.cuisto.description")],
+        description: [
+            "long.portfolio.projects.cuisto.description.one",
+            "long.portfolio.projects.cuisto.description.two",
+            "long.portfolio.projects.cuisto.description.three",
+        ],
         logo: PATHS.images.projects.cuisto.logo,
         techs: [
             techs.node,
@@ -44,37 +51,51 @@ export const projects: IProject[] = [
             techs.jquery,
         ],
         github: "https://github.com/maxijonson/Cuisto-public",
-        short: t("portfolio.projects.cuisto.short"),
+        short: "portfolio.projects.cuisto.short",
     },
     {
         title: "PunchBot",
-        description: [t("portfolio.projects.punchbot.description")],
+        description: ["long.portfolio.projects.punchbot.description"],
         logo: PATHS.images.projects.punchbot.logo,
         techs: [techs.node, techs.javascript],
         github: "https://github.com/maxijonson/PunchBot",
         discord:
             "https://discordapp.com/oauth2/authorize?client_id=483973436255895553&scope=bot&permissions=68608",
-        short: t("portfolio.projects.punchbot.short"),
+        short: "portfolio.projects.punchbot.short",
     },
     {
         title: "Intellibot",
-        description: [t("portfolio.projects.intellibot.description")],
+        description: [
+            "long.portfolio.projects.intellibot.description.one",
+            "long.portfolio.projects.intellibot.description.two",
+            "long.portfolio.projects.intellibot.description.three",
+        ],
         logo: PATHS.images.projects.intellibot.logo,
         techs: [techs.node, techs.javascript],
         github: "https://github.com/maxijonson/Intellibot",
         discord:
             "https://discordapp.com/oauth2/authorize?client_id=356619840649428993&scope=bot&permissions=271707143",
         website: "http://www.maxijonson.com/intellibot/",
-        short: t("portfolio.projects.intellibot.short"),
+        short: "portfolio.projects.intellibot.short",
     },
     {
         title: "React",
-        description: [t("portfolio.projects.react.description")],
+        description: ["long.portfolio.projects.react.description"],
         logo: PATHS.images.projects.react.logo,
         techs: [techs.javascript, techs.html, techs.css],
         github: "https://github.com/maxijonson/React---Wallpaper-Engine",
         steam:
             "https://steamcommunity.com/sharedfiles/filedetails/?id=1108769435",
-        short: t("portfolio.projects.react.short"),
+        short: "portfolio.projects.react.short",
+    },
+    {
+        title: "Poly Wallpaper",
+        description: ["long.portfolio.projects.poly.description"],
+        logo: PATHS.images.projects.poly.logo,
+        techs: [techs.javascript, techs.html, techs.css],
+        github: "https://github.com/maxijonson/Poly-Wallpaper",
+        steam:
+            "https://steamcommunity.com/sharedfiles/filedetails/?id=1084251953",
+        short: "portfolio.projects.poly.short",
     },
 ];

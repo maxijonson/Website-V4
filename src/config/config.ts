@@ -41,6 +41,9 @@ export const PATHS = {
             react: {
                 logo: "/assets/images/portfolio/react.jpg",
             },
+            poly: {
+                logo: "/assets/images/portfolio/poly.png",
+            },
         },
     },
 };

@@ -8,9 +8,10 @@ import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as _ from "lodash";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import posed from "react-pose";
 import { BREAKPOINTS } from "src/config";
-import { Hooks, t } from "src/modules";
+import { Hooks } from "src/modules";
 import { fonts, ITheme } from "src/modules/CSS";
 import { IBreakpoint } from "src/modules/hooks/hooks";
 import { IProject } from "src/pages/PortfolioPage/projects";
@@ -149,6 +150,7 @@ export default (props: IProjectProps) => {
     const breakpoint = useCurrentBreakpoint("screen");
 
     const { theme } = useConnect(({ theme }) => ({ theme }));
+    const { t } = useTranslation();
 
     const handleMouseEnter = () => {
         setHoverVisibility("visible");
@@ -174,8 +176,8 @@ export default (props: IProjectProps) => {
             >
                 <Image src={logo} />
                 <div>
-                    <Title children={title} />
-                    <Short children={short} />
+                    <Title children={t(title)} />
+                    <Short children={t(short)} />
                     <Tags>
                         {_.map(techs, (tech) => (
                             <Tag
@@ -205,7 +207,7 @@ export default (props: IProjectProps) => {
                 parent={document.getElementById("app")}
             >
                 <Card
-                    title={title}
+                    title={t(title)}
                     subtitle={
                         <>
                             {github && <Link link={github} icon={faGithub} />}
@@ -220,7 +222,7 @@ export default (props: IProjectProps) => {
                     <Section
                         kClassName={"project__section"}
                         items={_.map(description, (section) => ({
-                            content: section,
+                            content: t(section),
                         }))}
                     />
                 </Card>

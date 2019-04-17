@@ -4,9 +4,6 @@
     @media (min-width: $md-breakpoint) {
         min-height: 20vh;
     }
-    @media (min-width: $lg-breakpoint) {
-        min-height: 30vh;
-    }
 }
 
 .project__section.project__section {
@@ -24,6 +21,9 @@
         & .card {
             margin: 0;
             width: 100%;
+            border-radius: 1rem;
+            box-shadow: none;
+            border: 2px solid black;
         }
     }
 }

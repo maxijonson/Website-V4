@@ -26,27 +26,27 @@
             "about": {
                 "title": "À propos de moi"
             },
+            "experience": {
+                "categories": {
+                    "application": "Application",
+                    "database": "Base de données",
+                    "mobile": "Mobile",
+                    "os": "SE",
+                    "web": "Web"
+                },
+                "legend": "Autodidacte",
+                "levels": {
+                    "advanced": "Avancé",
+                    "basic": "Base",
+                    "intermediate": "Intermédiaire"
+                },
+                "title": "Expérience"
+            },
             "programming": {
                 "title": "Programmation"
             },
             "youtube": {
                 "title": "Youtube"
-            },
-            "experience": {
-                "title": "Expérience",
-                "legend": "Autodidacte",
-                "levels": {
-                    "advanced": "Avancé",
-                    "intermediate": "Intermédiaire",
-                    "basic": "Base"
-                },
-                "categories": {
-                    "application": "Application",
-                    "web": "Web",
-                    "database": "Base de données",
-                    "os": "SE",
-                    "mobile": "Mobile"
-                }
             }
         },
         "share": {
@@ -56,6 +56,30 @@
         "welcome": {
             "subtitle": "Apprenez à me connaître, moi et mon expérience",
             "title": "Bienvenue"
+        }
+    },
+    "portfolio": {
+        "details": "Voir les détails",
+        "projects": {
+            "cuisto": {
+                "short": "Une solution de gestion en restauration pour les organisations avec une ou plusieurs succursales."
+            },
+            "intellibot": {
+                "short": "Le bot Discord polyvalent par excellence."
+            },
+            "punchbot": {
+                "short": "Gardez une trace de votre temps de travail directement sur Discord."
+            },
+            "react": {
+                "short": "Un projet Wallpaper Engine avec plus de 100 options personnalisables."
+            },
+            "poly": {
+                "short": "Fond d'écran d'un visualiseur audio pour Wallpaper Engine."
+            },
+            "website": {
+                "short": "La 4e édition de ce site que vous regardez en ce moment!",
+                "title": "Site web"
+            }
         }
     }
 }
