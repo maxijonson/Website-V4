@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { THEME_TRANSITION_TIME } from "src/config";
@@ -47,7 +48,13 @@ export default () => {
                         fontFamily: fonts.exo.family,
                     }}
                 >
-                    {t("home.intro.maxijonson")}
+                    {t(
+                        `home.intro.${
+                            _.includes(window.location.hostname, "maxijonson")
+                                ? "maxijonson"
+                                : "tristan"
+                        }`,
+                    )}
                 </div>
                 <hr
                     style={{
@@ -62,6 +69,9 @@ export default () => {
                         fontFamily: fonts.openSans.family,
                     }}
                 >
+                    {_.includes(window.location.hostname, "maxijonson")
+                        ? "Tristan Chin"
+                        : "MaxiJonson"}
                     {t("home.intro.tagline")}
                 </div>
             </div>

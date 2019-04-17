@@ -15,7 +15,8 @@
     "home": {
         "intro": {
             "maxijonson": "MAXIJONSON'S OFFICIAL WEBSITE",
-            "tagline": "Tristan Chin | Computer Science Student",
+            "tagline": " | Computer Science Student",
+            "tristan": "TRISTAN CHIN'S OFFICIAL WEBSITE",
             "welcome": "Welcome to"
         },
         "playground": {
@@ -54,6 +55,10 @@
             "title": "The Code"
         },
         "welcome": {
+            "funfact": {
+                "maxijonson": "Fun fact: I have more than one domain name for this website. Going to [MaxiJonson](http://www.maxijonson.com/) changes it a bit!",
+                "tristan": "Fun fact: I have more than one domain name for this website. Going to [Tristan Chin](http://www.chintristan.io/) changes it a bit!"
+            },
             "subtitle": "Get to know me and my experience",
             "title": "Welcome"
         }
@@ -67,14 +72,14 @@
             "intellibot": {
                 "short": "The ultimate multipurpose Discord bot."
             },
+            "poly": {
+                "short": "An audio visualizer wallpaper for Wallpaper Engine."
+            },
             "punchbot": {
                 "short": "Keep track of your work time right on Discord."
             },
             "react": {
                 "short": "A Wallpaper Engine project with 100+ customizable options."
-            },
-            "poly": {
-                "short": "An audio visualizer wallpaper for Wallpaper Engine."
             },
             "website": {
                 "short": "4th edition of this very website you're looking at!",

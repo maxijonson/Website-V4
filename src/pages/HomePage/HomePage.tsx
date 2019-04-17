@@ -27,7 +27,21 @@ export default () => {
                 fraction={0.8}
                 title={t("home.welcome.title")}
                 subtitle={t("home.welcome.subtitle")}
-                imageUrl="assets/images/logo.png"
+                footer={t(
+                    `home.welcome.funfact.${
+                        _.includes(window.location.hostname, "maxijonson")
+                            ? "tristan"
+                            : "maxijonson"
+                    }`,
+                    {
+                        postProcess: "markdown-jsx",
+                    },
+                )}
+                imageUrl={
+                    _.includes(window.location.hostname, "maxijonson")
+                        ? "assets/images/logo.png"
+                        : "assets/images/tristan.jpg"
+                }
             >
                 {t("long.home.welcome.body")}
             </Cards.Fade>
