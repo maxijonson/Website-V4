@@ -57,5 +57,29 @@
             "subtitle": "Get to know me and my experience",
             "title": "Welcome"
         }
+    },
+    "portfolio": {
+        "details": "Show details",
+        "projects": {
+            "cuisto": {
+                "short": "A restaurant management solution for organizations with one or more branches. (Project in french)"
+            },
+            "intellibot": {
+                "short": "The ultimate multipurpose Discord bot."
+            },
+            "punchbot": {
+                "short": "Keep track of your work time right on Discord."
+            },
+            "react": {
+                "short": "A Wallpaper Engine project with 100+ customizable options."
+            },
+            "poly": {
+                "short": "An audio visualizer wallpaper for Wallpaper Engine."
+            },
+            "website": {
+                "short": "4th edition of this very website you're looking at!",
+                "title": "Website"
+            }
+        }
     }
 }
