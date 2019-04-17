@@ -16,6 +16,7 @@
         "intro": {
             "maxijonson": "SITE OFFICIEL DE MAXIJONSON",
             "tagline": "Tristan Chin | Étudiant en Informatique",
+            "tristan": "SITE OFFICIEL DE TRISTAN CHIN",
             "welcome": "Bienvenue sur le"
         },
         "playground": {
@@ -54,6 +55,7 @@
             "title": "Le Code"
         },
         "welcome": {
+            "funfact": "Fun fact: I have more than one domain name for this website. Going to {{alt}} changes it a bit!",
             "subtitle": "Apprenez à me connaître, moi et mon expérience",
             "title": "Bienvenue"
         }
@@ -67,14 +69,14 @@
             "intellibot": {
                 "short": "Le bot Discord polyvalent par excellence."
             },
+            "poly": {
+                "short": "Fond d'écran d'un visualiseur audio pour Wallpaper Engine."
+            },
             "punchbot": {
                 "short": "Gardez une trace de votre temps de travail directement sur Discord."
             },
             "react": {
                 "short": "Un projet Wallpaper Engine avec plus de 100 options personnalisables."
-            },
-            "poly": {
-                "short": "Fond d'écran d'un visualiseur audio pour Wallpaper Engine."
             },
             "website": {
                 "short": "La 4e édition de ce site que vous regardez en ce moment!",
