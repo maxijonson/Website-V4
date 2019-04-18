@@ -1,4 +1,5 @@
 import express from "express";
+import enforce from "express-sslify";
 import path from "path";
 
 const app = express();
@@ -8,15 +9,7 @@ const port = process.env.PORT || 8080;
 app.use(express.static(publicPath));
 
 // Redirect HTTP to HTTPS
-app.use((req, res, next) => {
-    if (
-        req.hostname !== "localhost" &&
-        req.get("X-Forwarded-Proto") !== "https"
-    ) {
-        return res.redirect(`https://${req.hostname}${req.url}`);
-    }
-    return next();
-});
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 app.get("*", (_req, res) => {
     res.sendFile(path.join(publicPath, "index.html"));
