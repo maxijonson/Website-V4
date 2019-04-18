@@ -9,7 +9,10 @@ app.use(express.static(publicPath));
 
 // Redirect HTTP to HTTPS
 app.use((req, res, next) => {
-    if (req.hostname !== "localhost" && !req.secure) {
+    if (
+        req.hostname !== "localhost" &&
+        req.get("X-Forwarded-Proto") !== "https"
+    ) {
         return res.redirect(`https://${req.hostname}${req.url}`);
     }
     return next();
