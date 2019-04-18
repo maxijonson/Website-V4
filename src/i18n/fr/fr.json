@@ -55,7 +55,10 @@
             "title": "Le Code"
         },
         "welcome": {
-            "funfact": "Fun fact: I have more than one domain name for this website. Going to {{alt}} changes it a bit!",
+            "funfact": {
+                "maxijonson": "Fait amusant: J'ai plus d'un domaine pour ce site Web. Le site change un peu si vous êtes sur [MaxiJonson](https://www.maxijonson.com/)!",
+                "tristan": "Fait amusant: J'ai plus d'un domaine pour ce site Web. Le site change un peu si vous êtes sur [Tristan Chin](https://www.chintristan.io/)!"
+            },
             "subtitle": "Apprenez à me connaître, moi et mon expérience",
             "title": "Bienvenue"
         }
