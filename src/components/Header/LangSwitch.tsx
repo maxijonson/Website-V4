@@ -7,13 +7,11 @@ const { useMapState } = Hooks;
 
 export default () => {
     const { i18n, t } = useTranslation();
-    const [language, setLanguage] = React.useState(i18n.language);
 
     const { theme } = useMapState(({ theme }) => ({ theme }));
 
     const handleLangChange = (checked: boolean) => {
         i18n.changeLanguage(checked ? "en" : "fr");
-        setLanguage(checked ? "en" : "fr");
     };
 
     return (
@@ -21,7 +19,7 @@ export default () => {
             <Switch
                 activeBoxShadow={theme.colors.defaultText}
                 ariaLabelledby={t("header.changeLang")}
-                checked={language == "en"}
+                checked={i18n.language == "en"}
                 onChange={handleLangChange}
                 handleDiameter={15}
                 offColor={

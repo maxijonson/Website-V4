@@ -19,8 +19,10 @@ declare global {
     }
 }
 
+type IStoreAction = IThemeAction;
+
 const store = createStore(
-    combineReducers<IStoreState>({
+    combineReducers<IStoreState, IStoreAction>({
         theme: themesReducer,
     }),
     composeEnhancers(applyMiddleware(thunk)),

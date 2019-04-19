@@ -9,7 +9,9 @@ export interface IResetThemeAction {
     type: "themes/RESET_THEME";
 }
 
-export type ThemeAction = ISetThemeAction | IResetThemeAction;
+declare global {
+    type IThemeAction = ISetThemeAction | IResetThemeAction;
+}
 
 export const setTheme = (theme: ITheme): ISetThemeAction => ({
     theme,
