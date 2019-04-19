@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import Switch from "react-switch";
+import { app } from "src/app";
 import { Hooks } from "src/modules";
 
 const { useConnect } = Hooks;
@@ -11,7 +12,7 @@ export default () => {
     const { theme } = useConnect(({ theme }) => ({ theme }));
 
     const handleLangChange = (checked: boolean) => {
-        i18n.changeLanguage(checked ? "en" : "fr");
+        app.setLanguage(checked ? "en" : "fr");
     };
 
     return (

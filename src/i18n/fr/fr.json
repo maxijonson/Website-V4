@@ -63,6 +63,10 @@
             "title": "Bienvenue"
         }
     },
+    "notification": {
+        "langChange": "Langue changée",
+        "themeChange": "Thème changé"
+    },
     "portfolio": {
         "details": "Voir les détails",
         "projects": {

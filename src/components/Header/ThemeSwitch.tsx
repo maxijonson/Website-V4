@@ -16,6 +16,7 @@ export default () => {
             setTheme: (theme: ITheme) => dispatch(setThemeAction(theme)),
         }),
     );
+
     const handleThemeChange = (checked: boolean) => {
         setTheme(checked ? light : dark);
     };

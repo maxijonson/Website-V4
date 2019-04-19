@@ -4,6 +4,8 @@ import { CSS, Hooks, i18n, t, Utils } from "src/modules/";
 import { store } from "src/store/config";
 import { history } from "./routers/AppRouter";
 
+import { toast, ToastContent, ToastOptions } from "react-toastify";
+import { Bounce } from "react-toastify";
 import { themes } from "./modules/CSS";
 
 class App {
@@ -27,6 +29,10 @@ class App {
         return history;
     }
 
+    get t() {
+        return t;
+    }
+
     public setTheme(theme: "light" | "dark") {
         switch (theme) {
             case "light":
@@ -43,6 +49,7 @@ class App {
             return console.warn(`${lang} is not a valid language`);
         }
         i18n.changeLanguage(lang);
+        this.notify(`${app.t("notification.langChange")}: ${lang}`);
     }
 
     public enforceSSL() {
@@ -59,9 +66,21 @@ class App {
                 window.location.href.substring(window.location.protocol.length);
         }
     }
+
+    public notify(content: ToastContent, options?: ToastOptions | undefined) {
+        return toast(content, options);
+    }
 }
 
 const app = new App();
+
+toast.configure({
+    toastClassName: "toast",
+    bodyClassName: "toast__content",
+    progressClassName: "toast__progress",
+    position: "bottom-right",
+    transition: Bounce,
+});
 
 (window as any).app = app;
 
