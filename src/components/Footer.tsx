@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { THEME_TRANSITION_TIME } from "src/config/config";
 import { Hooks } from "src/modules";
 import styled from "styled-components";
+import { version } from "../../package.json";
 import { fonts } from "../modules/CSS";
 
 const { useMapState } = Hooks;
@@ -14,7 +15,7 @@ interface IFooterProps {
 
 const Footer = styled.footer`
     color: ${({ theme }) => theme.colors.defaultText};
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     text-align: center;
     padding-bottom: 1%;
     transition: all ${THEME_TRANSITION_TIME}s;
@@ -31,6 +32,7 @@ export default ({ kClassName = "" }: IFooterProps) => {
         <Footer theme={theme} className={`footer ${kClassName}`}>
             Copyright <FontAwesomeIcon icon={["far", "copyright"]} />{" "}
             {new Date().getFullYear()} MaxiJonson. {t("footer.copyright")}
+            <br />v{version}
         </Footer>
     );
 };
