@@ -4,11 +4,11 @@ import { Hooks } from "src/modules";
 import { withCatcher } from "../Catcher";
 import Card from "./Card";
 
-const { useMapState } = Hooks;
+const { useConnect } = Hooks;
 
 // TODO: i18n
 const Base = ({ errorReport }: { errorReport: IErrorReport }) => {
-    const { theme } = useMapState(({ theme }) => ({ theme }));
+    const { theme } = useConnect(({ theme }) => ({ theme }));
 
     const [modalVisible, setModalVisible] = React.useState(false);
 

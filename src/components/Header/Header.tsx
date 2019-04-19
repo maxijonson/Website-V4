@@ -12,7 +12,7 @@ import LangSwitch from "./LangSwitch";
 import Nav from "./Nav";
 import ThemeSwitch from "./ThemeSwitch";
 
-const { useMapState } = Hooks;
+const { useConnect } = Hooks;
 
 const Header = styled.div`
     position: fixed;
@@ -25,7 +25,7 @@ const Header = styled.div`
 `;
 
 export default () => {
-    const { theme } = useMapState(({ theme }) => ({ theme }));
+    const { theme } = useConnect(({ theme }) => ({ theme }));
     const [menuVisible, setMenuVisible] = React.useState(false);
     const [isNavigating, setIsNavigating] = React.useState(false);
 

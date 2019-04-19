@@ -6,7 +6,7 @@ import { Hooks } from "src/modules";
 import { fonts, ITheme } from "src/modules/CSS";
 import styled from "styled-components";
 
-const { useMapState } = Hooks;
+const { useConnect } = Hooks;
 
 const HomeLanding = styled.div<{ theme: ITheme }>`
     position: absolute;
@@ -22,7 +22,7 @@ const HomeLanding = styled.div<{ theme: ITheme }>`
 
 export default () => {
     const { t } = useTranslation();
-    const { theme } = useMapState(({ theme }) => ({ theme }));
+    const { theme } = useConnect(({ theme }) => ({ theme }));
     return (
         <HomeLanding theme={theme}>
             <div

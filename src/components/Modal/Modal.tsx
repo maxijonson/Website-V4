@@ -6,7 +6,7 @@ import { CSS, Hooks } from "src/modules";
 import styled from "styled-components";
 import tinycolor from "tinycolor2";
 
-const { useMapState, usePortal } = Hooks;
+const { useConnect, usePortal } = Hooks;
 const { fonts } = CSS;
 
 interface IPoseOptions {
@@ -107,7 +107,7 @@ export default (props: IModalOwnProps) => {
         overlayOpacity,
     } = props;
 
-    const { theme } = useMapState(({ theme }) => ({ theme }));
+    const { theme } = useConnect(({ theme }) => ({ theme }));
     const target = usePortal(parent || document.body, "modal");
 
     const preventPropagation = React.useMemo(

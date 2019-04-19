@@ -3,12 +3,12 @@ import { useTranslation } from "react-i18next";
 import Switch from "react-switch";
 import { Hooks } from "src/modules";
 
-const { useMapState } = Hooks;
+const { useConnect } = Hooks;
 
 export default () => {
     const { i18n, t } = useTranslation();
 
-    const { theme } = useMapState(({ theme }) => ({ theme }));
+    const { theme } = useConnect(({ theme }) => ({ theme }));
 
     const handleLangChange = (checked: boolean) => {
         i18n.changeLanguage(checked ? "en" : "fr");

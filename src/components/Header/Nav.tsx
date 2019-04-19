@@ -6,7 +6,7 @@ import { Hooks } from "src/modules";
 import styled from "styled-components";
 import tinycolor from "tinycolor2";
 
-const { useMapState } = Hooks;
+const { useConnect } = Hooks;
 
 interface INavProps {
     name: string;
@@ -48,7 +48,7 @@ const Nav = styled(NavLink)`
 `;
 
 export default ({ path, exact, name, Icon, onPathChange }: INavProps) => {
-    const { theme } = useMapState(({ theme }) => ({ theme }));
+    const { theme } = useConnect(({ theme }) => ({ theme }));
     const { t } = useTranslation();
     const handleClick = (e: React.MouseEvent) => {
         if (onPathChange) {

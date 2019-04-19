@@ -5,7 +5,7 @@ import { fonts, ITheme } from "src/modules/CSS";
 import styled, { ThemeProvider } from "styled-components";
 import tinycolor from "tinycolor2";
 
-const { useMapState } = Hooks;
+const { useConnect } = Hooks;
 
 interface IButtonOwnProps {
     onClick?: (e: React.MouseEvent<HTMLElement>) => void;
@@ -88,7 +88,7 @@ export default (props: IButtonOwnProps) => {
         kClassName = "",
     } = props;
 
-    const { theme } = useMapState(({ theme }) => ({ theme }));
+    const { theme } = useConnect(({ theme }) => ({ theme }));
 
     const Button = ButtonRenderer || DButton;
 
