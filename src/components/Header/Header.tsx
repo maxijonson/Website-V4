@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as _ from "lodash";
 import React from "react";
 
-import { history } from "src/app";
+import { app } from "src/app";
 import { Card, Modal } from "src/components";
 import { ZINDEX } from "src/config";
 import { Hooks } from "src/modules";
@@ -40,7 +40,7 @@ export default () => {
         if (e.defaultPrevented) {
             return;
         }
-        if (path == history.location.pathname) {
+        if (path == app.history.location.pathname) {
             setMenuVisible(false);
             return;
         }
@@ -48,7 +48,7 @@ export default () => {
 
         setIsNavigating(true);
         hideTimeout = window.setTimeout(() => {
-            history.push(path);
+            app.history.push(path);
             showTimeout = window.setTimeout(() => {
                 setIsNavigating(false);
                 setMenuVisible(false);
