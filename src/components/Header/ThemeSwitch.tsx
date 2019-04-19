@@ -16,21 +16,14 @@ export default () => {
             setTheme: (theme: ITheme) => dispatch(setThemeAction(theme)),
         }),
     );
-    const [themeSwitch, setThemeSwitch] = React.useState(theme.name == "light");
     const handleThemeChange = (checked: boolean) => {
-        setThemeSwitch(checked);
-        if (setTheme) {
-            setTheme(checked ? light : dark);
-        }
+        setTheme(checked ? light : dark);
     };
     return (
         <div style={{ display: "inline-block" }}>
             <Switch
                 activeBoxShadow={theme.colors.defaultText}
-                ariaLabelledby={`Switch to ${
-                    theme.name == "light" ? theme.name : "dark"
-                } theme`}
-                checked={themeSwitch}
+                checked={theme.name == "light"}
                 onChange={handleThemeChange}
                 handleDiameter={15}
                 onColor={theme.colors.themeSwitchOn}
