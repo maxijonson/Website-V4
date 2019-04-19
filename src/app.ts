@@ -6,6 +6,7 @@ import { history } from "./routers/AppRouter";
 
 import { toast, ToastContent, ToastOptions } from "react-toastify";
 import { Bounce } from "react-toastify";
+import { SESSION_KEYS } from "./config";
 import { themes } from "./modules/CSS";
 
 class App {
@@ -49,6 +50,7 @@ class App {
             return console.warn(`${lang} is not a valid language`);
         }
         i18n.changeLanguage(lang);
+        window.sessionStorage.setItem(SESSION_KEYS.i18n, lang);
         this.notify(`${app.t("notification.langChange")}: ${lang}`);
     }
 

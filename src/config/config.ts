@@ -47,3 +47,8 @@ export const PATHS = {
         },
     },
 };
+
+export const SESSION_KEYS = {
+    theme: "THEME",
+    i18n: "I18N",
+};

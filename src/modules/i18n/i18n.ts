@@ -3,6 +3,7 @@ import markdownJsx from "i18next-markdown-jsx-plugin";
 import * as _ from "lodash";
 import { initReactI18next } from "react-i18next";
 
+import { SESSION_KEYS } from "src/config";
 import enLong from "src/i18n/en/en-long.json";
 import en from "src/i18n/en/en.json";
 import frLong from "src/i18n/fr/fr-long.json";
@@ -32,6 +33,16 @@ i18n.use(markdownJsx)
             },
         },
         lng: (() => {
+            const savedLng = window.sessionStorage.getItem(SESSION_KEYS.i18n);
+            if (
+                savedLng &&
+                _.includes(
+                    i18n.languages,
+                    window.sessionStorage.getItem(SESSION_KEYS.i18n),
+                )
+            ) {
+                return savedLng;
+            }
             for (const lng of i18n.languages) {
                 if (_.includes(navigator.language, lng)) {
                     return lng;
