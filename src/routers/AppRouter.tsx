@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 // import { Translation } from "react-i18next";
 import { Footer, Header } from "src/components";
+import GlobalStyle from "src/components/GlobalStyle";
 import { THEME_TRANSITION_TIME } from "src/config/config";
 import { Hooks } from "src/modules";
 import { fonts } from "src/modules/CSS";
@@ -27,10 +28,12 @@ const PageWrapperStyled = styled.div`
 
 export default () => {
     const { theme } = useConnect(({ theme }) => ({ theme }));
+
     return (
         <Router history={history}>
             <React.Fragment>
                 <PageWrapperStyled theme={theme}>
+                    <GlobalStyle theme={theme} />
                     <Header />
                     <Switch>
                         {_.map(routes, ({ key, path, component, exact }) => (

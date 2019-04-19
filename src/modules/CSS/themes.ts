@@ -26,7 +26,9 @@ export type Section =
     | "sectionBackground"
     | "tooltip"
     | "tooltipText"
-    | "tagText";
+    | "tagText"
+    | "toastBackground"
+    | "toastProgress";
 export type Theme = "light" | "dark";
 
 export type IPalette = { [name in Section]: string };
@@ -67,6 +69,8 @@ export const themes: IThemes = {
             tooltip: colors.ultraDark.black,
             tooltipText: colors.normal.white,
             tagText: colors.ultraDark.white,
+            toastBackground: colors.normal.white,
+            toastProgress: colors.veryLight.onyx,
         },
     },
     dark: {
@@ -97,6 +101,8 @@ export const themes: IThemes = {
             tooltip: colors.veryDark.onyx,
             tooltipText: colors.normal.white,
             tagText: colors.normal.white,
+            toastBackground: colors.dark.onyx,
+            toastProgress: colors.veryDark.white,
         },
     },
 };
