@@ -14,9 +14,11 @@ import { Provider } from "react-redux";
 import "src/modules/i18n/i18n";
 import "./styles/styles.scss";
 
-import * as app from "src/app";
+import { app } from "src/app";
 import { APP_ROOT } from "./config";
 import AppRouter from "./routers/AppRouter";
+
+app.enforceSSL();
 
 library.add(faMoon, faSun, faCopyright, faBars, faHome, faBookOpen);
 

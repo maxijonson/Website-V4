@@ -7,7 +7,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import { ConnectedComponentClass } from "react-redux";
-import { store } from "src/app";
+import { app } from "src/app";
 import { HomePage, NotFoundPage, PortfolioPage } from "../pages";
 
 export interface IRoute {
@@ -36,7 +36,7 @@ export const routes: IRoute[] = [
         Icon: () => (
             <FontAwesomeIcon
                 icon="home"
-                color={store.getState().theme.colors.defaultText}
+                color={app.state.theme.colors.defaultText}
             />
         ),
     },
@@ -49,7 +49,7 @@ export const routes: IRoute[] = [
         Icon: () => (
             <FontAwesomeIcon
                 icon="book-open"
-                color={store.getState().theme.colors.defaultText}
+                color={app.state.theme.colors.defaultText}
             />
         ),
     },
@@ -65,7 +65,7 @@ export const routes: IRoute[] = [
         Icon: () => (
             <FontAwesomeIcon
                 icon={faDiscord}
-                color={store.getState().theme.colors.defaultText}
+                color={app.state.theme.colors.defaultText}
             />
         ),
     },
@@ -86,7 +86,7 @@ export const socials: ISocial[] = [
         Icon: () => (
             <FontAwesomeIcon
                 icon={faTwitter}
-                color={store.getState().theme.colors.defaultText}
+                color={app.state.theme.colors.defaultText}
             />
         ),
     },
@@ -96,7 +96,7 @@ export const socials: ISocial[] = [
         Icon: () => (
             <FontAwesomeIcon
                 icon={faTwitch}
-                color={store.getState().theme.colors.defaultText}
+                color={app.state.theme.colors.defaultText}
             />
         ),
     },
@@ -106,7 +106,7 @@ export const socials: ISocial[] = [
         Icon: () => (
             <FontAwesomeIcon
                 icon={faGithub}
-                color={store.getState().theme.colors.defaultText}
+                color={app.state.theme.colors.defaultText}
             />
         ),
     },

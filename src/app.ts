@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import * as actions from "src/actions";
 import { CSS, Hooks, i18n, t, Utils } from "src/modules/";
 import { store } from "src/store/config";
@@ -6,20 +7,32 @@ import { history } from "./routers/AppRouter";
 import { themes } from "./modules/CSS";
 
 class App {
+    get store() {
+        return store;
+    }
+
     get state() {
-        return store.getState();
+        return this.store.getState();
+    }
+
+    get dispatch() {
+        return this.store.dispatch;
     }
 
     get language() {
         return i18n.language;
     }
 
+    get history() {
+        return history;
+    }
+
     public setTheme(theme: "light" | "dark") {
         switch (theme) {
             case "light":
-                return store.dispatch(actions.setTheme(themes.light));
+                return this.dispatch(actions.setTheme(themes.light));
             case "dark":
-                return store.dispatch(actions.setTheme(themes.dark));
+                return this.dispatch(actions.setTheme(themes.dark));
             default:
                 return console.warn(`${theme} is not a valid theme`);
         }
@@ -31,10 +44,25 @@ class App {
         }
         i18n.changeLanguage(lang);
     }
+
+    public enforceSSL() {
+        if (
+            !_.some(["tristan", "maxijonson"], (name) =>
+                _.includes(window.location.hostname, name),
+            )
+        ) {
+            return;
+        }
+        if (window.location.protocol !== "https:") {
+            window.location.href =
+                "https:" +
+                window.location.href.substring(window.location.protocol.length);
+        }
+    }
 }
 
 const app = new App();
 
 (window as any).app = app;
 
-export { store, i18n, t, CSS, Hooks, Utils, history, app };
+export { i18n, t, CSS, Hooks, Utils, app };

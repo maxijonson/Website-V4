@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import * as React from "react";
 import { Dispatch } from "redux";
-import { store } from "src/app";
+import { app } from "src/app";
 import { BREAKPOINTS } from "src/config";
 import { Utils } from "src/modules";
 
@@ -10,18 +10,18 @@ export * from "./useStyled";
 // NOTE: Hard to test performance since we only have 1 state (theme)
 const useMapState = <S extends {}>(mapState: (state: IStoreState) => S) => {
     const error = React.useRef(null);
-    const derivedState = React.useRef<S>(mapState(store.getState()));
+    const derivedState = React.useRef<S>(mapState(app.state));
     const forceUpdate = useForceUpdate();
 
     React.useLayoutEffect(() => {
         let hasUnsubbed = false;
 
-        const unsubscribe = store.subscribe(() => {
+        const unsubscribe = app.store.subscribe(() => {
             if (hasUnsubbed) {
                 return;
             }
             try {
-                const newState = mapState(store.getState());
+                const newState = mapState(app.state);
                 if (!Utils.shallowEqual(newState, derivedState.current)) {
                     derivedState.current = newState;
                     forceUpdate();
@@ -46,7 +46,7 @@ const useMapState = <S extends {}>(mapState: (state: IStoreState) => S) => {
 };
 
 const useMapDispatch = <D>(mapDispatch: (dispatch: Dispatch<any>) => D) => {
-    const initialDispatch = React.useRef(mapDispatch(store.dispatch));
+    const initialDispatch = React.useRef(mapDispatch(app.dispatch));
     const dispatchProps = React.useRef(initialDispatch.current);
 
     return dispatchProps.current;
