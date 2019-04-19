@@ -11,7 +11,7 @@ import { Hooks } from "src/modules";
 import { fonts } from "src/modules/CSS";
 import { routes } from "./routes";
 
-const { useMapState } = Hooks;
+const { useConnect } = Hooks;
 
 export const history = createBrowserHistory();
 
@@ -26,7 +26,7 @@ const PageWrapperStyled = styled.div`
 `;
 
 export default () => {
-    const { theme } = useMapState(({ theme }) => ({ theme }));
+    const { theme } = useConnect(({ theme }) => ({ theme }));
     return (
         <Router history={history}>
             <React.Fragment>

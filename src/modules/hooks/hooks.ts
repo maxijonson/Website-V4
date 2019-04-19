@@ -8,9 +8,7 @@ import { Utils } from "src/modules";
 export * from "./useStyled";
 
 // NOTE: Hard to test performance since we only have 1 state (theme)
-export const useMapState = <S extends {}>(
-    mapState: (state: IStoreState) => S,
-) => {
+const useMapState = <S extends {}>(mapState: (state: IStoreState) => S) => {
     const error = React.useRef(null);
     const derivedState = React.useRef<S>(mapState(store.getState()));
     const forceUpdate = useForceUpdate();
@@ -47,9 +45,7 @@ export const useMapState = <S extends {}>(
     return derivedState.current;
 };
 
-export const useMapDispatch = <D>(
-    mapDispatch: (dispatch: Dispatch<any>) => D,
-) => {
+const useMapDispatch = <D>(mapDispatch: (dispatch: Dispatch<any>) => D) => {
     const initialDispatch = React.useRef(mapDispatch(store.dispatch));
     const dispatchProps = React.useRef(initialDispatch.current);
 

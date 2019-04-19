@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { version } from "../../package.json";
 import { fonts } from "../modules/CSS";
 
-const { useMapState } = Hooks;
+const { useConnect } = Hooks;
 
 interface IFooterProps {
     kClassName?: string;
@@ -25,7 +25,7 @@ const Footer = styled.footer`
 `;
 
 export default ({ kClassName = "" }: IFooterProps) => {
-    const { theme } = useMapState(({ theme }) => ({ theme }));
+    const { theme } = useConnect(({ theme }) => ({ theme }));
     const { t } = useTranslation();
 
     return (

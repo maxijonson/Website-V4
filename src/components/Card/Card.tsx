@@ -16,7 +16,7 @@ import {
     ICardProps,
 } from "./model";
 
-const { useMapState } = Hooks;
+const { useConnect } = Hooks;
 
 interface IThemeProps {
     theme: ICardInternalProps &
@@ -282,7 +282,7 @@ const Base = (props: ICardProps & ICardInternalProps) => {
         footer,
     } = props;
 
-    const { theme } = useMapState(({ theme }) => ({ theme }));
+    const { theme } = useConnect(({ theme }) => ({ theme }));
 
     // Extra state to control the revealing ourselves for things that aren't in react-reveal's scope
     // e.g: changing language or theme would be considered like a change and re-fire the animations, we don't want that!
