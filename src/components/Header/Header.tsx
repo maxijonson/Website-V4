@@ -50,6 +50,7 @@ export default () => {
         setIsNavigating(true);
         hideTimeout = window.setTimeout(() => {
             app.history.push(path);
+            window.scrollTo(0, 0);
             window.dispatchEvent(new Event(SCROLLBAR_EVENT));
             showTimeout = window.setTimeout(() => {
                 setIsNavigating(false);
