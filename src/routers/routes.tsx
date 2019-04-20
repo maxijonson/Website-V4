@@ -1,5 +1,4 @@
 import {
-    faDiscord,
     faGithub,
     faTwitch,
     faTwitter,
@@ -49,22 +48,6 @@ export const routes: IRoute[] = [
         Icon: () => (
             <FontAwesomeIcon
                 icon="book-open"
-                color={app.state.theme.colors.defaultText}
-            />
-        ),
-    },
-    {
-        name: "Intellibot",
-        path: "/intellibot",
-        key: "intellibot",
-        exact: true,
-        component: () => {
-            window.location.href = "/intellibot";
-            return null;
-        },
-        Icon: () => (
-            <FontAwesomeIcon
-                icon={faDiscord}
                 color={app.state.theme.colors.defaultText}
             />
         ),
