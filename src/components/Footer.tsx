@@ -31,7 +31,7 @@ export default ({ kClassName = "" }: IFooterProps) => {
     return (
         <Footer theme={theme} className={`footer ${kClassName}`}>
             Copyright <FontAwesomeIcon icon={["far", "copyright"]} />{" "}
-            {new Date().getFullYear()} MaxiJonson. {t("footer.copyright")}
+            {new Date().getFullYear()} Tristan Chin. {t("footer.copyright")}
             <br />v{version}
         </Footer>
     );
