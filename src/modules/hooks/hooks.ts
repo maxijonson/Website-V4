@@ -114,12 +114,12 @@ export const useSetTimeout = (cb: () => void, time: number = 1000) => {
     };
 };
 
-export enum IBreakpoint {
-    "xs" = 0,
-    "sm",
-    "md",
-    "lg",
-    "xl",
+enum IBreakpoint {
+    "xs" = BREAKPOINTS.xs,
+    "sm" = BREAKPOINTS.sm,
+    "md" = BREAKPOINTS.md,
+    "lg" = BREAKPOINTS.lg,
+    "xl" = BREAKPOINTS.xl,
 }
 type IBreakpointMode = "screen" | "window";
 
@@ -152,13 +152,13 @@ export const useCurrentBreakpoint = (mode: IBreakpointMode = "window") => {
         [],
     );
 
-    const onWindowResize = () => {
-        setBreakpoint(getCurrentBreakpoint());
-    };
-
     const [breakpoint, setBreakpoint] = React.useState<IBreakpoint>(
         getCurrentBreakpoint(),
     );
+
+    const onWindowResize = () => {
+        setBreakpoint(getCurrentBreakpoint());
+    };
 
     React.useLayoutEffect(() => {
         window.addEventListener("resize", onWindowResize);

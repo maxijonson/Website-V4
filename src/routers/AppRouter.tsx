@@ -5,7 +5,7 @@ import { Route, Router, Switch } from "react-router-dom";
 import styled from "styled-components";
 
 // import { Translation } from "react-i18next";
-import { Footer, Header } from "src/components";
+import { Footer, Header, Scrollbar } from "src/components";
 import GlobalStyle from "src/components/GlobalStyle";
 import { THEME_TRANSITION_TIME } from "src/config/config";
 import { Hooks } from "src/modules";
@@ -33,6 +33,7 @@ export default () => {
         <Router history={history}>
             <React.Fragment>
                 <PageWrapperStyled theme={theme}>
+                    <Scrollbar />
                     <GlobalStyle theme={theme} />
                     <Header />
                     <Switch>

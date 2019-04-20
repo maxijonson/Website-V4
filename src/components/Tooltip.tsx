@@ -2,7 +2,6 @@ import * as React from "react";
 import posed from "react-pose";
 import { BREAKPOINTS, THEME_TRANSITION_TIME, ZINDEX } from "src/config";
 import { Hooks } from "src/modules";
-import { IBreakpoint } from "src/modules/hooks/hooks";
 import styled from "styled-components";
 
 const { useConnect, useCurrentBreakpoint } = Hooks;
@@ -210,7 +209,7 @@ export default (props: ITooltipProps) => {
 
     const show = () => {
         setVisibility("visible");
-        if (screen < IBreakpoint.md && mobileTimeout != 0 && activeOnMobile) {
+        if (screen < BREAKPOINTS.md && mobileTimeout != 0 && activeOnMobile) {
             timeout = window.setTimeout(() => {
                 hide();
             }, mobileTimeout);
@@ -225,7 +224,7 @@ export default (props: ITooltipProps) => {
         <Tooltip
             className={`tooltip ${kClassName}`}
             onMouseLeave={
-                (screen >= IBreakpoint.md && hide) ||
+                (screen >= BREAKPOINTS.md && hide) ||
                 (activeOnMobile && hide) ||
                 undefined
             }
@@ -245,7 +244,7 @@ export default (props: ITooltipProps) => {
             <Trigger
                 className="tooltip__trigger"
                 onMouseOver={
-                    (screen >= IBreakpoint.md && show) ||
+                    (screen >= BREAKPOINTS.md && show) ||
                     (activeOnMobile && show) ||
                     undefined
                 }
