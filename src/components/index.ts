@@ -27,3 +27,5 @@ export { default as Section } from "./Section";
 export { default as Tooltip } from "./Tooltip";
 
 export { default as Project } from "./Project";
+
+export { default as Scrollbar } from "./Scrollbar";

@@ -5,7 +5,6 @@ import { Tooltip } from "src/components";
 import { BREAKPOINTS, THEME_TRANSITION_TIME } from "src/config";
 import { Hooks } from "src/modules";
 import { fonts, ITheme } from "src/modules/CSS";
-import { IBreakpoint } from "src/modules/hooks/hooks";
 import styled from "styled-components";
 import tinycolor from "tinycolor2";
 
@@ -227,9 +226,9 @@ export default (props: ISectionProps) => {
             className={`section ${kClassName}`}
             theme={theme}
             {...swipeHandlers}
-            tabIndex={(screenBreakpoint > IBreakpoint.sm && "0") || null}
+            tabIndex={(screenBreakpoint > BREAKPOINTS.sm && "0") || null}
             onKeyDown={handleKeyDown}
-            onClick={(screenBreakpoint > IBreakpoint.sm && focus) || null}
+            onClick={(screenBreakpoint > BREAKPOINTS.sm && focus) || null}
         >
             <Caroussel
                 className="section__caroussel"

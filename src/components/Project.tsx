@@ -13,7 +13,6 @@ import posed from "react-pose";
 import { BREAKPOINTS } from "src/config";
 import { Hooks } from "src/modules";
 import { fonts, ITheme } from "src/modules/CSS";
-import { IBreakpoint } from "src/modules/hooks/hooks";
 import { IProject } from "src/pages/PortfolioPage/projects";
 import styled from "styled-components";
 import tinycolor from "tinycolor2";
@@ -189,7 +188,7 @@ export default (props: IProjectProps) => {
                         ))}
                     </Tags>
                 </div>
-                {breakpoint > IBreakpoint.sm && (
+                {breakpoint > BREAKPOINTS.sm && (
                     <Info pose={hoverVisibility}>
                         <ColorOverlay
                             opacity={0.75}
