@@ -8,7 +8,7 @@ import { ZINDEX } from "src/config";
 import { Hooks } from "src/modules";
 import { routes, socials } from "src/routers/routes";
 import styled from "styled-components";
-import { SCROLLBAR_EVENT } from "../Scrollbar";
+import { SCROLLBAR_EVENT } from "../Scrollbar/Scrollbar";
 import LangSwitch from "./LangSwitch";
 import Nav from "./Nav";
 import ThemeSwitch from "./ThemeSwitch";

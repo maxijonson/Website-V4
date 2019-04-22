@@ -3,7 +3,7 @@ import moment from "moment";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Cards, Section, ViewportContainer } from "src/components";
-import { PATHS } from "src/config/config";
+import { PATHS } from "src/config";
 import HomeExperience from "./HomeExperience";
 import HomeLanding from "./HomeLanding";
 

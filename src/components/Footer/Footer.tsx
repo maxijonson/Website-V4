@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { THEME_TRANSITION_TIME } from "src/config/config";
+import { THEME_TRANSITION_TIME } from "src/config";
 import { Hooks } from "src/modules";
 import styled from "styled-components";
-import { version } from "../../package.json";
-import { fonts } from "../modules/CSS";
+import { version } from "../../../package.json";
+import { fonts } from "../../modules/CSS";
 
 const { useConnect } = Hooks;
 

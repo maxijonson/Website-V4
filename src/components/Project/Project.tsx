@@ -16,7 +16,7 @@ import { fonts, ITheme } from "src/modules/CSS";
 import { IProject } from "src/pages/PortfolioPage/projects";
 import styled from "styled-components";
 import tinycolor from "tinycolor2";
-import { Card, ColorOverlay, Modal, Section } from ".";
+import { Card, ColorOverlay, Modal, Section } from "..";
 
 const { useConnect, useCurrentBreakpoint } = Hooks;
 

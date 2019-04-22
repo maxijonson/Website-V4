@@ -1,1 +1,1 @@
-export * from "./modules/CSS/themes";
+export * from "./themes";
