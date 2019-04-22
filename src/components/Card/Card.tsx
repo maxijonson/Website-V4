@@ -3,12 +3,12 @@ import React from "react";
 import * as Reveal from "react-reveal";
 import { CardCatcher } from "src/components/Card/CardCatcher";
 import { BREAKPOINTS } from "src/config";
-import { THEME_TRANSITION_TIME } from "src/config/config";
+import { THEME_TRANSITION_TIME } from "src/config";
 import { Hooks } from "src/modules";
 import { fonts, ITheme } from "src/modules/CSS";
 import styled, { ThemeProvider } from "styled-components";
 import tinycolor from "tinycolor2";
-import { withCatcher } from "../Catcher";
+import { withCatcher } from "../Catcher/Catcher";
 import {
     defaultProps,
     IBodyAlignment,

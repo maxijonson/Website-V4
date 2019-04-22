@@ -6,8 +6,8 @@ import styled from "styled-components";
 
 // import { Translation } from "react-i18next";
 import { Footer, Header, Scrollbar } from "src/components";
-import GlobalStyle from "src/components/GlobalStyle";
-import { THEME_TRANSITION_TIME } from "src/config/config";
+import GlobalStyle from "src/components/GlobalStyle/GlobalStyle";
+import { THEME_TRANSITION_TIME } from "src/config";
 import { Hooks } from "src/modules";
 import { fonts } from "src/modules/CSS";
 import { routes } from "./routes";
