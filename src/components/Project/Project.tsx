@@ -95,7 +95,7 @@ const Info = styled(
             scale: 0,
             opacity: 0,
         },
-    }),
+    })
 )`
     position: absolute;
     top: 0px;
@@ -143,7 +143,7 @@ export default (props: IProjectProps) => {
         steam,
     } = props;
     const [hoverVisibility, setHoverVisibility] = React.useState<IVisibility>(
-        "hidden",
+        "hidden"
     );
     const [modalVisible, setModalVisible] = React.useState(false);
     const breakpoint = useCurrentBreakpoint("screen");
@@ -219,7 +219,7 @@ export default (props: IProjectProps) => {
                     }
                 >
                     <Section
-                        kClassName={"project__section"}
+                        kClassName="project__section"
                         items={_.map(description, (section) => ({
                             content: t(section),
                         }))}

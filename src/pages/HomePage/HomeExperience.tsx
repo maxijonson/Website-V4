@@ -27,7 +27,7 @@ const Grid = styled.div`
     padding: 1.5%;
     border-radius: 1rem;
     grid-template: auto ${_.times(levels.length, () => "1fr").join(
-        " ",
+        " "
     )} / 1fr ${_.times(categories.length, () => "1fr").join(" ")};
     grid-template-areas:
     "level ${_.join(categories, " ")}"
@@ -40,7 +40,7 @@ const Grid = styled.div`
         `;
             return gta;
         },
-        "",
+        ""
     )};
 `;
 
@@ -133,7 +133,7 @@ export default () => {
                             className={`home-experience__grid__level
                             ${(i == levels.length - 1 && "last") || ""}`}
                             children={t(
-                                `home.sections.experience.levels.${level}`,
+                                `home.sections.experience.levels.${level}`
                             )}
                         />
                     ))}
@@ -145,7 +145,7 @@ export default () => {
                             key={category}
                             category={category}
                             children={t(
-                                `home.sections.experience.categories.${category}`,
+                                `home.sections.experience.categories.${category}`
                             )}
                         />
                     ))}
@@ -169,7 +169,7 @@ export default () => {
                                     .filter(
                                         (s) =>
                                             s.category == category &&
-                                            s.level == level,
+                                            s.level == level
                                     )
                                     .map(({ name, selfTaught }) => (
                                         <Subject
@@ -193,7 +193,7 @@ export default () => {
                                     ))
                                     .value()}
                             </Subjects>
-                        )),
+                        ))
                     )}
                 </Grid>
             </HomeExperience>

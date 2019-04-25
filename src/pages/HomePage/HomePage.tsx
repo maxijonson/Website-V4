@@ -35,7 +35,7 @@ export default () => {
                     }`,
                     {
                         postProcess: "markdown-jsx",
-                    },
+                    }
                 )}
                 imageUrl={
                     _.includes(window.location.hostname, "maxijonson")

@@ -16,7 +16,7 @@ declare global {
 
 export const setTheme = (theme: ITheme): ISetThemeAction => {
     app.notify(
-        `${t("notification.themeChange")}: ${t(`header.theme.${theme.name}`)}`,
+        `${t("notification.themeChange")}: ${t(`header.theme.${theme.name}`)}`
     );
     return {
         theme,
