@@ -27,19 +27,19 @@ const getInitialState = (): ITheme => {
 
 export const themesReducer = (
     state: ITheme = getInitialState(),
-    action: IThemeAction,
+    action: IThemeAction
 ): ITheme => {
     switch (action.type) {
         case "themes/SET_THEME":
             window.sessionStorage.setItem(
                 SESSION_KEYS.theme,
-                action.theme.name,
+                action.theme.name
             );
             return action.theme;
         case "themes/RESET_THEME":
             window.sessionStorage.setItem(
                 SESSION_KEYS.theme,
-                themesReducerDefaultState.name,
+                themesReducerDefaultState.name
             );
             return themesReducerDefaultState;
         default:

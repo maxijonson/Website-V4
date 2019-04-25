@@ -70,7 +70,7 @@ export default () => {
 
     return (
         <Header className={`header ${menuVisible ? "active" : ""}`}>
-            <div className={`header--button`} onClick={onMenuClick}>
+            <div className="header--button" onClick={onMenuClick}>
                 <FontAwesomeIcon icon="bars" color={theme.colors.defaultText} />
             </div>
             <Modal
@@ -131,7 +131,7 @@ export default () => {
                                     {...route}
                                     onPathChange={handlePathChange}
                                 />
-                            ),
+                            )
                     )}
                 </Card>
             </Modal>

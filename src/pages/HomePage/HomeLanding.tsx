@@ -53,7 +53,7 @@ export default () => {
                             _.includes(window.location.hostname, "maxijonson")
                                 ? "maxijonson"
                                 : "tristan"
-                        }`,
+                        }`
                     )}
                 </div>
                 <hr

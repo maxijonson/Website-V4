@@ -157,12 +157,6 @@ const Indicator = styled.div<{ active: boolean; theme: ITheme }>`
 export default (props: ISectionProps) => {
     const { items, startIndex, kClassName = "" } = props;
     const { theme } = useConnect(({ theme }) => ({ theme }));
-    const swipeHandlers = useSwipeable({
-        onSwipedLeft: () => next(),
-        onSwipedRight: () => prev(),
-        preventDefaultTouchmoveEvent: true,
-        trackMouse: true,
-    });
     const screenBreakpoint = useCurrentBreakpoint("screen");
 
     // State
@@ -177,7 +171,7 @@ export default (props: ISectionProps) => {
             setLastPosition(pos);
             setPosition(pos == items.length - 1 ? 0 : pos + 1);
             setSliding(true);
-        }, SLIDE_TIME),
+        }, SLIDE_TIME)
     );
     const prevThrottled = React.useRef(
         _.throttle((pos: number) => {
@@ -185,7 +179,7 @@ export default (props: ISectionProps) => {
             setLastPosition(pos);
             setPosition(pos == 0 ? items.length - 1 : pos - 1);
             setSliding(true);
-        }, SLIDE_TIME),
+        }, SLIDE_TIME)
     );
 
     const next = () => {
@@ -194,6 +188,14 @@ export default (props: ISectionProps) => {
     const prev = () => {
         prevThrottled.current(position);
     };
+
+    const swipeHandlers = useSwipeable({
+        onSwipedLeft: () => next(),
+        onSwipedRight: () => prev(),
+        preventDefaultTouchmoveEvent: true,
+        trackMouse: true,
+    });
+
     const navigate = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         const destination = Number(e.currentTarget.dataset.index);
         if (destination == position) {

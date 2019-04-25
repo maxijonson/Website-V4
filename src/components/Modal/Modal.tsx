@@ -43,7 +43,7 @@ const Overlay = styled(
                 default: { duration: 100 },
             },
         },
-    }),
+    })
 )`
     display: grid;
     height: 100vh;
@@ -82,7 +82,7 @@ const Container = styled(
             x: ({ left, right }: IPoseOptions) =>
                 left || right ? (left ? "-100%" : "100%") : "0%",
         },
-    }),
+    })
 )`
     z-index: ${ZINDEX.modal + 2};
     margin: auto 0;
@@ -114,7 +114,7 @@ export default (props: IModalOwnProps) => {
         () => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
             e.stopPropagation();
         },
-        [],
+        []
     );
 
     const pose = visible ? "visible" : "hidden";
@@ -139,7 +139,7 @@ export default (props: IModalOwnProps) => {
                     {children}
                 </Container>
             </Overlay>,
-            target,
+            target
         ) || null
     );
 };

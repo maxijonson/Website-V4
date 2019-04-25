@@ -38,7 +38,7 @@ i18n.use(markdownJsx)
                 savedLng &&
                 _.includes(
                     i18n.languages,
-                    window.sessionStorage.getItem(SESSION_KEYS.i18n),
+                    window.sessionStorage.getItem(SESSION_KEYS.i18n)
                 )
             ) {
                 return savedLng;
@@ -55,7 +55,7 @@ i18n.use(markdownJsx)
 
 export const t = (
     key: string | string[],
-    options?: i18n.TOptions<i18n.StringMap> | undefined,
+    options?: i18n.TOptions<i18n.StringMap> | undefined
 ) => i18n.t(key, options);
 
 export default i18n;

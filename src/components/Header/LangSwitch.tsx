@@ -46,7 +46,7 @@ export default () => {
                             color: theme.colors.defaultText,
                             paddingRight: 2,
                         }}
-                        children={"EN"}
+                        children="EN"
                     />
                 }
                 uncheckedIcon={
@@ -60,7 +60,7 @@ export default () => {
                             color: theme.colors.defaultText,
                             paddingRight: 2,
                         }}
-                        children={"FR"}
+                        children="FR"
                     />
                 }
             />

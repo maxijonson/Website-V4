@@ -1,16 +1,18 @@
+import Card, * as CardsBase from "./Card/Card";
+import * as CardsAnimated from "./Card/CardAnimated";
+
 export { default as Header } from "./Header/Header";
 
 export { default as Footer } from "./Footer/Footer";
 
-export { default as ViewportContainer } from "./ViewportContainer/ViewportContainer";
+export {
+    default as ViewportContainer,
+} from "./ViewportContainer/ViewportContainer";
 
 export { default as Background } from "./Background/Background";
 
 export { default as ColorOverlay } from "./ColorOverlay/ColorOverlay";
 
-import { default as Card } from "./Card/Card";
-import * as CardsBase from "./Card/Card";
-import * as CardsAnimated from "./Card/CardAnimated";
 const Cards = { ...CardsAnimated, Alt: CardsBase.Alt, Base: CardsBase.default };
 export { Cards, Card };
 

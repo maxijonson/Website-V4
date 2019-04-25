@@ -14,7 +14,7 @@ export default () => {
         ({ theme }) => ({ theme }),
         (dispatch) => ({
             setTheme: (theme: ITheme) => dispatch(setThemeAction(theme)),
-        }),
+        })
     );
 
     const handleThemeChange = (checked: boolean) => {

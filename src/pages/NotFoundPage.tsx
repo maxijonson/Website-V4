@@ -13,22 +13,22 @@ interface IKeywords {
     [keyword: string]: { color: string };
 }
 const keywords: IKeywords = {
-    "import": {
+    import: {
         color: "#F92660",
     },
-    "from": {
+    from: {
         color: "#F92660",
     },
-    "as": {
+    as: {
         color: "#F92660",
     },
-    "export": {
+    export: {
         color: "#F92660",
     },
-    "return": {
+    return: {
         color: "#F92660",
     },
-    "default": {
+    default: {
         color: "#F92660",
     },
     "=": {
@@ -43,13 +43,13 @@ const keywords: IKeywords = {
     "}": {
         color: "#CFCC03",
     },
-    "const": {
+    const: {
         color: "#3FC0EF",
     },
     "=>": {
         color: "#3FC0EF",
     },
-    "IExistingLink": {
+    IExistingLink: {
         color: "#98CC30",
     },
 };
@@ -110,7 +110,7 @@ const CodeLine = ({ line }: { line: string }) => {
     const { theme } = useConnect(({ theme }) => ({ theme }));
     const isImport = line.startsWith("import");
     const url = window.location.href.substring(
-        window.location.protocol.length + 2,
+        window.location.protocol.length + 2
     );
     let inBrackets = false;
     if (line == special) {

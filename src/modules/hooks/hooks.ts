@@ -7,6 +7,11 @@ import { Utils } from "src/modules";
 
 export * from "./useStyled";
 
+export const useForceUpdate = () => {
+    const [, forceUpdate] = React.useReducer((x) => x + 1, 0);
+    return () => forceUpdate({});
+};
+
 // NOTE: Hard to test performance since we only have 1 state (theme)
 const useMapState = <S extends {}>(mapState: (state: IStoreState) => S) => {
     const error = React.useRef(null);
@@ -54,7 +59,7 @@ const useMapDispatch = <D>(mapDispatch: (dispatch: Dispatch<any>) => D) => {
 
 export const useConnect = <S extends {}, D extends {}>(
     mapState?: (state: IStoreState) => S,
-    mapDispatch?: (dispatch: Dispatch<any>) => D,
+    mapDispatch?: (dispatch: Dispatch<any>) => D
 ) => {
     const stateProps = mapState ? useMapState(mapState) : {};
     const dispatchProps = mapDispatch ? useMapDispatch(mapDispatch) : {};
@@ -62,11 +67,6 @@ export const useConnect = <S extends {}, D extends {}>(
         ...stateProps,
         ...dispatchProps,
     } as S & D;
-};
-
-export const useForceUpdate = () => {
-    const [, forceUpdate] = React.useReducer((x) => x + 1, 0);
-    return () => forceUpdate({});
 };
 
 export const usePortal = (parent: HTMLElement, className?: string) => {
@@ -145,15 +145,15 @@ export const useCurrentBreakpoint = (mode: IBreakpointMode = "window") => {
         _.throttle(
             () =>
                 getBreakpoint(
-                    mode === "window" ? window.innerWidth : screen.width,
+                    mode === "window" ? window.innerWidth : screen.width
                 ),
-            500,
+            500
         ),
-        [],
+        []
     );
 
     const [breakpoint, setBreakpoint] = React.useState<IBreakpoint>(
-        getCurrentBreakpoint(),
+        getCurrentBreakpoint()
     );
 
     const onWindowResize = () => {
