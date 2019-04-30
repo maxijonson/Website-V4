@@ -10,13 +10,19 @@ import * as _ from "lodash";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import posed from "react-pose";
-import { BREAKPOINTS } from "src/config";
-import { Hooks } from "src/modules";
-import { fonts, ITheme } from "src/modules/CSS";
 import { IProject } from "src/pages/PortfolioPage/projects";
 import styled from "styled-components";
 import tinycolor from "tinycolor2";
-import { Card, ColorOverlay, Modal, Section } from "..";
+import {
+    Card,
+    ColorOverlay,
+    Modal,
+    Section,
+    ITheme,
+    BREAKPOINTS,
+    Hooks,
+    app,
+} from "tchin-react-components";
 
 const { useConnect, useCurrentBreakpoint } = Hooks;
 
@@ -64,7 +70,7 @@ const Title = styled.div`
 
 const Short = styled.div`
     font-size: 1.75rem;
-    font-family: "${fonts.exo.family}";
+    font-family: "${app.fonts.exo.family}";
 `;
 
 const Tags = styled.div`
@@ -82,7 +88,7 @@ const Tag = styled.div<{ kColor: string; theme: ITheme }>`
     margin-right: 2%;
     margin-top: 2%;
     color: ${({ theme }) => theme.colors.tagText};
-    font-family: "${fonts.openSans.family}";
+    font-family: "${app.fonts.openSans.family}";
 `;
 
 const Info = styled(

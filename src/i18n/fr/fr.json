@@ -1,17 +1,4 @@
 {
-    "footer": {
-        "copyright": "Tous droits réservés."
-    },
-    "header": {
-        "changeLang": "Changer la langue",
-        "home": "Accueil",
-        "portfolio": "Portfolio",
-        "sandbox": "Carré de sable",
-        "theme": {
-            "dark": "foncé",
-            "light": "clair"
-        }
-    },
     "home": {
         "intro": {
             "maxijonson": "SITE OFFICIEL DE MAXIJONSON",
@@ -62,10 +49,6 @@
             "subtitle": "Apprenez à me connaître, moi et mon expérience",
             "title": "Bienvenue"
         }
-    },
-    "notification": {
-        "langChange": "Langue changée",
-        "themeChange": "Thème changé"
     },
     "portfolio": {
         "details": "Voir les détails",

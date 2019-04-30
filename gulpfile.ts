@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import chalk from "chalk";
 import express from "express";
 import * as fs from "fs";
@@ -52,7 +53,7 @@ const showVariables = () => {
             if (_.includes(shown, env)) {
                 console.log(
                     chalk.blue(`    ${env}: `) +
-                        chalk.gray(value || "undefined"),
+                        chalk.gray(value || "undefined")
                 );
             }
         }
@@ -91,7 +92,7 @@ const execRes = (command: string, error?: IExitCode): string => {
         error || {
             code: 4,
             message: "An error occured while executing a shelljs command",
-        },
+        }
     );
     return "";
 };
@@ -160,7 +161,7 @@ gulp.task(
         process.env.NODE_ENV = "development";
         showVariables();
         done();
-    }),
+    })
 );
 
 gulp.task(DEV_SERVER.task, () => {
@@ -197,10 +198,10 @@ gulp.task(DEV_SERVER.task, () => {
         } else {
             console.info(
                 `${chalk.blue(
-                    "✪",
+                    "✪"
                 )} Webpack Development Server is listening on port ${chalk.blue(
-                    options.port.toString(),
-                )}`,
+                    options.port.toString()
+                )}`
             );
         }
     });
@@ -252,7 +253,7 @@ gulp.task(
             exit(EC.NCP);
         }
         done();
-    }),
+    })
 );
 
 gulp.task(
@@ -293,27 +294,27 @@ gulp.task(
                 chalk.green("Package Version Updated"),
                 chalk.bold.white(pkg.version),
                 chalk.green("->"),
-                chalk.bold.white(newVersion),
+                chalk.bold.white(newVersion)
             );
 
             console.log(
                 chalk.blue("Adding updated"),
                 chalk.gray("package.json"),
-                chalk.blue("to git..."),
+                chalk.blue("to git...")
             );
             exec("git add ./package.json");
             console.log(
                 chalk.green("Added updated"),
                 chalk.gray("package.json"),
-                chalk.green("to git"),
+                chalk.green("to git")
             );
 
             console.log(chalk.blue("Making a commit for the bump..."));
             exec(`git commit -m "${BUMP_MSG}"`);
 
             done();
-        },
-    ),
+        }
+    )
 );
 
 gulp.task(
@@ -345,7 +346,7 @@ gulp.task(
         }
         console.log(chalk.green(`Cherry picked ${commitID} into ${GITHUB}`));
         done();
-    }),
+    })
 );
 
 gulp.task(
@@ -354,8 +355,8 @@ gulp.task(
         "init",
         REQUIRE_HEROKU.task,
         CHERRY_PICK.task,
-        BUMP_VERSION.task,
-    ),
+        BUMP_VERSION.task
+    )
 );
 
 gulp.task(PRE_COMMIT.task, gulp.series("init", REQUIRE_HEROKU.task));

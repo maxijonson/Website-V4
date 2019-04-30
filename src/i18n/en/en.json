@@ -1,17 +1,4 @@
 {
-    "footer": {
-        "copyright": "All rights reserved."
-    },
-    "header": {
-        "changeLang": "Change language",
-        "home": "Home",
-        "portfolio": "Portfolio",
-        "sandbox": "Sandbox",
-        "theme": {
-            "dark": "dark",
-            "light": "light"
-        }
-    },
     "home": {
         "intro": {
             "maxijonson": "MAXIJONSON'S OFFICIAL WEBSITE",
@@ -62,10 +49,6 @@
             "subtitle": "Get to know me and my experience",
             "title": "Welcome"
         }
-    },
-    "notification": {
-        "langChange": "Changed language",
-        "themeChange": "Changed theme"
     },
     "portfolio": {
         "details": "Show details",
