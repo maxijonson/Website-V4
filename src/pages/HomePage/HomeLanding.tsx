@@ -1,9 +1,12 @@
 import * as _ from "lodash";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { THEME_TRANSITION_TIME } from "src/config";
-import { Hooks } from "src/modules";
-import { fonts, ITheme } from "src/modules/CSS";
+import {
+    ITheme,
+    Hooks,
+    THEME_TRANSITION_TIME,
+    app,
+} from "tchin-react-components";
 import styled from "styled-components";
 
 const { useConnect } = Hooks;
@@ -31,13 +34,13 @@ export default () => {
                     display: "table-cell",
                     verticalAlign: "middle",
                     transition: `all ${THEME_TRANSITION_TIME}s`,
-                    color: theme.colors.intro,
+                    color: theme.colors.defaultText,
                 }}
             >
                 <div
                     style={{
                         fontSize: "4rem",
-                        fontFamily: fonts.Kaushan.family,
+                        fontFamily: app.fonts.Kaushan.family,
                     }}
                 >
                     {t("home.intro.welcome")}
@@ -45,7 +48,7 @@ export default () => {
                 <div
                     style={{
                         fontSize: "6rem",
-                        fontFamily: fonts.exo.family,
+                        fontFamily: app.fonts.exo.family,
                     }}
                 >
                     {t(
@@ -66,7 +69,7 @@ export default () => {
                 <div
                     style={{
                         fontSize: "2rem",
-                        fontFamily: fonts.openSans.family,
+                        fontFamily: app.fonts.openSans.family,
                     }}
                 >
                     {_.includes(window.location.hostname, "maxijonson")

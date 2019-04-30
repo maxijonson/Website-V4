@@ -1,31 +1,107 @@
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCopyright } from "@fortawesome/free-regular-svg-icons";
-import {
-    faBars,
-    faBookOpen,
-    faHome,
-    faMoon,
-    faSun,
-} from "@fortawesome/free-solid-svg-icons";
-import "normalize.css/normalize.css"; // Reset stylesheet for cross-browser compatibility
+// This file is the entry point to start the website. It should not be imported by any other projects. It is only there to test that the project compiles.
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import "react-toastify/dist/ReactToastify.css";
-import "src/modules/i18n/i18n";
-import "./styles/styles.scss";
+import {
+    faGithub,
+    faTwitch,
+    faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { app, APP_ROOT, NotFoundPage, TRCRouter } from "tchin-react-components";
+import { faHome, faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import { HomePage, PortfolioPage } from "./pages";
+import { version } from "../package.json";
+import enLong from "./i18n/en/en-long.json";
+import en from "./i18n/en/en.json";
+import frLong from "./i18n/fr/fr-long.json";
+import fr from "./i18n/fr/fr.json";
 
-import { app } from "src/app";
-import { APP_ROOT } from "./config";
-import AppRouter from "./routers/AppRouter";
-
-app.enforceSSL();
-
-library.add(faMoon, faSun, faCopyright, faBars, faHome, faBookOpen);
+app.init({
+    enforceSSL: true,
+    routes: [
+        {
+            name: "header.home",
+            key: "home",
+            path: "/",
+            exact: true,
+            component: HomePage,
+            Icon: () => (
+                <FontAwesomeIcon
+                    icon={faHome}
+                    color={app.state.theme.colors.defaultText}
+                />
+            ),
+        },
+        {
+            name: "header.portfolio",
+            path: "/portfolio",
+            key: "portfolio",
+            exact: true,
+            component: PortfolioPage,
+            Icon: () => (
+                <FontAwesomeIcon
+                    icon={faBookOpen}
+                    color={app.state.theme.colors.defaultText}
+                />
+            ),
+        },
+        {
+            name: "Not Found",
+            key: "notFound",
+            path: "",
+            component: () => <NotFoundPage />,
+            hidden: true,
+            Icon: () => <span>NF</span>, // Should not be rendered anyways...
+        },
+    ],
+    socials: [
+        {
+            name: "Twitter",
+            url: "https://twitter.com/MaxiJonson",
+            Icon: () => (
+                <FontAwesomeIcon
+                    icon={faTwitter}
+                    color={app.state.theme.colors.defaultText}
+                />
+            ),
+        },
+        {
+            name: "Twitch",
+            url: "https://www.twitch.tv/maxijonson",
+            Icon: () => (
+                <FontAwesomeIcon
+                    icon={faTwitch}
+                    color={app.state.theme.colors.defaultText}
+                />
+            ),
+        },
+        {
+            name: "Github",
+            url: "https://github.com/maxijonson",
+            Icon: () => (
+                <FontAwesomeIcon
+                    icon={faGithub}
+                    color={app.state.theme.colors.defaultText}
+                />
+            ),
+        },
+    ],
+    translations: {
+        en: {
+            ...{ long: enLong },
+            ...en,
+        },
+        fr: {
+            ...{ long: frLong },
+            ...fr,
+        },
+    },
+});
 
 ReactDOM.render(
     <Provider store={app.store}>
-        <AppRouter />
+        <TRCRouter projectVersion={version} />
     </Provider>,
     document.getElementById(APP_ROOT)
 );

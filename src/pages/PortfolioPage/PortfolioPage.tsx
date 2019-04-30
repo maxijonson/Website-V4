@@ -1,7 +1,8 @@
 import * as _ from "lodash";
 import * as React from "react";
-import { Project, ViewportContainer } from "src/components";
-import { BREAKPOINTS, PATHS } from "src/config";
+import { ViewportContainer, BREAKPOINTS } from "tchin-react-components";
+import { Project } from "src/components";
+import { PATHS } from "src/config";
 import styled from "styled-components";
 import PortfolioLanding from "./PortfolioLanding";
 import { projects } from "./projects";
