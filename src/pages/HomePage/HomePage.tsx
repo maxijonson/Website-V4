@@ -52,6 +52,9 @@ export default () => {
                 title={t("home.playground.title")}
                 subtitle={t("home.playground.subtitle")}
                 imageUrl="assets/images/react-ts.jpg"
+                footer={t("long.home.playground.footer", {
+                    postProcess: "markdown-jsx",
+                })}
             >
                 {t("long.home.playground.body", {
                     postProcess: "markdown-jsx",
