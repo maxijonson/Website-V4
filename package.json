@@ -19,7 +19,7 @@
         "url": "https://github.com/maxijonson/Website.git"
     },
     "dependencies": {
-        "tchin-react-components": "^1.1.2"
+        "tchin-react-components": "^1.1.4"
     },
     "localDependencies": {
         "tchin-react-components": "../../tchin-react-components"

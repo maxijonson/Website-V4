@@ -47,12 +47,10 @@ app.init({
             ),
         },
         {
-            name: "Not Found",
             key: "notFound",
             path: "",
-            component: () => <NotFoundPage />,
+            component: NotFoundPage,
             hidden: true,
-            Icon: () => <span>NF</span>, // Should not be rendered anyways...
         },
     ],
     socials: [
