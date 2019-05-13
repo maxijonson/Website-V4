@@ -4,6 +4,9 @@ export const PATHS = {
         portfolioBg: "/assets/images/portfolio-intro-bg.jpg",
         notFoundBg: "/assets/images/notfound-bg.jpg",
         projects: {
+            trc: {
+                logo: "/assets/images/portfolio/trc.png",
+            },
             website: {
                 logo: "/assets/images/portfolio/website.png",
             },

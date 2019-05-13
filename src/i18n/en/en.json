@@ -68,6 +68,9 @@
             "react": {
                 "short": "A Wallpaper Engine project with 100+ customizable options."
             },
+            "trc": {
+                "short": "My collection of reusable React components and modules."
+            },
             "website": {
                 "short": "4th edition of this very website you're looking at!",
                 "title": "Website"

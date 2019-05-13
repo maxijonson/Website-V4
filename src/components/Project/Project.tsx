@@ -3,6 +3,7 @@ import {
     faGithub,
     faSteam,
     IconDefinition,
+    faNpm,
 } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -147,6 +148,7 @@ export default (props: IProjectProps) => {
         discord,
         website,
         steam,
+        npm,
     } = props;
     const [hoverVisibility, setHoverVisibility] = React.useState<IVisibility>(
         "hidden"
@@ -216,6 +218,7 @@ export default (props: IProjectProps) => {
                     subtitle={
                         <>
                             {github && <Link link={github} icon={faGithub} />}
+                            {npm && <Link link={npm} icon={faNpm} />}
                             {discord && (
                                 <Link link={discord} icon={faDiscord} />
                             )}
@@ -227,7 +230,9 @@ export default (props: IProjectProps) => {
                     <Section
                         kClassName="project__section"
                         items={_.map(description, (section) => ({
-                            content: t(section),
+                            content: t(section, {
+                                postProcess: "markdown-jsx",
+                            }),
                         }))}
                     />
                 </Card>
