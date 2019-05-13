@@ -47,6 +47,9 @@
             "react": {
                 "description": "Non, pas le framework JavaScript! En fait, je n'avais aucune idée de ce que React.js était à l'époque! C'est fondamentalement une deuxième version de Poly Wallpaper. Celui-ci a ajouté de nombreuses fonctionnalités au-dessus de la première version pour améliorer sa personnalisation. De la couleur à la réactivité audio, en passant par l’horloge. Avec plus de 4000 abonnés, je suis assez fier de ce que j'ai accompli avec seulement une base en JavaScript!"
             },
+            "trc": {
+                "description": "Ce package NPM a été créé peu de temps après la publication initiale de mon site Web. Après cette publication, j’ai pensé que ce serait une bonne idée de transférer une logique réutilisable dans un package NPM distinct afin de pouvoir les importer facilement dans mes projets React futurs. Un autre avantage appréciable de ce package est que toutes ses dépendances de projets sont listées comme dépendances plutôt que d’en avoir certaines comme dev-dependencies. Ceci dit, je peux simplement \"``` npm i -S tchin-react-components```\" et avoir une bonne base de code pour démarrer un nouveau projet sans avoir à m'inquiéter de l'installation d'autres dépendances!"
+            },
             "website": {
                 "description": {
                     "one": "Donc, vous en savez déjà un peu sur ce site Web depuis la page d’accueil, mais voici un peu plus d’informations que j’ai omis. Le site précédent a en fait été attaqué! Après avoir étudié de nombreuses formes d’attaques de sites Web et essayé de les insérer dans le mien, j’ai finalement découvert que j’avais peut-être été victime d’une attaque XSS (Google est votre ami!). J'ai donc supprimé la page d'accueil, qui corrigeait tout et prouvait que mes recherches étaient justes!",
