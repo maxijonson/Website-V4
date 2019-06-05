@@ -1,4 +1,3 @@
-// This file is the entry point to start the website. It should not be imported by any other projects. It is only there to test that the project compiles.
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
@@ -16,6 +15,7 @@ import enLong from "./i18n/en/en-long.json";
 import en from "./i18n/en/en.json";
 import frLong from "./i18n/fr/fr-long.json";
 import fr from "./i18n/fr/fr.json";
+import { location } from "./config";
 
 app.init({
     enforceSSL: true,
@@ -96,6 +96,8 @@ app.init({
         },
     },
 });
+
+document.title = location;
 
 ReactDOM.render(
     <Provider store={app.store}>

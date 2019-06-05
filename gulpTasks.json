@@ -7,10 +7,6 @@
         "task": "prepare-commit",
         "hook": "prepare-commit-msg"
     },
-    "POST_COMMIT": {
-        "task": "post-commit",
-        "hook": "post-commit"
-    },
     "BUMP_VERSION": {
         "task": "bump-version",
         "hook": null
