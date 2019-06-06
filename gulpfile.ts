@@ -13,7 +13,7 @@ import {
     BUMP_VERSION,
     CHERRY_PICK,
     DEV_SERVER,
-    // POST_COMMIT,
+    POST_COMMIT,
     PRE_COMMIT,
     PREPARE_COMMIT,
     REQUIRE_HEROKU,
@@ -349,15 +349,15 @@ gulp.task(
     })
 );
 
-// gulp.task(
-//     POST_COMMIT.task,
-//     gulp.series(
-//         "init",
-//         REQUIRE_HEROKU.task,
-//         CHERRY_PICK.task,
-//         BUMP_VERSION.task
-//     )
-// );
+gulp.task(
+    POST_COMMIT.task,
+    gulp.series(
+        "init",
+        // REQUIRE_HEROKU.task,
+        // CHERRY_PICK.task,
+        BUMP_VERSION.task
+    )
+);
 
 gulp.task(PRE_COMMIT.task, gulp.series("init", REQUIRE_HEROKU.task));
 
