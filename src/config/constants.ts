@@ -1,3 +1,5 @@
+import * as _ from "lodash";
+
 export const PATHS = {
     images: {
         homeIntroBg: "/assets/images/home-intro-bg.jpg",
@@ -28,3 +30,11 @@ export const PATHS = {
         },
     },
 };
+
+type ILocation = "MaxiJonson" | "Tristan Chin";
+export const location: ILocation = _.includes(
+    window.location.hostname,
+    "maxijonson"
+)
+    ? "MaxiJonson"
+    : "Tristan Chin";

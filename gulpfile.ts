@@ -353,8 +353,8 @@ gulp.task(
     POST_COMMIT.task,
     gulp.series(
         "init",
-        REQUIRE_HEROKU.task,
-        CHERRY_PICK.task,
+        // REQUIRE_HEROKU.task,
+        // CHERRY_PICK.task,
         BUMP_VERSION.task
     )
 );
