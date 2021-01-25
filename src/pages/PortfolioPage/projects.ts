@@ -29,6 +29,15 @@ export interface IProject {
 
 export const projects: IProject[] = [
     {
+        title: "Nuclui",
+        description: ["long.portfolio.projects.nuclui.description"],
+        logo: PATHS.images.projects.nuclui.logo,
+        techs: [node, typescript, html, scss, react],
+        github: "https://github.com/maxijonson/nuclui",
+        npm: "https://www.npmjs.com/package/nuclui",
+        short: "portfolio.projects.nuclui.short",
+    },
+    {
         title: "tchin-react-components",
         description: ["long.portfolio.projects.trc.description"],
         logo: PATHS.images.projects.trc.logo,

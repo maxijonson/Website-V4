@@ -13,13 +13,11 @@ const { useConnect } = Hooks;
 
 const HomeLanding = styled.div<{ theme: ITheme }>`
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    display: table;
     width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-shadow: ${({ theme }) => `0 0 .75em ${theme.colors.altDefaultShadow}`};
 `;
 

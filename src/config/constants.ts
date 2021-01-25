@@ -6,6 +6,9 @@ export const PATHS = {
         portfolioBg: "/assets/images/portfolio-intro-bg.jpg",
         notFoundBg: "/assets/images/notfound-bg.jpg",
         projects: {
+            nuclui: {
+                logo: "/assets/images/portfolio/nuclui.png",
+            },
             trc: {
                 logo: "/assets/images/portfolio/trc.png",
             },

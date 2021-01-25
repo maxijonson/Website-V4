@@ -2,14 +2,46 @@ import * as _ from "lodash";
 import moment from "moment";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Cards, Section, ViewportContainer } from "tchin-react-components";
+import {
+    Cards,
+    Section,
+    ViewportContainer,
+    app,
+    Modal,
+    Card,
+} from "tchin-react-components";
 import { PATHS } from "src/config";
 import HomeExperience from "./HomeExperience";
 import HomeLanding from "./HomeLanding";
 
+let oldWarningShown = false;
+
 export default () => {
+    const [modalVisible, setModalVisible] = React.useState(false);
+    const mounted = React.useRef(true);
     const { t } = useTranslation();
 
+    const handleRequestClose = () => {
+        setModalVisible(false);
+    };
+
+    React.useEffect(() => {
+        if (!oldWarningShown) {
+            app.notify(t("long.home.welcome.old.toast"), {
+                autoClose: false,
+                onClose: () => {
+                    if (mounted.current) {
+                        setModalVisible(true);
+                    }
+                },
+            });
+            oldWarningShown = true;
+        }
+
+        return () => {
+            mounted.current = false;
+        };
+    }, []);
     return (
         <>
             {/*** INTRO ***/}
@@ -20,6 +52,18 @@ export default () => {
                 <HomeLanding />
             </ViewportContainer>
             {/*** /INTRO ***/}
+            <Modal
+                bottom
+                visible={modalVisible}
+                onRequestClose={handleRequestClose}
+                parent={document.getElementById("app")}
+            >
+                <Card title={t("long.home.welcome.old.title")}>
+                    {t("long.home.welcome.old.content", {
+                        postProcess: "markdown-jsx",
+                    })}
+                </Card>
+            </Modal>
             <Cards.Fade
                 alt
                 right

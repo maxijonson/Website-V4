@@ -39,9 +39,8 @@ const Project = styled.div<{ theme: ITheme }>`
     height: 50vw;
     width: 100%;
     margin: 0.5% 1%;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 1fr;
+    display: flex;
+    flex-direction: column;
     padding: 2.5%;
     color: ${({ theme }) => theme.colors.defaultText};
     transition: 500ms;
@@ -105,21 +104,19 @@ const Info = styled(
     })
 )`
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 `;
 
 const InfoOverlay = styled.div`
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    display: table;
+    height: 100%;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     font-size: 1.6rem;
 `;

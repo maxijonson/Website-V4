@@ -19,7 +19,12 @@
             }
         },
         "welcome": {
-            "body": "Welcome to the 4th edition of my website! The previous one was made on very basic code in my early programming days. I've been wanting to re-make it from scratch for a while, since I grew a lot in knowledge since then, but never found the time, until now! I'm very proud to have the opportunity to put my new skills to work! This website is mainly some kind of blog about me and my story, as well as a portfolio to showcase my programming works! If you're here from Youtube, where the name \"MaxiJonson\" was born, you guys were awesome followers! Unfortunately, I didn't have the time nor the motivation to make videos anymore, I hope you understand!"
+            "body": "Welcome to the 4th edition of my website! The previous one was made on very basic code in my early programming days. I've been wanting to re-make it from scratch for a while, since I grew a lot in knowledge since then, but never found the time, until now! I'm very proud to have the opportunity to put my new skills to work! This website is mainly some kind of blog about me and my story, as well as a portfolio to showcase my programming works! If you're here from Youtube, where the name \"MaxiJonson\" was born, you guys were awesome followers! Unfortunately, I didn't have the time nor the motivation to make videos anymore, I hope you understand!",
+            "old": {
+                "content": "The content of this website was last updated in July 2019. I have been working on [Nuclui](https://github.com/maxijonson/nuclui), a reboot of the UI library powering this very website. My React talents have grown since then and the current UI library didn't feel right. Until Nuclui is ready, this website won't be receiving anymore updates other than fixes. If you have any questions, feel free to send me an email at tristan.chin@chintristan.io . However, most of the information on here is still accurate (my story, my skills, etc.), but I have grown since then and have more to my story and my skills! Thanks for your understanding!",
+                "title": "Old content",
+                "toast": "The content of my website is old. Click here to find out why!"
+            }
         }
     },
     "portfolio": {
@@ -37,6 +42,9 @@
                     "three": "The bot wasn’t the most popular one, but it still kept an average of 35 servers during its early days when I was maintaining it. However, it was my first Node project, so the code was not the best. I later took a Node course before Cuisto, but Intellibot is just too much of a huge project to refactor. So, slowly, I stopped maintaining it to focus on sharpening my skills and maybe, one day, make a sibling bot.",
                     "two": "For a whole semester, on my own time, I sacrificed gaming to make this multipurpose bot. I wanted it to do everything most bots were doing, only in one single bot. This included music, server moderation, a score system, customizable settings and memes! Yes, memes! You could give it a template, which would be saved and at any time, you could make a meme with this template (top and bottom text). No watermarks, no meme generator websites, just one command to make dank content!"
                 }
+            },
+            "nuclui": {
+                "description": "Nuclui is a reboot of the previous UI library that still powers this website: tchin-react-components. This fresh library has a different aim than its predecessor. Instead of being a kit for myself, I'm working hard to make this one usable by other people!"
             },
             "poly": {
                 "description": "As far as my memory goes, Poly Wallpaper was my first real JavaScript project. I discovered the language way before that of course, but in terms of project scale, it was the biggest at the time. If you don’t know what Wallpaper Engine is, it’s a software available on Steam that allows you to make custom wallpapers (more than just a static picture). This wallpaper reacts to the audio your computer makes, which looks great with music. Since it was pretty basic and I wanted to see how far I could go with it, I made a second version of it: React."

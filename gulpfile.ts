@@ -62,7 +62,13 @@ const showVariables = () => {
 };
 
 const getBranchName = () => branch.sync();
-const getCommitMsg = () => fs.readFileSync(".git/COMMIT_EDITMSG", "utf8");
+const getCommitMsg = () => {
+    try {
+        return fs.readFileSync(".git/COMMIT_EDITMSG", "utf8");
+    } catch (_e) {
+        return "";
+    }
+};
 let isExiting = false;
 const exit = (c: IExitCode) => {
     if (isExiting) {
